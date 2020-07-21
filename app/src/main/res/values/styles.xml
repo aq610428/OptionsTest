@@ -1,0 +1,152 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme2" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorWhite</item>
+        <item name="colorPrimaryDark">@color/colorWhite</item>
+        <item name="colorAccent">@color/colorWhite</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+    </style>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/Text_3377E1</item>
+        <item name="colorPrimaryDark">@color/Text_3377E1</item>
+        <item name="colorAccent">@color/Text_3377E1</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+    </style>
+
+    <declare-styleable name="ChartStyle">
+        <attr name="graphTitle" format="string"></attr>
+        <attr name="xAxisName" format="string"></attr>
+        <attr name="yAxisName" format="string"></attr>
+        <attr name="axisTextSize" format="dimension|integer"></attr>
+        <attr name="axisTextColor" format="color|integer"></attr>
+    </declare-styleable>
+
+
+    <style name="AppTheme1" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/black33</item>
+        <item name="colorPrimaryDark">@color/colorWhite</item>
+        <item name="colorAccent">@color/black33</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+    </style>
+
+
+    <!-- 弹出框动画 由下至上 -->
+    <style name="WindowAnimation" parent="@android:style/Animation.Dialog">
+        <item name="android:windowEnterAnimation">@anim/dialog_enter</item>
+        <!-- 进入时的动画 -->
+        <item name="android:windowExitAnimation">@anim/dialog_exit</item>
+        <!-- 退出时的动画 -->
+    </style>
+
+    <style name="FullScreenTheme" parent="AppTheme">
+        <item name="android:windowFullscreen">true</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="FullHeightDialog" parent="android:style/Theme.Dialog">
+        <item name="windowNoTitle">true</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="StyleProgressBarMini" parent="Widget.AppCompat.ProgressBar.Horizontal">
+
+        <item name="android:maxHeight">40dp</item>
+        <item name="android:minHeight">6dp</item>
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:indeterminateDrawable">
+            @android:drawable/progress_indeterminate_horizontal
+        </item>
+        <item name="android:progressDrawable">@drawable/press</item>
+
+    </style>
+
+
+    <style name="AppTheme.StartingWindowTheme" parent="AppTheme">
+        <!-- 可以设置成纯颜色（设置一个和Activity UI相似的背景） -->
+        <!--<item name="android:windowBackground">@color/startingwindow_bgcolor</item>-->
+        <!--也可以设置成一张图片 -->
+        <!--<item name="android:windowBackground">@drawable/login1_op</item>-->
+        <!-- 隐藏状态栏 -->
+        <item name="android:windowIsTranslucent">true</item>  <!-- 透明背景 -->
+        <item name="android:windowFullscreen">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <style name="AnimBottom" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
+    </style>
+
+
+    <style name="tab">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textColor">@color/color_text_02</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:visibility">visible</item>
+    </style>
+
+
+    <style name="width_match_height_wrap">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="parameter_one_lay_layout_style" parent="width_match_height_wrap">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@drawable/bottom_one_line_parameter_item</item>
+    </style>
+
+    <style name="parameter_two_lay_layout_style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@drawable/right_one_line_parameter_item</item>
+    </style>
+
+    <style name="parameter_one_text_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/space_12dp</item>
+        <item name="android:paddingTop">@dimen/space_8dp</item>
+        <item name="android:paddingBottom">@dimen/space_8dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/ctv_sizen_14</item>
+    </style>
+
+    <style name="parameter_two_text_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/space_12dp</item>
+        <item name="android:layout_marginRight">@dimen/space_12dp</item>
+        <item name="android:background">@drawable/shape_four_stork_parameter</item>
+        <item name="android:paddingLeft">@dimen/space_4dp</item>
+        <item name="android:paddingTop">3dp</item>
+        <item name="android:paddingBottom">3dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+</resources>

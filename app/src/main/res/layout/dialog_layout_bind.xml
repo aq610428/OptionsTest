@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="解除绑定积分将清零"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/ctv_sizen_15" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp">
+
+        <EditText
+            android:id="@+id/et_code"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:layout_toStartOf="@+id/btn_code"
+            android:layout_toLeftOf="@+id/btn_code"
+            android:cursorVisible="true"
+            android:gravity="center|left"
+            android:hint="@string/prompt_password"
+            android:inputType="number"
+            android:textColor="#677E9C"
+            android:textCursorDrawable="@null"
+            android:textSize="@dimen/ctv_sizen_14" />
+
+        <TextView
+            android:id="@+id/btn_code"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:text="@string/send_code"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/ctv_sizen_14" />
+
+    </RelativeLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/dive_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="确认"
+            android:textColor="#3377E1"
+            android:textSize="@dimen/ctv_sizen_16" />
+
+        <TextView
+            android:id="@+id/cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="取消"
+            android:textColor="#3377E1"
+            android:textSize="@dimen/ctv_sizen_16" />
+    </LinearLayout>
+
+
+</LinearLayout>

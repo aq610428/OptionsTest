@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rl_popu"
+    android:background="@color/transparenc"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="35dp"
+        android:layout_marginRight="8dp"
+        android:background="@mipmap/ic_basket"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text_shop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@mipmap/ic_shop"
+            android:drawablePadding="5dp"
+            android:gravity="center"
+            android:text="附近店铺"
+            android:textColor="@color/black33"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/text_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:drawableLeft="@mipmap/ic_order_new"
+            android:drawablePadding="5dp"
+            android:gravity="center"
+            android:text="订单列表"
+            android:textColor="@color/black33"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/text_bind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:drawableLeft="@mipmap/ic_bind_tps"
+            android:drawablePadding="5dp"
+            android:gravity="center"
+            android:text="解除店铺"
+            android:textColor="@color/black33"
+            android:textSize="15sp" />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

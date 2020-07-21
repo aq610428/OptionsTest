@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <com.amap.api.maps.MapView
+        android:id="@+id/mMapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <include layout="@layout/activity_title" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/base_press"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:visibility="visible">
+
+        <com.jkabe.app.android.weight.ClearEditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/colorWhite"
+            android:gravity="center|left"
+            android:hint="请输入围栏名称"
+            android:textColor="@color/black33"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/dive_line" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="进出报警设置"
+                android:textColor="#969FB5"
+                android:textSize="14sp" />
+
+
+            <TextView
+                android:id="@+id/text_in"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/text_out"
+                android:background="@drawable/shape_license"
+                android:gravity="center"
+                android:text="进"
+                android:textColor="@color/colorWhite"
+                android:textSize="13sp" />
+
+
+            <TextView
+                android:id="@+id/text_out"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/text_out1"
+                android:background="@drawable/shape_license_nor"
+                android:gravity="center"
+                android:text="出"
+                android:textColor="#969FB5"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/text_out1"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/text_close"
+                android:background="@drawable/shape_license_nor"
+                android:gravity="center"
+                android:text="进出"
+                android:textColor="#969FB5"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/text_close"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/shape_license_nor"
+                android:gravity="center"
+                android:text="关闭"
+                android:textColor="#969FB5"
+                android:textSize="13sp" />
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="3dp"
+                android:text="半径(米）"
+                android:textColor="#969FB5"
+                android:textSize="15sp" />
+
+            <SeekBar
+                android:id="@+id/seekBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:max="1000"
+                android:thumb="@mipmap/icon_cric" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text=""
+                android:textColor="#969FB5"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="#969FB5"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="200"
+                    android:textColor="#969FB5"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="400"
+                    android:textColor="#969FB5"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="600"
+                    android:textColor="#969FB5"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="800"
+                    android:textColor="#969FB5"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="1000"
+                    android:textColor="#969FB5"
+                    android:textSize="13sp" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_sumber"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_license"
+            android:gravity="center"
+            android:text="保存"
+            android:textColor="@color/colorWhite"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/text_address"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="50dp"
+        android:background="@color/transparenc"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="进出报警设置"
+        android:textColor="@color/colorWhite"
+        android:textSize="13sp" />
+</RelativeLayout>

@@ -1,0 +1,2 @@
+include ':app', ':library1'
+rootProject.name='Kbox-jkabe'

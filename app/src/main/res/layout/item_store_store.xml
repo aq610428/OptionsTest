@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:id="@+id/iv_photo"
+            android:layout_width="91dp"
+            android:layout_height="91dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/mp_chat_goods_card_default_img" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:gravity="center|left"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="汽车维修中心"
+                android:textColor="@color/black33"
+                android:textSize="@dimen/ctv_sizen_15"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center|left"
+                android:paddingTop="7dp"
+                android:text="深圳市南山区西丽珠光北路南山科技圆"
+                android:textColor="@color/black7e"
+                android:textSize="@dimen/ctv_sizen_13"
+                android:visibility="visible" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="7dp">
+
+                <TextView
+                    android:id="@+id/text_distance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/icon_mapview"
+                    android:drawablePadding="5dp"
+                    android:gravity="center"
+                    android:text="0m"
+                    android:textColor="#FFB300"
+                    android:textSize="@dimen/ctv_sizen_13" />
+
+
+                <TextView
+                    android:id="@+id/text_verify"
+                    android:layout_width="80dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/next_bg_nor"
+                    android:gravity="center"
+                    android:text="立即绑定"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/ctv_sizen_13" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/dive_line" />
+</LinearLayout>

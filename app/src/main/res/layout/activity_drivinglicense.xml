@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_title" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:fadingEdge="none"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:background="@mipmap/icon_travel"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/data_license_car_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/one_count_id"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="--"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/two_count_id"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="--"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/three_count_id"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="--"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="违章次数"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="罚款(元)"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="扣分"
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/search_license_car_id"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/up_licese_search_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="260dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:layout_margin="14sp"
+                    android:background="@drawable/shape_four_corners_bg"
+                    android:gravity="center"
+                    android:text="点击按钮进行查询违章记录"
+                    android:textColor="@color/black33"
+                    android:textSize="@dimen/ctv_sizen_14" />
+
+                <TextView
+                    android:id="@+id/text_sumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_below="@id/up_licese_search_id"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/next_shape"
+                    android:gravity="center"
+                    android:paddingLeft="80dp"
+                    android:paddingTop="8dp"
+                    android:paddingRight="80dp"
+                    android:paddingBottom="8dp"
+                    android:text="查   询"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/album_sp_16" />
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:id="@+id/car_details_layout_id"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/license_car_no_data" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="暂无违章记录"
+                    android:textColor="#808080"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/search_time_message_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="查询时间"
+                    android:textColor="#FF737373"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+
+            <ListView
+                android:id="@+id/swipe_target"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@color/dive_line"
+                android:dividerHeight="0.5dp"
+                android:fadingEdge="none"
+                android:scrollbars="none" />
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</RelativeLayout>

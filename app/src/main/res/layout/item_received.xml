@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/base_press"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/noticeText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:drawableLeft="@mipmap/icon_shop_order"
+            android:drawablePadding="5dp"
+            android:gravity="center|left"
+            android:text="深圳东富奇瑞新能源"
+            android:textColor="#262626"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_photo"
+                android:layout_width="61dp"
+                android:layout_height="61dp"
+                android:background="@color/dive_line"
+                android:scaleType="centerCrop" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|left"
+                    android:text="深圳市南山区西丽街道大堪杨门工业区怡华 区怡华工业园29"
+                    android:textColor="#757575"
+                    android:textSize="14sp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp">
+
+                    <TextView
+                        android:id="@+id/text_mobile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@mipmap/icon_mobile_order"
+                        android:drawablePadding="5dp"
+                        android:gravity="center|left"
+                        android:text="15888246540"
+                        android:textColor="#3F69F4"
+                        android:textSize="14sp" />
+
+
+                    <TextView
+                        android:id="@+id/text_cancel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/shape_receive"
+                        android:gravity="center|left"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="3dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="3dp"
+                        android:text="取消预约"
+                        android:textColor="#757575"
+                        android:textSize="13sp" />
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/dive_line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:gravity="center|left"
+                android:text="状态"
+                android:textColor="#5A5A5A"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.6"
+                android:gravity="center"
+                android:text="预约时间"
+                android:textColor="#5A5A5A"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:gravity="center|right"
+                android:text="预约项目"
+                android:textColor="#5A5A5A"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/text_repair"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:gravity="center|left"
+                android:text="预约申请中"
+                android:textColor="#39CCC0"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/text_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.6"
+                android:gravity="center"
+                android:text="2018-05-25"
+                android:textColor="#757575"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/text_prect"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:gravity="center|right"
+                android:text="保养"
+                android:textColor="#7E7E7E"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

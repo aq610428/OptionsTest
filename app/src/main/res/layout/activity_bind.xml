@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <include layout="@layout/activity_title" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fadingEdge="none"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/colorWhite"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="match_parent"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:paddingLeft="15dp"
+                    android:text="设备编号"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/ctv_sizen_14"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/et_cardName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="90dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@color/colorWhite"
+                    android:cursorVisible="true"
+                    android:gravity="center|left"
+                    android:hint="请输入设备编号"
+                    android:textColor="@color/black33"
+                    android:textCursorDrawable="@null"
+                    android:textSize="@dimen/ctv_sizen_13" />
+
+
+                <ImageView
+                    android:id="@+id/iv_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="5dp"
+                    android:src="@mipmap/icon_sacn" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/dive_line" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/colorWhite"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="match_parent"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:paddingLeft="15dp"
+                    android:text="激活码"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/ctv_sizen_14"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/et_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="90dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@color/colorWhite"
+                    android:cursorVisible="true"
+                    android:gravity="center|left"
+                    android:hint="请输入设备激活码"
+                    android:textColor="@color/black33"
+                    android:textCursorDrawable="@null"
+                    android:textSize="@dimen/ctv_sizen_13" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/dive_line" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/colorWhite"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="match_parent"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:paddingLeft="15dp"
+                    android:text="车牌号"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/ctv_sizen_14"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/et_cardnum"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="90dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@color/colorWhite"
+                    android:cursorVisible="true"
+                    android:gravity="center|left"
+                    android:hint="请输入车牌号"
+                    android:textColor="@color/black33"
+                    android:textCursorDrawable="@null"
+                    android:textSize="@dimen/ctv_sizen_13" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/dive_line" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/colorWhite"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="match_parent"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:paddingLeft="15dp"
+                    android:text="车辆品牌"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/ctv_sizen_14"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/text_brand"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="90dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@color/colorWhite"
+                    android:cursorVisible="true"
+                    android:drawableRight="@mipmap/icon_right_store"
+                    android:gravity="center|left"
+                    android:hint="请选择车辆品牌"
+                    android:textColor="@color/black33"
+                    android:textCursorDrawable="@null"
+                    android:textSize="@dimen/ctv_sizen_13" />
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/dive_line" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/colorWhite"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="match_parent"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:paddingLeft="15dp"
+                    android:text="里程"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/ctv_sizen_14"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/et_course"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="90dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@color/colorWhite"
+                    android:cursorVisible="true"
+                    android:gravity="center|left"
+                    android:hint="请输入车辆里程"
+                    android:inputType="number"
+                    android:textColor="@color/black33"
+                    android:textCursorDrawable="@null"
+                    android:textSize="@dimen/ctv_sizen_13" />
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/dive_line" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/colorWhite"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="match_parent"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:paddingLeft="15dp"
+                    android:text="车辆码"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/ctv_sizen_14"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/et_discern"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="90dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@color/colorWhite"
+                    android:cursorVisible="true"
+                    android:gravity="center|left"
+                    android:hint="请输入车辆识别代码"
+                    android:textColor="@color/black33"
+                    android:textCursorDrawable="@null"
+                    android:textSize="@dimen/ctv_sizen_13" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/dive_line" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/colorWhite"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="match_parent"
+                    android:drawablePadding="10dp"
+                    android:gravity="center|left"
+                    android:paddingLeft="15dp"
+                    android:text="发动机号"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/ctv_sizen_14"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/et_engine"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="90dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@color/colorWhite"
+                    android:cursorVisible="true"
+                    android:gravity="center|left"
+                    android:hint="请输入发动机号"
+                    android:textColor="@color/black33"
+                    android:textCursorDrawable="@null"
+                    android:textSize="@dimen/ctv_sizen_13" />
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/text_bind"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="40dp"
+                android:background="@color/colorAccent"
+                android:gravity="center"
+                android:text="确定"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/ctv_sizen_15" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:text="备注：请填写正确，如有误影响您兑换服务"
+                android:textColor="#979797"
+                android:textSize="@dimen/ctv_sizen_14" />
+
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

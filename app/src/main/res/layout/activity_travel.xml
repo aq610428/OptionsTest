@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_title" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fadingEdge="none"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <com.haibin.calendarview.CalendarLayout
+                android:id="@+id/calendar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:calendar_show_mode="only_week_view"
+                app:default_status="shrink">
+
+                <com.haibin.calendarview.CalendarView
+                    android:id="@+id/calendar_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    app:calendar_match_parent="false"
+                    app:calendar_padding="6dp"
+                    app:day_text_size="16sp"
+                    app:month_view_scrollable="false"
+                    app:month_view_show_mode="mode_fix"
+                    app:week_background="@color/transparent"
+                    app:week_bar_height="18dp"
+                    app:week_start_with="sun"
+                    app:week_view_scrollable="false"
+                    app:year_view_scrollable="false" />
+            </com.haibin.calendarview.CalendarLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="14dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="14dp"
+                android:background="@drawable/oil_shape_bg"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/iv_mileage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_mileage" />
+
+                <TextView
+                    android:id="@+id/text_mileage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/iv_mileage"
+                    android:paddingTop="6dp"
+                    android:text="0KM"
+                    android:textColor="@color/black33"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:paddingTop="6dp"
+                    android:text="总里程"
+                    android:textColor="#B1B1B1"
+                    android:textSize="13sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="14dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginRight="14dp"
+                android:background="@drawable/oil_shape_bg"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/iv_oil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_oil" />
+
+                <TextView
+                    android:id="@+id/text_oil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/iv_oil"
+                    android:paddingTop="6dp"
+                    android:text="0L"
+                    android:textColor="@color/black33"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:paddingTop="6dp"
+                    android:text="总油耗量"
+                    android:textColor="#B1B1B1"
+                    android:textSize="13sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="14dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginRight="14dp"
+                android:background="@drawable/oil_shape_bg"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/iv_ollo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_ollo" />
+
+                <TextView
+                    android:id="@+id/text_houl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/iv_ollo"
+                    android:paddingTop="6dp"
+                    android:text="0h"
+                    android:textColor="@color/black33"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:paddingTop="6dp"
+                    android:text="总行驶时间"
+                    android:textColor="#B1B1B1"
+                    android:textSize="13sp" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="14dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginRight="14dp"
+                android:background="@drawable/oil_shape_bg"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/iv_rmb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_rmb" />
+
+                <TextView
+                    android:id="@+id/txt_rmb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/iv_rmb"
+                    android:paddingTop="6dp"
+                    android:text="0 元"
+                    android:textColor="@color/black33"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:paddingTop="6dp"
+                    android:text="本日消费"
+                    android:textColor="#B1B1B1"
+                    android:textSize="13sp" />
+
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

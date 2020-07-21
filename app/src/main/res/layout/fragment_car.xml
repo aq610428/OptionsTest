@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fadingEdge="none"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/icon_bg_meng" />
+
+
+            <TextView
+                android:id="@+id/text_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="60dp"
+                android:gravity="center|left"
+                android:text="绑定"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/ctv_sizen_25"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/iv_set"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="70dp"
+                android:layout_marginRight="15dp"
+                android:background="@mipmap/icon_set"
+                android:padding="10dp" />
+
+            <RelativeLayout
+                android:id="@+id/ll_map"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="120dp"
+                android:layout_marginRight="15dp"
+                android:orientation="horizontal">
+
+                <com.amap.api.maps.MapView
+                    android:id="@+id/map"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shape_map_view"
+                    android:padding="3dp" />
+
+
+                <RelativeLayout
+                    android:id="@+id/rl_edition"
+                    android:layout_width="224dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="30dp"
+                    android:background="@drawable/base_press"
+                    android:padding="10dp"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/icon_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/icon_location_xh" />
+
+                    <TextView
+                        android:id="@+id/text_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/icon_location"
+                        android:drawableRight="@mipmap/icon_right_arrow"
+                        android:drawablePadding="5dp"
+                        android:gravity="center|left"
+                        android:maxLines="2"
+                        android:text="粤A12345"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/ctv_sizen_13" />
+
+                    <TextView
+                        android:id="@+id/text_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/text_address"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@+id/icon_location"
+                        android:gravity="center|left"
+                        android:text="粤A12345"
+                        android:textColor="#A7A7A7"
+                        android:textSize="@dimen/ctv_sizen_13" />
+
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_map"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_attery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableTop="@mipmap/icon_attery"
+                    android:drawablePadding="6dp"
+                    android:gravity="center"
+                    android:text="电瓶检测"
+                    android:textColor="@color/black33"
+                    android:textSize="@dimen/ctv_sizen_14" />
+
+
+                <TextView
+                    android:id="@+id/text_electronic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableTop="@mipmap/icon_electronic"
+                    android:drawablePadding="6dp"
+                    android:gravity="center"
+                    android:text="电子围栏"
+                    android:textColor="@color/black33"
+                    android:textSize="@dimen/ctv_sizen_14" />
+
+
+                <TextView
+                    android:id="@+id/text_oll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableTop="@mipmap/icon_oil"
+                    android:drawablePadding="6dp"
+                    android:gravity="center"
+                    android:text="油耗分析"
+                    android:textColor="@color/black33"
+                    android:textSize="@dimen/ctv_sizen_14" />
+
+
+                <TextView
+                    android:id="@+id/text_early"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableTop="@mipmap/icon_early"
+                    android:drawablePadding="6dp"
+                    android:gravity="center"
+                    android:text="车辆预警"
+                    android:textColor="@color/black33"
+                    android:textSize="@dimen/ctv_sizen_14" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="156dp"
+                android:layout_below="@+id/ll_type"
+                android:layout_margin="15dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/ll_write"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:background="@mipmap/icon_write"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="15dp">
+
+
+                    <TextView
+                        android:id="@+id/text_write"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:text="行车轨迹"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/ctv_sizen_16"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center|left"
+                        android:text="查看出行轨迹"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/ctv_sizen_12" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/ll_detection"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/icon_detection"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/text_detection"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="违章查询"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/ctv_sizen_16"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="查看出行轨迹"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/ctv_sizen_12" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_travel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:background="@mipmap/icon_travel"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="车辆体检"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/ctv_sizen_16"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="查看出行轨迹"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/ctv_sizen_12" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</RelativeLayout>

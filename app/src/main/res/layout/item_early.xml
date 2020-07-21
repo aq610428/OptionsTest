@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.lihang.ShadowLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:hl_cornerRadius="3dp"
+        app:hl_shadowBackColor="#fff"
+        app:hl_shadowColor="#2A696969"
+        app:hl_shadowLimit="4dp">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:gravity="center|left"
+            android:padding="12dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_warning" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingLeft="15dp"
+                    android:text="版本更新"
+                    android:textColor="#333333"
+                    android:textSize="@dimen/ctv_sizen_13" />
+
+                <TextView
+                    android:id="@+id/text_brand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:paddingLeft="15dp"
+                    android:text="版本更新"
+                    android:textColor="#858585"
+                    android:textSize="@dimen/ctv_sizen_13" />
+
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/text_edition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:text="检测新版本"
+                android:textColor="#858585"
+                android:textSize="@dimen/ctv_sizen_13" />
+
+        </RelativeLayout>
+    </com.lihang.ShadowLayout>
+
+
+</LinearLayout>

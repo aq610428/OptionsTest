@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <include layout="@layout/activity_title" />
+
+    <RelativeLayout
+        android:id="@+id/rl_photo"
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:layout_marginLeft="41dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="41dp"
+        android:layout_marginBottom="10dp"
+        android:background="@mipmap/ic_bg_card"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:src="@mipmap/card_bg_ijk" />
+
+
+        <TextView
+            android:id="@+id/text_cover"
+            android:layout_width="120dp"
+            android:layout_height="35dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="145dp"
+            android:gravity="center"
+            android:text="上传行驶证图片"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/ctv_sizen_14" />
+
+        <ImageView
+            android:id="@+id/iv_photo"
+            android:layout_width="match_parent"
+            android:scaleType="centerCrop"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+
+</LinearLayout>
