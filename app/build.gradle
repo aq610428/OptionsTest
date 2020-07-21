@@ -29,7 +29,6 @@ android {
                 JPUSH_APPKEY : "05b72aedf04ec1ec28f50a8d", //JPush 上注册的包名对应的 Appkey.
                 JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
         ]
-
     }
 
     //签名信息
