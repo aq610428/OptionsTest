@@ -274,7 +274,6 @@ public class LocationTravelActivity extends BaseActivity implements NetWorkListe
         // 定制化的view 做这个信息窗口的内容，如果返回null 将以默认内容渲染
         @Override
         public View getInfoContents(Marker marker) {
-
             return getInfoWindowView(marker);
         }
     };
@@ -298,7 +297,6 @@ public class LocationTravelActivity extends BaseActivity implements NetWorkListe
             infoWindowLayout.addView(title);
             infoWindowLayout.addView(snippet);
         }
-
         return infoWindowLayout;
     }
 

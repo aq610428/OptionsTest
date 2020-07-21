@@ -4,6 +4,7 @@ package com.jkabe.app.android.ui.fragment;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.InputType;
@@ -290,7 +291,6 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
 
     private void polling() {
         String sign = "memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
-        showProgressDialog(getActivity(), false);
         Map<String, String> params = okHttpModel.getParams();
         params.put("apptype", Constants.TYPE);
         params.put("memberid", SaveUtils.getSaveInfo().getId() + "");
@@ -301,7 +301,6 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
 
     private void qurycar() {
         String sign = "imeicode=" + SaveUtils.getCar().getImeicode() + "&memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
-        showProgressDialog(getActivity(), false);
         Map<String, String> params = okHttpModel.getParams();
         params.put("apptype", Constants.TYPE);
         params.put("memberid", SaveUtils.getSaveInfo().getId() + "");
@@ -332,7 +331,6 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
                 ToastUtil.showToast(commonality.getErrorDesc());
             }
         }
-        stopProgressDialog();
     }
 
     private void updateMap() {
@@ -371,6 +369,7 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
     }
 
 
+
     private void updateView() {
         if (carInfo != null && !Utility.isEmpty(carInfo.getCarcard())) {
             SaveUtils.saveCar(carInfo);
@@ -402,12 +401,11 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
 
     @Override
     public void onFail() {
-        stopProgressDialog();
+
     }
 
     @Override
     public void onError(Exception e) {
-        stopProgressDialog();
     }
 
 

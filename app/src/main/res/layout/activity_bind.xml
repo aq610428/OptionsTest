@@ -310,19 +310,10 @@
                 android:layout_marginRight="40dp"
                 android:background="@color/colorAccent"
                 android:gravity="center"
-                android:text="确定"
+                android:text="激活BOX"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/ctv_sizen_15" />
 
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:gravity="center"
-                android:text="备注：请填写正确，如有误影响您兑换服务"
-                android:textColor="#979797"
-                android:textSize="@dimen/ctv_sizen_14" />
 
         </LinearLayout>
 

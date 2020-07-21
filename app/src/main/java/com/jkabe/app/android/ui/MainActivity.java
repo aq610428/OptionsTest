@@ -7,7 +7,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
+
 import androidx.fragment.app.FragmentTabHost;
+
+import com.jkabe.app.android.ui.fragment.AssetsFragmnt;
+import com.jkabe.app.android.ui.fragment.MiningFragmnt;
 import com.jkabe.box.R;
 import com.jkabe.app.android.base.BaseActivity1;
 import com.jkabe.app.android.base.BaseApplication;
@@ -24,8 +28,11 @@ import com.jkabe.app.android.util.Md5Util;
 import com.jkabe.app.android.util.SaveUtils;
 import com.jkabe.app.android.util.ToastUtil;
 import com.jkabe.app.android.util.Utility;
+
 import org.json.JSONObject;
+
 import java.util.Map;
+
 import cn.jpush.android.api.JPushInterface;
 
 /*****
@@ -34,9 +41,10 @@ import cn.jpush.android.api.JPushInterface;
  *
  */
 public class MainActivity extends BaseActivity1 implements NetWorkListener {
-    private Class fragments[] = {CarFragment.class, CarLeftFragment.class, RecordFragment.class, MineFragment.class};
-    private int drawables[] = {R.drawable.book_drawable, R.drawable.chosen_drawable,  R.drawable.shelf_drawable,R.drawable.me_drawable};
-    private String textviewArray[] = {"我的车", "车生活", "资产", "我的"};
+    //    private Class fragments[] = {CarFragment.class, CarLeftFragment.class, RecordFragment.class, MineFragment.class};
+    private Class fragments[] = {CarFragment.class, MiningFragmnt.class, AssetsFragmnt.class, MineFragment.class};
+    private int drawables[] = {R.drawable.book_drawable, R.drawable.chosen_drawable, R.drawable.shelf_drawable, R.drawable.me_drawable};
+    private String textviewArray[] = {"我的车", "挖矿", "资产", "我的"};
     public FragmentTabHost mTabHost;
 
     @Override
@@ -161,7 +169,7 @@ public class MainActivity extends BaseActivity1 implements NetWorkListener {
         Map<String, String> params = okHttpModel.getParams();
         params.put("apptype", Constants.TYPE);
         params.put("partnerid", Constants.PARTNERID);
-        params.put("memberid",  SaveUtils.getSaveInfo().getId() + "");
+        params.put("memberid", SaveUtils.getSaveInfo().getId() + "");
         params.put("registerid", registrationID + "");
         params.put("sign", Md5Util.encode(sign));
         okHttpModel.get(Api.GET_PUSH_VERSION, params, Api.GET_PUSH_VERSION_ID, this);
@@ -178,7 +186,7 @@ public class MainActivity extends BaseActivity1 implements NetWorkListener {
                         break;
 
                 }
-            }else{
+            } else {
                 ToastUtil.showToast(commonality.getErrorDesc());
             }
         }

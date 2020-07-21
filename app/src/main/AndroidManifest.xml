@@ -102,6 +102,20 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name="com.jkabe.app.android.box.AssetsActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.jkabe.app.android.box.IncomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.jkabe.app.android.box.RechargeActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.jkabe.app.android.box.DrawActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="com.jkabe.app.android.ui.ElectronicActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -198,9 +212,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_path" />
         </provider>
-
-
-
 
 
         <!-- Since JCore2.0.0 Required SDK核心功能-->

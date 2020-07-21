@@ -79,21 +79,21 @@
 
                     <TextView
                         android:id="@+id/text_address"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@+id/icon_location"
                         android:drawableRight="@mipmap/icon_right_arrow"
                         android:drawablePadding="5dp"
                         android:gravity="center|left"
-                        android:maxLines="2"
+                        android:maxLines="1"
                         android:text="粤A12345"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/ctv_sizen_13" />
+                        android:textSize="@dimen/ctv_sizen_12" />
 
                     <TextView
                         android:id="@+id/text_date"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/text_address"
                         android:layout_marginLeft="10dp"
@@ -101,7 +101,7 @@
                         android:gravity="center|left"
                         android:text="粤A12345"
                         android:textColor="#A7A7A7"
-                        android:textSize="@dimen/ctv_sizen_13" />
+                        android:textSize="@dimen/ctv_sizen_12" />
 
                 </RelativeLayout>
             </RelativeLayout>
