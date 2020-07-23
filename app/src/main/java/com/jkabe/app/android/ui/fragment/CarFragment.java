@@ -4,7 +4,6 @@ package com.jkabe.app.android.ui.fragment;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.InputType;
@@ -17,10 +16,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
@@ -68,9 +65,7 @@ import com.jkabe.app.android.weight.SensorEventHelper;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.runtime.Permission;
-
 import org.json.JSONObject;
-
 import java.util.List;
 import java.util.Map;
 

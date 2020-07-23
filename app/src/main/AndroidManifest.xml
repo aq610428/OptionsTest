@@ -115,6 +115,10 @@
         <activity
             android:name="com.jkabe.app.android.box.DrawActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.jkabe.app.android.ui.ActivationActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.jkabe.app.android.ui.ElectronicActivity"
             android:screenOrientation="portrait" />
@@ -199,7 +203,7 @@
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="1c2f84bc2c874052182ada0a02c49649" />
+            android:value="0fc2ec2f7f7658f6e1a3b2e4b08b298a" />
 
         <service android:name="com.amap.api.location.APSService"></service>
 

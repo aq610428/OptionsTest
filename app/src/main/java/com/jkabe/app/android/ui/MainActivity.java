@@ -7,10 +7,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
-
 import androidx.fragment.app.FragmentTabHost;
-
 import com.jkabe.app.android.ui.fragment.AssetsFragmnt;
+import com.jkabe.app.android.ui.fragment.MeFragment;
 import com.jkabe.app.android.ui.fragment.MiningFragmnt;
 import com.jkabe.box.R;
 import com.jkabe.app.android.base.BaseActivity1;
@@ -20,19 +19,13 @@ import com.jkabe.app.android.config.Api;
 import com.jkabe.app.android.config.NetWorkListener;
 import com.jkabe.app.android.config.okHttpModel;
 import com.jkabe.app.android.ui.fragment.CarFragment;
-import com.jkabe.app.android.ui.fragment.CarLeftFragment;
-import com.jkabe.app.android.ui.fragment.MineFragment;
-import com.jkabe.app.android.ui.fragment.RecordFragment;
 import com.jkabe.app.android.util.Constants;
 import com.jkabe.app.android.util.Md5Util;
 import com.jkabe.app.android.util.SaveUtils;
 import com.jkabe.app.android.util.ToastUtil;
 import com.jkabe.app.android.util.Utility;
-
 import org.json.JSONObject;
-
 import java.util.Map;
-
 import cn.jpush.android.api.JPushInterface;
 
 /*****
@@ -42,7 +35,7 @@ import cn.jpush.android.api.JPushInterface;
  */
 public class MainActivity extends BaseActivity1 implements NetWorkListener {
     //    private Class fragments[] = {CarFragment.class, CarLeftFragment.class, RecordFragment.class, MineFragment.class};
-    private Class fragments[] = {CarFragment.class, MiningFragmnt.class, AssetsFragmnt.class, MineFragment.class};
+    private Class fragments[] = {CarFragment.class, MiningFragmnt.class, AssetsFragmnt.class, MeFragment.class};
     private int drawables[] = {R.drawable.book_drawable, R.drawable.chosen_drawable, R.drawable.shelf_drawable, R.drawable.me_drawable};
     private String textviewArray[] = {"我的车", "挖矿", "资产", "我的"};
     public FragmentTabHost mTabHost;

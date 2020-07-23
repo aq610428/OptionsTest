@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fadingEdge="none"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:paddingLeft="15dp"
+                android:paddingTop="50dp"
+                android:paddingRight="15dp"
+                android:paddingBottom="50dp">
+
+                <ImageView
+                    android:id="@+id/icon_head"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@mipmap/icon_tx" />
+
+                <TextView
+                    android:id="@+id/text_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/icon_head"
+                    android:gravity="center"
+                    android:text="用户登录"
+                    android:textColor="@color/black33"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/text_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:drawableLeft="@mipmap/icon_right_store"
+                    android:gravity="center"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="5dp"
+                    android:textColor="@color/black87"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="13dp"
+                android:background="@drawable/base_press"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingTop="15dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="15dp">
+
+                <TextView
+                    android:id="@+id/text_means"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableTop="@mipmap/icon_means"
+                    android:drawablePadding="6dp"
+                    android:gravity="center"
+                    android:text="我的资产"
+                    android:textColor="@color/black33"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/text_invitation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableTop="@mipmap/icon_friend"
+                    android:drawablePadding="6dp"
+                    android:gravity="center"
+                    android:text="邀请好友"
+                    android:textColor="@color/black33"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/text_team"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableTop="@mipmap/icon_tean"
+                    android:drawablePadding="6dp"
+                    android:gravity="center"
+                    android:text="我的团队"
+                    android:textColor="@color/black33"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/text_key"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawableTop="@mipmap/icon_key"
+                    android:drawablePadding="6dp"
+                    android:gravity="center"
+                    android:text="激活Kbox"
+                    android:textColor="@color/black33"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/dive_line" />
+
+            <TextView
+                android:id="@+id/text_contacts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:drawableLeft="@mipmap/icon_contoct"
+                android:drawableRight="@mipmap/icon_right"
+                android:drawablePadding="6dp"
+                android:gravity="center|left"
+                android:padding="15dp"
+                android:text="联系我们"
+                android:textColor="@color/black33"
+                android:textSize="14sp" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/dive_line" />
+
+
+            <TextView
+                android:id="@+id/text_about"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:drawableLeft="@mipmap/icon_about_new"
+                android:drawableRight="@mipmap/icon_right"
+                android:drawablePadding="6dp"
+                android:gravity="center|left"
+                android:padding="15dp"
+                android:text="关于我们"
+                android:textColor="@color/black33"
+                android:textSize="14sp" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/dive_line" />
+
+            <TextView
+                android:id="@+id/text_out"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:drawableLeft="@mipmap/icon_out"
+                android:drawableRight="@mipmap/icon_right"
+                android:drawablePadding="6dp"
+                android:gravity="center|left"
+                android:padding="15dp"
+                android:text="退出登录"
+                android:textColor="@color/black33"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</LinearLayout>

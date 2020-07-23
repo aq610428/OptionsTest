@@ -91,8 +91,6 @@ public class LocationMapActivity extends BaseActivity implements NetWorkListener
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                aMap.clear();
-                create(progress);
             }
 
 
@@ -103,7 +101,8 @@ public class LocationMapActivity extends BaseActivity implements NetWorkListener
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
+                aMap.clear();
+                create(seekBar.getProgress());
             }
         });
         text_in.setOnClickListener(this);
@@ -152,11 +151,12 @@ public class LocationMapActivity extends BaseActivity implements NetWorkListener
                     break;
 
             }
-
             create(electronic.getRadius());
         } else {
             create(200);
         }
+
+
     }
 
 
