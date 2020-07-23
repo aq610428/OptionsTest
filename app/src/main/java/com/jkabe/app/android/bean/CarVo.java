@@ -16,6 +16,7 @@ public class CarVo implements Serializable {
      * locationInfo : {"lat":"22.625464537268602","lng":"114.04745902087019","gpstime":"2020-07-1316:51:13","signaltime":"2020-07-1316:51:16","speed":0,"direction":137,"mileage":10387000,"acc":0,"num":9,"gms":21,"locationtype":"GPS+北斗","address":"广东省深圳市宝安区民治大道214号;沙元埔大厦内,泊寓沙元埔公寓西130米","obdtime":"2020-07-1316:51:13","descriptionToString":"{\"acc\":\"速度\",\"address\":\"位置\",\"lng\":\"经度\",\"num\":\"卫星颗数\",\"gms\":\"信号值\",\"speed\":\"速度\",\"signaltime\":\"信号时间\",\"obdtime\":\"车况时间\",\"locationtype\":\"定位类型\",\"gpstime\":\"定位时间\",\"lat\":\"纬度\",\"direction\":\"方向\",\"mileage\":\"总里程\"}"}
      * carcard : 粤BNB673
      * simcode : 1440322101889
+     * acc 0：关闭 1：开启
      */
 
     private String locationInfoDescription;

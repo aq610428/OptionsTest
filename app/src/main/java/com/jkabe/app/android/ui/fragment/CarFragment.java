@@ -4,6 +4,7 @@ package com.jkabe.app.android.ui.fragment;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.InputType;
@@ -32,6 +33,7 @@ import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
+import com.jkabe.app.android.ui.LocationIndexActivity;
 import com.jkabe.box.R;
 import com.jkabe.app.android.base.BaseFragment;
 import com.jkabe.app.android.bean.CarInfo;
@@ -230,6 +232,9 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
                     break;
                 case R.id.iv_set:
                     startActivity(new Intent(getContext(), ParameterActivity.class));
+                    break;
+                case R.id.rl_edition:
+                    startActivity(new Intent(getContext(), LocationIndexActivity.class));
                     break;
 
             }

@@ -178,6 +178,9 @@
         <activity
             android:name="com.jkabe.app.android.ui.UserActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.jkabe.app.android.ui.LocationIndexActivity"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name="com.jkabe.app.android.zxing.android.CaptureActivity"

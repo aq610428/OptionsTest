@@ -70,7 +70,6 @@ public class LocationEarlyActivity extends BaseActivity implements AMap.InfoWind
             Marker marker = aMap.addMarker(markerOption);
             marker.showInfoWindow();
             aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
-
         }
     }
 
