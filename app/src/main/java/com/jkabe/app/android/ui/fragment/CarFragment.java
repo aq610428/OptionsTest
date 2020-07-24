@@ -16,14 +16,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.location.CoordinateConverter;
-import com.amap.api.location.DPoint;
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.LocationSource;
@@ -32,9 +33,6 @@ import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
-import com.jkabe.app.android.ui.LocationIndexActivity;
-import com.jkabe.app.android.util.SystemTools;
-import com.jkabe.box.R;
 import com.jkabe.app.android.base.BaseFragment;
 import com.jkabe.app.android.bean.CarInfo;
 import com.jkabe.app.android.bean.CarVo;
@@ -47,6 +45,7 @@ import com.jkabe.app.android.ui.BindActivity;
 import com.jkabe.app.android.ui.DrivingLicenseActivity;
 import com.jkabe.app.android.ui.EarlyActivity;
 import com.jkabe.app.android.ui.ElectronicActivity;
+import com.jkabe.app.android.ui.LocationIndexActivity;
 import com.jkabe.app.android.ui.MedicalActivity;
 import com.jkabe.app.android.ui.OilActivity;
 import com.jkabe.app.android.ui.ParameterActivity;
@@ -59,16 +58,18 @@ import com.jkabe.app.android.util.LogUtils;
 import com.jkabe.app.android.util.Md5Util;
 import com.jkabe.app.android.util.SaveUtils;
 import com.jkabe.app.android.util.StatusBarUtil;
+import com.jkabe.app.android.util.SystemTools;
 import com.jkabe.app.android.util.ToastUtil;
 import com.jkabe.app.android.util.Utility;
 import com.jkabe.app.android.weight.PreferenceUtils;
 import com.jkabe.app.android.weight.RuntimeRationale;
 import com.jkabe.app.android.weight.SensorEventHelper;
-import com.yanzhenjie.permission.Action;
+import com.jkabe.box.R;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.runtime.Permission;
+
 import org.json.JSONObject;
-import java.util.List;
+
 import java.util.Map;
 
 /**
