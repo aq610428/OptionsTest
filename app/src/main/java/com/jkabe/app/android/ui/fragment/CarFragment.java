@@ -4,7 +4,6 @@ package com.jkabe.app.android.ui.fragment;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.InputType;
@@ -34,6 +33,7 @@ import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 import com.jkabe.app.android.ui.LocationIndexActivity;
+import com.jkabe.app.android.util.SystemTools;
 import com.jkabe.box.R;
 import com.jkabe.app.android.base.BaseFragment;
 import com.jkabe.app.android.bean.CarInfo;
@@ -121,18 +121,10 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
     private void request() {
         AndPermission.with(this).runtime().permission(needPermissions)
                 .rationale(new RuntimeRationale())
-                .onGranted(new Action<List<String>>() {
-                    @Override
-                    public void onAction(List<String> permissions) {
-                        initView();
-                    }
-                })
-                .onDenied(new Action<List<String>>() {
-                    @Override
-                    public void onAction(List<String> permissions) {
-                        if (AndPermission.hasAlwaysDeniedPermission(getContext(), permissions)) {
-                            showSettingDialog(getContext(), permissions);
-                        }
+                .onGranted(permissions -> initView())
+                .onDenied(permissions -> {
+                    if (AndPermission.hasAlwaysDeniedPermission(getContext(), permissions)) {
+                        showSettingDialog(getContext(), permissions);
                     }
                 })
                 .start();
@@ -341,12 +333,7 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
             try {
                 aMap.clear();
                 rl_edition.setVisibility(View.VISIBLE);
-                DPoint dPoint = new DPoint();
-                dPoint.setLatitude(Double.parseDouble(carVo.getLocationInfo().getLat()));
-                dPoint.setLongitude(Double.parseDouble(carVo.getLocationInfo().getLng()));
-                converter.coord(dPoint);
-                DPoint desLatLng = converter.convert();
-                LatLng latLng = new LatLng(desLatLng.getLatitude(), desLatLng.getLongitude());
+                LatLng latLng=SystemTools.getLatLng(Double.parseDouble(carVo.getLocationInfo().getLat()),Double.parseDouble(carVo.getLocationInfo().getLng()),getActivity());
                 PreferenceUtils.setPrefString(getContext(), Constants.LAT, BigDecimalUtils.subLastBit(latLng.latitude, 6).doubleValue() + "");
                 PreferenceUtils.setPrefString(getContext(), Constants.LON, BigDecimalUtils.subLastBit(latLng.longitude, 6).doubleValue() + "");
                 MarkerOptions markerOption = new MarkerOptions();
@@ -388,7 +375,6 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
         public void run() {
             qurycar();
             mHandler.postDelayed(this, 60 * 1000);
-            LogUtils.e("一分钟执行一次");
         }
     };
 

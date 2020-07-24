@@ -12,10 +12,8 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import com.jkabe.app.android.base.BaseApplication;
 import com.jkabe.app.android.base.BaseFragment;
 import com.jkabe.app.android.bean.CommonalityModel;
@@ -39,13 +37,9 @@ import com.jkabe.app.android.util.ToastUtil;
 import com.jkabe.app.android.util.Utility;
 import com.jkabe.app.android.weight.PreferenceUtils;
 import com.jkabe.box.R;
-
 import org.json.JSONObject;
-
 import java.util.Map;
-
 import crossoverone.statuslib.StatusUtil;
-
 import static android.app.Activity.RESULT_OK;
 
 /**

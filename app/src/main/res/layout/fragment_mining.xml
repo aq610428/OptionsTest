@@ -65,7 +65,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:drawableRight="@mipmap/icon_right_ong"
-                            android:drawablePadding="8dp"
+                            android:drawablePadding="5dp"
                             android:text="收益明细"
                             android:textColor="@color/colorWhite"
                             android:textSize="13sp" />
@@ -130,6 +130,7 @@
                                     android:layout_height="wrap_content"
                                     android:drawableTop="@mipmap/ic_profit"
                                     android:text="静态收益"
+                                    android:drawablePadding="5dp"
                                     android:textColor="#4B4C53"
                                     android:textSize="13sp" />
 
@@ -180,6 +181,7 @@
                                     android:drawableTop="@mipmap/ic_money_page"
                                     android:text="动态收益"
                                     android:textColor="#4B4C53"
+                                    android:drawablePadding="5dp"
                                     android:textSize="13sp" />
 
                                 <TextView
@@ -224,6 +226,7 @@
                                     android:layout_height="wrap_content"
                                     android:drawableTop="@mipmap/ic_travel_page"
                                     android:text="行驶挖矿"
+                                    android:drawablePadding="5dp"
                                     android:textColor="#4B4C53"
                                     android:textSize="13sp" />
 

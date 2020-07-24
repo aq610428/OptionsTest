@@ -1,13 +1,11 @@
 package com.jkabe.app.android.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.jkabe.box.R;
 import com.jkabe.app.android.adapter.HealthAdapter;
 import com.jkabe.app.android.base.BaseActivity;
 import com.jkabe.app.android.bean.CommonalityModel;
@@ -23,9 +21,8 @@ import com.jkabe.app.android.util.SaveUtils;
 import com.jkabe.app.android.util.StatusBarUtil;
 import com.jkabe.app.android.util.ToastUtil;
 import com.jkabe.app.android.util.Utility;
-
+import com.jkabe.box.R;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -139,7 +136,7 @@ public class MedicalActivity extends BaseActivity implements NetWorkListener {
                     text_work.setText("检测已完成");
                     return;
                 }
-                mHandler.postDelayed(this, 600);
+                mHandler.postDelayed(this, 700);
             }
         };
         mHandler.post(runnable);

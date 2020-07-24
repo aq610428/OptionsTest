@@ -56,7 +56,7 @@
         android:layout_marginLeft="14dp"
         android:layout_marginRight="14dp"
         android:text="出现故障(P0013、P0420、P0AC4、P1A6F)"
-        android:textColor="#A8A8A8"
+        android:textColor="@color/google_red"
         android:textSize="13sp"
         android:visibility="gone" />
 

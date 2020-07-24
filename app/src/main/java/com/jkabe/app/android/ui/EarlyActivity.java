@@ -37,7 +37,7 @@ import java.util.Map;
 public class EarlyActivity extends BaseActivity implements OnLoadMoreListener, OnRefreshListener, NetWorkListener {
     private RecyclerView swipe_target;
     private SwipeToLoadLayout swipeToLoadLayout;
-    private int limit = 10;
+    private int limit = 20;
     private int page = 1;
     private boolean isRefresh;
     private NoDataView mNoDataView;
