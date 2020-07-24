@@ -113,7 +113,7 @@ public class LocationEarlyActivity extends BaseActivity implements AMap.InfoWind
     @Override
     public View getInfoWindow(Marker marker) {
         View infoWindow = getLayoutInflater().inflate(
-                R.layout.custom_info_window, null);
+                R.layout.custom_info_contents, null);
         render(marker, infoWindow);
         return infoWindow;
     }
@@ -121,7 +121,7 @@ public class LocationEarlyActivity extends BaseActivity implements AMap.InfoWind
     @Override
     public View getInfoContents(Marker marker) {
         View infoContent = getLayoutInflater().inflate(
-                R.layout.custom_info_window, null);
+                R.layout.custom_info_contents, null);
         render(marker, infoContent);
         return infoContent;
     }
