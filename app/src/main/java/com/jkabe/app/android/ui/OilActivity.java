@@ -1,6 +1,5 @@
 package com.jkabe.app.android.ui;
 
-import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -8,7 +7,6 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import com.bigkoo.pickerview.OptionsPickerView;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
@@ -19,7 +17,6 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.ValueFormatter;
-import com.jkabe.box.R;
 import com.jkabe.app.android.base.BaseActivity;
 import com.jkabe.app.android.bean.CommonalityModel;
 import com.jkabe.app.android.bean.Oil;
@@ -36,9 +33,8 @@ import com.jkabe.app.android.util.ToastUtil;
 import com.jkabe.app.android.util.Utility;
 import com.jkabe.app.android.weight.CustomXAxisRenderer;
 import com.jkabe.app.android.weight.PreferenceUtils;
-
+import com.jkabe.box.R;
 import org.json.JSONObject;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;

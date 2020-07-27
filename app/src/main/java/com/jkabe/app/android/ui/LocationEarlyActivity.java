@@ -1,15 +1,10 @@
 package com.jkabe.app.android.ui;
 
-
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.MapView;
@@ -35,6 +30,7 @@ public class LocationEarlyActivity extends BaseActivity implements AMap.InfoWind
     private MapView mapView;
     private EarlyInfo travrt;
     private AMap aMap;
+    private LinearLayout ll_location;
 
 
     @Override
@@ -48,6 +44,7 @@ public class LocationEarlyActivity extends BaseActivity implements AMap.InfoWind
 
     @Override
     protected void initView() {
+        ll_location= getView(R.id.ll_location);
         text_mileage = getView(R.id.text_mileage);
         title_text_tv = getView(R.id.title_text_tv);
         title_left_btn = getView(R.id.title_left_btn);
@@ -56,6 +53,7 @@ public class LocationEarlyActivity extends BaseActivity implements AMap.InfoWind
         aMap = mapView.getMap();
         aMap.setInfoWindowAdapter(this);
         text_mileage.setOnClickListener(this);
+        ll_location.setVisibility(View.GONE);
     }
 
 
@@ -132,14 +130,14 @@ public class LocationEarlyActivity extends BaseActivity implements AMap.InfoWind
         TextView text_date = view.findViewById(R.id.text_date);
         TextView text_adress = view.findViewById(R.id.text_adress);
         if (travrt != null) {
-            text_name.setText("车牌号：" + travrt.getCarcard());
+            text_name.setText("车牌号码：" + travrt.getCarcard());
             String ss = travrt.getStringgpstime();
             if (!Utility.isEmpty(ss)) {
                 String start = ss.substring(0, ss.length() - 8);
                 String end = ss.substring(ss.length() - 8, ss.length());
                 text_date.setText("定位时间：" + start + " " + end);
             }
-            text_adress.setText("位置：" + travrt.getAddress());
+            text_adress.setText("车辆位置：" + travrt.getAddress());
             marker.showInfoWindow();
         }
     }

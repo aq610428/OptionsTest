@@ -30,6 +30,7 @@
 
 
     <LinearLayout
+        android:id="@+id/ll_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -44,6 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableLeft="@mipmap/road_condition_close"
+            android:textSize="@dimen/ctv_sizen_13_5"
             android:padding="10dp" />
 
 
@@ -52,6 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:textSize="@dimen/ctv_sizen_13_5"
             android:drawableLeft="@mipmap/map_switch_close"
             android:padding="10dp" />
 
@@ -61,6 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:textSize="@dimen/ctv_sizen_13_5"
             android:drawableLeft="@mipmap/lookup_car_close"
             android:padding="10dp" />
     </LinearLayout>
