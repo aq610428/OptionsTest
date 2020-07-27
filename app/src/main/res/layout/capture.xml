@@ -8,7 +8,7 @@
         android:layout_height="fill_parent" />
 
     <!-- 扫描取景框 -->
-    <com.jkabe.app.android.zxing.view.ViewfinderView
+    <com.jkabe.app.box.zxing.view.ViewfinderView
         android:id="@+id/viewfinder_view"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />

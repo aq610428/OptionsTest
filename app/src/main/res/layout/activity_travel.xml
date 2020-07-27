@@ -21,30 +21,21 @@
             android:orientation="vertical">
 
 
-            <com.haibin.calendarview.CalendarLayout
-                android:id="@+id/calendar_layout"
+            <noman.weekcalendar.WeekCalendar
+                android:id="@+id/weekCalendar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:calendar_show_mode="only_week_view"
-                app:default_status="shrink">
-
-                <com.haibin.calendarview.CalendarView
-                    android:id="@+id/calendar_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    app:calendar_match_parent="false"
-                    app:calendar_padding="6dp"
-                    app:day_text_size="16sp"
-                    app:month_view_scrollable="false"
-                    app:month_view_show_mode="mode_fix"
-                    app:week_background="@color/transparent"
-                    app:week_bar_height="18dp"
-                    app:week_start_with="sun"
-                    app:week_view_scrollable="false"
-                    app:year_view_scrollable="false" />
-            </com.haibin.calendarview.CalendarLayout>
+                android:layout_height="65dp"
+                android:background="@color/colorWhite"
+                app:numOfPages="150"
+                app:daysTextSize="@dimen/ctv_sizen_14"
+                app:daysBackgroundColor="@color/white"
+                app:daysTextColor="@color/black33"
+                app:dayNameLength="threeLetters"
+                app:weekBackgroundColor="@color/white"
+                app:weekTextSize="@dimen/ctv_sizen_14"
+                app:weekTextColor="@color/black33"
+                app:selectedBgColor="@color/colorAccent"
+                app:todaysDateBgColor="@color/colorAccent" />
 
 
             <RelativeLayout

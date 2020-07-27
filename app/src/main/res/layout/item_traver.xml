@@ -66,7 +66,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/shape_yuan"
                     android:gravity="center"
-                    android:text="98"
+                    android:text="92分"
                     android:textColor="@color/colorWhite"
                     android:textSize="12sp" />
 

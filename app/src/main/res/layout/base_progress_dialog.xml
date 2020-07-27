@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:padding="12dp">
 
-    <com.jkabe.app.android.weight.CircleProgressBar
+    <com.jkabe.app.box.weight.CircleProgressBar
         android:id="@id/base_progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

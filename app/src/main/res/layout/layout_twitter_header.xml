@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.jkabe.app.android.swipeToLoadLayout.TwitterRefreshHeaderView
+<com.jkabe.app.box.swipeToLoadLayout.TwitterRefreshHeaderView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -47,4 +47,4 @@
             android:text="下拉刷新"
             android:textColor="@color/colorWhite" />
     </RelativeLayout>
-</com.jkabe.app.android.swipeToLoadLayout.TwitterRefreshHeaderView>
+</com.jkabe.app.box.swipeToLoadLayout.TwitterRefreshHeaderView>

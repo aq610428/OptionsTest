@@ -34,7 +34,7 @@ android {
     //签名信息
     signingConfigs {
         release {
-            storeFile file('jkbStoreKey')
+            storeFile file('box.jks')
             storePassword 'asdfghjkl321'
             keyAlias 'jkb'
             keyPassword 'asdfghjkl321'
@@ -111,7 +111,7 @@ dependencies {
     implementation 'com.yanzhenjie:permission:2.0.3'
     implementation files('libs/core-3.0.0.jar')
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
-    implementation 'com.haibin:calendarview:3.6.6'
+    implementation 'noman.weekcalendar:weekcalendar:1.0.6'
 }
 
 MobSDK {

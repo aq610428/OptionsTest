@@ -23,7 +23,7 @@
             android:dividerHeight="0.5dp" />
 
 
-        <com.jkabe.app.android.weight.SideBar
+        <com.jkabe.app.box.weight.SideBar
             android:id="@+id/slideBar"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
