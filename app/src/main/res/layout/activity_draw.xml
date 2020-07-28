@@ -25,7 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="提币"
+                android:text="选择币种"
                 android:textColor="#161616"
                 android:textSize="15sp"
                 android:textStyle="bold" />
@@ -39,6 +39,7 @@
                 android:drawablePadding="5dp"
                 android:gravity="center"
                 android:text="BOX"
+                android:textStyle="bold"
                 android:textColor="#161616"
                 android:textSize="15sp" />
 
@@ -57,7 +58,7 @@
             android:gravity="center"
             android:text="提币地址"
             android:textColor="#304052"
-            android:textSize="15sp" />
+            android:textSize="14sp" />
 
         <EditText
             android:layout_width="match_parent"
@@ -82,7 +83,7 @@
             android:gravity="center"
             android:text="数量"
             android:textColor="#304052"
-            android:textSize="15sp" />
+            android:textSize="14sp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -96,7 +97,7 @@
                 android:background="@color/colorWhite"
                 android:gravity="center|left"
                 android:inputType="number"
-                android:hint="输入或长按复制粘贴"
+                android:hint="最小提币数2"
                 android:maxLines="1"
                 android:textColor="@color/colorAccent"
                 android:textSize="14sp" />
@@ -130,11 +131,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
+            android:layout_marginTop="20dp"
             android:gravity="center"
             android:text="手续费"
             android:textColor="#304052"
-            android:textSize="15sp" />
+            android:textSize="14sp" />
 
         <RelativeLayout
             android:layout_width="match_parent"

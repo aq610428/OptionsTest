@@ -35,7 +35,6 @@ public class ShotShareUtil {
             try {
                 // 图片文件路径
                 imagePath = FileManager.getFilePath()+"share.png";
-                LogUtils.e("path", "====imagePath====" + imagePath);
                 File file = new File(imagePath);
                 FileOutputStream os = new FileOutputStream(file);
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, os);
