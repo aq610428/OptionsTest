@@ -45,9 +45,8 @@ public class AssetsFragmnt extends BaseFragment implements NetWorkListener {
         recyclerView = getView(rootView, R.id.recyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
-        list.add("1");
-        list.add("1");
-        list.add("1");
+        list.add("USDT");
+        list.add("BOX");
         assetsAdapter=new AssetsAdapter(this,list);
         recyclerView.setAdapter(assetsAdapter);
     }

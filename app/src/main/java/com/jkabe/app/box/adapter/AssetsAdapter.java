@@ -31,6 +31,7 @@ public class AssetsAdapter extends AutoRVAdapter {
 
     @Override
     public void onBindViewHolder(ViewHolder vh, int position) {
+        vh.getTextView(R.id.text_num_bc).setText(list.get(position));
         vh.getTextView(R.id.text_num_bc).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
