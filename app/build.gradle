@@ -29,6 +29,10 @@ android {
                 JPUSH_APPKEY : "527cea42186cea79765c34f0", //JPush 上注册的包名对应的 Appkey.
                 JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
         ]
+
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a"
+        }
     }
 
     //签名信息

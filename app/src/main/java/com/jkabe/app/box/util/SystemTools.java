@@ -101,15 +101,7 @@ public final class SystemTools {
     }
 
 
-    public static List<String> getListTools() {
-        List<String> list_title = new ArrayList<>();
-        list_title.add("企业门牌照");
-        list_title.add("企业整体外观照");
-        list_title.add("企业内部环境照");
-        list_title.add("维修工时收费标准");
-        list_title.add("救援工具照");
-        return list_title;
-    }
+
 
 
     /**
