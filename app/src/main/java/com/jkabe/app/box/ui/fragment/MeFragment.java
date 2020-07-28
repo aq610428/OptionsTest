@@ -150,16 +150,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
     }
 
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_CODE_SCAN && resultCode == RESULT_OK) {
-            if (data != null) {
-                String content = data.getStringExtra(DECODED_CONTENT_KEY);
-                LogUtils.e("解码结果： \n" + content);
-            }
-        }
-    }
+
 
 
     public void showDialog() {
