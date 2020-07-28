@@ -12,8 +12,10 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import com.jkabe.app.box.base.BaseApplication;
 import com.jkabe.app.box.base.BaseFragment;
 import com.jkabe.app.box.bean.CommonalityModel;
@@ -30,7 +32,6 @@ import com.jkabe.app.box.ui.MainActivity;
 import com.jkabe.app.box.ui.PreviewActivity;
 import com.jkabe.app.box.ui.UserActivity;
 import com.jkabe.app.box.util.Constants;
-import com.jkabe.app.box.util.LogUtils;
 import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.app.box.util.ToastUtil;
@@ -40,7 +41,6 @@ import com.jkabe.box.R;
 import org.json.JSONObject;
 import java.util.Map;
 import crossoverone.statuslib.StatusUtil;
-import static android.app.Activity.RESULT_OK;
 
 /**
  * @author: zt
