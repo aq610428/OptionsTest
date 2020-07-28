@@ -1,7 +1,6 @@
 package com.jkabe.app.box.config;
 
 import com.jkabe.app.box.bean.CommonalityModel;
-
 import org.json.JSONObject;
 
 /**
