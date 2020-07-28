@@ -32,6 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="5dp"
@@ -94,169 +95,6 @@
                     android:textStyle="bold" />
 
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="13dp"
-                    android:layout_marginRight="15dp"
-                    android:orientation="horizontal">
-
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
-                        android:layout_weight="1">
-
-                        <com.lihang.ShadowLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:hl_cornerRadius="3dp"
-                            app:hl_shadowBackColor="#fff"
-                            app:hl_shadowColor="#2A696969"
-                            app:hl_shadowLimit="4dp">
-
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:orientation="vertical"
-                                android:padding="10dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:drawableTop="@mipmap/ic_profit"
-                                    android:text="静态收益"
-                                    android:drawablePadding="5dp"
-                                    android:textColor="#4B4C53"
-                                    android:textSize="13sp" />
-
-                                <TextView
-                                    android:id="@+id/text_profit"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="5dp"
-                                    android:gravity="center"
-                                    android:text="9800 BOX"
-                                    android:textColor="#F05330"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
-
-                            </LinearLayout>
-
-
-                        </com.lihang.ShadowLayout>
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_weight="1">
-
-
-                        <com.lihang.ShadowLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:hl_cornerRadius="3dp"
-                            app:hl_shadowBackColor="#fff"
-                            app:hl_shadowColor="#2A696969"
-                            app:hl_shadowLimit="4dp">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:orientation="vertical"
-                                android:padding="10dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:drawableTop="@mipmap/ic_money_page"
-                                    android:text="动态收益"
-                                    android:textColor="#4B4C53"
-                                    android:drawablePadding="5dp"
-                                    android:textSize="13sp" />
-
-                                <TextView
-                                    android:id="@+id/text_money"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="5dp"
-                                    android:gravity="center"
-                                    android:text="9800 BOX"
-                                    android:textColor="#F05330"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
-
-                            </LinearLayout>
-                        </com.lihang.ShadowLayout>
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_weight="1">
-
-
-                        <com.lihang.ShadowLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:hl_cornerRadius="3dp"
-                            app:hl_shadowBackColor="#fff"
-                            app:hl_shadowColor="#2A696969"
-                            app:hl_shadowLimit="4dp">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:orientation="vertical"
-                                android:padding="10dp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:drawableTop="@mipmap/ic_travel_page"
-                                    android:text="行驶挖矿"
-                                    android:drawablePadding="5dp"
-                                    android:textColor="#4B4C53"
-                                    android:textSize="13sp" />
-
-                                <TextView
-                                    android:id="@+id/text_travel"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="5dp"
-                                    android:gravity="center"
-                                    android:text="9800 BOX"
-                                    android:textColor="#F05330"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
-
-                            </LinearLayout>
-
-                        </com.lihang.ShadowLayout>
-                    </RelativeLayout>
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:paddingLeft="15dp"
-                    android:text="我的算力"
-                    android:textColor="#292929"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
                 <com.lihang.ShadowLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -268,71 +106,45 @@
                     app:hl_shadowColor="#2A696969"
                     app:hl_shadowLimit="4dp">
 
-
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
                         android:orientation="vertical"
                         android:padding="10dp">
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                            android:text="行驶挖矿"
+                            android:textColor="#4B4C53"
+                            android:textSize="13sp" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="持币算力"
-                                android:textColor="#8D8D8D"
-                                android:textSize="13sp" />
-
-                            <TextView
-                                android:id="@+id/text_power"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
-                                android:gravity="center"
-                                android:text="150.00"
-                                android:textColor="#3F63F4"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-
-                        </RelativeLayout>
-
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:id="@+id/text_travel"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
+                            android:layout_alignParentRight="true"
                             android:gravity="center"
-                            android:orientation="vertical">
+                            android:text="9800 BOX"
+                            android:textColor="#3F63F4"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="推广算力"
-                                android:textColor="#8D8D8D"
-                                android:textSize="13sp" />
-
-                            <TextView
-                                android:id="@+id/text_extension"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
-                                android:gravity="center"
-                                android:text="150.00"
-                                android:textColor="#3F63F4"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-
-                        </RelativeLayout>
-                    </LinearLayout>
-
+                    </RelativeLayout>
 
                 </com.lihang.ShadowLayout>
 
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:paddingLeft="15dp"
+                    android:text="我的算力"
+                    android:textColor="#292929"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <com.lihang.ShadowLayout
                     android:layout_width="match_parent"
@@ -405,70 +217,9 @@
                                 android:textStyle="bold" />
 
                         </RelativeLayout>
-
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="最佳持币量"
-                                android:textColor="#8D8D8D"
-                                android:textSize="13sp" />
-
-                            <TextView
-                                android:id="@+id/text_max"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
-                                android:gravity="center"
-                                android:text="150.00"
-                                android:textColor="#3F63F4"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-
-                        </RelativeLayout>
-
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="最低持币量"
-                                android:textColor="#8D8D8D"
-                                android:textSize="13sp" />
-
-                            <TextView
-                                android:id="@+id/text_min"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
-                                android:gravity="center"
-                                android:text="150.00"
-                                android:textColor="#3F63F4"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-
-                        </RelativeLayout>
                     </LinearLayout>
-
-
                 </com.lihang.ShadowLayout>
-
             </LinearLayout>
-
-
         </androidx.core.widget.NestedScrollView>
 
 
