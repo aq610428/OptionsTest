@@ -401,7 +401,7 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
         View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_layout_user, null);
         EditText et_name = view.findViewById(R.id.et_name);
         et_name.setHint("请输入油价");
-        et_name.setInputType(InputType.TYPE_CLASS_NUMBER);
+        et_name.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_FLAG_DECIMAL);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(view);
         view.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
