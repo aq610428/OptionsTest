@@ -4,6 +4,7 @@ package com.jkabe.app.box.ui.fragment;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.InputType;
@@ -29,6 +30,7 @@ import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.LocationSource;
 import com.amap.api.maps.MapView;
+import com.amap.api.maps.TextureMapView;
 import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
@@ -79,7 +81,7 @@ import java.util.Map;
  */
 public class CarFragment extends BaseFragment implements View.OnClickListener, LocationSource, AMapLocationListener, AMap.OnMarkerClickListener, NetWorkListener {
     private View rootView;
-    private MapView mMapView;
+    private TextureMapView mMapView;
     private AMap aMap;
     private AMapLocationClient mlocationClient;
     private AMapLocationClientOption mLocationOption;
@@ -136,8 +138,16 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
     public void onResume() {
         super.onResume();
         StatusBarUtil.setTranslucentStatus(getActivity());
+        mMapView.onResume();
         initView();
         polling();
+    }
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mMapView.onPause();
     }
 
     private void initView() {
