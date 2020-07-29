@@ -56,8 +56,6 @@ public class AssetsActivity extends BaseActivity implements OnRefreshListener, O
         data.add("1");
         data.add("1");
         data.addAll(data);
-        data.addAll(data);
-        data.addAll(data);
         asetsAdapter = new AsetsAdapter(this, data);
         swipe_target.setAdapter(asetsAdapter);
     }

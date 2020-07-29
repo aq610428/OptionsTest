@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BOX CHAIN</string>
+    <string name="app_name">BOXCHAIN</string>
     <string name="title_activity_login">Sign in</string>
     <string name="prompt_email">请输入手机号</string>
     <string name="prompt_password">请输入验证码</string>
