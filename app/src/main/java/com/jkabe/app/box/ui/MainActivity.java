@@ -8,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
 import androidx.fragment.app.FragmentTabHost;
-
 import com.jkabe.app.box.bean.Verison;
 import com.jkabe.app.box.ui.fragment.AssetsFragmnt;
 import com.jkabe.app.box.ui.fragment.MeFragment;
@@ -33,9 +32,7 @@ import com.jkabe.app.box.util.Utility;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.runtime.Permission;
-
 import org.json.JSONObject;
-
 import java.util.List;
 import java.util.Map;
 import cn.jpush.android.api.JPushInterface;

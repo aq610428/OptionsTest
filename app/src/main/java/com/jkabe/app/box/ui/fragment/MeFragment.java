@@ -156,7 +156,6 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
     public void showDialog() {
         Dialog dialog = new Dialog(getContext());
         View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_layout_mine, null);
-
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(view);
         view.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {

@@ -124,7 +124,7 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
     private void request() {
         AndPermission.with(this).runtime().permission(needPermissions)
                 .rationale(new RuntimeRationale())
-                .onGranted(permissions -> initView())
+                .onGranted(permissions -> setUpMap())
                 .onDenied(permissions -> {
                     if (AndPermission.hasAlwaysDeniedPermission(getContext(), permissions)) {
                         showSettingDialog(getContext(), permissions);
@@ -139,7 +139,7 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
         super.onResume();
         StatusBarUtil.setTranslucentStatus(getActivity());
         mMapView.onResume();
-        initView();
+        setUpMap();
         polling();
     }
 
@@ -163,15 +163,6 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
         text_electronic = getView(rootView, R.id.text_electronic);
         text_attery = getView(rootView, R.id.text_attery);
         text_num = getView(rootView, R.id.text_num);
-        if (aMap == null) {
-            aMap = mMapView.getMap();
-            aMap.getUiSettings().setZoomControlsEnabled(false);
-            setUpMap();
-        }
-        mSensorHelper = new SensorEventHelper(getContext());
-        if (mSensorHelper != null) {
-            mSensorHelper.registerSensorListener();
-        }
         text_attery.setOnClickListener(this);
         text_electronic.setOnClickListener(this);
         rl_edition.setOnClickListener(this);
@@ -185,6 +176,14 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
     }
 
     private void setUpMap() {
+        if (aMap == null) {
+            aMap = mMapView.getMap();
+            aMap.getUiSettings().setZoomControlsEnabled(false);
+        }
+        mSensorHelper = new SensorEventHelper(getContext());
+        if (mSensorHelper != null) {
+            mSensorHelper.registerSensorListener();
+        }
         aMap.setLocationSource(this);// 设置定位监听
         aMap.getUiSettings().setMyLocationButtonEnabled(false);// 设置默认定位按钮是否显示
         aMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false

@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
+        android:layout_margin="13dp"
         android:background="@drawable/base_press"
         android:orientation="vertical"
         android:padding="15dp">
@@ -177,8 +177,8 @@
         android:id="@+id/text_copy"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
         android:background="@color/colorAccent"
         android:gravity="center"
         android:text="提币"
