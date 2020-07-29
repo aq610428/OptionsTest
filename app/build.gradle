@@ -74,9 +74,6 @@ android {
         release1001 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "1001"]
         }
-        release1002 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "1002"]
-        }
     }
 }
 
