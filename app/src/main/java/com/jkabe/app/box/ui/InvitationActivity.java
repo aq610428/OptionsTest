@@ -14,6 +14,7 @@ import com.jkabe.app.box.util.QRCodeUtil;
 import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.app.box.util.ShotShareUtil;
 import com.jkabe.app.box.util.StatusBarUtil;
+import com.mob.MobSDK;
 
 /**
  * @author: zt
@@ -29,6 +30,7 @@ public class InvitationActivity extends BaseActivity {
     protected void initCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_invitation);
         BaseApplication.activityTaskManager.putActivity("InvitationActivity", this);
+        MobSDK.init(this);
     }
 
     @Override
