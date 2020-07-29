@@ -377,6 +377,7 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
         public void run() {
             qurycar();
             mHandler.postDelayed(this, 60 * 1000);
+            LogUtils.e("自动刷新");
         }
     };
 
