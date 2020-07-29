@@ -1,8 +1,12 @@
 package com.jkabe.app.box.util;
 
+import android.graphics.Bitmap;
 import android.os.Environment;
+
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -195,4 +199,25 @@ public class FileManager {
 	public static boolean isBlank(String str) {
 		return (str == null || str.trim().length() == 0);
 	}
+
+
+	/**
+	 * 把batmap 转file
+	 * @param bitmap
+	 * @param filepath
+	 */
+	public static File saveBitmapFile(Bitmap bitmap, String filepath){
+		File file=new File(filepath);//将要保存图片的路径
+		try {
+			BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
+			bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+			bos.flush();
+			bos.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return file;
+	}
+
+
 }

@@ -9,10 +9,8 @@ import android.net.Uri;
 import android.view.View;
 import java.io.File;
 import java.io.FileOutputStream;
-
 import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.sharesdk.wechat.friends.Wechat;
-
 import static com.jkabe.app.box.util.MeasureWidthUtils.getScreenHeight;
 import static com.jkabe.app.box.util.MeasureWidthUtils.getScreenWidth;
 

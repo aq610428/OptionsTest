@@ -5,6 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.PixelFormat;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -370,4 +373,20 @@ public class ImageFactory {
         return null;
     }
 
+
+
+    public static Bitmap DrawableToBitmap(Drawable drawable) {
+        int width = drawable.getIntrinsicWidth();
+        int heigh = drawable.getIntrinsicHeight();
+        drawable.setBounds(0, 0, width, heigh);
+        // 获取drawable的颜色格式
+        Bitmap.Config config = drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888
+                : Bitmap.Config.RGB_565;
+        Bitmap bitmap = Bitmap.createBitmap(width, heigh, config);
+        // 创建bitmap画布
+        Canvas canvas = new Canvas(bitmap);
+        // 将drawable 内容画到画布中
+        drawable.draw(canvas);
+        return bitmap;
+    }
 }
