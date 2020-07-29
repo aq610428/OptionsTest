@@ -125,7 +125,6 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
                     }
                 })
                 .start();
-        polling();
     }
 
 
@@ -134,6 +133,7 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
         super.onResume();
         StatusBarUtil.setTranslucentStatus(getActivity());
         mMapView.onResume();
+        polling();
     }
 
 
@@ -259,6 +259,7 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
             mlocationClient.setLocationListener(this);
             //设置为高精度定位模式
             mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
+            mLocationOption.setOnceLocation(true);
             //设置定位参数
             mlocationClient.setLocationOption(mLocationOption);
             // 在单次定位情况下，定位无论成功与否，都无需调用stopLocation()方法移除请求，定位sdk内部会移除
