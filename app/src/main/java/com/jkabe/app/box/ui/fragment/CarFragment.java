@@ -115,8 +115,8 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
             mMapView.onCreate(savedInstanceState);
             initView();
             lazyLoad();
+            request();
         }
-        request();
         return rootView;
     }
 
@@ -131,6 +131,7 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
                     }
                 })
                 .start();
+        polling();
     }
 
 
@@ -139,8 +140,6 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
         super.onResume();
         StatusBarUtil.setTranslucentStatus(getActivity());
         mMapView.onResume();
-        setUpMap();
-        polling();
     }
 
 
@@ -173,13 +172,11 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
         ll_travel.setOnClickListener(this);
         text_num.setOnClickListener(this);
         iv_set.setOnClickListener(this);
+        aMap = mMapView.getMap();
+        aMap.getUiSettings().setZoomControlsEnabled(false);
     }
 
     private void setUpMap() {
-        if (aMap == null) {
-            aMap = mMapView.getMap();
-            aMap.getUiSettings().setZoomControlsEnabled(false);
-        }
         mSensorHelper = new SensorEventHelper(getContext());
         if (mSensorHelper != null) {
             mSensorHelper.registerSensorListener();
