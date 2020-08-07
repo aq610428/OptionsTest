@@ -195,7 +195,6 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:gravity="center|right"
-                                android:text="2020.07.05"
                                 android:textColor="#7D7D7D"
                                 android:textSize="13sp" />
                         </LinearLayout>
@@ -306,7 +305,6 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:gravity="center|right"
-                                android:text="2020.07.05"
                                 android:textColor="#7D7D7D"
                                 android:textSize="13sp" />
                         </LinearLayout>

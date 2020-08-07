@@ -28,11 +28,6 @@ import com.jkabe.app.box.weight.NoDataView;
 import com.jkabe.box.R;
 import org.json.JSONObject;
 import java.util.Map;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import com.jkabe.app.box.adapter.AssetsAdapter;
-import java.util.ArrayList;
-import java.util.List;
 import crossoverone.statuslib.StatusUtil;
 
 /**

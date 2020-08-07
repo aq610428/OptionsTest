@@ -41,24 +41,33 @@ public class AsetsAdapter extends AutoRVAdapter {
                 vh.getTextView(R.id.text_num).setText("团队奖励");
                 break;
             case 4:
-                vh.getTextView(R.id.text_num).setText("充值");
+                if ("1".equals(assetsBean.getCoinTypeId())) {
+                    vh.getTextView(R.id.text_num).setText("充值USDT");
+                }else{
+                    vh.getTextView(R.id.text_num).setText("充值BC");
+                }
+
                 break;
             case 5:
-                vh.getTextView(R.id.text_num).setText("提现");
+                if ("1".equals(assetsBean.getCoinTypeId())) {
+                    vh.getTextView(R.id.text_num).setText("提现USDT");
+                }else{
+                    vh.getTextView(R.id.text_num).setText("提现BC");
+                }
                 break;
             case 6:
                 vh.getTextView(R.id.text_num).setText("提激活挖矿扣除");
                 break;
         }
 
-        vh.getTextView(R.id.text_user).setText(assetsBean.getBalance()+"");
-        String time=assetsBean.getStringCreateTime();
-        if (!Utility.isEmpty(time)){
-            vh.getTextView(R.id.text_usd).setText( time.substring(0,10)+"");
+        vh.getTextView(R.id.text_user).setText(assetsBean.getBalance() + "");
+        String time = assetsBean.getStringCreateTime();
+        if (!Utility.isEmpty(time)) {
+            vh.getTextView(R.id.text_usd).setText(time.substring(0, 10) + "");
         }
 
 
-        switch (assetsBean.getStatus()){
+        switch (assetsBean.getStatus()) {
             case 1:
                 vh.getTextView(R.id.text_congeal).setText("待审核");
                 break;
