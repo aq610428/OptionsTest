@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_title" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:orientation="horizontal">
+
+        <com.lihang.ShadowLayout
+            android:layout_width="match_parent"
+            android:layout_height="53dp"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:padding="15dp"
+            app:hl_cornerRadius="3dp"
+            app:hl_shadowBackColor="#fff"
+            app:hl_shadowColor="#2A696969"
+            app:hl_shadowLimit="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/icon_voltage"
+                    android:drawablePadding="5dp"
+                    android:gravity="center"
+                    android:text="电压状态："
+                    android:textColor="@color/black01"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/text_voltage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="正常"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+        </com.lihang.ShadowLayout>
+
+
+        <com.lihang.ShadowLayout
+            android:layout_width="match_parent"
+            android:layout_height="53dp"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:padding="15dp"
+            app:hl_cornerRadius="3dp"
+            app:hl_shadowBackColor="#fff"
+            app:hl_shadowColor="#2A696969"
+            app:hl_shadowLimit="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@mipmap/icon_surface"
+                    android:drawablePadding="5dp"
+                    android:gravity="center"
+                    android:text="电压读数："
+                    android:textColor="@color/black01"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/text_surface"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+
+        </com.lihang.ShadowLayout>
+
+    </LinearLayout>
+
+
+    <com.lihang.ShadowLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        app:hl_cornerRadius="3dp"
+        app:hl_shadowBackColor="#fff"
+        app:hl_shadowColor="#2A696969"
+        app:hl_shadowLimit="4dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center|left"
+                android:text="最近停车电压变化（V)"
+                android:textColor="@color/black33"
+                android:textSize="14sp" />
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/spread_line_chart"
+                android:layout_width="match_parent"
+                android:layout_height="180dp" />
+        </LinearLayout>
+
+
+    </com.lihang.ShadowLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="12dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|left"
+            android:text="备注："
+            android:textColor="@color/black33"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center|left"
+            android:text="1.车辆熄火停车状态下，定时针对电瓶的电压进行检测，当持续亏电时，发出 低电亏电提醒。"
+            android:textColor="#969FB5"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center|left"
+            android:text="2、时间间隔：2小时"
+            android:textColor="#969FB5"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center|left"
+            android:text="3、电压检测数据仅供参考"
+            android:textColor="#969FB5"
+            android:textSize="13sp" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/activity_title" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fadingEdge="none"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/space_12dp">
+
+            <LinearLayout style="@style/parameter_one_lay_layout_style">
+
+                <LinearLayout style="@style/parameter_two_lay_layout_style">
+
+                    <TextView
+                        style="@style/parameter_one_text_style"
+                        android:text="车牌号:" />
+
+                    <TextView
+                        android:id="@+id/parameter_1_id"
+                        style="@style/parameter_two_text_style"
+                        android:text="--" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/parameter_two_lay_layout_style">
+
+                    <TextView
+                        style="@style/parameter_one_text_style"
+                        android:text="时间:" />
+
+                    <TextView
+                        android:id="@+id/parameter_2_id"
+                        style="@style/parameter_two_text_style"
+                        android:layout_marginLeft="@dimen/space_4dp"
+                        android:layout_marginRight="@dimen/space_4dp"
+                        android:text="--" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout style="@style/parameter_one_lay_layout_style">
+
+                <LinearLayout style="@style/parameter_two_lay_layout_style">
+
+                    <TextView
+                        style="@style/parameter_one_text_style"
+                        android:text="车速:" />
+
+                    <TextView
+                        android:id="@+id/parameter_3_id"
+                        style="@style/parameter_two_text_style"
+                        android:text="--" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/parameter_two_lay_layout_style">
+
+                    <TextView
+                        style="@style/parameter_one_text_style"
+                        android:text=" 发动机转速:" />
+
+                    <TextView
+                        android:id="@+id/parameter_4_id"
+                        style="@style/parameter_two_text_style"
+                        android:text="--" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout style="@style/parameter_one_lay_layout_style">
+
+                <LinearLayout style="@style/parameter_two_lay_layout_style">
+
+                    <TextView
+                        style="@style/parameter_one_text_style"
+                        android:text="发动机冷却液温度:" />
+
+                    <TextView
+                        android:id="@+id/parameter_5_id"
+                        style="@style/parameter_two_text_style"
+                        android:text="--" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/parameter_two_lay_layout_style">
+
+                    <TextView
+                        style="@style/parameter_one_text_style"
+                        android:text="空气流量:" />
+
+                    <TextView
+                        android:id="@+id/parameter_6_id"
+                        style="@style/parameter_two_text_style"
+                        android:text="--" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout style="@style/parameter_one_lay_layout_style">
+
+                <LinearLayout style="@style/parameter_two_lay_layout_style">
+
+                    <TextView
+                        style="@style/parameter_one_text_style"
+                        android:text="空气温度:" />
+
+                    <TextView
+                        android:id="@+id/parameter_7_id"
+                        style="@style/parameter_two_text_style"
+                        android:text="--" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/parameter_two_lay_layout_style">
+
+                    <TextView
+                        style="@style/parameter_one_text_style"
+                        android:text="进气歧管绝对压力:" />
+
+                    <TextView
+                        android:id="@+id/parameter_8_id"
+                        style="@style/parameter_two_text_style"
+                        android:layout_marginLeft="@dimen/space_4dp"
+                        android:layout_marginRight="@dimen/space_4dp"
+                        android:text="--" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout style="@style/parameter_one_lay_layout_style">
+
+                <LinearLayout style="@style/parameter_two_lay_layout_style">
+
+                    <TextView
+                        style="@style/parameter_one_text_style"
+                        android:text="车辆总里程:" />
+
+                    <TextView
+                        android:id="@+id/parameter_9_id"
+                        style="@style/parameter_two_text_style"
+                        android:text="--" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/parameter_two_lay_layout_style">
+
+                    <TextView
+                        style="@style/parameter_one_text_style"
+                        android:text="发动机负荷计算值:" />
+
+                    <TextView
+                        android:id="@+id/parameter_10_id"
+                        style="@style/parameter_two_text_style"
+                        android:layout_marginLeft="@dimen/space_4dp"
+                        android:layout_marginRight="@dimen/space_4dp"
+                        android:text="--" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout style="@style/parameter_one_lay_layout_style">
+
+                <LinearLayout style="@style/parameter_two_lay_layout_style">
+
+                    <TextView
+                        style="@style/parameter_one_text_style"
+                        android:text="节气门绝对位置:" />
+
+                    <TextView
+                        android:id="@+id/parameter_11_id"
+                        style="@style/parameter_two_text_style"
+                        android:text="--" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/parameter_two_lay_layout_style">
+
+                    <TextView
+                        style="@style/parameter_one_text_style"
+                        android:text="气缸1点火提前角:" />
+
+                    <TextView
+                        android:id="@+id/parameter_12_id"
+                        style="@style/parameter_two_text_style"
+                        android:text="--" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout style="@style/parameter_one_lay_layout_style">
+
+                <LinearLayout style="@style/parameter_two_lay_layout_style">
+
+                    <TextView
+                        style="@style/parameter_one_text_style"
+                        android:text="瞬间油耗:" />
+
+                    <TextView
+                        android:id="@+id/parameter_13_id"
+                        style="@style/parameter_two_text_style"
+                        android:text="--" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/parameter_two_lay_layout_style">
+
+                    <TextView
+                        style="@style/parameter_one_text_style"
+                        android:text="控制模块电压:" />
+
+                    <TextView
+                        android:id="@+id/parameter_14_id"
+                        style="@style/parameter_two_text_style"
+                        android:text="--" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout style="@style/parameter_one_lay_layout_style">
+
+                <LinearLayout style="@style/parameter_two_lay_layout_style">
+
+                    <TextView
+                        style="@style/parameter_one_text_style"
+                        android:text="进气量:" />
+
+                    <TextView
+                        android:id="@+id/parameter_33_id"
+                        style="@style/parameter_two_text_style"
+                        android:text="--" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/parameter_two_lay_layout_style">
+
+                    <TextView
+                        style="@style/parameter_one_text_style"
+                        android:text="大气压力:" />
+
+                    <TextView
+                        android:id="@+id/parameter_16_id"
+                        style="@style/parameter_two_text_style"
+                        android:text="--" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout style="@style/parameter_one_lay_layout_style">
+
+                <LinearLayout style="@style/parameter_two_lay_layout_style">
+
+                    <TextView
+                        style="@style/parameter_one_text_style"
+                        android:text="发动机净输出扭矩:" />
+
+                    <TextView
+                        android:id="@+id/parameter_17_id"
+                        style="@style/parameter_two_text_style"
+                        android:text="--" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/parameter_two_lay_layout_style">
+
+                    <TextView
+                        style="@style/parameter_one_text_style"
+                        android:text="摩擦扭矩:" />
+
+                    <TextView
+                        android:id="@+id/parameter_18_id"
+                        style="@style/parameter_two_text_style"
+                        android:text="--" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout style="@style/parameter_one_lay_layout_style">
+
+                <LinearLayout style="@style/parameter_two_lay_layout_style">
+
+                    <TextView
+                        style="@style/parameter_one_text_style"
+                        android:text="发动机燃料流量:" />
+
+                    <TextView
+                        android:id="@+id/parameter_19_id"
+                        style="@style/parameter_two_text_style"
+                        android:text="--" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/parameter_two_lay_layout_style">
+
+                    <TextView
+                        style="@style/parameter_one_text_style"
+                        android:text="SCR上游NOx输出:" />
+
+                    <TextView
+                        android:id="@+id/parameter_20_id"
+                        style="@style/parameter_two_text_style"
+                        android:text="--" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout style="@style/parameter_one_lay_layout_style">
+
+                <LinearLayout style="@style/parameter_two_lay_layout_style">
+
+                    <TextView
+                        style="@style/parameter_one_text_style"
+                        android:text="SCR下游NOx输出:" />
+
+                    <TextView
+                        android:id="@+id/parameter_21_id"
+                        style="@style/parameter_two_text_style"
+                        android:text="--" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/parameter_two_lay_layout_style">
+
+                    <TextView
+                        style="@style/parameter_one_text_style"
+                        android:text="反应剂余量:" />
+
+                    <TextView
+                        android:id="@+id/parameter_22_id"
+                        style="@style/parameter_two_text_style"
+                        android:text="--" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout style="@style/parameter_one_lay_layout_style">
+
+                <LinearLayout style="@style/parameter_two_lay_layout_style">
+
+                    <TextView
+                        style="@style/parameter_one_text_style"
+                        android:text="进气量:" />
+
+                    <TextView
+                        android:id="@+id/parameter_23_id"
+                        style="@style/parameter_two_text_style"
+                        android:text="--" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/parameter_two_lay_layout_style">
+
+                    <TextView
+                        style="@style/parameter_one_text_style"
+                        android:text="SCR入口温度:" />
+
+                    <TextView
+                        android:id="@+id/parameter_24_id"
+                        style="@style/parameter_two_text_style"
+                        android:text="--" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout style="@style/parameter_one_lay_layout_style">
+
+                <LinearLayout style="@style/parameter_two_lay_layout_style">
+
+                    <TextView
+                        style="@style/parameter_one_text_style"
+                        android:text="SCR出口温度:" />
+
+                    <TextView
+                        android:id="@+id/parameter_25_id"
+                        style="@style/parameter_two_text_style"
+                        android:text="--" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/parameter_two_lay_layout_style">
+
+                    <TextView
+                        style="@style/parameter_one_text_style"
+                        android:text="DPF压差:" />
+
+                    <TextView
+                        android:id="@+id/parameter_26_id"
+                        style="@style/parameter_two_text_style"
+                        android:text="--" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout style="@style/parameter_one_lay_layout_style">
+
+                <LinearLayout style="@style/parameter_two_lay_layout_style">
+
+                    <TextView
+                        style="@style/parameter_one_text_style"
+                        android:text="油箱液位:" />
+
+                    <TextView
+                        android:id="@+id/parameter_27_id"
+                        style="@style/parameter_two_text_style"
+                        android:text="--" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/parameter_two_lay_layout_style">
+
+                    <TextView
+                        style="@style/parameter_one_text_style"
+                        android:text="定位有效:" />
+
+                    <TextView
+                        android:id="@+id/parameter_28_id"
+                        style="@style/parameter_two_text_style"
+                        android:text="--" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout style="@style/parameter_one_lay_layout_style">
+
+                <LinearLayout style="@style/parameter_two_lay_layout_style">
+
+                    <TextView
+                        style="@style/parameter_one_text_style"
+                        android:text="经度:" />
+
+                    <TextView
+                        android:id="@+id/parameter_29_id"
+                        style="@style/parameter_two_text_style"
+                        android:text="--" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/parameter_two_lay_layout_style">
+
+                    <TextView
+                        style="@style/parameter_one_text_style"
+                        android:text="纬度:" />
+
+                    <TextView
+                        android:id="@+id/parameter_30_id"
+                        style="@style/parameter_two_text_style"
+                        android:text="--" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout style="@style/parameter_one_lay_layout_style">
+
+                <LinearLayout style="@style/parameter_two_lay_layout_style">
+
+                    <TextView
+                        style="@style/parameter_one_text_style"
+                        android:text="发动机最大基准扭矩:" />
+
+                    <TextView
+                        android:id="@+id/parameter_31_id"
+                        style="@style/parameter_two_text_style"
+                        android:layout_marginLeft="@dimen/space_4dp"
+                        android:layout_marginRight="2dp"
+                        android:text="--" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/parameter_two_lay_layout_style">
+
+                    <TextView
+                        style="@style/parameter_one_text_style"
+                        android:text="NOx传感器输出:" />
+
+                    <TextView
+                        android:id="@+id/parameter_32_id"
+                        style="@style/parameter_two_text_style"
+                        android:text="--" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

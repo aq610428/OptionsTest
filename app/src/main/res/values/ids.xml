@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="base_titlebar_left_button" type="id"/>
+    <item name="base_titlebar_right_button1" type="id"/>
+    <item name="base_titlebar_right_button2" type="id"/>
+    <item name="base_header_title" type="id"/>
+    <item name="base_progress_bar" type="id"/>
+    <item name="base_progress_bar_img" type="id"/>
+    <item name="base_progress_message" type="id"/>
+    <item name="base_progress_dialog" type="id"/>
+    <item name="base_toast_message" type="id"/>
+    <item name="base_real_tab_content" type="id"/>
+    <item name="base_fragment_progress_container" type="id"/>
+    <item name="base_fragment_content_container" type="id"/>
+    <item name="itemView" type="id"/>
+    <item name="smContentView" type="id"/>
+    <item name="smMenuView" type="id"/>
+    <item type="id" name="tag_image"/>
+    <item type="id" name="statusbarutil_fake_status_bar_view" />
+    <item type="id" name="statusbarutil_translucent_view" />
+    <item name="keyboard" type="id" />
+
+
+    <item name="decode" type="id"/>
+    <item name="decode_failed" type="id"/>
+    <item name="decode_succeeded" type="id"/>
+    <item name="quit" type="id"/>
+    <item name="restart_preview" type="id"/>
+    <item name="return_scan_result" type="id"/>
+    <item name="bannerContainer" type="id"/>
+    <item name="bannerViewPager" type="id"/>
+    <item name="circleIndicator" type="id"/>
+    <item name="numIndicator" type="id"/>
+    <item name="titleView" type="id"/>
+    <item name="bannerTitle" type="id"/>
+    <item name="numIndicatorInside" type="id"/>
+    <item name="indicatorInside" type="id"/>
+    <item name="bannerDefaultImage" type="id"/>
+    <item type="id" name="launch_product_query"/>
+</resources>

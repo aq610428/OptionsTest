@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/base_press"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/text_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@color/black7e"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/text_vh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:ellipsize="end"
+            android:layout_marginTop="2dp"
+            android:singleLine="true"
+            android:textColor="@color/black7e"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/text_device"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:ellipsize="end"
+            android:layout_marginTop="2dp"
+            android:singleLine="true"
+            android:textColor="@color/black7e"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/text_sim"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/black7e"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/text_acc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:ellipsize="end"
+            android:layout_marginTop="2dp"
+            android:singleLine="true"
+            android:textColor="@color/black7e"
+            android:textSize="13dp" />
+
+
+        <TextView
+            android:id="@+id/text_km"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:ellipsize="end"
+            android:layout_marginTop="2dp"
+            android:singleLine="true"
+            android:textColor="@color/black7e"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/text_gps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:ellipsize="end"
+            android:layout_marginTop="2dp"
+            android:singleLine="true"
+            android:textColor="@color/black7e"
+            android:textSize="13dp" />
+
+
+        <TextView
+            android:id="@+id/text_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/black7e"
+            android:textSize="13dp" />
+
+
+        <TextView
+        android:id="@+id/text_adress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black7e"
+        android:layout_marginTop="2dp"
+        android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/text_lat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black7e"
+            android:layout_marginTop="2dp"
+            android:textSize="13dp" />
+    </LinearLayout>
+
+</LinearLayout>
