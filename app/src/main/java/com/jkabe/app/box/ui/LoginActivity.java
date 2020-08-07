@@ -123,7 +123,10 @@ public class LoginActivity extends BaseActivity implements NetWorkListener {
                 startActivity(new Intent(this, ForgetActivity.class));
                 break;
             case R.id.ll_agreement:
-                startActivity(new Intent(this, PreviewActivity.class));
+                Intent intent=new Intent(this, PreviewActivity.class);
+                intent.putExtra("name","用户协议");
+                intent.putExtra("url","http://kb.jkabe.com/resource/useragreement");
+                startActivity(intent);
                 break;
         }
     }

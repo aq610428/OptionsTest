@@ -239,7 +239,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:gravity="center"
-                            android:text="查看出行轨迹"
+                            android:text="遵守交通规则,安全伴你到永远"
                             android:textColor="@color/colorWhite"
                             android:textSize="@dimen/ctv_sizen_12" />
                     </LinearLayout>
@@ -267,7 +267,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:gravity="center"
-                            android:text="查看出行轨迹"
+                            android:text="与车友一起体检"
                             android:textColor="@color/colorWhite"
                             android:textSize="@dimen/ctv_sizen_12" />
                     </LinearLayout>

@@ -36,7 +36,6 @@ import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.runtime.Permission;
 import org.json.JSONObject;
-
 import java.util.List;
 import java.util.Map;
 import cn.jpush.android.api.JPushInterface;
