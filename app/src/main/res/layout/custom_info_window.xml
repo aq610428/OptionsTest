@@ -27,8 +27,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:ellipsize="end"
             android:layout_marginTop="2dp"
+            android:ellipsize="end"
             android:singleLine="true"
             android:textColor="@color/black7e"
             android:textSize="13dp" />
@@ -38,8 +38,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:ellipsize="end"
             android:layout_marginTop="2dp"
+            android:ellipsize="end"
             android:singleLine="true"
             android:textColor="@color/black7e"
             android:textSize="13dp" />
@@ -49,9 +49,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="2dp"
             android:ellipsize="end"
             android:singleLine="true"
-            android:layout_marginTop="2dp"
             android:textColor="@color/black7e"
             android:textSize="13dp" />
 
@@ -60,8 +60,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:ellipsize="end"
             android:layout_marginTop="2dp"
+            android:ellipsize="end"
             android:singleLine="true"
             android:textColor="@color/black7e"
             android:textSize="13dp" />
@@ -72,8 +72,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:ellipsize="end"
             android:layout_marginTop="2dp"
+            android:ellipsize="end"
             android:singleLine="true"
             android:textColor="@color/black7e"
             android:textSize="13dp" />
@@ -83,8 +83,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:ellipsize="end"
             android:layout_marginTop="2dp"
+            android:ellipsize="end"
             android:singleLine="true"
             android:textColor="@color/black7e"
             android:textSize="13dp" />
@@ -94,28 +94,22 @@
             android:id="@+id/text_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
             android:ellipsize="end"
             android:singleLine="true"
-            android:layout_marginTop="2dp"
             android:textColor="@color/black7e"
             android:textSize="13dp" />
 
 
         <TextView
-        android:id="@+id/text_adress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black7e"
-        android:layout_marginTop="2dp"
-        android:textSize="13dp" />
-
-        <TextView
-            android:id="@+id/text_lat"
+            android:id="@+id/text_adress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black7e"
             android:layout_marginTop="2dp"
+            android:textColor="@color/black7e"
             android:textSize="13dp" />
+
+
     </LinearLayout>
 
 </LinearLayout>

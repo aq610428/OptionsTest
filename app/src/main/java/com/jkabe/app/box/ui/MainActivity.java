@@ -7,9 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
-
 import androidx.fragment.app.FragmentTabHost;
-
 import com.jkabe.app.box.bean.UserInfo;
 import com.jkabe.app.box.bean.Verison;
 import com.jkabe.app.box.ui.fragment.AssetsFragmnt;
@@ -37,12 +35,10 @@ import com.jkabe.app.box.util.Utility;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.runtime.Permission;
-
 import org.json.JSONObject;
 
 import java.util.List;
 import java.util.Map;
-
 import cn.jpush.android.api.JPushInterface;
 
 /*****
@@ -202,6 +198,7 @@ public class MainActivity extends BaseActivity1 implements NetWorkListener {
     }
 
 
+
     /******查询个人资料*****/
     public void queryUser() {
         showProgressDialog(this, false);
@@ -234,6 +231,7 @@ public class MainActivity extends BaseActivity1 implements NetWorkListener {
         super.onResume();
         queryToken();
     }
+
 
     @Override
     public void onSucceed(JSONObject object, int id, CommonalityModel commonality) {
@@ -271,7 +269,8 @@ public class MainActivity extends BaseActivity1 implements NetWorkListener {
                     ToastUtil.showToast(commonality.getErrorDesc());
                 }
 
-            }
+                }
+
         }
         stopProgressDialog();
     }
@@ -279,7 +278,7 @@ public class MainActivity extends BaseActivity1 implements NetWorkListener {
 
     /*****检测是否具有读写权限******/
     public void applyPermission() {
-        AndPermission.with(this).runtime().permission(Permission.WRITE_EXTERNAL_STORAGE, Permission.READ_EXTERNAL_STORAGE)
+        AndPermission.with(this).runtime().permission(Permission.WRITE_EXTERNAL_STORAGE,Permission.READ_EXTERNAL_STORAGE)
                 .rationale(new RuntimeRationale())
                 .onGranted(new Action<List<String>>() {
                     @Override
@@ -303,6 +302,7 @@ public class MainActivity extends BaseActivity1 implements NetWorkListener {
     public void UpdateVerison() {
         new UpdateManager(this).checkForceUpdate(verison);
     }
+
 
 
     @Override

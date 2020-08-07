@@ -58,7 +58,6 @@ public class TraverAdapter extends AutoRVAdapter {
         vh.getTextView(R.id.text_l).setText(two);
         vh.getTextView(R.id.text_hour).setText(SystemTools.mathMinute(Integer.valueOf(travrt.getIdletime())));
         vh.getTextView(R.id.text_km).setText(one);
-
         vh.getTextView(R.id.text_tab1).setText(travrt.getAccecount() + "次");
         vh.getTextView(R.id.text_tab2).setText(travrt.getDececount() + "次");
         vh.getTextView(R.id.text_tab3).setText(travrt.getSharpturncount() + "次");

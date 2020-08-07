@@ -39,6 +39,7 @@ public class AssetsAdapter extends AutoRVAdapter {
             vh.getTextView(R.id.text_num_bc).setText("BOX");
         }
 
+
         vh.getTextView(R.id.text_num_bc).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,8 +48,8 @@ public class AssetsAdapter extends AutoRVAdapter {
             }
         });
     }
-
     public void setData(List<AssetsBean> list) {
         this.list = list;
     }
+
 }

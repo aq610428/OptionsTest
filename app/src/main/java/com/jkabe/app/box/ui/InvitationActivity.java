@@ -14,17 +14,13 @@ import com.jkabe.app.box.base.BaseApplication;
 import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.FileManager;
 import com.jkabe.app.box.util.ImageFactory;
-import com.jkabe.app.box.util.LogUtils;
 import com.jkabe.app.box.util.QRCodeUtil;
 import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.app.box.util.StatusBarUtil;
-import com.jkabe.app.box.weight.RuntimeRationale;
 import com.jkabe.box.R;
-import com.yanzhenjie.permission.Action;
-import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.runtime.Permission;
 import java.io.File;
-import java.util.List;
+
 
 /**
  * @author: zt
@@ -56,25 +52,6 @@ public class InvitationActivity extends BaseActivity {
     }
 
 
-    private void request() {
-        AndPermission.with(this).runtime().permission(needPermissions)
-                .rationale(new RuntimeRationale())
-                .onGranted(new Action<List<String>>() {
-                    @Override
-                    public void onAction(List<String> permissions) {
-                        shareImg();
-                    }
-                })
-                .onDenied(new Action<List<String>>() {
-                    @Override
-                    public void onAction(List<String> permissions) {
-                        if (AndPermission.hasAlwaysDeniedPermission(InvitationActivity.this, permissions)) {
-                            showSettingDialog(InvitationActivity.this, permissions);
-                        }
-                    }
-                })
-                .start();
-    }
 
 
     @Override
@@ -82,7 +59,6 @@ public class InvitationActivity extends BaseActivity {
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
         String url=SaveUtils.getSaveInfo().getTgurl()+"&apptype="+ Constants.TYPE;
         Bitmap mBitmap = QRCodeUtil.createQRCodeWithLogo(url, 700, bitmap);
-        LogUtils.e(url);
         icon_code.setImageBitmap(mBitmap);
     }
 
@@ -102,7 +78,7 @@ public class InvitationActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.rl_share:
-                request();
+                shareImg();
                 break;
         }
     }
@@ -119,6 +95,4 @@ public class InvitationActivity extends BaseActivity {
             startActivity(chooser);
         }
     }
-
-
 }

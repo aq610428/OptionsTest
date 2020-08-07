@@ -9,9 +9,9 @@ import android.os.Environment;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+
 
 public class FileUtil {
     public static File getSaveFile(Context context) {
@@ -38,5 +38,4 @@ public class FileUtil {
         return myCaptureFile;
 
     }
-
 }

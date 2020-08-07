@@ -6,11 +6,9 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
-import com.jkabe.app.box.adapter.AsetsAdapter;
 import com.jkabe.app.box.adapter.IncomeAdapter;
 import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.bean.BoxInfo;
@@ -62,8 +60,6 @@ public class IncomeActivity extends BaseActivity implements OnRefreshListener, O
         title_text_tv.setText("收益记录");
         swipeToLoadLayout.setOnRefreshListener(this);
         swipeToLoadLayout.setOnLoadMoreListener(this);
-        mNoDataView.textView.setText("暂无收益记录");
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         swipe_target.setLayoutManager(layoutManager);
     }
@@ -165,5 +161,6 @@ public class IncomeActivity extends BaseActivity implements OnRefreshListener, O
         isRefresh = true;
         page++;
         query();
+
     }
 }

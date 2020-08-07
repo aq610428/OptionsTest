@@ -24,6 +24,7 @@ public class BaseApplication extends Application {
     public static ActivityTaskManager activityTaskManager;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -33,7 +34,6 @@ public class BaseApplication extends Application {
         registerActivityLifecycleCallbacks(new ActivityLifecycleListener());
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
-
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
         builder.detectFileUriExposure();

@@ -66,6 +66,7 @@ public interface Api {
 
 
 
+
     /******附近门店******/
     String GET_STORE_VERSION = Config.getOpenNewApi() + "/store/queryNearStoreInfoData";
     int GET_STORE_VERSION_ID = 100031;
@@ -242,4 +243,5 @@ public interface Api {
     /******余额******/
     String RESET_TOKEN_DEVICE = Config.getOpenNewApi() + "/device/getdevicelocationandobddata";
     int RESET_TOKEN_DEVICE_ID = 100085;
+
 }

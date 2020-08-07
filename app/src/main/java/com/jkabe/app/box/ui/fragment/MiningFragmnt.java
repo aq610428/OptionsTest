@@ -38,7 +38,6 @@ public class MiningFragmnt extends BaseFragment implements NetWorkListener, View
     private TextView text_right, text_cny, text_travel, text_work, text_dig,text_bind;
     private SwipeToLoadLayout swipeToLoadLayout;
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -161,6 +160,4 @@ public class MiningFragmnt extends BaseFragment implements NetWorkListener, View
     public void onRefresh() {
         query();
     }
-
-
 }

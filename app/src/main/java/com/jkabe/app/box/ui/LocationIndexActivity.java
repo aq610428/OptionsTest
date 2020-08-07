@@ -171,6 +171,7 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
     }
 
 
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -272,6 +273,7 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
                             updateView(vo);
                         }
                         break;
+
                 }
             } else {
                 ToastUtil.showToast(commonality.getErrorDesc());
@@ -287,6 +289,7 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
         text_speed.setText(vo.getObddata().getEngine_speed() + "rmp");
         text_voltage.setText(vo.getObddata().getCoolant_temperature() + "°c");
     }
+
 
     private void updateMap() {
         LatLng latLng = SystemTools.getLatLng(Double.parseDouble(carVo.getLocationInfo().getLat()), Double.parseDouble(carVo.getLocationInfo().getLng()), this);

@@ -47,6 +47,21 @@ public class okHttpModel {
         return paramsMap;
     }
 
+
+
+
+    /****
+     * 添加公用参数
+     *
+     * @param
+     * @return
+     */
+    public static Map<String, String> getParams1() {
+        Map<String, String> paramsMap = getMap();
+
+        return paramsMap;
+    }
+
     /**
      * okHttp网络请求
      */
@@ -63,8 +78,8 @@ public class okHttpModel {
                     if (response != null && !Utility.isEmpty(response.body())) {
                         try {
                             JSONObject object = new JSONObject(response.body().replace(" ", ""));
-                            if (object != null && !object.isNull("resultcode")) {
-                                String code = object.optString("resultcode");
+                            if (object != null && !object.isNull("code")) {
+                                String code = object.optString("code");
                                 String message = object.optString("message");
                                 CommonalityModel commonality = new CommonalityModel();
                                 commonality.setStatusCode(code);

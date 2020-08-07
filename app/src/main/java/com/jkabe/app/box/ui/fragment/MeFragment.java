@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import com.jkabe.app.box.base.BaseApplication;
 import com.jkabe.app.box.base.BaseFragment;
 import com.jkabe.app.box.bean.CommonalityModel;
@@ -41,11 +40,8 @@ import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.PreferenceUtils;
 import com.jkabe.box.R;
-
 import org.json.JSONObject;
-
 import java.util.Map;
-
 import crossoverone.statuslib.StatusUtil;
 
 /**
@@ -145,7 +141,6 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
             case R.id.text_Reset:
                 startActivity(new Intent(getContext(), ResetActivity.class));
                 break;
-
             case R.id.text_key:
                 startActivity(new Intent(getContext(), ActivationActivity.class));
                 break;
@@ -162,7 +157,6 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
             case R.id.text_team:
                 intent = new Intent(getContext(), PreviewActivity.class);
                 intent.putExtra("name", "我的团队");
-                http:
                 intent.putExtra("url", "http://kb.jkabe.com/box/myteam?friendcode=" + SaveUtils.getSaveInfo().getFriendcode() + "&memberid=" + SaveUtils.getSaveInfo().getId());
                 startActivity(intent);
                 break;
@@ -183,7 +177,6 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
                 break;
         }
     }
-
 
     public void showDialog() {
         Dialog dialog = new Dialog(getContext());

@@ -84,6 +84,7 @@ public class UserInfo implements Serializable {
     }
 
 
+
     public int getIsreal() {
         return isreal;
     }
@@ -93,6 +94,7 @@ public class UserInfo implements Serializable {
     }
 
     private int isreal;
+
 
     public String getId() {
         return id;

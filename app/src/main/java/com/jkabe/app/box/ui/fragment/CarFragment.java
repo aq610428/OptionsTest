@@ -26,7 +26,6 @@ import com.amap.api.location.CoordinateConverter;
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.LocationSource;
-import com.amap.api.maps.MapView;
 import com.amap.api.maps.TextureMapView;
 import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.LatLng;
@@ -114,7 +113,6 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
             lazyLoad();
             request();
         }
-
         return rootView;
     }
 
@@ -368,6 +366,7 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
             }
         }
     }
+
 
 
     private void updateView() {

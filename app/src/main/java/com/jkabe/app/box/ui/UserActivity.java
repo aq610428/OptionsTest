@@ -148,7 +148,6 @@ public class UserActivity extends BaseActivity implements NetWorkListener {
                             if (!Utility.isEmpty(info.getUsericon())){
                                 GlideUtils.CreateImageCircular(info.getUsericon(), iv_logo, 5);
                             }
-
                         }
                         break;
 

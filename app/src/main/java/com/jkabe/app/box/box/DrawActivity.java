@@ -9,7 +9,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.bean.CommonalityModel;
 import com.jkabe.app.box.bean.Typeitems;
@@ -26,9 +25,7 @@ import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.DialogUtils;
 import com.jkabe.box.R;
-
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -45,7 +42,6 @@ public class DrawActivity extends BaseActivity implements NetWorkListener {
     private EditText text_address, et_num, et_password;
     private List<Typeitems> typeitems = new ArrayList<>();
     private List<Usdinfo> usdinfos = new ArrayList<>();
-
 
     @Override
     protected void initCreate(Bundle savedInstanceState) {
@@ -85,7 +81,6 @@ public class DrawActivity extends BaseActivity implements NetWorkListener {
                 text_service_box.setText(usdtBean.getUsdt().getCoinTypeName());
             }
         }
-
     }
 
     @Override

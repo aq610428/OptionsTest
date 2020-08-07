@@ -198,6 +198,7 @@
             android:textSize="@dimen/ctv_sizen_13_5" />
 
 
+
         <TextView
             android:id="@+id/text_satellite"
             android:layout_width="wrap_content"
@@ -208,6 +209,7 @@
             android:textSize="@dimen/ctv_sizen_13_5" />
 
 
+
         <TextView
             android:id="@+id/text_mileage1"
             android:layout_width="wrap_content"
@@ -216,6 +218,7 @@
             android:drawableLeft="@mipmap/lookup_car_close"
             android:padding="10dp"
             android:textSize="@dimen/ctv_sizen_13_5" />
+
     </LinearLayout>
 
 </RelativeLayout>

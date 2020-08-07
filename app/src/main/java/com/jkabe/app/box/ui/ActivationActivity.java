@@ -93,7 +93,6 @@ public class ActivationActivity extends BaseActivity implements NetWorkListener 
     }
 
 
-
     @Override
     public void onClick(View v) {
         super.onClick(v);
@@ -144,7 +143,7 @@ public class ActivationActivity extends BaseActivity implements NetWorkListener 
 
     private void updateView() {
         if (usdtBean.getUsdt() != null) {
-            text_usd.setText("可用USDT:"+usdtBean.getUsdt().getUserable() + "");
+            text_usd.setText("可用USDT:" + usdtBean.getUsdt().getUserable() + "");
         }
     }
 

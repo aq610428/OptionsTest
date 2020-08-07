@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
-
 import com.jkabe.app.box.base.BaseApplication;
 import com.jkabe.app.box.box.TransactionActivity;
 import com.jkabe.app.box.ui.ActivationActivity;
@@ -19,9 +18,6 @@ import com.jkabe.app.box.ui.LicenseActivity;
 
 
 public class DialogUtils {
-
-
-
     public static void showBind(int type,Context context) {
         Dialog dialog = new Dialog(context);
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_layout_ming, null);
@@ -96,6 +92,7 @@ public class DialogUtils {
         });
         dialog.show();
     }
+
 
     public static void showDialog(final String phoneNum, Activity activity) {
         final Dialog dialog = new Dialog(activity);

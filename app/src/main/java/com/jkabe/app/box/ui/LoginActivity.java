@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.jkabe.app.box.weight.PreferenceUtils;
 import com.jkabe.box.R;
 import com.jkabe.app.box.base.BaseActivity;

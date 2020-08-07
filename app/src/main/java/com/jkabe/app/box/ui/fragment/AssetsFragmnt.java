@@ -7,10 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.jkabe.app.box.base.BaseFragment;
@@ -20,7 +18,6 @@ import com.jkabe.app.box.box.AssetsActivity;
 import com.jkabe.app.box.config.Api;
 import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
-import com.jkabe.app.box.ui.ActivationActivity;
 import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.JsonParse;
 import com.jkabe.app.box.util.Md5Util;
@@ -31,6 +28,11 @@ import com.jkabe.app.box.weight.NoDataView;
 import com.jkabe.box.R;
 import org.json.JSONObject;
 import java.util.Map;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import com.jkabe.app.box.adapter.AssetsAdapter;
+import java.util.ArrayList;
+import java.util.List;
 import crossoverone.statuslib.StatusUtil;
 
 /**
@@ -47,6 +49,7 @@ public class AssetsFragmnt extends BaseFragment implements NetWorkListener, OnRe
     private NoDataView mNoDataView;
     private TextView text_num_bc, text_user_bc, text_congeal_bc, text_usd_bc;
     UsdtBean usdtBean;
+
 
     @Nullable
     @Override

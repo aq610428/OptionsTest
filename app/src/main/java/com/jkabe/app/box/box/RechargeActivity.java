@@ -10,7 +10,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.bean.AddressInfo;
 import com.jkabe.app.box.bean.CommonalityModel;
@@ -32,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+
 /**
  * @author: zt
  * @date: 2020/7/21
@@ -43,6 +43,7 @@ public class RechargeActivity extends BaseActivity implements NetWorkListener {
     private UsdtBean usdtBean;
     private List<AddressInfo> infos = new ArrayList<>();
     private String coinTypeId = "2";
+
 
     @Override
     protected void initCreate(Bundle savedInstanceState) {

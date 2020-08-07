@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 
+
 android {
     compileSdkVersion 28
     buildToolsVersion "28.0.3"
@@ -36,7 +37,6 @@ android {
 
     //签名信息
     signingConfigs {
-
         release {
             storeFile file('box.jks')
             storePassword 'asdfghjkl321'
@@ -114,5 +114,4 @@ dependencies {
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     implementation 'noman.weekcalendar:weekcalendar:1.0.6'
 }
-
 

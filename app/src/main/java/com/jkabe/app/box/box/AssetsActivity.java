@@ -50,6 +50,7 @@ public class AssetsActivity extends BaseActivity implements OnRefreshListener, O
     UsdtBean usdtBean;
     private String coinTypeId;
 
+
     @Override
     protected void initCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_assets);
@@ -189,6 +190,5 @@ public class AssetsActivity extends BaseActivity implements OnRefreshListener, O
     public void onError(Exception e) {
 
     }
-
 
 }
