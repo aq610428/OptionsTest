@@ -112,8 +112,8 @@ public class MiningFragmnt extends BaseFragment implements NetWorkListener, View
         if (jsonObject != null) {
             text_travel.setText(jsonObject.optString("yestodayBox") + " BOX");
             text_work.setText(jsonObject.optString("activeCount") + " 个");
-            text_dig.setText(jsonObject.optString("totalBox") + " BOX");
-            text_cny.setText(jsonObject.optString("miningBox") + "");
+            text_dig.setText(jsonObject.optString("miningBox") + " BOX");
+            text_cny.setText(jsonObject.optString("totalBox") + "");
             String stat=jsonObject.optString("state");
             if ("1".equals(stat+"")||"3".equals(stat)){
                 text_bind.setVisibility(View.GONE);

@@ -92,11 +92,11 @@ public class TravelActivity extends BaseActivity implements NetWorkListener{
 
 
     public void query() {
-        String sign = "endtime=" + DateUtils.getNextTime1() + "&imeicode=" + SaveUtils.getCar().getImeicode() + "&memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + "&starttime=" + selectTime + Constants.SECREKEY;
+        String sign = "endtime=" +selectTime + "&imeicode=" + SaveUtils.getCar().getImeicode() + "&memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + "&starttime=" + selectTime + Constants.SECREKEY;
         showProgressDialog(this, false);
         Map<String, String> params = okHttpModel.getParams();
         params.put("apptype", Constants.TYPE);
-        params.put("endtime", DateUtils.getNextTime1());
+        params.put("endtime",selectTime);
         params.put("imeicode", SaveUtils.getCar().getImeicode());
         params.put("memberid", SaveUtils.getSaveInfo().getId());
         params.put("partnerid", Constants.PARTNERID);
@@ -139,8 +139,6 @@ public class TravelActivity extends BaseActivity implements NetWorkListener{
         recyclerView.setVisibility(View.VISIBLE);
         traverAdapter = new TraverAdapter(this, travrts);
         recyclerView.setAdapter(traverAdapter);
-
-
         Travrt itemVO;
         int mileage = 0;
         Integer oilTrip = 0;

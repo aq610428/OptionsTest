@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
@@ -23,7 +24,9 @@ import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.NoDataView;
 import com.jkabe.box.R;
+
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -62,6 +65,7 @@ public class IncomeActivity extends BaseActivity implements OnRefreshListener, O
         swipeToLoadLayout.setOnLoadMoreListener(this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         swipe_target.setLayoutManager(layoutManager);
+        mNoDataView.textView.setText("暂无收益记录");
     }
 
     @Override
@@ -104,8 +108,8 @@ public class IncomeActivity extends BaseActivity implements OnRefreshListener, O
                         List<BoxInfo> boxInfos = JsonParse.getBoxJson(object);
                         if (boxInfos != null && boxInfos.size() > 0) {
                             setAdapter(boxInfos);
-                        }else{
-                            if (!isRefresh){
+                        } else {
+                            if (!isRefresh) {
                                 mNoDataView.setVisibility(View.VISIBLE);
                                 swipeToLoadLayout.setVisibility(View.GONE);
                             }
