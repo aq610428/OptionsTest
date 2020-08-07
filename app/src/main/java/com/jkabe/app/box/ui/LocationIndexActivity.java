@@ -279,7 +279,6 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
         }
     }
 
-
     /*****设置车辆状态******/
     private void updateView(OdbAndLocationVO vo) {
         text_bat.setText(Utility.judgeStrState(vo.getLocationdata().getSpeed() + "km/h", "--"));
