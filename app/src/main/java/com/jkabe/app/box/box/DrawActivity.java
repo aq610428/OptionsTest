@@ -198,6 +198,8 @@ public class DrawActivity extends BaseActivity implements NetWorkListener {
             } else {
                 ToastUtil.showToast(commonality.getErrorDesc());
             }
+        }else {
+            ToastUtil.showToast(commonality.getErrorDesc());
         }
         stopProgressDialog();
     }

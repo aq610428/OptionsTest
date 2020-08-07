@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
@@ -81,7 +83,7 @@ public class AssetsActivity extends BaseActivity implements OnRefreshListener, O
     @Override
     protected void initData() {
         coinTypeId = getIntent().getStringExtra("coinTypeId");
-        query();
+
     }
 
 
@@ -108,6 +110,12 @@ public class AssetsActivity extends BaseActivity implements OnRefreshListener, O
         }
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        query();
+    }
 
     public void query() {
         String sign = "coinTypeId=" + coinTypeId + "&memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
@@ -148,7 +156,7 @@ public class AssetsActivity extends BaseActivity implements OnRefreshListener, O
                         if (assetsBeans != null && assetsBeans.size() > 0) {
                             setAdapter(assetsBeans);
                         } else {
-                            if (!isRefresh&&page==1){
+                            if (!isRefresh && page == 1) {
                                 mNoDataView.setVisibility(View.VISIBLE);
                                 swipeToLoadLayout.setVisibility(View.GONE);
                             }
