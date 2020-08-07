@@ -288,7 +288,6 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
         text_voltage.setText(vo.getObddata().getCoolant_temperature() + "°c");
     }
 
-
     private void updateMap() {
         LatLng latLng = SystemTools.getLatLng(Double.parseDouble(carVo.getLocationInfo().getLat()), Double.parseDouble(carVo.getLocationInfo().getLng()), this);
         MarkerOptions markerOption = new MarkerOptions();
