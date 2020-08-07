@@ -345,7 +345,7 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
             try {
                 aMap.clear();
                 rl_edition.setVisibility(View.VISIBLE);
-                LatLng latLng = SystemTools.getLatLng(Double.parseDouble(carVo.getLocationInfo().getLat()), Double.parseDouble(carVo.getLocationInfo().getLng()), getActivity());
+                LatLng latLng = SystemTools.getLatLng(Double.parseDouble(carVo.getLocationInfo().getLat()), Double.parseDouble(carVo.getLocationInfo().getLng()));
                 PreferenceUtils.setPrefString(getContext(), Constants.LAT, BigDecimalUtils.subLastBit(latLng.latitude, 6).doubleValue() + "");
                 PreferenceUtils.setPrefString(getContext(), Constants.LON, BigDecimalUtils.subLastBit(latLng.longitude, 6).doubleValue() + "");
                 MarkerOptions markerOption = new MarkerOptions();

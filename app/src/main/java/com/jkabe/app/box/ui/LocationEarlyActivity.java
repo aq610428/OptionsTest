@@ -61,7 +61,7 @@ public class LocationEarlyActivity extends BaseActivity implements AMap.InfoWind
     protected void initData() {
         travrt = (EarlyInfo) getIntent().getSerializableExtra("info");
         if (travrt != null) {
-            LatLng latLng = SystemTools.getLatLng(Double.parseDouble(travrt.getLat()), Double.parseDouble(travrt.getLng()), this);
+            LatLng latLng = SystemTools.getLatLng(Double.parseDouble(travrt.getLat()), Double.parseDouble(travrt.getLng()));
             MarkerOptions markerOption = new MarkerOptions();
             markerOption.icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.im_device_loc)));
             markerOption.position(latLng);

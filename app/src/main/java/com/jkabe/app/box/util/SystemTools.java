@@ -72,7 +72,7 @@ public final class SystemTools {
     }
 
 
-    public static LatLng getLatLng(double lat, double lon, Activity activity) {
+    public static LatLng getLatLng1(double lat, double lon, Activity activity) {
         LatLng latLng = null;
         try {
             CoordinateConverter converter = new CoordinateConverter(activity);
@@ -362,6 +362,13 @@ public final class SystemTools {
         bd_lat_lon[1] = z * Math.sin(theta) + 0.006;
         return bd_lat_lon;
     }
+
+
+    public static LatLng getLatLng(double lat, double lon) {
+        double[] bdToGaoDe= bdToGaoDe(lat,lon);
+        return new LatLng(bdToGaoDe[1],bdToGaoDe[0]);
+    }
+
 
     public static int getPress() {
         int max=99;
