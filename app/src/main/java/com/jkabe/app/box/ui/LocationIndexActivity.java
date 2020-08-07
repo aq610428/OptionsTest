@@ -287,6 +287,7 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
         text_load.setText(vo.getObddata().getLoad_calculation_value() + "%");
         text_speed.setText(vo.getObddata().getEngine_speed() + "rmp");
         text_voltage.setText(vo.getObddata().getCoolant_temperature() + "°c");
+
     }
 
 
