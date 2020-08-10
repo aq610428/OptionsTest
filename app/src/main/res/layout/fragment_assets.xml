@@ -227,7 +227,7 @@
                             android:layout_height="30dp"
                             android:drawableRight="@mipmap/icon_right_arrow"
                             android:gravity="center|left"
-                            android:text="BC"
+                            android:text="BOX"
                             android:textColor="#242424"
                             android:textSize="15sp"
                             android:textStyle="bold" />

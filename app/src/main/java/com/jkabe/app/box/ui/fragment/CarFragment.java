@@ -244,7 +244,7 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
                     break;
                 case R.id.icon_travel1:
                     ToastUtil.showToast("暂未开放");
-                    startActivity(new Intent(getContext(), BlockActivity.class));
+//                    startActivity(new Intent(getContext(), BlockActivity.class));
                     break;
 
             }
@@ -388,6 +388,8 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
 
     }
 
+
+
     /*******1分钟定位一次*****/
     Runnable runnable = new Runnable() {
         @Override
@@ -398,11 +400,16 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
     };
 
 
+
+
+
     @Override
     public void onDestroy() {
         super.onDestroy();
         mHandler.removeCallbacks(runnable);
     }
+
+
 
     @Override
     public void onFail() {

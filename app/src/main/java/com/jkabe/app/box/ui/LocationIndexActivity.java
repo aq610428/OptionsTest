@@ -2,6 +2,7 @@ package com.jkabe.app.box.ui;
 
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
 import com.amap.api.maps.AMap;
@@ -22,6 +23,7 @@ import com.jkabe.app.box.config.okHttpModel;
 import com.jkabe.app.box.util.BigDecimalUtils;
 import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.JsonParse;
+import com.jkabe.app.box.util.LogUtils;
 import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.app.box.util.SystemTools;
@@ -85,6 +87,20 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
         qury();
         quryDeil();
     }
+
+
+    /*******1分钟定位一次*****/
+    final Handler mHandler = new Handler();
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            qury();
+            quryDeil();
+            mHandler.postDelayed(this, 2*60 * 1000);
+            LogUtils.e("执行");
+        }
+    };
+
 
     private void qury() {
         String sign = "imeicode=" + SaveUtils.getCar().getImeicode() + "&memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
@@ -188,6 +204,7 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
     protected void onPause() {
         super.onPause();
         mapView.onPause();
+        mHandler.removeCallbacks(runnable);
     }
 
     @Override
@@ -242,17 +259,12 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
             if (!Utility.isEmpty(ss)) {
                 String start = ss.substring(0, ss.length() - 8);
                 String end = ss.substring(ss.length() - 8, ss.length());
-
-
                 String start1 = ss1.substring(0, ss1.length() - 8);
                 String end2 = ss.substring(ss1.length() - 8, ss1.length());
                 text_date.setText("定位时间：" + start + " " + end);
                 text_gps.setText("车辆信号：" + start1 + " " + end2);
-
             }
-
             text_adress.setText("车辆位置：" + carVo.getLocationInfo().getAddress());
-            marker.showInfoWindow();
         }
     }
 
@@ -292,6 +304,7 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
 
 
     private void updateMap() {
+        aMap.clear();
         LatLng latLng = SystemTools.getLatLng(Double.parseDouble(carVo.getLocationInfo().getLat()), Double.parseDouble(carVo.getLocationInfo().getLng()));
         MarkerOptions markerOption = new MarkerOptions();
         markerOption.icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.im_device_loc)));
@@ -299,7 +312,12 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
         Marker marker = aMap.addMarker(markerOption);
         marker.showInfoWindow();
         aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
+//        mHandler.removeCallbacks(runnable);
+//        mHandler.postDelayed(runnable, 1000);
     }
+
+
+
 
     @Override
     public void onFail() {

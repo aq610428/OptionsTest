@@ -157,7 +157,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
             case R.id.text_team:
                 intent = new Intent(getContext(), PreviewActivity.class);
                 intent.putExtra("name", "我的团队");
-                intent.putExtra("url", "http://kb.jkabe.com/box/myteam?friendcode=" + SaveUtils.getSaveInfo().getFriendcode() + "&memberid=" + SaveUtils.getSaveInfo().getId());
+                intent.putExtra("url", "http://kb.jkabe.com/box/myteam?friendcode=" + SaveUtils.getSaveInfo().getRmcode() + "&memberid=" + SaveUtils.getSaveInfo().getId()+"&apptype="+ Constants.TYPE);
                 startActivity(intent);
                 break;
             case R.id.text_invitation:
