@@ -1,9 +1,13 @@
 package com.jkabe.app.box.util;
 
+import com.jkabe.app.box.bean.Block;
 import com.jkabe.app.box.bean.CarInfo;
 import com.jkabe.app.box.bean.UserInfo;
+import com.jkabe.box.R;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author: zt
@@ -42,5 +46,18 @@ public class SaveUtils {
     public static CarInfo getCar() {
         CarInfo carInfo = (CarInfo) CacheDiskUtils.getInstance().getSerializable("carInfo");
         return carInfo;
+    }
+
+
+    public static List<Block> getblocks() {
+        List<Block> blocks = new ArrayList<>();
+        blocks.add(new Block("行程数据", R.mipmap.icon_trip_usd));
+        blocks.add(new Block("维保数据", R.mipmap.icon_maint_usd));
+        blocks.add(new Block("保险数据", R.mipmap.icon_insurance_usd));
+        blocks.add(new Block("违章数据", R.mipmap.icon_break_usd));
+        blocks.add(new Block("加油数据", R.mipmap.icon_oil_usd));
+        blocks.add(new Block("过户数据", R.mipmap.icon_use_usd));
+        return blocks;
+
     }
 }

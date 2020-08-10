@@ -70,6 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
+                android:paddingRight="20dp"
                 android:background="@color/colorWhite"
                 android:gravity="center|left"
                 android:hint="输入或长按复制粘贴"
