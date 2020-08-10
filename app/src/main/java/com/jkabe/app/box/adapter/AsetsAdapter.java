@@ -44,7 +44,7 @@ public class AsetsAdapter extends AutoRVAdapter {
                 if ("1".equals(assetsBean.getCoinTypeId())) {
                     vh.getTextView(R.id.text_num).setText("充值USDT");
                 }else{
-                    vh.getTextView(R.id.text_num).setText("充值BC");
+                    vh.getTextView(R.id.text_num).setText("充值BOX");
                 }
 
                 break;
@@ -52,7 +52,7 @@ public class AsetsAdapter extends AutoRVAdapter {
                 if ("1".equals(assetsBean.getCoinTypeId())) {
                     vh.getTextView(R.id.text_num).setText("提现USDT");
                 }else{
-                    vh.getTextView(R.id.text_num).setText("提现BC");
+                    vh.getTextView(R.id.text_num).setText("提现BOX");
                 }
                 break;
             case 6:

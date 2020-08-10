@@ -234,7 +234,7 @@ public final class SystemTools {
      * "\\d{8}"代表后面是可以是0～9的数字, 有8位。
      */
     public static boolean isMobileNumber(String mobiles) {
-        String telRegex = "^((13[0-9])|(15[^4])|(18[0-9])|(17[0-8])|(147,145))\\d{8}$";
+        String telRegex = "^((13[0-9])|(15[^4])|(18[0-9])|(17[0-8])||(19[0-9])|(147,145))\\d{8}$";
         return !TextUtils.isEmpty(mobiles) && mobiles.matches(telRegex);
     }
 

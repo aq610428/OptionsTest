@@ -198,7 +198,7 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
 
     @Override
     public void onClick(View v) {
-        if (carInfo != null && !Utility.isEmpty(carInfo.getSimcode())) {
+        if (carInfo != null && !Utility.isEmpty(carInfo.getImeicode())) {
             switch (v.getId()) {
                 case R.id.text_num:
                     startActivity(new Intent(getContext(), VehicleActivity.class));
