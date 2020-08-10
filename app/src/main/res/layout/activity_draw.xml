@@ -61,17 +61,35 @@
             android:textColor="#304052"
             android:textSize="14sp" />
 
-        <EditText
-            android:id="@+id/text_address"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
-            android:background="@color/colorWhite"
-            android:gravity="center|left"
-            android:hint="输入或长按复制粘贴"
-            android:minHeight="40dp"
-            android:textColor="@color/colorAccent"
-            android:textSize="14sp" />
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/text_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@color/colorWhite"
+                android:gravity="center|left"
+                android:hint="输入或长按复制粘贴"
+                android:minHeight="40dp"
+                android:textColor="@color/colorAccent"
+                android:textSize="14sp" />
+
+
+            <ImageView
+                android:id="@+id/iv_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:src="@mipmap/icon_sacn" />
+        </RelativeLayout>
+
 
         <View
             android:layout_width="match_parent"

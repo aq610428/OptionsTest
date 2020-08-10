@@ -1,6 +1,7 @@
 package com.jkabe.app.box.box;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -8,7 +9,11 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+
 import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.bean.CommonalityModel;
 import com.jkabe.app.box.bean.Typeitems;
@@ -17,15 +22,23 @@ import com.jkabe.app.box.bean.UsdtBean;
 import com.jkabe.app.box.config.Api;
 import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
+import com.jkabe.app.box.ui.BindActivity;
 import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.JsonParse;
+import com.jkabe.app.box.util.LogUtils;
 import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.DialogUtils;
+import com.jkabe.app.box.weight.RuntimeRationale;
+import com.jkabe.app.box.zxing.android.CaptureActivity;
 import com.jkabe.box.R;
+import com.yanzhenjie.permission.AndPermission;
+import com.yanzhenjie.permission.runtime.Permission;
+
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -42,6 +55,7 @@ public class DrawActivity extends BaseActivity implements NetWorkListener {
     private EditText text_address, et_num, et_password;
     private List<Typeitems> typeitems = new ArrayList<>();
     private List<Usdinfo> usdinfos = new ArrayList<>();
+    private ImageView iv_code;
 
     @Override
     protected void initCreate(Bundle savedInstanceState) {
@@ -51,6 +65,7 @@ public class DrawActivity extends BaseActivity implements NetWorkListener {
 
     @Override
     protected void initView() {
+        iv_code = getView(R.id.iv_code);
         et_password = getView(R.id.et_password);
         text_user = getView(R.id.text_user);
         text_num_box = getView(R.id.text_num_box);
@@ -66,6 +81,7 @@ public class DrawActivity extends BaseActivity implements NetWorkListener {
         text_copy.setOnClickListener(this);
         title_text_tv.setText("提币");
         text_dig.setOnClickListener(this);
+        iv_code.setOnClickListener(this);
         coinTypeId = getIntent().getStringExtra("coinTypeId");
         usdtBean = (UsdtBean) getIntent().getSerializableExtra("usdtBean");
         if (usdtBean != null) {
@@ -102,8 +118,39 @@ public class DrawActivity extends BaseActivity implements NetWorkListener {
             case R.id.text_copy:
                 save();
                 break;
+            case R.id.iv_code:
+                checkPermission();
+                break;
         }
     }
+
+    private void checkPermission() {
+        AndPermission.with(this).runtime().permission(Permission.CAMERA)
+                .rationale(new RuntimeRationale())
+                .onGranted(permissions -> {
+                    Intent intent = new Intent(DrawActivity.this, CaptureActivity.class);
+                    startActivityForResult(intent, REQUEST_CODE_SCAN);
+                })
+                .onDenied(permissions -> {
+                    if (AndPermission.hasAlwaysDeniedPermission(DrawActivity.this, permissions)) {
+                        showSettingDialog(DrawActivity.this, permissions);
+                    }
+                })
+                .start();
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_SCAN && resultCode == RESULT_OK) {
+            String content = data.getStringExtra(DECODED_CONTENT_KEY);
+            if (!Utility.isEmpty(content)) {
+                text_address.setText(content + "");
+            }
+        }
+    }
+
 
     public void save() {
         String address = text_address.getText().toString();
@@ -198,7 +245,7 @@ public class DrawActivity extends BaseActivity implements NetWorkListener {
             } else {
                 ToastUtil.showToast(commonality.getErrorDesc());
             }
-        }else {
+        } else {
             ToastUtil.showToast(commonality.getErrorDesc());
         }
         stopProgressDialog();
