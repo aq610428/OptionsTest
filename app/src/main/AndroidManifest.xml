@@ -106,6 +106,16 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name="com.jkabe.app.box.ui.BlockActivity"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name="com.jkabe.app.box.box.TripActivity"
+            android:screenOrientation="portrait" />
+
+
+        <activity
             android:name="com.jkabe.app.box.ui.AboutActivity"
             android:screenOrientation="portrait" />
         <activity

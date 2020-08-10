@@ -40,6 +40,7 @@ import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
 import com.jkabe.app.box.ui.BatteryActivity;
 import com.jkabe.app.box.ui.BindActivity;
+import com.jkabe.app.box.ui.BlockActivity;
 import com.jkabe.app.box.ui.DrivingLicenseActivity;
 import com.jkabe.app.box.ui.EarlyActivity;
 import com.jkabe.app.box.ui.ElectronicActivity;
@@ -88,7 +89,7 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
     private CarVo carVo;
     private RelativeLayout rl_edition;
     private TextView text_address, text_date, text_oll, text_early;
-    private LinearLayout ll_write, ll_detection, ll_travel;
+    private LinearLayout ll_write, ll_detection, ll_travel,icon_travel1;
     final Handler mHandler = new Handler();
     private ImageView iv_set;
     private static String BACK_LOCATION_PERMISSION = "android.permission.ACCESS_BACKGROUND_LOCATION";
@@ -154,6 +155,7 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
     }
 
     private void initView() {
+        icon_travel1 = getView(rootView, R.id.icon_travel1);
         iv_set = getView(rootView, R.id.iv_set);
         ll_travel = getView(rootView, R.id.ll_travel);
         ll_detection = getView(rootView, R.id.ll_detection);
@@ -176,6 +178,7 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
         ll_travel.setOnClickListener(this);
         text_num.setOnClickListener(this);
         iv_set.setOnClickListener(this);
+        icon_travel1.setOnClickListener(this);
         aMap = mMapView.getMap();
         aMap.getUiSettings().setZoomControlsEnabled(false);
     }
@@ -238,6 +241,10 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
                     break;
                 case R.id.rl_edition:
                     startActivity(new Intent(getContext(), LocationIndexActivity.class));
+                    break;
+                case R.id.icon_travel1:
+                    ToastUtil.showToast("暂未开放");
+                    startActivity(new Intent(getContext(), BlockActivity.class));
                     break;
 
             }

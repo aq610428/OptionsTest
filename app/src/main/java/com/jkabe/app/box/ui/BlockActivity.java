@@ -1,14 +1,21 @@
 package com.jkabe.app.box.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.TextView;
+
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.jkabe.app.box.adapter.BlockAdapter;
 import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.bean.Block;
+import com.jkabe.app.box.box.TripActivity;
 import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.box.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +27,7 @@ import java.util.List;
 public class BlockActivity extends BaseActivity {
     private TextView title_text_tv, title_left_btn;
     private RecyclerView recyclerView;
-    private List<Block> blocks=new ArrayList<>();
+    private List<Block> blocks = new ArrayList<>();
     private BlockAdapter blockAdapter;
 
 
@@ -42,8 +49,45 @@ public class BlockActivity extends BaseActivity {
     protected void initData() {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(gridLayoutManager);
-        blocks= SaveUtils.getblocks();
-        blockAdapter=new BlockAdapter(this,blocks);
+        blocks = SaveUtils.getblocks();
+        blockAdapter = new BlockAdapter(this, blocks);
         recyclerView.setAdapter(blockAdapter);
+        blockAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String name = blocks.get(position).getName();
+                switch (name) {
+                    case "行程数据":
+                       startActivity(new Intent(BlockActivity.this, TripActivity.class));
+                        break;
+                    case "维保数据":
+
+                        break;
+                    case "保险数据":
+
+                        break;
+                    case "违章数据":
+
+                        break;
+                    case "加油数据":
+
+                        break;
+                    case "过户数据":
+
+                        break;
+                }
+            }
+        });
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        super.onClick(v);
+        switch (v.getId()) {
+            case R.id.title_left_btn:
+                finish();
+                break;
+        }
     }
 }

@@ -9,9 +9,10 @@
         android:id="@+id/text_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="待接收"
+        android:layout_marginBottom="15dp"
         android:drawablePadding="5dp"
-        android:textColor="@color/black33"
-        android:textSize="14sp" />
+        android:text="待接收"
+        android:textColor="#2C303D"
+        android:textSize="13sp" />
 
 </LinearLayout>

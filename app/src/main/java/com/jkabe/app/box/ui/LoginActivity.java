@@ -106,7 +106,10 @@ public class LoginActivity extends BaseActivity implements NetWorkListener {
 
     @Override
     protected void initData() {
-
+        String mobile=PreferenceUtils.getPrefString(LoginActivity.this,Constants.MOBILE,et_username.getText().toString());
+        String password=PreferenceUtils.getPrefString(LoginActivity.this,Constants.PASSWORD,et_password.getText().toString());
+        et_username.setText(mobile);
+        et_password.setText(password);
     }
 
     @Override
@@ -186,6 +189,8 @@ public class LoginActivity extends BaseActivity implements NetWorkListener {
                             ToastUtil.showToast("登录成功");
                             SaveUtils.saveInfo(info);
                             PreferenceUtils.setPrefString(LoginActivity.this,Constants.TOKEN,info.getToken());
+                            PreferenceUtils.setPrefString(LoginActivity.this,Constants.MOBILE,et_username.getText().toString());
+                            PreferenceUtils.setPrefString(LoginActivity.this,Constants.PASSWORD,et_password.getText().toString());
                             startActivity(new Intent(this, MainActivity.class));
                             finish();
                         }

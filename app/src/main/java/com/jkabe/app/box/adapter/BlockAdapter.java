@@ -1,10 +1,8 @@
 package com.jkabe.app.box.adapter;
 
 import android.content.Context;
-
 import com.jkabe.app.box.bean.Block;
 import com.jkabe.box.R;
-
 import java.util.List;
 
 /**

@@ -12,4 +12,7 @@ public class Constants {
     public static final String LON = "lon";//车油惠
     public static final String OIL = "oil";//车油惠
     public static final String TOKEN = "token";//车油惠
+    public static final String MOBILE = "mobile";//车油惠\
+    public static final String PASSWORD = "password";//车油惠
+
 }

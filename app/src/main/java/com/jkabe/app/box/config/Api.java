@@ -244,4 +244,9 @@ public interface Api {
     String RESET_TOKEN_DEVICE = Config.getOpenNewApi() + "/device/getdevicelocationandobddata";
     int RESET_TOKEN_DEVICE_ID = 100085;
 
+    /******获取车辆行程数据******/
+    String RESET_TOKEN_TRIP = Config.getOpenNewApi() + "/device/getdevicetripopenapi";
+    int RESET_TOKEN_TRIP_ID = 100086;
+
+
 }

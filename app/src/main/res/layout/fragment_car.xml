@@ -171,46 +171,80 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="156dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/ll_type"
                 android:layout_margin="15dp"
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:id="@+id/ll_write"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:background="@mipmap/icon_write"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="15dp">
+                    android:id="@+id/ll_tab"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-
-                    <TextView
-                        android:id="@+id/text_write"
+                    <LinearLayout
+                        android:id="@+id/ll_write"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center|left"
-                        android:text="行车轨迹"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/ctv_sizen_16"
-                        android:textStyle="bold" />
+                        android:background="@mipmap/icon_write1"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-                    <TextView
+
+                        <TextView
+                            android:id="@+id/text_write"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="行车轨迹"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/ctv_sizen_16"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="查看出行轨迹"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/ctv_sizen_12" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/icon_travel1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:gravity="center|left"
-                        android:text="查看出行轨迹"
-                        android:textColor="@color/colorWhite"
-                        android:textSize="@dimen/ctv_sizen_12" />
+                        android:background="@mipmap/icon_travel1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="区块数据"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/ctv_sizen_16"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="查看链上数据"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/ctv_sizen_12" />
+                    </LinearLayout>
 
                 </LinearLayout>
 
-
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
@@ -220,7 +254,7 @@
                         android:id="@+id/ll_detection"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@mipmap/icon_detection"
+                        android:background="@mipmap/icon_detection1"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -249,7 +283,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
-                        android:background="@mipmap/icon_travel"
+                        android:background="@mipmap/icon_travel1"
                         android:gravity="center"
                         android:orientation="vertical">
 
