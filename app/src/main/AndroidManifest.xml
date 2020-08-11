@@ -113,7 +113,9 @@
         <activity
             android:name="com.jkabe.app.box.box.TripActivity"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name="com.jkabe.app.box.box.TripDeilActivity"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name="com.jkabe.app.box.ui.AboutActivity"

@@ -1,11 +1,15 @@
 package com.jkabe.app.box.box;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.TextView;
+
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
@@ -27,7 +31,9 @@ import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.NoDataView;
 import com.jkabe.box.R;
+
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -48,7 +54,7 @@ public class TripActivity extends BaseActivity implements OnRefreshListener, OnL
     private NoDataView mNoDataView;
     private List<Travrt> travrts = new ArrayList<>();
     private TripAdapter tripAdapter;
-    private String selectTime,endtime;
+    private String selectTime, endtime;
 
 
     @Override
@@ -68,8 +74,8 @@ public class TripActivity extends BaseActivity implements OnRefreshListener, OnL
         swipeToLoadLayout.setOnLoadMoreListener(this);
         title_text_tv.setText("行程数据区块");
         mNoDataView.textView.setText("暂无行程数据区块");
-        selectTime= DateUtils.getNextTime1();
-        endtime=DateUtils.DateToStr1(DateUtils.getAddDay(new Date(),-4));
+        selectTime = DateUtils.getNextTime1();
+        endtime = DateUtils.DateToStr1(DateUtils.getAddDay(new Date(), -4));
     }
 
     @Override
@@ -80,11 +86,11 @@ public class TripActivity extends BaseActivity implements OnRefreshListener, OnL
     }
 
     public void query() {
-        String sign = "endtime=" +endtime + "&imeicode=" + SaveUtils.getCar().getImeicode() + "&memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + "&starttime=" + endtime + Constants.SECREKEY;
+        String sign = "endtime=" + endtime + "&imeicode=" + SaveUtils.getCar().getImeicode() + "&memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + "&starttime=" + endtime + Constants.SECREKEY;
         showProgressDialog(this, false);
         Map<String, String> params = okHttpModel.getParams();
         params.put("apptype", Constants.TYPE);
-        params.put("endtime",endtime);
+        params.put("endtime", endtime);
         params.put("imeicode", SaveUtils.getCar().getImeicode());
         params.put("memberid", SaveUtils.getSaveInfo().getId());
         params.put("partnerid", Constants.PARTNERID);
@@ -141,6 +147,14 @@ public class TripActivity extends BaseActivity implements OnRefreshListener, OnL
         swipeToLoadLayout.setVisibility(View.VISIBLE);
         tripAdapter = new TripAdapter(this, travrts);
         swipe_target.setAdapter(tripAdapter);
+        tripAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(TripActivity.this, TripDeilActivity.class);
+                intent.putExtra("travrt", travrts.get(position));
+                startActivity(intent);
+            }
+        });
     }
 
 
