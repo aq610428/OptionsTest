@@ -97,7 +97,7 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
             qury();
             quryDeil();
             mHandler.postDelayed(this, 2*60 * 1000);
-            LogUtils.e("执行");
+            LogUtils.e("执行**********************");
         }
     };
 
@@ -304,7 +304,6 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
 
 
     private void updateMap() {
-        aMap.clear();
         LatLng latLng = SystemTools.getLatLng(Double.parseDouble(carVo.getLocationInfo().getLat()), Double.parseDouble(carVo.getLocationInfo().getLng()));
         MarkerOptions markerOption = new MarkerOptions();
         markerOption.icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.im_device_loc)));

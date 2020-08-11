@@ -244,7 +244,7 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
                     break;
                 case R.id.icon_travel1:
                     ToastUtil.showToast("暂未开放");
-//                    startActivity(new Intent(getContext(), BlockActivity.class));
+                    startActivity(new Intent(getContext(), BlockActivity.class));
                     break;
 
             }

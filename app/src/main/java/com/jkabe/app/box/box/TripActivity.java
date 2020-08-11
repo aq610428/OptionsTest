@@ -4,18 +4,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.jkabe.app.box.adapter.AsetsAdapter;
+import com.jkabe.app.box.adapter.TripAdapter;
 import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.bean.AssetsBean;
 import com.jkabe.app.box.bean.CommonalityModel;
+import com.jkabe.app.box.bean.Travrt;
 import com.jkabe.app.box.config.Api;
 import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
 import com.jkabe.app.box.util.Constants;
+import com.jkabe.app.box.util.DateUtils;
 import com.jkabe.app.box.util.JsonParse;
 import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.SaveUtils;
@@ -25,6 +29,7 @@ import com.jkabe.app.box.weight.NoDataView;
 import com.jkabe.box.R;
 import org.json.JSONObject;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -37,12 +42,13 @@ public class TripActivity extends BaseActivity implements OnRefreshListener, OnL
     private TextView title_text_tv, title_left_btn;
     private SwipeToLoadLayout swipeToLoadLayout;
     private RecyclerView swipe_target;
-    private AsetsAdapter asetsAdapter;
     private int limit = 10;
     private int page = 1;
     private boolean isRefresh;
     private NoDataView mNoDataView;
-    private List<AssetsBean> data = new ArrayList<>();
+    private List<Travrt> travrts = new ArrayList<>();
+    private TripAdapter tripAdapter;
+    private String selectTime,endtime;
 
 
     @Override
@@ -62,25 +68,29 @@ public class TripActivity extends BaseActivity implements OnRefreshListener, OnL
         swipeToLoadLayout.setOnLoadMoreListener(this);
         title_text_tv.setText("行程数据区块");
         mNoDataView.textView.setText("暂无行程数据区块");
+        selectTime= DateUtils.getNextTime1();
+        endtime=DateUtils.DateToStr1(DateUtils.getAddDay(new Date(),-4));
     }
 
     @Override
     protected void initData() {
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
+        LinearLayoutManager gridLayoutManager = new LinearLayoutManager(this);
         swipe_target.setLayoutManager(gridLayoutManager);
+        query();
     }
 
     public void query() {
-        String sign = "memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        String sign = "endtime=" +endtime + "&imeicode=" + SaveUtils.getCar().getImeicode() + "&memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + "&starttime=" + endtime + Constants.SECREKEY;
         showProgressDialog(this, false);
         Map<String, String> params = okHttpModel.getParams();
         params.put("apptype", Constants.TYPE);
+        params.put("endtime",endtime);
+        params.put("imeicode", SaveUtils.getCar().getImeicode());
         params.put("memberid", SaveUtils.getSaveInfo().getId());
         params.put("partnerid", Constants.PARTNERID);
-        params.put("limit", limit + "");
-        params.put("page", page + "");
+        params.put("starttime", endtime);
         params.put("sign", Md5Util.encode(sign));
-        okHttpModel.get(Api.RESET_TOKEN_TRIP, params, Api.RESET_TOKEN_TRIP_ID, this);
+        okHttpModel.get(Api.GET_TRACK_TRIP, params, Api.GET_TRACK_TRIP_ID, this);
     }
 
 
@@ -104,16 +114,15 @@ public class TripActivity extends BaseActivity implements OnRefreshListener, OnL
         if (object != null && commonality != null && !Utility.isEmpty(commonality.getStatusCode())) {
             if (Constants.SUCESSCODE.equals(commonality.getStatusCode())) {
                 switch (id) {
-                    case Api.RESET_TOKEN_TRIP_ID:
-                        List<AssetsBean> assetsBeans = JsonParse.getJSONObjectAssetsBean(object);
-                        if (assetsBeans != null && assetsBeans.size() > 0) {
-                            setAdapter(assetsBeans);
+                    case Api.GET_TRACK_TRIP_ID:
+                        travrts = JsonParse.getTraverJson(object);
+                        if (travrts != null && travrts.size() > 0) {
+                            setAdapter();
                         } else {
                             if (!isRefresh && page == 1) {
                                 mNoDataView.setVisibility(View.VISIBLE);
                                 swipeToLoadLayout.setVisibility(View.GONE);
                             }
-
                         }
                         break;
                 }
@@ -127,18 +136,11 @@ public class TripActivity extends BaseActivity implements OnRefreshListener, OnL
     }
 
 
-    private void setAdapter(List<AssetsBean> strings) {
+    private void setAdapter() {
         mNoDataView.setVisibility(View.GONE);
         swipeToLoadLayout.setVisibility(View.VISIBLE);
-        if (!isRefresh) {
-            data.clear();
-            data.addAll(strings);
-            asetsAdapter = new AsetsAdapter(this, data);
-            swipe_target.setAdapter(asetsAdapter);
-        } else {
-            data.addAll(strings);
-            asetsAdapter.setData(data);
-        }
+        tripAdapter = new TripAdapter(this, travrts);
+        swipe_target.setAdapter(tripAdapter);
     }
 
 

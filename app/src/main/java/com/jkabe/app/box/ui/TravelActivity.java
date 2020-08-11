@@ -116,14 +116,12 @@ public class TravelActivity extends BaseActivity implements NetWorkListener{
                         if (travrts != null && travrts.size() > 0) {
                             updateView(travrts);
                         }else{
-                            if (traverAdapter!=null){
-                                ToastUtil.showToast("暂无行车轨迹");
-                                recyclerView.setVisibility(View.GONE);
-                                text_mileage.setText("0KM");
-                                text_oil.setText("0L");
-                                text_houl.setText("0H");
-                                txt_rmb.setText("0元");
-                            }
+                            ToastUtil.showToast("暂无行车轨迹");
+                            recyclerView.setVisibility(View.GONE);
+                            text_mileage.setText("0KM");
+                            text_oil.setText("0L");
+                            text_houl.setText("0H");
+                            txt_rmb.setText("0元");
                         }
                         break;
                 }

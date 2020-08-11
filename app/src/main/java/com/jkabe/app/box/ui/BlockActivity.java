@@ -5,17 +5,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.TextView;
-
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.jkabe.app.box.adapter.BlockAdapter;
 import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.bean.Block;
 import com.jkabe.app.box.box.TripActivity;
 import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.box.R;
-
 import java.util.ArrayList;
 import java.util.List;
 
