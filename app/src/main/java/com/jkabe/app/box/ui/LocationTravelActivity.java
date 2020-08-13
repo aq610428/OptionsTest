@@ -20,6 +20,7 @@ import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.PolylineOptions;
 import com.amap.api.maps.utils.SpatialRelationUtil;
 import com.amap.api.maps.utils.overlay.MovingPointOverlay;
+import com.jkabe.app.box.util.LogUtils;
 import com.jkabe.box.R;
 import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.base.BaseApplication;
@@ -171,7 +172,7 @@ public class LocationTravelActivity extends BaseActivity implements NetWorkListe
         readLatLngs = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
             LatInfo info = list.get(i);
-            LatLng latLng = SystemTools.getLatLng(Double.parseDouble(info.getLat()), Double.parseDouble(info.getLng()));
+            LatLng latLng = SystemTools.getLatLng(Double.parseDouble(info.getBaidulat()), Double.parseDouble(info.getBaidulng()));
             readLatLngs.add(latLng);
         }
         addPolylineInPlayGround();

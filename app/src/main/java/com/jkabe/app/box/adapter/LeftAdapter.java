@@ -113,7 +113,7 @@ public class LeftAdapter extends AutoRVAdapter {
 
     private void checkLogin() {
         CarInfo info = SaveUtils.getCar();
-        if (info == null || Utility.isEmpty(info.getSimcode())) {
+        if (info == null || Utility.isEmpty(info.getImeicode())) {
             ToastUtil.showToast("您未绑定车辆，请绑定后再试");
             fragment.getActivity().startActivity(new Intent(fragment.getContext(), BindActivity.class));
             return;

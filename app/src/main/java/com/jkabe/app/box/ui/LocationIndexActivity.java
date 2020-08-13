@@ -3,6 +3,7 @@ package com.jkabe.app.box.ui;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.TextView;
 
@@ -36,6 +37,8 @@ import org.json.JSONObject;
 
 import java.math.BigDecimal;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 /**
@@ -89,20 +92,9 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
     protected void initData() {
         qury();
         quryDeil();
+        mHandler.removeCallbacks(runnable);
+        mHandler.postDelayed(runnable,1000);
     }
-
-
-    /*******1分钟定位一次*****/
-    final Handler mHandler = new Handler();
-    Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            qury();
-            quryDeil();
-            mHandler.postDelayed(this, 2 * 60 * 1000);
-            LogUtils.e("执行**********************");
-        }
-    };
 
 
     private void qury() {
@@ -194,6 +186,8 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
     protected void onDestroy() {
         super.onDestroy();
         mapView.onDestroy();
+        mHandler.removeCallbacks(runnable);
+
     }
 
     @Override
@@ -305,7 +299,6 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
     }
 
     Marker marker;
-
     private void updateMap() {
         LatLng latLng = SystemTools.getLatLng(Double.parseDouble(carVo.getLocationInfo().getLat()), Double.parseDouble(carVo.getLocationInfo().getLng()));
         if (marker == null) {
@@ -318,9 +311,17 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
         }else{
             marker.setPosition(latLng);
         }
-        mHandler.removeCallbacks(runnable);
-        mHandler.postDelayed(runnable, 1000);
     }
+
+
+    private Handler mHandler = new Handler();
+    private Runnable runnable = new Runnable() {
+        public void run () {
+            qury();
+            quryDeil();
+            mHandler.postDelayed(this,5000);
+        }
+    };
 
 
     @Override

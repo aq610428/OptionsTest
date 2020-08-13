@@ -16,8 +16,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
@@ -60,6 +62,7 @@ import com.jkabe.app.box.util.StatusBarUtil;
 import com.jkabe.app.box.util.SystemTools;
 import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.Utility;
+import com.jkabe.app.box.weight.DialogUtils;
 import com.jkabe.app.box.weight.PreferenceUtils;
 import com.jkabe.app.box.weight.RuntimeRationale;
 import com.jkabe.app.box.weight.SensorEventHelper;
@@ -67,7 +70,9 @@ import com.jkabe.box.R;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.runtime.Permission;
+
 import org.json.JSONObject;
+
 import java.util.List;
 import java.util.Map;
 
@@ -89,7 +94,7 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
     private CarVo carVo;
     private RelativeLayout rl_edition;
     private TextView text_address, text_date, text_oll, text_early;
-    private LinearLayout ll_write, ll_detection, ll_travel,icon_travel1;
+    private LinearLayout ll_write, ll_detection, ll_travel, icon_travel1;
     final Handler mHandler = new Handler();
     private ImageView iv_set;
     private static String BACK_LOCATION_PERMISSION = "android.permission.ACCESS_BACKGROUND_LOCATION";
@@ -138,21 +143,6 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
                 .start();
     }
 
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        StatusBarUtil.setTranslucentStatus(getActivity());
-        mMapView.onResume();
-        polling();
-    }
-
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        mMapView.onPause();
-    }
 
     private void initView() {
         icon_travel1 = getView(rootView, R.id.icon_travel1);
@@ -213,7 +203,14 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
                     startActivity(new Intent(getContext(), ElectronicActivity.class));
                     break;
                 case R.id.ll_detection:
-                    startActivity(new Intent(getContext(), DrivingLicenseActivity.class));
+                    CarInfo info = SaveUtils.getCar();
+                    if ((info.getIsreal() == 0 || info.getIsreal() == 3)) {
+                        DialogUtils.showTipDialog(getContext(), "您的信息不全,请先认证");
+                    } else if ((info.getIsreal() == 2)) {
+                        ToastUtil.showToast("您的信息在审核中,请稍后再试");
+                    } else {
+                        startActivity(new Intent(getContext(), DrivingLicenseActivity.class));
+                    }
                     break;
                 case R.id.text_oll:
                     String oil = PreferenceUtils.getPrefString(getContext(), Constants.OIL, "");
@@ -374,7 +371,6 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
     }
 
 
-
     private void updateView() {
         if (carInfo != null && !Utility.isEmpty(carInfo.getCarcard())) {
             SaveUtils.saveCar(carInfo);
@@ -388,7 +384,6 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
     }
 
 
-
     /*******1分钟定位一次*****/
     Runnable runnable = new Runnable() {
         @Override
@@ -399,7 +394,21 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
     };
 
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        mHandler.removeCallbacks(runnable);
+        mMapView.onPause();
+    }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        StatusBarUtil.setTranslucentStatus(getActivity());
+        mMapView.onResume();
+        polling();
+    }
 
 
     @Override
@@ -407,7 +416,6 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
         super.onDestroy();
         mHandler.removeCallbacks(runnable);
     }
-
 
 
     @Override
