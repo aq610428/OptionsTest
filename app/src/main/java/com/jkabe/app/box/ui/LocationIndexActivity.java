@@ -309,7 +309,9 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
             marker.showInfoWindow();
             aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
         }else{
+            carVo.setCarcard("888888888888888");
             marker.setPosition(latLng);
+            marker.showInfoWindow();
         }
     }
 
@@ -320,6 +322,7 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
             qury();
             quryDeil();
             mHandler.postDelayed(this,5000);
+            LogUtils.e("刷新中....");
         }
     };
 
