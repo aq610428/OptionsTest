@@ -13,6 +13,7 @@
     <include layout="@layout/activity_title" />
 
     <LinearLayout
+        android:id="@+id/ll_opl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"

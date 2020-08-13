@@ -28,6 +28,7 @@
 
 
             <TextView
+                android:id="@+id/text_tab1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -38,6 +39,7 @@
 
 
             <TextView
+                android:id="@+id/text_tab2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -48,22 +50,22 @@
 
 
             <TextView
+                android:id="@+id/text_name"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="上传时间"
+                android:text="维保类型"
                 android:textColor="#2C303D"
                 android:textSize="13sp" />
 
         </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="0.7dp"
             android:background="@color/dive_line" />
     </LinearLayout>
-
-
 
 
     <LinearLayout

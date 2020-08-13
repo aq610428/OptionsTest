@@ -22,6 +22,16 @@ public class RequestOptionUtils {
                 .placeholder(defaultDrawble);
         return options;
     }
+    /*******普通图片加载******/
+    public static RequestOptions getRequestOptionGIF(int defaultDrawble) {
+        RequestOptions options = new RequestOptions()
+                .error(defaultDrawble)
+                .placeholder(R.mipmap.mp_chat_goods_card_default_img)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .placeholder(defaultDrawble);
+        return options;
+    }
+
 
     /*******普通图片加载******/
     public static RequestOptions getRequestOption() {

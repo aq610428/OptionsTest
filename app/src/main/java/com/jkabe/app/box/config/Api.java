@@ -245,7 +245,12 @@ public interface Api {
     int RESET_TOKEN_DEVICE_ID = 100085;
 
     /******获取车辆行程数据******/
-    String RESET_TOKEN_TRIP = Config.getOpenNewApi() + "/device/getdevicetripopenapi";
+    String RESET_TOKEN_TRIP = Config.getOpenNewApi() + "/carchain/queryDataTripInfoData";
+    String RESET_TOKEN_DATA = Config.getOpenNewApi() + "/carchain/queryDataMaintenanceInfoData";
+    String RESET_TOKEN_INSURE = Config.getOpenNewApi() + "/carchain/queryDataInsuranceInfoData";
+    String RESET_TOKEN_VIOLATE = Config.getOpenNewApi() + "/carchain/queryDataViolateInfoData";
+    String RESET_TOKEN_OIL = Config.getOpenNewApi() + "/carchain/queryDataOilInfoData";
+
     int RESET_TOKEN_TRIP_ID = 100086;
 
 

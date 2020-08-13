@@ -116,7 +116,32 @@
         <activity
             android:name="com.jkabe.app.box.box.TripDeilActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="com.jkabe.app.box.box.MaintenanceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+        android:name="com.jkabe.app.box.box.MainDeilActivity"
+        android:screenOrientation="portrait" />
 
+        <activity
+            android:name="com.jkabe.app.box.box.InsuranceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.jkabe.app.box.box.InsureDeilActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.jkabe.app.box.box.ViolationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.jkabe.app.box.box.ViolationDeilActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.jkabe.app.box.box.OilActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.jkabe.app.box.box.OilDeilActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.jkabe.app.box.ui.AboutActivity"
             android:screenOrientation="portrait" />

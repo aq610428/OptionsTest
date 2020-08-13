@@ -140,7 +140,7 @@ public class LoginActivity extends BaseActivity implements NetWorkListener {
         String password = et_password.getText().toString().trim();
         if (Utility.isEmpty(phone)) {
             ToastUtil.showToast("手机号不能为空");
-        } else if (!SystemTools.isMobileNumber(phone)) {
+        } else if (phone.length()!=11) {
             ToastUtil.showToast("手机号码不合法，请重新输入");
         } else if (Utility.isEmpty(password)) {
             ToastUtil.showToast("密码不能为空");

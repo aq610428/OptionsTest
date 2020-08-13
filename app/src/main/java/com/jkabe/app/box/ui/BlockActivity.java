@@ -5,14 +5,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.TextView;
+
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.jkabe.app.box.adapter.BlockAdapter;
 import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.bean.Block;
+import com.jkabe.app.box.box.InsuranceActivity;
+import com.jkabe.app.box.box.MaintenanceActivity;
+import com.jkabe.app.box.box.OilActivity;
 import com.jkabe.app.box.box.TripActivity;
+import com.jkabe.app.box.box.ViolationActivity;
 import com.jkabe.app.box.util.SaveUtils;
+import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.box.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,22 +63,22 @@ public class BlockActivity extends BaseActivity {
                 String name = blocks.get(position).getName();
                 switch (name) {
                     case "行程数据":
-                       startActivity(new Intent(BlockActivity.this, TripActivity.class));
+                        startActivity(new Intent(BlockActivity.this, TripActivity.class));
                         break;
                     case "维保数据":
-
+                        startActivity(new Intent(BlockActivity.this, MaintenanceActivity.class));
                         break;
                     case "保险数据":
-
+                        startActivity(new Intent(BlockActivity.this, InsuranceActivity.class));
                         break;
                     case "违章数据":
-
+                        startActivity(new Intent(BlockActivity.this, ViolationActivity.class));
                         break;
                     case "加油数据":
-
+                        startActivity(new Intent(BlockActivity.this, OilActivity.class));
                         break;
                     case "过户数据":
-
+                        ToastUtil.showToast("暂未开放");
                         break;
                 }
             }

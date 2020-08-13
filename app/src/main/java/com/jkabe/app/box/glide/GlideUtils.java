@@ -1,10 +1,13 @@
 package com.jkabe.app.box.glide;
 
+import android.content.Context;
 import android.net.Uri;
+import android.os.Looper;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.jkabe.app.box.base.BaseApplication;
+import com.jkabe.box.R;
 
 import java.io.File;
 
@@ -52,5 +55,24 @@ public class GlideUtils {
     /******加载圆角图片******/
     public static void CreateImageRound(String filePath, ImageView make_photo, int radius) {
         Glide.with(BaseApplication.getContext()).load(filePath).apply(RequestOptionUtils.getCircleTransformRound(radius)).into(make_photo);
+    }
+
+
+    public static void setImageGif( ImageView make_photo) {
+        Glide.with(BaseApplication.getContext()).load(R.drawable.icon_gif).apply(RequestOptionUtils.getRequestOption()).into(make_photo);
+    }
+
+
+    /**
+     * 清除图片内存缓存
+     */
+    public static void clearImageMemoryCache(Context context) {
+        try {
+            if (Looper.myLooper() == Looper.getMainLooper()) { //只能在主线程执行
+                Glide.get(context).clearMemory();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

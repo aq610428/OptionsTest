@@ -146,7 +146,7 @@ public class RegisterActivity extends BaseActivity implements NetWorkListener {
         String phone = username.getText().toString().trim();
         if (Utility.isEmpty(phone)) {
             ToastUtil.showToast("手机号不能为空");
-        } else if (!SystemTools.isMobileNumber(phone)) {
+        } else if (phone.length()!=11) {
             ToastUtil.showToast("手机号码不合法，请重新输入");
         } else {
 

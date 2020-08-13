@@ -6,10 +6,10 @@
     android:orientation="vertical">
 
     <ImageView
+        android:id="@+id/iv_car"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:src="@mipmap/icon_car_opl" />
+        android:layout_centerInParent="true" />
 
 
     <RelativeLayout
@@ -47,8 +47,6 @@
             android:visibility="visible" />
 
     </RelativeLayout>
-
-
 
 
     <LinearLayout

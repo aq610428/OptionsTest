@@ -14,21 +14,26 @@ import com.jkabe.app.box.bean.CarVo;
 import com.jkabe.app.box.bean.CommonalityModel;
 import com.jkabe.app.box.bean.EarlyInfo;
 import com.jkabe.app.box.bean.Electronic;
+import com.jkabe.app.box.bean.EnceInfo;
 import com.jkabe.app.box.bean.HealthItemVO;
 import com.jkabe.app.box.bean.ImageInfo;
+import com.jkabe.app.box.bean.InsureInfo;
 import com.jkabe.app.box.bean.LatInfo;
 import com.jkabe.app.box.bean.LeftVo;
 import com.jkabe.app.box.bean.Money;
 import com.jkabe.app.box.bean.OdbAndLocationVO;
 import com.jkabe.app.box.bean.Oil;
+import com.jkabe.app.box.bean.OilInfo;
 import com.jkabe.app.box.bean.OrderInfo;
 import com.jkabe.app.box.bean.StoreInfo;
 import com.jkabe.app.box.bean.Travrt;
+import com.jkabe.app.box.bean.TripVo;
 import com.jkabe.app.box.bean.Typeitems;
 import com.jkabe.app.box.bean.Usdinfo;
 import com.jkabe.app.box.bean.UsdtBean;
 import com.jkabe.app.box.bean.UserInfo;
 import com.jkabe.app.box.bean.Verison;
+import com.jkabe.app.box.bean.Violation;
 import com.jkabe.app.box.bean.YearCar;
 
 import org.json.JSONArray;
@@ -233,6 +238,64 @@ public class JsonParse {
         }
         return infos;
     }
+
+
+    public static List<TripVo> getCarSafeVOJson1(JSONObject object) {
+        List<TripVo> infos = new ArrayList<>();
+        JSONObject jsonObject = object.optJSONObject("result");
+        JSONArray jsonArray = jsonObject.optJSONArray("items");
+        for (int i = 0; i < jsonArray.length(); i++) {
+            TripVo info = (TripVo) JsonUtilComm.jsonToBean(jsonArray.optJSONObject(i).toString(), TripVo.class);
+            infos.add(info);
+        }
+        return infos;
+    }
+
+    public static List<EnceInfo> getCarSafeVOJson2(JSONObject object) {
+        List<EnceInfo> infos = new ArrayList<>();
+        JSONObject jsonObject = object.optJSONObject("result");
+        JSONArray jsonArray = jsonObject.optJSONArray("items");
+        for (int i = 0; i < jsonArray.length(); i++) {
+            EnceInfo info = (EnceInfo) JsonUtilComm.jsonToBean(jsonArray.optJSONObject(i).toString(), EnceInfo.class);
+            infos.add(info);
+        }
+        return infos;
+    }
+
+    public static List<InsureInfo> getInsureInfoJson2(JSONObject object) {
+        List<InsureInfo> infos = new ArrayList<>();
+        JSONObject jsonObject = object.optJSONObject("result");
+        JSONArray jsonArray = jsonObject.optJSONArray("items");
+        for (int i = 0; i < jsonArray.length(); i++) {
+            InsureInfo info = (InsureInfo) JsonUtilComm.jsonToBean(jsonArray.optJSONObject(i).toString(), InsureInfo.class);
+            infos.add(info);
+        }
+        return infos;
+    }
+
+
+    public static List<Violation> getViolationJson2(JSONObject object) {
+        List<Violation> infos = new ArrayList<>();
+        JSONObject jsonObject = object.optJSONObject("result");
+        JSONArray jsonArray = jsonObject.optJSONArray("items");
+        for (int i = 0; i < jsonArray.length(); i++) {
+            Violation info = (Violation) JsonUtilComm.jsonToBean(jsonArray.optJSONObject(i).toString(), Violation.class);
+            infos.add(info);
+        }
+        return infos;
+    }
+
+    public static List<OilInfo> getOilInfoJson2(JSONObject object) {
+        List<OilInfo> infos = new ArrayList<>();
+        JSONObject jsonObject = object.optJSONObject("result");
+        JSONArray jsonArray = jsonObject.optJSONArray("items");
+        for (int i = 0; i < jsonArray.length(); i++) {
+            OilInfo info = (OilInfo) JsonUtilComm.jsonToBean(jsonArray.optJSONObject(i).toString(), OilInfo.class);
+            infos.add(info);
+        }
+        return infos;
+    }
+
 
     public static List<Travrt> getTraverJson(JSONObject object) {
         List<Travrt> infos = new ArrayList<>();

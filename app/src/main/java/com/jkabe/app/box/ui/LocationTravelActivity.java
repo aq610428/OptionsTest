@@ -77,6 +77,7 @@ public class LocationTravelActivity extends BaseActivity implements NetWorkListe
         title_text_tv.setText("行车轨迹");
         aMap = mapView.getMap();
         text_mileage.setOnClickListener(this);
+        getView(R.id.ll_opl).setVisibility(View.GONE);
     }
 
 

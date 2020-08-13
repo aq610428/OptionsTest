@@ -18,6 +18,7 @@ import java.util.List;
 public class HealthAdapter extends AutoRVAdapter {
     private List<HealthProjectVO> list;
     private MedicalActivity activity;
+    public String msg = "";
 
     public HealthAdapter(MedicalActivity activity, List<HealthProjectVO> list) {
         super(activity, list);
@@ -52,6 +53,7 @@ public class HealthAdapter extends AutoRVAdapter {
             } else {
                 text_success.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.icon_fail, 0, 0, 0);
                 text_success.setText("异常");
+                msg = vo.getValue();
                 vh.getTextView(R.id.text_abnormal).setVisibility(View.VISIBLE);
                 vh.getTextView(R.id.text_abnormal).setText(vo.getValue());
             }

@@ -5,15 +5,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.TextView;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
-import com.jkabe.app.box.adapter.TripAdapter;
+import com.jkabe.app.box.adapter.InsurAdapter;
+import com.jkabe.app.box.adapter.InsurAdapter2;
 import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.bean.CommonalityModel;
-import com.jkabe.app.box.bean.TripVo;
+import com.jkabe.app.box.bean.InsureInfo;
+import com.jkabe.app.box.bean.OilInfo;
+import com.jkabe.app.box.bean.Violation;
 import com.jkabe.app.box.config.Api;
 import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
@@ -24,7 +29,9 @@ import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.NoDataView;
 import com.jkabe.box.R;
+
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -34,7 +41,7 @@ import java.util.Map;
  * @date: 2020/8/10
  * @name:行程数据区块
  */
-public class TripActivity extends BaseActivity implements OnRefreshListener, OnLoadMoreListener, NetWorkListener {
+public class OilActivity extends BaseActivity implements OnRefreshListener, OnLoadMoreListener, NetWorkListener {
     private TextView title_text_tv, title_left_btn;
     private SwipeToLoadLayout swipeToLoadLayout;
     private RecyclerView swipe_target;
@@ -42,8 +49,8 @@ public class TripActivity extends BaseActivity implements OnRefreshListener, OnL
     private int page = 1;
     private boolean isRefresh;
     private NoDataView mNoDataView;
-    private List<TripVo> travrts = new ArrayList<>();
-    private TripAdapter tripAdapter;
+    private List<OilInfo> travrts = new ArrayList<>();
+    private InsurAdapter2 tripAdapter;
 
 
     @Override
@@ -61,8 +68,8 @@ public class TripActivity extends BaseActivity implements OnRefreshListener, OnL
         title_left_btn.setOnClickListener(this);
         swipeToLoadLayout.setOnRefreshListener(this);
         swipeToLoadLayout.setOnLoadMoreListener(this);
-        title_text_tv.setText("行程数据区块");
-        mNoDataView.textView.setText("暂无行程数据区块");
+        title_text_tv.setText("加油数据区块");
+        mNoDataView.textView.setText("暂无加油数据区块");
     }
 
     @Override
@@ -81,7 +88,7 @@ public class TripActivity extends BaseActivity implements OnRefreshListener, OnL
         params.put("limit", limit + "");
         params.put("page", page + "");
         params.put("sign", Md5Util.encode(sign));
-        okHttpModel.get(Api.RESET_TOKEN_TRIP, params, Api.RESET_TOKEN_TRIP_ID, this);
+        okHttpModel.get(Api.RESET_TOKEN_OIL, params, Api.RESET_TOKEN_TRIP_ID, this);
     }
 
 
@@ -106,7 +113,7 @@ public class TripActivity extends BaseActivity implements OnRefreshListener, OnL
             if (Constants.SUCESSCODE.equals(commonality.getStatusCode())) {
                 switch (id) {
                     case Api.RESET_TOKEN_TRIP_ID:
-                        List<TripVo> travrts = JsonParse.getCarSafeVOJson1(object);
+                        List<OilInfo> travrts = JsonParse.getOilInfoJson2(object);
                         if (travrts != null && travrts.size() > 0) {
                             setAdapter(travrts);
                         } else {
@@ -127,14 +134,14 @@ public class TripActivity extends BaseActivity implements OnRefreshListener, OnL
     }
 
 
-    private void setAdapter(List<TripVo> voList) {
+    private void setAdapter(List<OilInfo> voList) {
         mNoDataView.setVisibility(View.GONE);
         swipeToLoadLayout.setVisibility(View.VISIBLE);
 
         if (!isRefresh) {
             travrts.clear();
             travrts.addAll(voList);
-            tripAdapter = new TripAdapter(this, travrts);
+            tripAdapter = new InsurAdapter2(this, travrts);
             swipe_target.setAdapter(tripAdapter);
         } else {
             travrts.addAll(voList);
@@ -144,7 +151,7 @@ public class TripActivity extends BaseActivity implements OnRefreshListener, OnL
         tripAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(TripActivity.this, TripDeilActivity.class);
+                Intent intent = new Intent(OilActivity.this, OilDeilActivity.class);
                 intent.putExtra("travrt",travrts.get(position));
                 startActivity(intent);
             }
