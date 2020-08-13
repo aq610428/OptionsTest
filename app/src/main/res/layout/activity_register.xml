@@ -29,6 +29,7 @@
             android:importantForAutofill="no"
             android:inputType="phone"
             android:textColor="#677E9C"
+            android:maxLength="11"
             android:textCursorDrawable="@null"
             android:textSize="@dimen/ctv_sizen_14" />
 

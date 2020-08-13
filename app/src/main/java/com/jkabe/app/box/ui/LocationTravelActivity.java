@@ -225,7 +225,6 @@ public class LocationTravelActivity extends BaseActivity implements NetWorkListe
                             }
                         }
                     });
-
                 } catch (Throwable e) {
                     e.printStackTrace();
                 }

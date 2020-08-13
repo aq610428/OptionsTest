@@ -194,7 +194,7 @@ public class RegisterActivity extends BaseActivity implements NetWorkListener {
         String code = et_code.getText().toString();
         if (Utility.isEmpty(mobile)) {
             ToastUtil.showToast("手机号不能为空");
-        } else if (!SystemTools.isMobileNumber(mobile)) {
+        } else if (mobile.length()!=11) {
             ToastUtil.showToast("手机号码不合法，请重新输入");
         } else if (Utility.isEmpty(mobile)) {
             ToastUtil.showToast("验证码不能为空");
