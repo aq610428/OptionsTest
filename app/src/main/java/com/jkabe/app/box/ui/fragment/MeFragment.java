@@ -91,7 +91,6 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
         }
     }
 
-
     private void initView() {
         tab1 = getView(rootView, R.id.tab1);
         tab2 = getView(rootView, R.id.tab2);
