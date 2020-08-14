@@ -114,7 +114,6 @@ public abstract  class HistogramView extends View {
 
     //初始化画笔
     private void initPaint() {
-
         if (mPaint == null) {
             mPaint = new Paint();
             //防抖动
