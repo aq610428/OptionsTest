@@ -1,6 +1,5 @@
 package com.jkabe.app.box.config;
 
-
 import com.jkabe.app.box.base.BaseApplication;
 import com.jkabe.app.box.bean.CommonalityModel;
 import com.jkabe.app.box.util.LogUtils;

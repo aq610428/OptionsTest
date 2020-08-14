@@ -4,9 +4,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.util.SparseArray;
-
 import com.jkabe.app.box.util.LogUtils;
-
 import java.util.Locale;
 import java.util.Set;
 import cn.jpush.android.api.JPushInterface;
