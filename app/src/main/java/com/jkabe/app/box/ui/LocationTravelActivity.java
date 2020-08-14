@@ -3,6 +3,7 @@ package com.jkabe.app.box.ui;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Pair;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -52,7 +53,7 @@ import java.util.Random;
  * @name:行车轨迹
  */
 public class LocationTravelActivity extends BaseActivity implements NetWorkListener {
-    private TextView title_text_tv, title_left_btn,text_mileage;
+    private TextView title_text_tv, title_left_btn, text_mileage;
     private MapView mapView;
     private Travrt travrt;
     private AMap aMap;
@@ -62,7 +63,7 @@ public class LocationTravelActivity extends BaseActivity implements NetWorkListe
 
     @Override
     protected void initCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_location_map);
+        setContentView(R.layout.activity_location_move);
         mapView = getView(R.id.mMapView);
         mapView.onCreate(savedInstanceState);// 此方法必须重写
         BaseApplication.activityTaskManager.putActivity("LocationTravelActivity", this);
@@ -71,14 +72,13 @@ public class LocationTravelActivity extends BaseActivity implements NetWorkListe
 
     @Override
     protected void initView() {
-        text_mileage= getView(R.id.text_mileage);
+        text_mileage = getView(R.id.text_mileage);
         title_text_tv = getView(R.id.title_text_tv);
         title_left_btn = getView(R.id.title_left_btn);
         title_left_btn.setOnClickListener(this);
         title_text_tv.setText("行车轨迹");
         aMap = mapView.getMap();
         text_mileage.setOnClickListener(this);
-        getView(R.id.ll_opl).setVisibility(View.GONE);
     }
 
 
@@ -176,12 +176,12 @@ public class LocationTravelActivity extends BaseActivity implements NetWorkListe
             readLatLngs.add(latLng);
         }
         addPolylineInPlayGround();
-        addLatLngBounds();
     }
 
     /********启动平滑移动******/
     private MovingPointOverlay smoothMarker;
     private Marker marker;
+
     private void addLatLngBounds() {
         // 读取轨迹点
         List<LatLng> points = readLatLngs;
@@ -189,9 +189,9 @@ public class LocationTravelActivity extends BaseActivity implements NetWorkListe
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
         builder.include(points.get(0));
         builder.include(points.get(points.size() - 2));
-        aMap.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), 50));
-        if(smoothMarker == null) {
-            marker = aMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_car)).anchor(0.5f,0.5f));
+        aMap.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), 100));
+        if (smoothMarker == null) {
+            marker = aMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_car)).anchor(0.5f, 0.5f));
             smoothMarker = new MovingPointOverlay(aMap, marker);
         }
         // 取轨迹点的第一个点 作为 平滑移动的启动
@@ -199,7 +199,6 @@ public class LocationTravelActivity extends BaseActivity implements NetWorkListe
         Pair<Integer, LatLng> pair = SpatialRelationUtil.calShortestDistancePoint(points, drivePoint);
         points.set(pair.first, drivePoint);
         List<LatLng> subList = points.subList(pair.first, points.size());
-
         // 设置轨迹点
         smoothMarker.setPoints(subList);
         // 设置平滑移动的总时间  单位  秒
@@ -207,6 +206,7 @@ public class LocationTravelActivity extends BaseActivity implements NetWorkListe
         // 设置  自定义的InfoWindow 适配器
         aMap.setInfoWindowAdapter(infoWindowAdapter);
         marker.showInfoWindow();
+
         // 设置移动的监听事件  返回 距终点的距离  单位 米
         smoothMarker.setMoveListener(new MovingPointOverlay.MoveListener() {
             @Override
@@ -216,9 +216,9 @@ public class LocationTravelActivity extends BaseActivity implements NetWorkListe
                         @Override
                         public void run() {
                             if (infoWindowLayout != null && title != null) {
-                                if (distance>0){
+                                if (distance > 0) {
                                     title.setText("距离终点还有： " + (int) distance + "米");
-                                }else{
+                                } else {
                                     title.setText("已到终点");
                                     text_mileage.setVisibility(View.VISIBLE);
                                 }
@@ -231,7 +231,6 @@ public class LocationTravelActivity extends BaseActivity implements NetWorkListe
                 }
             }
         });
-
         // 开始移动
         smoothMarker.startSmoothMove();
     }
@@ -261,15 +260,17 @@ public class LocationTravelActivity extends BaseActivity implements NetWorkListe
         builder.include(list.get(0));
         builder.include(list.get(list.size() - 2));
         aMap.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), 100));
+        addLatLngBounds();
     }
 
 
-    AMap.InfoWindowAdapter infoWindowAdapter = new AMap.InfoWindowAdapter(){
+    AMap.InfoWindowAdapter infoWindowAdapter = new AMap.InfoWindowAdapter() {
         // 如果这个方法返回null，则将会使用默认的信息窗口风格，内容将会调用getInfoContents(Marker)方法获取
         @Override
         public View getInfoWindow(Marker marker) {
             return getInfoWindowView(marker);
         }
+
         // 这个方法只有在getInfoWindow(Marker)返回null 时才会被调用
         // 定制化的view 做这个信息窗口的内容，如果返回null 将以默认内容渲染
         @Override
@@ -279,11 +280,13 @@ public class LocationTravelActivity extends BaseActivity implements NetWorkListe
     };
     /**
      * 自定义View并且绑定数据方法
+     *
      * @param marker 点击的Marker对象
-     * @return  返回自定义窗口的视图
+     * @return 返回自定义窗口的视图
      */
     LinearLayout infoWindowLayout;
-    TextView title,snippet;
+    TextView title, snippet;
+
     private View getInfoWindowView(Marker marker) {
         if (infoWindowLayout == null) {
             infoWindowLayout = new LinearLayout(this);
@@ -299,6 +302,7 @@ public class LocationTravelActivity extends BaseActivity implements NetWorkListe
         }
         return infoWindowLayout;
     }
+
 
 
     @Override

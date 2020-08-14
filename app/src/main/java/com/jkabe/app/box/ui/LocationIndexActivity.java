@@ -92,8 +92,6 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
     protected void initData() {
         qury();
         quryDeil();
-        mHandler.removeCallbacks(runnable);
-        mHandler.postDelayed(runnable,1000);
     }
 
 
@@ -194,6 +192,8 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
     protected void onResume() {
         super.onResume();
         mapView.onResume();
+        mHandler.removeCallbacks(runnable);
+        mHandler.postDelayed(runnable,1000);
     }
 
     @Override
@@ -307,12 +307,11 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
             markerOption.position(latLng);
             marker = aMap.addMarker(markerOption);
             marker.showInfoWindow();
-            aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
         }else{
-            carVo.setCarcard("888888888888888");
             marker.setPosition(latLng);
             marker.showInfoWindow();
         }
+        aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
     }
 
 
@@ -321,8 +320,7 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
         public void run () {
             qury();
             quryDeil();
-            mHandler.postDelayed(this,5000);
-            LogUtils.e("刷新中....");
+            mHandler.postDelayed(this,20000);
         }
     };
 
