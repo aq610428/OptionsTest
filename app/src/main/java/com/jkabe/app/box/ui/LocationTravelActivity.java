@@ -189,7 +189,7 @@ public class LocationTravelActivity extends BaseActivity implements NetWorkListe
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
         builder.include(points.get(0));
         builder.include(points.get(points.size() - 2));
-        aMap.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), 100));
+        aMap.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), 200));
         if (smoothMarker == null) {
             marker = aMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_car)).anchor(0.5f, 0.5f));
             smoothMarker = new MovingPointOverlay(aMap, marker);
@@ -259,7 +259,7 @@ public class LocationTravelActivity extends BaseActivity implements NetWorkListe
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
         builder.include(list.get(0));
         builder.include(list.get(list.size() - 2));
-        aMap.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), 100));
+        aMap.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), 200));
         addLatLngBounds();
     }
 
