@@ -194,8 +194,12 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
             public void onClick(View v) {
                 SaveUtils.clealCacheDisk();
                 PreferenceUtils.setPrefString(getContext(), Constants.TOKEN, "");
+                String mobile=PreferenceUtils.getPrefString(getContext(),Constants.MOBILE,"");
+                String password=PreferenceUtils.getPrefString(getContext(),Constants.PASSWORD,"");
                 final SharedPreferences sharedPreferences = getActivity().getSharedPreferences("north", Context.MODE_PRIVATE);
                 PreferenceUtils.clearPreference(getContext(), sharedPreferences);
+                PreferenceUtils.setPrefString(getContext(),Constants.MOBILE,mobile);
+                PreferenceUtils.setPrefString(getContext(),Constants.PASSWORD,password);
                 BaseApplication.activityTaskManager.closeAllActivityExceptOne("LoginActivity");
                 startActivity(new Intent(getContext(), LoginActivity.class));
                 getActivity().finish();

@@ -22,7 +22,7 @@
                 android:paddingLeft="15dp"
                 android:paddingTop="50dp"
                 android:paddingRight="15dp"
-                android:paddingBottom="50dp">
+                android:paddingBottom="30dp">
 
                 <ImageView
                     android:id="@+id/icon_head"

@@ -1,8 +1,10 @@
 package com.jkabe.app.box.adapter;
 
 import android.content.Context;
+
 import com.jkabe.app.box.bean.BoxInfo;
 import com.jkabe.box.R;
+
 import java.util.List;
 
 /**
@@ -29,7 +31,12 @@ public class IncomeAdapter extends AutoRVAdapter {
         BoxInfo boxInfo = list.get(position);
         vh.getTextView(R.id.text_date).setText(boxInfo.getSumdate());
         vh.getTextView(R.id.text_price).setText("数量BOX:" + boxInfo.getBox() + "");
-        vh.getTextView(R.id.text_usd).setText("BOX价格:" + boxInfo.getBoxPrice());
+        if (boxInfo.getBoxPrice() == 0.0) {
+            vh.getTextView(R.id.text_usd).setText("BOX价格:未知");
+        } else {
+            vh.getTextView(R.id.text_usd).setText("BOX价格:" + boxInfo.getBoxPrice());
+        }
+
     }
 
     public void setData(List<BoxInfo> data) {
