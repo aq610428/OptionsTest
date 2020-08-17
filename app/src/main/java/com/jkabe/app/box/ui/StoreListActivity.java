@@ -195,7 +195,7 @@ public class StoreListActivity extends BaseActivity implements OnLoadMoreListene
         });
     }
 
-    public void showDialog(String storeId) {
+    public void showDialog1(String storeId,String dis) {
         Dialog dialog = new Dialog(this);
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_layout1, null);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -214,6 +214,7 @@ public class StoreListActivity extends BaseActivity implements OnLoadMoreListene
             @Override
             public void onClick(View v) {
                 bindQury(storeId);
+                PreferenceUtils.setPrefString(StoreListActivity.this,"dis",dis);
                 dialog.dismiss();
             }
         });

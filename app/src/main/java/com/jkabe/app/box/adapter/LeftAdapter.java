@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.jkabe.app.box.ui.StoreDeilActivity;
 import com.jkabe.box.R;
 import com.jkabe.app.box.bean.CarInfo;
 import com.jkabe.app.box.bean.LeftVo;
@@ -71,12 +72,17 @@ public class LeftAdapter extends AutoRVAdapter {
                     switch (name) {
                         case "惠保养":
                             if (SaveUtils.getCar() != null && !Utility.isEmpty(SaveUtils.getCar().getSimcode())) {
-                                intent = new Intent(fragment.getContext(), StoreListActivity.class);
+                                if (fragment.info.getIsstore()==2){
+                                    intent = new Intent(fragment.getContext(), StoreDeilActivity.class);
+                                }else{
+                                    intent = new Intent(fragment.getContext(), StoreListActivity.class);
+                                }
                                 fragment.startActivity(intent);
                             } else {
                                 ToastUtil.showToast("您未绑定车辆，请绑定后再试");
                                 fragment.getActivity().startActivity(new Intent(fragment.getContext(), BindActivity.class));
                             }
+
 
                             break;
                         case "惠购车":

@@ -6,12 +6,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
+import com.jkabe.app.box.bean.UserInfo;
+import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.box.R;
 import com.jkabe.app.box.adapter.LeftAdapter;
 import com.jkabe.app.box.banner.Banner;
@@ -31,10 +35,13 @@ import com.jkabe.app.box.util.JsonParse;
 import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.MyLoader;
+
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 import crossoverone.statuslib.StatusUtil;
 
 
@@ -51,6 +58,7 @@ public class CarLeftFragment extends BaseFragment implements View.OnClickListene
     private List<BannerVo> banners = new ArrayList<>();
     private List<LeftVo> voList = new ArrayList<>();
     private LeftAdapter leftAdapter;
+    public UserInfo info;
 
     @Nullable
     @Override
@@ -68,6 +76,7 @@ public class CarLeftFragment extends BaseFragment implements View.OnClickListene
         super.onResume();
         StatusUtil.setUseStatusBarColor(getActivity(), Color.parseColor("#FFFFFF"));
         StatusUtil.setSystemStatus(getActivity(), false, true);
+        queryUser();
     }
 
 
@@ -121,7 +130,7 @@ public class CarLeftFragment extends BaseFragment implements View.OnClickListene
         showProgressDialog(getActivity(), false);
         String sign = "advertType=1" + "&pagecount=4" + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
         Map<String, String> params = okHttpModel.getParams();
-        params.put("advertType","1");
+        params.put("advertType", "1");
         params.put("pagecount", "4");
         params.put("partnerid", Constants.PARTNERID);
         params.put("sign", Md5Util.encode(sign));
@@ -136,6 +145,18 @@ public class CarLeftFragment extends BaseFragment implements View.OnClickListene
         params.put("partnerid", Constants.PARTNERID);
         params.put("sign", Md5Util.encode(sign));
         okHttpModel.get(Api.GET_ADVERT_TAG, params, Api.GET_ADVERT_TAG_ID, this);
+    }
+
+
+    /******查询个人资料*****/
+    public void queryUser() {
+        showProgressDialog(getActivity(), false);
+        String sign = "memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        Map<String, String> params = okHttpModel.getParams();
+        params.put("memberid", SaveUtils.getSaveInfo().getId());
+        params.put("partnerid", Constants.PARTNERID);
+        params.put("sign", Md5Util.encode(sign));
+        okHttpModel.get(Api.GET_MEID_USER, params, Api.GET_MEID_USER_ID, this);
     }
 
 
@@ -155,6 +176,9 @@ public class CarLeftFragment extends BaseFragment implements View.OnClickListene
                         if (voList != null && voList.size() > 0) {
                             setAdapter();
                         }
+                        break;
+                    case Api.GET_MEID_USER_ID:
+                        info = JsonParse.getUserInfo(object);
                         break;
 
                 }

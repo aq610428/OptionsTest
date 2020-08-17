@@ -45,7 +45,7 @@ public class StoreListAdapter extends AutoRVAdapter {
         vh.getTextView(R.id.text_verify).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activity.showDialog(info.getId());
+                activity.showDialog1(info.getId(),info.getDistance()+"");
             }
         });
 

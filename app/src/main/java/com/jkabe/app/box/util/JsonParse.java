@@ -59,6 +59,17 @@ public class JsonParse {
         return jsonParse;
     }
 
+
+
+    public static StoreInfo getStoreDeilJson(JSONObject object) {
+        List<StoreInfo> infos = new ArrayList<>();
+        JSONObject jsonObject = object.optJSONObject("result");
+        JSONObject jsonArray = jsonObject.optJSONObject("storeInfo");
+        StoreInfo info = (StoreInfo) JsonUtilComm.jsonToBean(jsonArray.toString(), StoreInfo.class);
+        return info;
+    }
+
+
     public static Verison getVerisonUserInfo(JSONObject object) {
         JSONObject jsonObject = object.optJSONObject("result");
         Verison verison = (Verison) JsonUtilComm.jsonToBean(jsonObject.toString(), Verison.class);

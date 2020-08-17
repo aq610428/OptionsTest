@@ -17,7 +17,8 @@ public interface Api {
     String GET_ADVERT_TAG = Config.getOpenNewApi() + "/resource/gettaglist";
     int GET_ADVERT_TAG_ID = 100004;
 
-
+    String GET_UNMODEL_INFO = Config.getOpenNewApi() + "/store/getBandingStoreInfo";
+    int GET_UNMODEL_INFO_ID = 100072;
     /******虚拟货币列表******/
     String GET_COINS_LIST = Config.getOpenNewApi() + "/integral/getcoins";
     int GET_COINS_LIST_ID = 100022;

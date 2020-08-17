@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.amap.api.maps.model.LatLng;
 import com.bigkoo.pickerview.TimePickerView;
+import com.jkabe.app.box.weight.PreferenceUtils;
 import com.jkabe.box.R;
 import com.jkabe.app.box.banner.Banner1;
 import com.jkabe.app.box.banner.BannerConfig;
@@ -115,6 +116,17 @@ public class StoreDeilActivity extends BaseActivity implements NetWorkListener, 
             text_address.setText(storeInfo.getAddress());
             text_mobile.setText(storeInfo.getPhone());
             qury();
+        } else {
+            String dis=PreferenceUtils.getPrefString(StoreDeilActivity.this,"dis","");
+            if (!Utility.isEmpty(dis)){
+                double distance=Double.parseDouble(dis);
+                if (distance >= 1000) {
+                    text_distance.setText(BigDecimalUtils.div(new BigDecimal(distance), new BigDecimal(1000), 2) + "km");
+                } else {
+                    text_distance.setText(dis+ "m");
+                }
+            }
+            quryDeil();
         }
         initDataTime();
     }
@@ -197,6 +209,16 @@ public class StoreDeilActivity extends BaseActivity implements NetWorkListener, 
         okHttpModel.get(Api.GET_IMAGE_VERSION, params, Api.GET_IMAGE_VERSION_ID, this);
     }
 
+    private void quryDeil() {
+        String sign = "memberId=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        showProgressDialog(this, false);
+        Map<String, String> params = okHttpModel.getParams();
+        params.put("apptype", Constants.TYPE);
+        params.put("memberId", SaveUtils.getSaveInfo().getId());
+        params.put("partnerid", Constants.PARTNERID);
+        params.put("sign", Md5Util.encode(sign));
+        okHttpModel.get(Api.GET_UNMODEL_INFO, params, Api.GET_UNMODEL_INFO_ID, this);
+    }
 
     private void bindQury() {
         String sign = "memberId=" + info.getId() + "&partnerid=" + Constants.PARTNERID + "&storeId=" + storeInfo.getId() + Constants.SECREKEY;
@@ -229,12 +251,12 @@ public class StoreDeilActivity extends BaseActivity implements NetWorkListener, 
 
     private void openOrder() {
         String date = text_date.getText().toString();
-        String sign ="carcard="+ SaveUtils.getCar().getCarcard()+"&memberId="+ SaveUtils.getSaveInfo().getId()+"&mobile=" + storeInfo.getPhone()+"&orderTime="+date+ "&partnerid=" + Constants.PARTNERID
-                +"&project="+project + "&storeId=" + storeInfo.getId() + Constants.SECREKEY;
+        String sign = "carcard=" + SaveUtils.getCar().getCarcard() + "&memberId=" + SaveUtils.getSaveInfo().getId() + "&mobile=" + storeInfo.getPhone() + "&orderTime=" + date + "&partnerid=" + Constants.PARTNERID
+                + "&project=" + project + "&storeId=" + storeInfo.getId() + Constants.SECREKEY;
         showProgressDialog(this, false);
         Map<String, String> params = okHttpModel.getParams();
         params.put("carcard", SaveUtils.getCar().getCarcard());
-        params.put("memberId", SaveUtils.getSaveInfo().getId()+ "");
+        params.put("memberId", SaveUtils.getSaveInfo().getId() + "");
         params.put("mobile", storeInfo.getPhone() + "");
         params.put("orderTime", date);
         params.put("partnerid", Constants.PARTNERID);
@@ -256,15 +278,28 @@ public class StoreDeilActivity extends BaseActivity implements NetWorkListener, 
                             updateView();
                         } else {
                             banners = new ArrayList<>();
-                            banners.add(new ImageInfo());
+                            ImageInfo info = new ImageInfo();
+                            info.setPhotoFile(storeInfo.getLogo());
+                            banners.add(info);
                             updateView();
                         }
                         break;
                     case Api.GET_REMOVE_VERSION_ID:
                         ToastUtil.showToast(commonality.getErrorDesc());
+                        PreferenceUtils.setPrefString(StoreDeilActivity.this,"dis","");
+                        startActivity(new Intent(StoreDeilActivity.this,StoreListActivity.class));
+                        finish();
+                        break;
+                    case Api.GET_UNMODEL_INFO_ID:
+                        storeInfo = JsonParse.getStoreDeilJson(object);
+                        if (storeInfo != null) {
+                            setView();
+                        }
                         break;
                     case Api.GET_ORDER_VERSION_ID:
                         ToastUtil.showToast(commonality.getErrorDesc());
+                        startActivity(new Intent(StoreDeilActivity.this,OrderActivity.class));
+                        finish();
                         break;
                 }
             } else {
@@ -272,6 +307,13 @@ public class StoreDeilActivity extends BaseActivity implements NetWorkListener, 
             }
         }
         stopProgressDialog();
+    }
+
+    private void setView() {
+        text_store.setText(storeInfo.getName() + "");
+        text_address.setText(storeInfo.getAddress());
+        text_mobile.setText(storeInfo.getPhone());
+        qury();
     }
 
 
@@ -298,11 +340,12 @@ public class StoreDeilActivity extends BaseActivity implements NetWorkListener, 
 
     private Calendar startDate, endDate;
     private TimePickerView pvTime1;
+
     protected void initDataTime() {
         Calendar selectedDate = Calendar.getInstance();
         startDate = Calendar.getInstance();
         int year = selectedDate.get(Calendar.YEAR);
-        int month = selectedDate.get(Calendar.MONTH) ;
+        int month = selectedDate.get(Calendar.MONTH);
         int day = selectedDate.get(Calendar.DATE);
 
         startDate.set(year, month, day);
@@ -347,7 +390,7 @@ public class StoreDeilActivity extends BaseActivity implements NetWorkListener, 
         popupView.findViewById(R.id.text_order).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(StoreDeilActivity.this,OrderActivity.class));
+                startActivity(new Intent(StoreDeilActivity.this, OrderActivity.class));
                 mPopupWindow.dismiss();
             }
         });
