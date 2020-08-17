@@ -54,8 +54,8 @@
                             android:drawableLeft="@mipmap/icon_mining"
                             android:gravity="center"
                             android:text="挖矿"
-                            android:textColor="#4D4D4D"
-                            android:textSize="@dimen/ctv_sizen_14" />
+                            android:textColor="#212121"
+                            android:textSize="@dimen/ctv_sizen_13" />
 
                     </RelativeLayout>
 
@@ -75,8 +75,8 @@
                             android:drawableLeft="@mipmap/icon_assets"
                             android:gravity="center"
                             android:text="资产"
-                            android:textColor="#4D4D4D"
-                            android:textSize="@dimen/ctv_sizen_14" />
+                            android:textColor="#212121"
+                            android:textSize="@dimen/ctv_sizen_13" />
                     </RelativeLayout>
 
                 </LinearLayout>
@@ -101,7 +101,8 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="市场"
+                            android:text="币种"
+                            android:textStyle="bold"
                             android:textColor="#4D4D4D"
                             android:textSize="@dimen/ctv_sizen_14" />
 
@@ -112,8 +113,9 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="价格"
+                            android:textStyle="bold"
                             android:textColor="#4D4D4D"
-                            android:textSize="@dimen/ctv_sizen_14" />
+                            android:textSize="@dimen/ctv_sizen_14"  />
 
 
                         <TextView
@@ -122,8 +124,9 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="涨幅"
+                            android:textStyle="bold"
                             android:textColor="#4D4D4D"
-                            android:textSize="@dimen/ctv_sizen_14" />
+                            android:textSize="@dimen/ctv_sizen_14"  />
 
                     </LinearLayout>
 

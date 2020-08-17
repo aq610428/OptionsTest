@@ -45,6 +45,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:textStyle="bold"
                     android:text="CAR"
                     android:textColor="@color/black"
                     android:textSize="@dimen/ctv_sizen_13" />
@@ -74,6 +75,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:textStyle="bold"
                     android:text="0.0015"
                     android:textColor="@color/black"
                     android:textSize="@dimen/ctv_sizen_12" />
@@ -103,7 +105,7 @@
                 android:padding="5dp"
                 android:text="0.0015"
                 android:textColor="@color/colorWhite"
-                android:textSize="@dimen/ctv_sizen_13" />
+                android:textSize="@dimen/ctv_sizen_12" />
         </RelativeLayout>
 
     </com.lihang.ShadowLayout>

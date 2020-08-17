@@ -82,24 +82,24 @@ public class MainActivity extends BaseActivity1 implements NetWorkListener {
                 if (tabId.equals(textviewArray[0])) {
                     clearViewColor();
                     TextView tv_home = mTabHost.getTabWidget().getChildAt(0).findViewById(R.id.textview);
-                    tv_home.setTextColor(Color.parseColor("#3E80F3"));
+                    tv_home.setTextColor(Color.parseColor("#3F69F4"));
                 }
                 if (tabId.equals(textviewArray[1])) {
                     clearViewColor();
                     TextView tv_order = mTabHost.getTabWidget().getChildAt(1).findViewById(R.id.textview);
-                    tv_order.setTextColor(Color.parseColor("#3E80F3"));
+                    tv_order.setTextColor(Color.parseColor("#3F69F4"));
                 }
 
                 if (tabId.equals(textviewArray[2])) {
                     clearViewColor();
                     TextView tv_mine = mTabHost.getTabWidget().getChildAt(2).findViewById(R.id.textview);
-                    tv_mine.setTextColor(Color.parseColor("#3E80F3"));
+                    tv_mine.setTextColor(Color.parseColor("#3F69F4"));
                 }
 
                 if (tabId.equals(textviewArray[3])) {
                     clearViewColor();
                     TextView tv_mine = mTabHost.getTabWidget().getChildAt(3).findViewById(R.id.textview);
-                    tv_mine.setTextColor(Color.parseColor("#3E80F3"));
+                    tv_mine.setTextColor(Color.parseColor("#3F69F4"));
                 }
 
             } catch (Exception e) {
@@ -128,7 +128,7 @@ public class MainActivity extends BaseActivity1 implements NetWorkListener {
         mTabHost.setCurrentTab(index);
         clearViewColor();
         TextView tv_order = mTabHost.getTabWidget().getChildAt(index).findViewById(R.id.textview);
-        tv_order.setTextColor(Color.parseColor("#3E80F3"));
+        tv_order.setTextColor(Color.parseColor("#3F69F4"));
     }
 
 
@@ -230,7 +230,7 @@ public class MainActivity extends BaseActivity1 implements NetWorkListener {
     @Override
     protected void onResume() {
         super.onResume();
-//        queryToken();
+        queryToken();
     }
 
 
