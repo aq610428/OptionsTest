@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jkabe.app.box.adapter.BlockAdapter;
@@ -52,7 +53,7 @@ public class BlockActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
+        LinearLayoutManager gridLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(gridLayoutManager);
         blocks = SaveUtils.getblocks();
         blockAdapter = new BlockAdapter(this, blocks);

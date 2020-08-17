@@ -25,6 +25,6 @@ public class BlockAdapter extends AutoRVAdapter {
     @Override
     public void onBindViewHolder(ViewHolder vh, int position) {
         vh.getTextView(R.id.text_name).setText(blocks.get(position).getName());
-        vh.getTextView(R.id.text_name).setCompoundDrawablesWithIntrinsicBounds(0,blocks.get(position).getDrawable(),0,0);
+        vh.getTextView(R.id.text_name).setCompoundDrawablesWithIntrinsicBounds(blocks.get(position).getDrawable(),0,0,0);
     }
 }
