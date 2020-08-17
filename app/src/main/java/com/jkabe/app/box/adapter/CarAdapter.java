@@ -42,7 +42,9 @@ public class CarAdapter extends AutoRVAdapter {
     public void onBindViewHolder(ViewHolder vh, int position) {
         Money inventory = inventories.get(position);
         vh.getTextView(R.id.text_name).setText(inventory.getSymbol() + "");
-        vh.getTextView(R.id.text_price).setText(BigDecimalUtils.subLastBit(inventory.getPrice_usd(),4) + "");
+
+        vh.getTextView(R.id.text_price).setText("$:"+BigDecimalUtils.subLastBit(inventory.getPrice_usd(),4) + "");
+        vh.getTextView(R.id.text_price_cny).setText("￥:"+BigDecimalUtils.subLastBit(inventory.getPrice_cny(),4) + "");
         if (inventory.getPercent_change_24h()>0){
             vh.getTextView(R.id.text_Increase).setBackgroundResource(R.drawable.shape_login);
         }else{

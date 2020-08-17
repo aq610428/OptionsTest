@@ -1,5 +1,6 @@
 package com.jkabe.app.box.adapter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
@@ -16,12 +17,12 @@ import java.util.List;
  * @name:AssetsAdapter
  */
 public class AssetsAdapter extends AutoRVAdapter {
-    private AssetsFragmnt assetsFragmnt;
+    private Context context;
     private List<AssetsBean> list;
 
-    public AssetsAdapter(AssetsFragmnt assetsFragmnt, List<AssetsBean> list) {
-        super(assetsFragmnt.getContext(), list);
-        this.assetsFragmnt = assetsFragmnt;
+    public AssetsAdapter(Context context, List<AssetsBean> list) {
+        super(context, list);
+        this.context = context;
         this.list = list;
     }
 
@@ -43,8 +44,8 @@ public class AssetsAdapter extends AutoRVAdapter {
         vh.getTextView(R.id.text_num_bc).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(assetsFragmnt.getContext(), AssetsActivity.class);
-                assetsFragmnt.startActivity(intent);
+                Intent intent = new Intent(context, AssetsActivity.class);
+                context.startActivity(intent);
             }
         });
     }

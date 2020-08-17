@@ -24,6 +24,7 @@ import com.jkabe.app.box.config.okHttpModel;
 import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.JsonParse;
 import com.jkabe.app.box.util.Md5Util;
+import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.NoDataView;
@@ -79,10 +80,11 @@ public class MaintenanceActivity extends BaseActivity implements OnRefreshListen
     }
 
     public void query() {
-        String sign = "partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        String sign ="carcard="+ SaveUtils.getCar().getCarcard()+ "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
         showProgressDialog(this, false);
         Map<String, String> params = okHttpModel.getParams();
         params.put("apptype", Constants.TYPE);
+        params.put("carcard", SaveUtils.getCar().getCarcard() + "");
         params.put("partnerid", Constants.PARTNERID);
         params.put("limit", limit + "");
         params.put("page", page + "");

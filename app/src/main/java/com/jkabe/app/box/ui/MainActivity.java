@@ -11,8 +11,10 @@ import androidx.fragment.app.FragmentTabHost;
 import com.jkabe.app.box.bean.UserInfo;
 import com.jkabe.app.box.bean.Verison;
 import com.jkabe.app.box.ui.fragment.AssetsFragmnt;
+import com.jkabe.app.box.ui.fragment.CarLeftFragment;
 import com.jkabe.app.box.ui.fragment.MeFragment;
 import com.jkabe.app.box.ui.fragment.MiningFragmnt;
+import com.jkabe.app.box.ui.fragment.OreFragment;
 import com.jkabe.app.box.util.JsonParse;
 import com.jkabe.app.box.util.SystemTools;
 import com.jkabe.app.box.weight.DialogUtils;
@@ -47,9 +49,9 @@ import cn.jpush.android.api.JPushInterface;
  */
 public class MainActivity extends BaseActivity1 implements NetWorkListener {
     //    private Class fragments[] = {CarFragment.class, CarLeftFragment.class, RecordFragment.class, MineFragment.class};
-    private Class fragments[] = {CarFragment.class, MiningFragmnt.class, AssetsFragmnt.class, MeFragment.class};
+    private Class fragments[] = {CarFragment.class, CarLeftFragment.class, OreFragment.class, MeFragment.class};
     private int drawables[] = {R.drawable.book_drawable, R.drawable.shelf_drawable, R.drawable.chosen_drawable, R.drawable.me_drawable};
-    private String textviewArray[] = {"我的车", "挖矿", "资产", "我的"};
+    private String textviewArray[] = {"我的车", "车生活", "矿池", "我的"};
     public FragmentTabHost mTabHost;
     private Verison verison;
 

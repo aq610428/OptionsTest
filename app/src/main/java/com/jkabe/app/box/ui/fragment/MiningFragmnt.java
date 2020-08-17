@@ -7,10 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
+import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.base.BaseFragment;
 import com.jkabe.app.box.bean.CommonalityModel;
 import com.jkabe.app.box.box.IncomeActivity;
@@ -24,8 +27,11 @@ import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.DialogUtils;
 import com.jkabe.box.R;
+
 import org.json.JSONObject;
+
 import java.util.Map;
+
 import crossoverone.statuslib.StatusUtil;
 
 /**
@@ -33,55 +39,51 @@ import crossoverone.statuslib.StatusUtil;
  * @date: 2020/7/21
  * @name:挖矿
  */
-public class MiningFragmnt extends BaseFragment implements NetWorkListener, View.OnClickListener, OnRefreshListener {
-    private View rootView;
-    private TextView text_right, text_cny, text_travel, text_work, text_dig,text_bind;
+public class MiningFragmnt extends BaseActivity implements NetWorkListener, View.OnClickListener, OnRefreshListener {
+    private TextView text_right, text_cny, text_travel, text_work, text_dig, text_bind;
     private SwipeToLoadLayout swipeToLoadLayout;
+    private TextView title_text_tv, title_left_btn;
 
-    @Nullable
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if (rootView == null) {
-            rootView = inflater.inflate(R.layout.fragment_mining, container, false);
-            initView();
-            lazyLoad();
-        }
-        return rootView;
+    protected void initCreate(Bundle savedInstanceState) {
+        setContentView(R.layout.fragment_mining);
     }
 
-    private void initView() {
-        text_bind = getView(rootView, R.id.text_bind);
-        swipeToLoadLayout = getView(rootView, R.id.swipeToLoadLayout);
-        text_cny = getView(rootView, R.id.text_cny);
-        text_right = getView(rootView, R.id.text_right);
-        text_cny = getView(rootView, R.id.text_cny);
-        text_travel = getView(rootView, R.id.text_travel);
-        text_work = getView(rootView, R.id.text_work);
-        text_dig = getView(rootView, R.id.text_dig);
+    public void initView() {
+        text_bind = getView(R.id.text_bind);
+        swipeToLoadLayout = getView(R.id.swipeToLoadLayout);
+        text_cny = getView(R.id.text_cny);
+        text_right = getView(R.id.text_right);
+        text_cny = getView(R.id.text_cny);
+        text_travel = getView(R.id.text_travel);
+        text_work = getView(R.id.text_work);
+        text_dig = getView(R.id.text_dig);
         text_right.setOnClickListener(this);
         swipeToLoadLayout.setOnRefreshListener(this);
         text_bind.setOnClickListener(this);
+        title_text_tv = getView(R.id.title_text_tv);
+        title_left_btn = getView(R.id.title_left_btn);
+        title_left_btn.setOnClickListener(this);
+        title_text_tv.setText("挖矿");
+    }
+
+    @Override
+    protected void initData() {
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        StatusUtil.setUseStatusBarColor(getActivity(), Color.parseColor("#FFFFFF"));
-        StatusUtil.setSystemStatus(getActivity(), false, true);
         updateView();
         query();
     }
 
 
-    @Override
-    protected void lazyLoad() {
-
-    }
-
-
     public void query() {
         String sign = "memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
-        showProgressDialog(getActivity(), false);
+        showProgressDialog(this, false);
         Map<String, String> params = okHttpModel.getParams();
         params.put("apptype", Constants.TYPE);
         params.put("memberid", SaveUtils.getSaveInfo().getId());
@@ -114,8 +116,8 @@ public class MiningFragmnt extends BaseFragment implements NetWorkListener, View
             text_work.setText(jsonObject.optString("activeCount") + " 个");
             text_dig.setText(jsonObject.optString("miningBox") + " BOX");
             text_cny.setText(jsonObject.optString("totalBox") + "");
-            String stat=jsonObject.optString("state");
-            if ("1".equals(stat+"")||"3".equals(stat)){
+            String stat = jsonObject.optString("state");
+            if ("1".equals(stat + "") || "3".equals(stat)) {
                 text_bind.setVisibility(View.GONE);
             }
         }
@@ -124,10 +126,10 @@ public class MiningFragmnt extends BaseFragment implements NetWorkListener, View
 
     private void updateView() {
         if (SaveUtils.getCar() == null || Utility.isEmpty(SaveUtils.getCar().getId())) {
-            DialogUtils.showBind(1, getContext());
+            DialogUtils.showBind(1, this);
         } else {
             if (!"2".equals(SaveUtils.getSaveInfo().getIsMining() + "")) {
-                DialogUtils.showBind(2, getContext());
+                DialogUtils.showBind(2, this);
             }
         }
     }
@@ -148,10 +150,13 @@ public class MiningFragmnt extends BaseFragment implements NetWorkListener, View
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.text_right:
-                startActivity(new Intent(getContext(), IncomeActivity.class));
+                startActivity(new Intent(this, IncomeActivity.class));
                 break;
             case R.id.text_bind:
-                startActivity(new Intent(getActivity(), ActivationActivity.class));
+                startActivity(new Intent(this, ActivationActivity.class));
+                break;
+            case R.id.title_left_btn:
+                finish();
                 break;
         }
     }

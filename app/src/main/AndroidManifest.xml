@@ -111,6 +111,15 @@
 
 
         <activity
+            android:name="com.jkabe.app.box.ui.fragment.MiningFragmnt"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.jkabe.app.box.ui.fragment.AssetsFragmnt"
+            android:screenOrientation="portrait" />
+
+
+        <activity
             android:name="com.jkabe.app.box.box.TripActivity"
             android:screenOrientation="portrait" />
         <activity
