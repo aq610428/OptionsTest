@@ -128,7 +128,7 @@ public class CarLeftFragment extends BaseFragment implements View.OnClickListene
     /******广告*****/
     public void query() {
         showProgressDialog(getActivity(), false);
-        String sign = "advertType=1" + "&pagecount=4" + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        String sign = "advertType=1"+"&pagecount=4" + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
         Map<String, String> params = okHttpModel.getParams();
         params.put("advertType", "1");
         params.put("pagecount", "4");

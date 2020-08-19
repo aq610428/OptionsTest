@@ -160,8 +160,8 @@ public class RecordFragment extends BaseFragment implements View.OnClickListener
     private void setAdapter() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         swipe_target.setLayoutManager(layoutManager);
-        carAdapter = new CarAdapter(getContext(), monies);
-        swipe_target.setAdapter(carAdapter);
+//        carAdapter = new CarAdapter(getContext(), monies);
+//        swipe_target.setAdapter(carAdapter);
     }
 
     @Override

@@ -25,6 +25,7 @@ import com.jkabe.app.box.bean.OdbAndLocationVO;
 import com.jkabe.app.box.bean.Oil;
 import com.jkabe.app.box.bean.OilInfo;
 import com.jkabe.app.box.bean.OrderInfo;
+import com.jkabe.app.box.bean.OreInfo;
 import com.jkabe.app.box.bean.StoreInfo;
 import com.jkabe.app.box.bean.Travrt;
 import com.jkabe.app.box.bean.TripVo;
@@ -94,7 +95,15 @@ public class JsonParse {
         }
         return infos;
     }
-
+    public static List<OreInfo> getBespokemoniesJson1(JSONObject object) {
+        List<OreInfo> infos = new ArrayList<>();
+        JSONArray jsonArray = object.optJSONArray("result");
+        for (int i = 0; i < jsonArray.length(); i++) {
+            OreInfo info = (OreInfo) JsonUtilComm.jsonToBean(jsonArray.optJSONObject(i).toString(), OreInfo.class);
+            infos.add(info);
+        }
+        return infos;
+    }
 
 
     public static List<Money> getBespokemoniesJson(JSONObject object) {

@@ -1,20 +1,12 @@
 package com.jkabe.app.box.ui.fragment;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.jkabe.app.box.base.BaseActivity;
-import com.jkabe.app.box.base.BaseFragment;
 import com.jkabe.app.box.bean.CommonalityModel;
 import com.jkabe.app.box.box.IncomeActivity;
 import com.jkabe.app.box.config.Api;
@@ -27,12 +19,8 @@ import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.DialogUtils;
 import com.jkabe.box.R;
-
 import org.json.JSONObject;
-
 import java.util.Map;
-
-import crossoverone.statuslib.StatusUtil;
 
 /**
  * @author: zt

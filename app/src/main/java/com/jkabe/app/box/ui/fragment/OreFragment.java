@@ -3,6 +3,7 @@ package com.jkabe.app.box.ui.fragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +17,13 @@ import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.jkabe.app.box.adapter.CarAdapter;
 import com.jkabe.app.box.base.BaseFragment;
 import com.jkabe.app.box.bean.CommonalityModel;
-import com.jkabe.app.box.bean.Money;
+import com.jkabe.app.box.bean.OreInfo;
 import com.jkabe.app.box.config.Api;
 import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
 import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.JsonParse;
+import com.jkabe.app.box.util.LogUtils;
 import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.box.R;
@@ -40,8 +42,10 @@ public class OreFragment extends BaseFragment implements NetWorkListener, OnRefr
     private View rootView;
     private SwipeToLoadLayout swipeToLoadLayout;
     private RecyclerView swipe_target;
-    private List<Money> monies = new ArrayList<>();
-    private RelativeLayout rl_mining,rl_assets;
+    private List<OreInfo> oreInfos = new ArrayList<>();
+    private RelativeLayout rl_mining, rl_assets;
+    private CarAdapter carAdapter;
+    final Handler mHandler = new Handler();
 
     @Nullable
     @Override
@@ -63,7 +67,7 @@ public class OreFragment extends BaseFragment implements NetWorkListener, OnRefr
         swipeToLoadLayout.setOnRefreshListener(this);
         rl_assets.setOnClickListener(this);
         rl_mining.setOnClickListener(this);
-        query();
+
     }
 
 
@@ -84,17 +88,38 @@ public class OreFragment extends BaseFragment implements NetWorkListener, OnRefr
         super.onResume();
         StatusUtil.setUseStatusBarColor(getActivity(), Color.parseColor("#FFFFFF"));
         StatusUtil.setSystemStatus(getActivity(), false, true);
+        mHandler.removeCallbacks(runnable);
+        mHandler.postDelayed(runnable, 100);
     }
 
 
     @Override
+    public void onPause() {
+        super.onPause();
+        mHandler.removeCallbacks(runnable);
+        LogUtils.e("停止执行");
+    }
+
+
+    /*******1分钟定位一次*****/
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            query();
+            mHandler.postDelayed(this, 60 * 1000);
+            LogUtils.e("1分钟执行一次");
+        }
+    };
+
+
+    @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.rl_assets:
-                startActivity(new Intent(getContext(),AssetsFragmnt.class));
+                startActivity(new Intent(getContext(), AssetsFragmnt.class));
                 break;
             case R.id.rl_mining:
-                startActivity(new Intent(getContext(),MiningFragmnt.class));
+                startActivity(new Intent(getContext(), MiningFragmnt.class));
                 break;
         }
     }
@@ -110,8 +135,8 @@ public class OreFragment extends BaseFragment implements NetWorkListener, OnRefr
             if (Constants.SUCESSCODE.equals(commonality.getStatusCode())) {
                 switch (id) {
                     case Api.GET_COINS_LIST_ID:
-                        monies = JsonParse.getBespokemoniesJson(object);
-                        if (monies != null && monies.size() > 0) {
+                        oreInfos = JsonParse.getBespokemoniesJson1(object);
+                        if (oreInfos != null && oreInfos.size() > 0) {
                             setAdapter();
                         }
                         break;
@@ -125,7 +150,7 @@ public class OreFragment extends BaseFragment implements NetWorkListener, OnRefr
     private void setAdapter() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         swipe_target.setLayoutManager(layoutManager);
-        CarAdapter carAdapter = new CarAdapter(getContext(), monies);
+        carAdapter = new CarAdapter(getContext(), oreInfos);
         swipe_target.setAdapter(carAdapter);
     }
 
