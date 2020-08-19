@@ -97,7 +97,6 @@ public class OreFragment extends BaseFragment implements NetWorkListener, OnRefr
     public void onPause() {
         super.onPause();
         mHandler.removeCallbacks(runnable);
-        LogUtils.e("停止执行");
     }
 
 
@@ -107,7 +106,6 @@ public class OreFragment extends BaseFragment implements NetWorkListener, OnRefr
         public void run() {
             query();
             mHandler.postDelayed(this, 60 * 1000);
-            LogUtils.e("1分钟执行一次");
         }
     };
 
