@@ -6,12 +6,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.jkabe.app.box.bean.UserInfo;
@@ -35,13 +33,10 @@ import com.jkabe.app.box.util.JsonParse;
 import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.MyLoader;
-
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import crossoverone.statuslib.StatusUtil;
 
 
@@ -128,10 +123,11 @@ public class CarLeftFragment extends BaseFragment implements View.OnClickListene
     /******广告*****/
     public void query() {
         showProgressDialog(getActivity(), false);
-        String sign = "advertType=1"+"&pagecount=4" + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        String sign = "advertType=" +  Constants.ADVER+"&pagecount=4" + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
         Map<String, String> params = okHttpModel.getParams();
-        params.put("advertType", "1");
+        params.put("advertType", Constants.ADVER);
         params.put("pagecount", "4");
+        params.put("apptype", Constants.TYPE);
         params.put("partnerid", Constants.PARTNERID);
         params.put("sign", Md5Util.encode(sign));
         okHttpModel.get(Api.GET_ADVERT, params, Api.GET_ADVERT_ID, this);
@@ -143,6 +139,7 @@ public class CarLeftFragment extends BaseFragment implements View.OnClickListene
         String sign = "partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
         Map<String, String> params = okHttpModel.getParams();
         params.put("partnerid", Constants.PARTNERID);
+        params.put("apptype", Constants.TYPE);
         params.put("sign", Md5Util.encode(sign));
         okHttpModel.get(Api.GET_ADVERT_TAG, params, Api.GET_ADVERT_TAG_ID, this);
     }
@@ -155,6 +152,7 @@ public class CarLeftFragment extends BaseFragment implements View.OnClickListene
         Map<String, String> params = okHttpModel.getParams();
         params.put("memberid", SaveUtils.getSaveInfo().getId());
         params.put("partnerid", Constants.PARTNERID);
+        params.put("apptype", Constants.TYPE);
         params.put("sign", Md5Util.encode(sign));
         okHttpModel.get(Api.GET_MEID_USER, params, Api.GET_MEID_USER_ID, this);
     }
@@ -219,5 +217,6 @@ public class CarLeftFragment extends BaseFragment implements View.OnClickListene
     @Override
     public void onRefresh() {
         queryList();
+        query();
     }
 }

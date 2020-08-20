@@ -100,7 +100,7 @@ public class DialogUtils {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(view);
         ((TextView) view.findViewById(R.id.title)).setText("温馨提示");
-        ((TextView) view.findViewById(R.id.message)).setText("确定退出惠保养?");
+        ((TextView) view.findViewById(R.id.message)).setText("确定退出卡贝车保?");
         view.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
