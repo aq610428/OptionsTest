@@ -65,9 +65,6 @@ public interface Api {
     int GET_UPLOAD_IMG_ID = 100032;
 
 
-
-
-
     /******附近门店******/
     String GET_STORE_VERSION = Config.getOpenNewApi() + "/store/queryNearStoreInfoData";
     int GET_STORE_VERSION_ID = 100031;
@@ -133,6 +130,11 @@ public interface Api {
     /******预警信息******/
     String GET_AGE_DEVICE1 = Config.getOpenNewApi() + "/device/getdevicelocationandobddata";
     int GET_AGE_DEVICE1_ID = 100066;
+
+
+    /******预警信息******/
+    String GET_AGE_MSG = Config.getOpenNewApi() + "/member/getmembermessagelist";
+    int GET_AGE_MSGID = 100046;
 
 
     /******预警信息******/
@@ -205,12 +207,12 @@ public interface Api {
 
     /******地址******/
     String MINING_ADDRESS_BOX = Config.getOpenNewApi() + "/box/getMemberCoinTypeAddressData";
-    int  MINING_ADDRESS_ID = 100076;
+    int MINING_ADDRESS_ID = 100076;
 
 
     /******提币******/
     String MINING_WITH_BOX = Config.getOpenNewApi() + "/box/withdraw";
-    int  MINING_WITH_BOX_ID = 100078;
+    int MINING_WITH_BOX_ID = 100078;
 
 
     /******余额******/

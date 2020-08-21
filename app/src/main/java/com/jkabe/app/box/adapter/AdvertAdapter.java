@@ -1,9 +1,11 @@
 package com.jkabe.app.box.adapter;
 
 import android.content.Context;
-import com.jkabe.app.box.bean.EarlyInfo;
+
+import com.jkabe.app.box.bean.Massage;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.box.R;
+
 import java.util.List;
 
 /**
@@ -12,9 +14,9 @@ import java.util.List;
  * @name:MinIngAdapter
  */
 public class AdvertAdapter extends AutoRVAdapter {
-    private List<EarlyInfo> list;
+    private List<Massage> list;
 
-    public AdvertAdapter(Context context, List<EarlyInfo> list) {
+    public AdvertAdapter(Context context, List<Massage> list) {
         super(context, list);
         this.list = list;
     }
@@ -26,17 +28,18 @@ public class AdvertAdapter extends AutoRVAdapter {
 
     @Override
     public void onBindViewHolder(ViewHolder vh, int position) {
-        EarlyInfo earlyInfo = list.get(position);
-        vh.getTextView(R.id.text_msg).setText(earlyInfo.getContent());
-        String ss = earlyInfo.getStringgpstime();
-        if (!Utility.isEmpty(ss)) {
-            String start = ss.substring(0, ss.length() - 8);
-            String end = ss.substring(ss.length() - 8, ss.length());
-            vh.getTextView(R.id.text_date).setText(start + " " + end);
+        Massage massage = list.get(position);
+        vh.getTextView(R.id.text_name).setText(massage.getTitle());
+        String createTime = massage.getStringCreateTime().toString();
+        if (!Utility.isEmpty(createTime) && createTime.length() > 8) {
+            String end = createTime.substring(0, createTime.length() - 8);
+            String start = createTime.substring(createTime.length() -8, createTime.length());
+            vh.getTextView(R.id.text_date).setText(end + "  " + start);
         }
+        vh.getTextView(R.id.text_verify).setText(massage.getContent());
     }
 
-    public void setData(List<EarlyInfo> data) {
+    public void setData(List<Massage> data) {
         this.list = data;
     }
 }

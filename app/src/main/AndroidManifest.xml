@@ -104,6 +104,10 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name="com.jkabe.app.box.ui.MsgActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name="com.jkabe.app.box.ui.AgreementActivity"
             android:screenOrientation="portrait" />
 

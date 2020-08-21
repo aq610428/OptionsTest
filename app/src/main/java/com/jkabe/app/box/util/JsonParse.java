@@ -20,6 +20,7 @@ import com.jkabe.app.box.bean.ImageInfo;
 import com.jkabe.app.box.bean.InsureInfo;
 import com.jkabe.app.box.bean.LatInfo;
 import com.jkabe.app.box.bean.LeftVo;
+import com.jkabe.app.box.bean.Massage;
 import com.jkabe.app.box.bean.Money;
 import com.jkabe.app.box.bean.OdbAndLocationVO;
 import com.jkabe.app.box.bean.Oil;
@@ -236,6 +237,19 @@ public class JsonParse {
         Oil oil = (Oil) JsonUtilComm.jsonToBean(jsonObject.toString(), Oil.class);
         return oil;
     }
+
+    public static List<Massage> getEarlyInfoJson1(JSONObject object) {
+        List<Massage> infos = new ArrayList<>();
+        JSONObject jsonObject = object.optJSONObject("result");
+        JSONArray jsonArray = jsonObject.optJSONArray("items");
+        for (int i = 0; i < jsonArray.length(); i++) {
+            Massage info = (Massage) JsonUtilComm.jsonToBean(jsonArray.optJSONObject(i).toString(), Massage.class);
+            infos.add(info);
+        }
+        return infos;
+    }
+
+
 
     public static List<EarlyInfo> getEarlyInfoJson(JSONObject object) {
         List<EarlyInfo> infos = new ArrayList<>();

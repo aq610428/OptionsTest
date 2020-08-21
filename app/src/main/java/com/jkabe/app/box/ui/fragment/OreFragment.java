@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,6 +24,7 @@ import com.jkabe.app.box.bean.OreInfo;
 import com.jkabe.app.box.config.Api;
 import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
+import com.jkabe.app.box.ui.MsgActivity;
 import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.JsonParse;
 import com.jkabe.app.box.util.Md5Util;
@@ -49,6 +51,7 @@ public class OreFragment extends BaseFragment implements NetWorkListener, OnRefr
     private List<OreInfo> oreInfos = new ArrayList<>();
     private RelativeLayout rl_mining, rl_assets;
     private CarAdapter carAdapter;
+    private TextView text_right;
 
 
     @Nullable
@@ -64,6 +67,7 @@ public class OreFragment extends BaseFragment implements NetWorkListener, OnRefr
     }
 
     private void initView() {
+        text_right= rootView.findViewById(R.id.text_right);
         rl_assets = rootView.findViewById(R.id.rl_assets);
         rl_mining = rootView.findViewById(R.id.rl_mining);
         swipe_target = rootView.findViewById(R.id.mListView);
@@ -71,6 +75,7 @@ public class OreFragment extends BaseFragment implements NetWorkListener, OnRefr
         swipeToLoadLayout.setOnRefreshListener(this);
         rl_assets.setOnClickListener(this);
         rl_mining.setOnClickListener(this);
+        text_right.setOnClickListener(this);
 
     }
 
@@ -105,6 +110,10 @@ public class OreFragment extends BaseFragment implements NetWorkListener, OnRefr
             case R.id.rl_mining:
                 startActivity(new Intent(getContext(), MiningFragmnt.class));
                 break;
+            case R.id.text_right:
+                startActivity(new Intent(getContext(), MsgActivity.class));
+                break;
+
         }
     }
 
