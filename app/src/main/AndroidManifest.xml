@@ -99,7 +99,9 @@
         <activity
             android:name="com.jkabe.app.box.ui.ForgetActivity"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name="com.jkabe.app.box.box.AdvertActivity"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name="com.jkabe.app.box.ui.AgreementActivity"

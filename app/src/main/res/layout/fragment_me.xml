@@ -123,6 +123,7 @@
             </LinearLayout>
 
 
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
@@ -166,8 +167,8 @@
                 android:id="@+id/tab2"
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:visibility="gone"
-                android:background="@color/dive_line" />
+                android:background="@color/dive_line"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/text_Reset"
@@ -188,8 +189,8 @@
                 android:id="@+id/tab1"
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:visibility="gone"
-                android:background="@color/dive_line" />
+                android:background="@color/dive_line"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/text_contacts"

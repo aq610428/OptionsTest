@@ -8,10 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.jkabe.app.box.adapter.CarAdapter;
@@ -26,10 +28,13 @@ import com.jkabe.app.box.util.JsonParse;
 import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.box.R;
+
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 import crossoverone.statuslib.StatusUtil;
 
 /**
@@ -44,7 +49,7 @@ public class OreFragment extends BaseFragment implements NetWorkListener, OnRefr
     private List<OreInfo> oreInfos = new ArrayList<>();
     private RelativeLayout rl_mining, rl_assets;
     private CarAdapter carAdapter;
-    final Handler mHandler = new Handler();
+
 
     @Nullable
     @Override
@@ -87,26 +92,8 @@ public class OreFragment extends BaseFragment implements NetWorkListener, OnRefr
         super.onResume();
         StatusUtil.setUseStatusBarColor(getActivity(), Color.parseColor("#FFFFFF"));
         StatusUtil.setSystemStatus(getActivity(), false, true);
-        mHandler.removeCallbacks(runnable);
-        mHandler.postDelayed(runnable, 100);
+        query();
     }
-
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        mHandler.removeCallbacks(runnable);
-    }
-
-
-    /*******1分钟定位一次*****/
-    Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            query();
-            mHandler.postDelayed(this, 60 * 1000);
-        }
-    };
 
 
     @Override
