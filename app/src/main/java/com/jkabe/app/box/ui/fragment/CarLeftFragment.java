@@ -47,7 +47,6 @@ import java.util.List;
 import java.util.Map;
 import crossoverone.statuslib.StatusUtil;
 
-
 /**
  * @author: zt
  * @date: 2020/7/2
@@ -295,7 +294,9 @@ public class CarLeftFragment extends BaseFragment implements View.OnClickListene
             @Override
             public void onAnimationEnd(Animation animation) {
                 int iii = TVADPOSITION % list.size();
-                text_advent.setText(list.get(iii));
+                if (list.size()>iii){
+                    text_advent.setText(list.get(iii));
+                }
                 topTranslateAnimation();
             }
 
