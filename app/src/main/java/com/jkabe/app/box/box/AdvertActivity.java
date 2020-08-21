@@ -55,7 +55,6 @@ public class AdvertActivity extends BaseActivity implements OnRefreshListener, O
         title_left_btn = getView(R.id.title_left_btn);
         title_left_btn.setOnClickListener(this);
         title_text_tv.setText("公告中心");
-
         swipeToLoadLayout = getView(R.id.swipeToLoadLayout);
         swipe_target = getView(R.id.swipe_target);
         mNoDataView = getView(R.id.mNoDataView);
