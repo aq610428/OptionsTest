@@ -131,7 +131,6 @@ public class CarLeftFragment extends BaseFragment implements View.OnClickListene
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-
         }
     }
 
