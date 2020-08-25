@@ -197,6 +197,7 @@ public class CarLeftFragment extends BaseFragment implements View.OnClickListene
 
                 }
             }
+
         }
         stopProgressDialog();
         swipeToLoadLayout.setRefreshing(false);
