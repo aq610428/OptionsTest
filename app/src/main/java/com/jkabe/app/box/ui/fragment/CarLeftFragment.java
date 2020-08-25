@@ -23,6 +23,7 @@ import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.jkabe.app.box.bean.UserInfo;
 import com.jkabe.app.box.box.AdvertActivity;
+import com.jkabe.app.box.util.LogUtils;
 import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.box.R;
 import com.jkabe.app.box.adapter.LeftAdapter;
