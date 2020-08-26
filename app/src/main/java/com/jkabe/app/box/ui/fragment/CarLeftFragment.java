@@ -3,29 +3,15 @@ package com.jkabe.app.box.ui.fragment;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.TranslateAnimation;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
-import com.jkabe.app.box.bean.UserInfo;
-import com.jkabe.app.box.box.AdvertActivity;
-import com.jkabe.app.box.util.LogUtils;
-import com.jkabe.app.box.util.SaveUtils;
-import com.jkabe.box.R;
 import com.jkabe.app.box.adapter.LeftAdapter;
 import com.jkabe.app.box.banner.Banner;
 import com.jkabe.app.box.banner.BannerConfig;
@@ -35,6 +21,7 @@ import com.jkabe.app.box.base.BaseFragment;
 import com.jkabe.app.box.bean.BannerVo;
 import com.jkabe.app.box.bean.CommonalityModel;
 import com.jkabe.app.box.bean.LeftVo;
+import com.jkabe.app.box.bean.UserInfo;
 import com.jkabe.app.box.config.Api;
 import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
@@ -42,15 +29,14 @@ import com.jkabe.app.box.ui.PreviewActivity;
 import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.JsonParse;
 import com.jkabe.app.box.util.Md5Util;
+import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.MyLoader;
-
+import com.jkabe.box.R;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import crossoverone.statuslib.StatusUtil;
 
 /**

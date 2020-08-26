@@ -70,17 +70,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="13dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginRight="13dp"
                     android:orientation="horizontal">
 
                     <RelativeLayout
                         android:id="@+id/rl_mining"
                         android:layout_width="0dp"
-                        android:layout_height="60dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:background="@mipmap/icon_bg_card"
+                        android:background="@mipmap/mining_bg"
                         android:gravity="center">
 
 
@@ -90,7 +90,7 @@
                             android:drawableLeft="@mipmap/icon_mining"
                             android:gravity="center"
                             android:text="挖矿"
-                            android:textColor="#212121"
+                            android:textColor="@color/colorWhite"
                             android:textSize="@dimen/ctv_sizen_13" />
 
                     </RelativeLayout>
@@ -98,10 +98,10 @@
                     <RelativeLayout
                         android:id="@+id/rl_assets"
                         android:layout_width="0dp"
-                        android:layout_height="60dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="1"
-                        android:background="@mipmap/icon_bg_card"
+                        android:background="@mipmap/assets_bg"
                         android:gravity="center">
 
 
@@ -111,7 +111,7 @@
                             android:drawableLeft="@mipmap/icon_assets"
                             android:gravity="center"
                             android:text="资产"
-                            android:textColor="#212121"
+                            android:textColor="@color/colorWhite"
                             android:textSize="@dimen/ctv_sizen_13" />
                     </RelativeLayout>
 

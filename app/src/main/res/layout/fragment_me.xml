@@ -124,6 +124,7 @@
 
 
 
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
@@ -227,7 +228,24 @@
                 android:textColor="@color/black33"
                 android:textSize="14sp" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/dive_line" />
 
+            <TextView
+                android:id="@+id/text_msg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:drawableLeft="@mipmap/icon_goad"
+                android:drawableRight="@mipmap/icon_right"
+                android:drawablePadding="6dp"
+                android:gravity="center|left"
+                android:padding="15dp"
+                android:text="消息中心"
+                android:textColor="@color/black33"
+                android:textSize="14sp" />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"

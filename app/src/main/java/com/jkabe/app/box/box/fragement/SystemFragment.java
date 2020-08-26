@@ -70,6 +70,7 @@ public class SystemFragment extends BaseFragment implements OnRefreshListener, O
         swipeToLoadLayout.setOnRefreshListener(this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         swipe_target.setLayoutManager(layoutManager);
+        mNoDataView.textView.setText("暂无消息");
         qury();
     }
 

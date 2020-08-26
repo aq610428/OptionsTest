@@ -96,18 +96,16 @@ public class VehicleActivity extends BaseActivity implements NetWorkListener {
         text_card.setText(carInfo.getCarcard());
         text_brand.setText(carInfo.getYearmodel());
         text_mode.setText(carInfo.getModel());
-        if ("0".equals(carInfo.getIsreal())) {
+        if (carInfo.getIsreal()==0) {
             text_authentication.setText("未认证");
-        } else if ("1".equals(carInfo.getIsreal())) {
+        } else if (carInfo.getIsreal()==1) {
             text_authentication.setText("已认证");
-        } else if ("2".equals(carInfo.getIsreal())) {
+        } else if (carInfo.getIsreal()==2) {
             text_authentication.setText("审核中");
         } else {
             text_authentication.setText("审核失败");
         }
-        if (!Utility.isEmpty(carInfo.getInitmileage())){
-            text_mileage.setText(BigDecimalUtils.div(new BigDecimal(carInfo.getInitmileage()),new BigDecimal(1000),2).toPlainString()+"KM");
-        }
+        text_mileage.setText(carInfo.getInitmileage()+"KM");
         text_sim.setText(carInfo.getSimcode()+"");
         text_frame.setText(carInfo.getVinno()+"");
 

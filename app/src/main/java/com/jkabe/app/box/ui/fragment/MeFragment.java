@@ -30,6 +30,7 @@ import com.jkabe.app.box.ui.ActivationActivity;
 import com.jkabe.app.box.ui.InvitationActivity;
 import com.jkabe.app.box.ui.LoginActivity;
 import com.jkabe.app.box.ui.MainActivity;
+import com.jkabe.app.box.ui.MsgActivity;
 import com.jkabe.app.box.ui.PreviewActivity;
 import com.jkabe.app.box.ui.UserActivity;
 import com.jkabe.app.box.util.Constants;
@@ -53,7 +54,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
     private TextView text_name, text_edit, text_invitation, text_contacts, text_about, text_out, text_means, text_key, text_password;
     private UserInfo info;
     private ImageView icon_head;
-    private TextView text_team, text_Reset, text_change;
+    private TextView text_team, text_Reset, text_change,text_msg;
     private View tab1, tab2;
 
 
@@ -92,6 +93,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
     }
 
     private void initView() {
+        text_msg= getView(rootView, R.id.text_msg);
         tab1 = getView(rootView, R.id.tab1);
         tab2 = getView(rootView, R.id.tab2);
         text_change = getView(rootView, R.id.text_change);
@@ -119,6 +121,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
         text_password.setOnClickListener(this);
         text_Reset.setOnClickListener(this);
         text_change.setOnClickListener(this);
+        text_msg.setOnClickListener(this);
     }
 
     @Override
@@ -130,6 +133,9 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
     public void onClick(View v) {
         Intent intent = null;
         switch (v.getId()) {
+            case R.id.text_msg:
+                startActivity(new Intent(getContext(), MsgActivity.class));
+                break;
             case R.id.text_change:
                 startActivity(new Intent(getContext(), ChangeActivity.class));
                 break;
