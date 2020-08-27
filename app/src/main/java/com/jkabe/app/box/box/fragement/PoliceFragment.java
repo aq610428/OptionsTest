@@ -77,10 +77,11 @@ public class PoliceFragment extends BaseFragment implements OnRefreshListener, O
     }
 
     private void qury() {
-        String sign = "memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        String sign = "memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID+"&type=2" + Constants.SECREKEY;
         showProgressDialog(getActivity(), false);
         Map<String, String> params = okHttpModel.getParams();
         params.put("apptype", Constants.TYPE);
+        params.put("type",  "2");
         params.put("memberid", SaveUtils.getSaveInfo().getId() + "");
         params.put("limit", limit + "");
         params.put("page", page + "");

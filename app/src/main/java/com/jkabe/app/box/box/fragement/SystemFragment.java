@@ -75,12 +75,13 @@ public class SystemFragment extends BaseFragment implements OnRefreshListener, O
     }
 
     private void qury() {
-        String sign = "memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        String sign = "memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID+"&type=1" + Constants.SECREKEY;
         showProgressDialog(getActivity(), false);
         Map<String, String> params = okHttpModel.getParams();
         params.put("apptype", Constants.TYPE);
         params.put("memberid", SaveUtils.getSaveInfo().getId() + "");
         params.put("limit", limit + "");
+        params.put("type",  "1");
         params.put("page", page + "");
         params.put("partnerid", Constants.PARTNERID);
         params.put("sign", Md5Util.encode(sign));
