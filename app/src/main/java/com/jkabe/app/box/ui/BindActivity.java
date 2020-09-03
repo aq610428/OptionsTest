@@ -115,8 +115,6 @@ public class BindActivity extends BaseActivity implements NetWorkListener {
                     cardName.setText(str[0]);
                     et_code.setText("1234");
                 }
-
-
             }
 
             LogUtils.e("解码结果： \n" + content);
