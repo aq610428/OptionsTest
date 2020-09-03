@@ -1,5 +1,11 @@
 package com.jkabe.app.box.util;
 
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+
+import com.jkabe.app.box.base.BaseApplication;
+
 /**
  * App 基本信息
  */
@@ -16,9 +22,6 @@ public class AppInfo {
 	}
 	public static void setMeterRule(String meterRule) {
 		AppInfo.meterRule = meterRule;
-	}
-	public static String getPackAgeName() {
-		return "com.kabei.jkb.android";
 	}
 	public static void setPackAgeName(String packAgeName) {
 		AppInfo.packAgeName = packAgeName;
@@ -53,4 +56,25 @@ public class AppInfo {
 		setCompanyName(companyName);
 		setPackAgeName(packAgeName);
 	}
+
+    /**
+
+     * [获取应用程序版本名称信息]
+     * @return 当前应用的版本名称
+
+     */
+
+    public static synchronized String getPackageName() {
+        try {
+            PackageManager packageManager = BaseApplication.getContext().getPackageManager();
+            PackageInfo packageInfo = packageManager.getPackageInfo(BaseApplication.getContext().getPackageName(), 0);
+            return packageInfo.packageName;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+
+    }
+
 }

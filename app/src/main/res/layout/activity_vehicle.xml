@@ -18,7 +18,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:background="@color/colorWhite"
@@ -34,9 +34,9 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/ctv_sizen_14" />
 
-                <TextView
+                <EditText
                     android:id="@+id/text_card"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
@@ -46,14 +46,14 @@
                     android:textColor="@color/black33"
                     android:textCursorDrawable="@null"
                     android:textSize="@dimen/ctv_sizen_13" />
-            </RelativeLayout>
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:background="@color/dive_line" />
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:background="@color/colorWhite"
@@ -71,7 +71,7 @@
 
                 <TextView
                     android:id="@+id/text_brand"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
@@ -81,14 +81,14 @@
                     android:textColor="@color/black33"
                     android:textCursorDrawable="@null"
                     android:textSize="@dimen/ctv_sizen_13" />
-            </RelativeLayout>
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:background="@color/dive_line" />
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:background="@color/colorWhite"
@@ -104,9 +104,9 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/ctv_sizen_14" />
 
-                <TextView
+                <EditText
                     android:id="@+id/text_mode"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
@@ -116,14 +116,14 @@
                     android:textColor="@color/black33"
                     android:textCursorDrawable="@null"
                     android:textSize="@dimen/ctv_sizen_13" />
-            </RelativeLayout>
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:background="@color/dive_line" />
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:background="@color/colorWhite"
@@ -141,24 +141,26 @@
 
                 <TextView
                     android:id="@+id/text_authentication"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
                     android:background="@color/colorWhite"
                     android:cursorVisible="true"
+                    android:drawableRight="@mipmap/icon_right_arrow"
+                    android:drawablePadding="5dp"
                     android:gravity="center|right"
                     android:textColor="@color/black33"
                     android:textCursorDrawable="@null"
                     android:textSize="@dimen/ctv_sizen_13" />
-            </RelativeLayout>
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:background="@color/dive_line" />
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:background="@color/colorWhite"
@@ -174,9 +176,9 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/ctv_sizen_14" />
 
-                <TextView
+                <EditText
                     android:id="@+id/text_mileage"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
@@ -186,14 +188,14 @@
                     android:textColor="@color/black33"
                     android:textCursorDrawable="@null"
                     android:textSize="@dimen/ctv_sizen_13" />
-            </RelativeLayout>
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:background="@color/dive_line" />
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:background="@color/colorWhite"
@@ -211,7 +213,7 @@
 
                 <TextView
                     android:id="@+id/text_sim"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
@@ -221,14 +223,14 @@
                     android:textColor="@color/black33"
                     android:textCursorDrawable="@null"
                     android:textSize="@dimen/ctv_sizen_13" />
-            </RelativeLayout>
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:background="@color/dive_line" />
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:background="@color/colorWhite"
@@ -244,26 +246,27 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/ctv_sizen_14" />
 
-                <TextView
+                <EditText
                     android:id="@+id/text_frame"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
                     android:background="@color/colorWhite"
                     android:cursorVisible="true"
                     android:gravity="center|right"
+                    android:hint="请输入车架号码"
                     android:textColor="@color/black33"
                     android:textCursorDrawable="@null"
                     android:textSize="@dimen/ctv_sizen_13" />
-            </RelativeLayout>
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:background="@color/dive_line" />
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:background="@color/colorWhite"
@@ -281,7 +284,7 @@
 
                 <TextView
                     android:id="@+id/text_num"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
@@ -291,14 +294,14 @@
                     android:textColor="@color/black33"
                     android:textCursorDrawable="@null"
                     android:textSize="@dimen/ctv_sizen_13" />
-            </RelativeLayout>
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:background="@color/dive_line" />
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:background="@color/colorWhite"
@@ -314,19 +317,20 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/ctv_sizen_14" />
 
-                <TextView
+                <EditText
                     android:id="@+id/text_enginee"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
                     android:background="@color/colorWhite"
                     android:cursorVisible="true"
                     android:gravity="center|right"
+                    android:hint="请输入发动机号码"
                     android:textColor="@color/black33"
                     android:textCursorDrawable="@null"
                     android:textSize="@dimen/ctv_sizen_13" />
-            </RelativeLayout>
+            </LinearLayout>
 
 
             <View
@@ -334,7 +338,7 @@
                 android:layout_height="0.5dp"
                 android:background="@color/dive_line" />
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:background="@color/colorWhite"
@@ -352,17 +356,34 @@
 
                 <TextView
                     android:id="@+id/text_move"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
                     android:background="@color/colorWhite"
                     android:cursorVisible="true"
                     android:gravity="center|right"
+                    android:hint="请输入设备编号"
                     android:textColor="@color/black33"
                     android:textCursorDrawable="@null"
                     android:textSize="@dimen/ctv_sizen_13" />
-            </RelativeLayout>
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/btn_next"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="45dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/next_shape"
+                android:gravity="center"
+                android:text="确认"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/ctv_sizen_15"
+                android:visibility="gone" />
+
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

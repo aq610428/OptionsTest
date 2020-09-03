@@ -111,6 +111,9 @@ public class BindActivity extends BaseActivity implements NetWorkListener {
                 if (str != null && str.length == 2) {
                     cardName.setText(str[0]);
                     et_code.setText(str[1]);
+                }else if (str!=null&&str.length==1){
+                    cardName.setText(str[0]);
+                    et_code.setText("1234");
                 }
 
 

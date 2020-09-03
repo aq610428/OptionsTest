@@ -111,7 +111,7 @@ public class LicenseActivity extends BaseActivity {
         Album.image(this) // Image selection.
                 .multipleChoice()
                 .camera(true)
-                .columnCount(1)
+                .columnCount(4)
                 .selectCount(1)
                 .checkedList(albumFiles)
                 .onResult(result -> {

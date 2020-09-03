@@ -71,7 +71,7 @@ public class LeftAdapter extends AutoRVAdapter {
                     Intent intent;
                     switch (name) {
                         case "惠保养":
-                            if (SaveUtils.getCar() != null && !Utility.isEmpty(SaveUtils.getCar().getSimcode())) {
+                            if (SaveUtils.getCar() != null && !Utility.isEmpty(SaveUtils.getCar().getImeicode())) {
                                 if (fragment.info.getIsstore()==2){
                                     intent = new Intent(fragment.getContext(), StoreDeilActivity.class);
                                 }else{

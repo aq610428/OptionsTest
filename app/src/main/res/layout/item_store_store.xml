@@ -41,6 +41,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center|left"
                 android:paddingTop="7dp"
+                android:maxLines="2"
                 android:text="深圳市南山区西丽珠光北路南山科技圆"
                 android:textColor="@color/black7e"
                 android:textSize="@dimen/ctv_sizen_13"

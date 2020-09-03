@@ -6,16 +6,19 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.jkabe.app.box.base.BaseApplication;
 import com.jkabe.app.box.base.BaseFragment;
+import com.jkabe.app.box.bean.CarInfo;
 import com.jkabe.app.box.bean.CommonalityModel;
 import com.jkabe.app.box.bean.UserInfo;
 import com.jkabe.app.box.box.ChangeActivity;
@@ -54,7 +57,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
     private TextView text_name, text_edit, text_invitation, text_contacts, text_about, text_out, text_means, text_key, text_password;
     private UserInfo info;
     private ImageView icon_head;
-    private TextView text_team, text_Reset, text_change,text_msg;
+    private TextView text_team, text_Reset, text_change,text_msg,text_bind;
     private View tab1, tab2;
 
 
@@ -93,6 +96,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
     }
 
     private void initView() {
+        text_bind= getView(rootView, R.id.text_bind);
         text_msg= getView(rootView, R.id.text_msg);
         tab1 = getView(rootView, R.id.tab1);
         tab2 = getView(rootView, R.id.tab2);
@@ -122,6 +126,13 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
         text_Reset.setOnClickListener(this);
         text_change.setOnClickListener(this);
         text_msg.setOnClickListener(this);
+        text_bind.setOnClickListener(this);
+        CarInfo carInfo = SaveUtils.getCar();
+        if (carInfo != null) {
+            text_bind.setVisibility(View.VISIBLE);
+        } else {
+            text_bind.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -179,6 +190,9 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
             case R.id.text_out:
                 showDialog();
                 break;
+            case R.id.text_bind:
+                showBindDialog();
+                break;
         }
     }
 
@@ -214,7 +228,61 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
     }
 
 
-    public void query() {
+
+    public void showBindDialog() {
+        Dialog dialog = new Dialog(getContext());
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_layout_bind, null);
+        EditText et_code = view.findViewById(R.id.et_code);
+        TextView btn_code = view.findViewById(R.id.btn_code);
+        btn_code.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                queryCode();
+                countDown(btn_code);
+            }
+        });
+
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(view);
+        view.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        view.findViewById(R.id.confirm).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String code = et_code.getText().toString();
+                if (Utility.isEmpty(code)) {
+                    ToastUtil.showToast("验证码不能为空");
+                    return;
+                }
+                bind(code);
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
+    private void bind(String code) {
+        String sign = "id=" + SaveUtils.getCar().getId() + "&imeicode=" + SaveUtils.getCar().getImeicode() + "&loginname=" +
+                SaveUtils.getSaveInfo().getLoginname()
+                + "&memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + "&vcode=" + code + Constants.SECREKEY;
+        showProgressDialog(getActivity(), false);
+        Map<String, String> params = okHttpModel.getParams();
+        params.put("apptype", Constants.TYPE);
+        params.put("id", SaveUtils.getCar().getId() + "");
+        params.put("imeicode", SaveUtils.getCar().getImeicode() + "");
+        params.put("loginname", SaveUtils.getSaveInfo().getLoginname() + "");
+        params.put("memberid", SaveUtils.getSaveInfo().getId() + "");
+        params.put("partnerid", Constants.PARTNERID);
+        params.put("vcode", code + "");
+        params.put("sign", Md5Util.encode(sign));
+        okHttpModel.get(Api.GET_UNMODEL_BIND, params, Api.GET_UNMODEL_BIND_ID, this);
+    }
+
+    public void queryCode() {
         String sign = "mobile=" + SaveUtils.getSaveInfo().getMobile() + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
         showProgressDialog(getActivity(), false);
         Map<String, String> params = okHttpModel.getParams();
@@ -224,6 +292,9 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
         params.put("sign", Md5Util.encode(sign));
         okHttpModel.get(Api.GET_MOBILCODE, params, Api.GET_MOBILCODE_ID, this);
     }
+
+
+
 
 
     @Override
@@ -254,5 +325,23 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
     @Override
     public void onError(Exception e) {
         stopProgressDialog();
+    }
+
+    CountDownTimer timer;
+    private void countDown(TextView btn_code) {
+        timer = new CountDownTimer(90000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                btn_code.setEnabled(false);
+                btn_code.setText("已发送(" + millisUntilFinished / 1000 + ")");
+            }
+
+            @Override
+            public void onFinish() {
+                btn_code.setEnabled(true);
+                btn_code.setText("重新获取验证码");
+
+            }
+        }.start();
     }
 }
