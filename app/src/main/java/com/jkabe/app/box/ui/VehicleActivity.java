@@ -17,6 +17,7 @@ import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
 import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.JsonParse;
+import com.jkabe.app.box.util.LogUtils;
 import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.app.box.util.ToastUtil;
@@ -147,15 +148,19 @@ public class VehicleActivity extends BaseActivity implements NetWorkListener {
         text_mode.setText(carInfo.getModel());
         if (carInfo.getIsreal() == 0) {
             text_authentication.setText("请上传驾驶证");
+            text_authentication.setEnabled(true);
             enableView();
         } else if (carInfo.getIsreal() == 1) {
             text_authentication.setText("已认证");
+            text_authentication.setEnabled(false);
             goView();
         } else if (carInfo.getIsreal() == 2) {
             text_authentication.setText("审核中");
+            text_authentication.setEnabled(false);
             goView();
         } else {
             text_authentication.setText("请上传驾驶证");
+            text_authentication.setEnabled(true);
             enableView();
         }
         text_mileage.setText(carInfo.getInitmileage() + "KM");
@@ -188,6 +193,7 @@ public class VehicleActivity extends BaseActivity implements NetWorkListener {
         int isreal = SaveUtils.getCar().getIsreal();
         if (isreal == 2) {
             text_authentication.setText("审核中");
+            text_authentication.setEnabled(true);
         }
 
     }

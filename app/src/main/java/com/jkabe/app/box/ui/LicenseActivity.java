@@ -5,6 +5,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.jkabe.app.box.bean.CarInfo;
 import com.jkabe.box.R;
 import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.base.BaseApplication;
@@ -164,11 +166,12 @@ public class LicenseActivity extends BaseActivity {
                 if (response.body() != null) {
                     try {
                         JSONObject jsonObject = new JSONObject(response.body());
-                        LogUtils.e(jsonObject);
                         result = jsonObject.optString("result");
                         GlideUtils.CreateImageRound(result,iv_photo,5);
                         ToastUtil.showToast(jsonObject.optString("message")+"");
-                        SaveUtils.getCar().setIsreal(2);
+                        CarInfo carInfo =SaveUtils.getCar();
+                        carInfo.setIsreal(2);
+                        SaveUtils.saveCar(carInfo);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

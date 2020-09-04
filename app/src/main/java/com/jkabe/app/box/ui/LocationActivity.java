@@ -26,6 +26,7 @@ import com.amap.api.services.core.AMapException;
 import com.amap.api.services.core.PoiItem;
 import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
+import com.jkabe.app.box.util.LogUtils;
 import com.jkabe.box.R;
 import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.base.BaseApplication;
@@ -143,7 +144,6 @@ public class LocationActivity extends BaseActivity implements LocationSource, AM
         aMap.setLocationSource(this);// 设置定位监听
         aMap.getUiSettings().setMyLocationButtonEnabled(true);// 设置默认定位按钮是否显示
         aMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
-        aMap.addMarker(new MarkerOptions());
         aMap.setOnMarkerClickListener(this);
     }
 
@@ -162,17 +162,11 @@ public class LocationActivity extends BaseActivity implements LocationSource, AM
     }
 
 
-    private void addMarker(LatLng latlng) {
-        if (mLocMarker != null) {
-            return;
-        }
-        Bitmap bMap = BitmapFactory.decodeResource(this.getResources(), R.mipmap.navi_map_gps_locked);
-        BitmapDescriptor des = BitmapDescriptorFactory.fromBitmap(bMap);
-        MarkerOptions options = new MarkerOptions();
-        options.icon(des);
-        options.anchor(0.5f, 0.5f);
-        options.position(latlng);
-        mLocMarker = aMap.addMarker(options);
+    private void addMarker(LatLng latlng1) {
+        mLocMarker = aMap.addMarker(new MarkerOptions().position(latlng1)
+                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.navi_map_gps_locked))
+                .anchor(0.5f, 0.5f));
+        aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng1, 15));
     }
 
 
@@ -207,7 +201,7 @@ public class LocationActivity extends BaseActivity implements LocationSource, AM
                 }
             } else {
                 String errText = "定位失败," + amapLocation.getErrorCode() + ": " + amapLocation.getErrorInfo();
-                Log.e("AmapErr", errText);
+                LogUtils.e("AmapErr="+ errText);
             }
         }
     }

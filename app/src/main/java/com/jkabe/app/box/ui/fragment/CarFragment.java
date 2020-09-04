@@ -252,6 +252,11 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
             if (!mFirstFix) {
                 mFirstFix = true;
                 PreferenceUtils.setPrefString(getContext(), Constants.CITY, amapLocation.getCity());
+                LatLng latLng = new LatLng(amapLocation.getLatitude(),amapLocation.getLongitude());
+                PreferenceUtils.setPrefString(getContext(), Constants.LAT, BigDecimalUtils.subLastBit(latLng.latitude, 6).doubleValue() + "");
+                PreferenceUtils.setPrefString(getContext(), Constants.LON, BigDecimalUtils.subLastBit(latLng.longitude, 6).doubleValue() + "");
+                aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+                LogUtils.e("执行定位....");
             }
         } else {
             String errText = "定位失败," + amapLocation.getErrorCode() + ": " + amapLocation.getErrorInfo();
@@ -267,7 +272,7 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
             //设置定位监听
             mlocationClient.setLocationListener(this);
             //设置为高精度定位模式
-            mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
+            mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Battery_Saving);
             mLocationOption.setOnceLocation(true);
             //设置定位参数
             mlocationClient.setLocationOption(mLocationOption);
