@@ -225,7 +225,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.jkabe.app.box.ui.BindActivity"
+            android:name="com.jkabe.app.box.ui.BrandCarActivity$BindActivity"
             android:screenOrientation="portrait" />
 
         <activity

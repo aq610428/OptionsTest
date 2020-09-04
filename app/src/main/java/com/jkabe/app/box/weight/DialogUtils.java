@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.jkabe.app.box.base.BaseApplication;
 import com.jkabe.app.box.box.TransactionActivity;
 import com.jkabe.app.box.ui.ActivationActivity;
-import com.jkabe.app.box.ui.BindActivity;
+import com.jkabe.app.box.ui.BrandCarActivity;
 import com.jkabe.app.box.ui.LoginActivity;
 import com.jkabe.box.R;
 import com.jkabe.app.box.ui.LicenseActivity;
@@ -39,7 +39,7 @@ public class DialogUtils {
             @Override
             public void onClick(View v) {
                 if (type==1){
-                    context.startActivity(new Intent(context, BindActivity.class));
+                    context.startActivity(new Intent(context, BrandCarActivity.BindActivity.class));
                 }else{
                     context.startActivity(new Intent(context, ActivationActivity.class));
                 }

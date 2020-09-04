@@ -7,11 +7,11 @@ import android.widget.AdapterView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.jkabe.app.box.ui.BrandCarActivity;
 import com.jkabe.app.box.ui.StoreDeilActivity;
 import com.jkabe.box.R;
 import com.jkabe.app.box.bean.CarInfo;
 import com.jkabe.app.box.bean.LeftVo;
-import com.jkabe.app.box.ui.BindActivity;
 import com.jkabe.app.box.ui.LocationActivity;
 import com.jkabe.app.box.ui.PreviewActivity;
 import com.jkabe.app.box.ui.StoreListActivity;
@@ -80,7 +80,7 @@ public class LeftAdapter extends AutoRVAdapter {
                                 fragment.startActivity(intent);
                             } else {
                                 ToastUtil.showToast("您未绑定车辆，请绑定后再试");
-                                fragment.getActivity().startActivity(new Intent(fragment.getContext(), BindActivity.class));
+                                fragment.getActivity().startActivity(new Intent(fragment.getContext(), BrandCarActivity.BindActivity.class));
                             }
 
 
@@ -121,7 +121,7 @@ public class LeftAdapter extends AutoRVAdapter {
         CarInfo info = SaveUtils.getCar();
         if (info == null || Utility.isEmpty(info.getImeicode())) {
             ToastUtil.showToast("您未绑定车辆，请绑定后再试");
-            fragment.getActivity().startActivity(new Intent(fragment.getContext(), BindActivity.class));
+            fragment.getActivity().startActivity(new Intent(fragment.getContext(), BrandCarActivity.BindActivity.class));
             return;
         }
 

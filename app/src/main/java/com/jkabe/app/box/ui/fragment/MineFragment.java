@@ -17,6 +17,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.jkabe.app.box.ui.BrandCarActivity;
 import com.jkabe.box.R;
 import com.jkabe.app.box.base.BaseApplication;
 import com.jkabe.app.box.base.BaseFragment;
@@ -28,7 +30,6 @@ import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
 import com.jkabe.app.box.glide.GlideUtils;
 import com.jkabe.app.box.ui.AboutActivity;
-import com.jkabe.app.box.ui.BindActivity;
 import com.jkabe.app.box.ui.InvitationActivity;
 import com.jkabe.app.box.ui.LoginActivity;
 import com.jkabe.app.box.ui.PreviewActivity;
@@ -136,7 +137,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
                 if (SaveUtils.getCar() != null && !Utility.isEmpty(SaveUtils.getCar().getSimcode())) {
                     startActivity(new Intent(getContext(), VehicleActivity.class));
                 } else {
-                    startActivity(new Intent(getContext(), BindActivity.class));
+                    startActivity(new Intent(getContext(), BrandCarActivity.BindActivity.class));
                 }
                 break;
 
