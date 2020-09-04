@@ -60,4 +60,19 @@ public class SaveUtils {
         return blocks;
 
     }
+
+
+    public static List<Block> getArray() {
+        List<Block> blocks = new ArrayList<>();
+        blocks.add(new Block("交易密码", R.mipmap.icon_pass_usd));
+        blocks.add(new Block("修改密码", R.mipmap.icon_pass_usd));
+        blocks.add(new Block("重置密码", R.mipmap.icon_key_usd));
+        blocks.add(new Block("联系我们", R.mipmap.icon_contoct));
+        blocks.add(new Block("解除绑定", R.mipmap.icon_unbind));
+        blocks.add(new Block("关于我们", R.mipmap.icon_about_new));
+        blocks.add(new Block("消息中心", R.mipmap.icon_goad));
+        blocks.add(new Block("退出登录", R.mipmap.icon_out));
+        return blocks;
+
+    }
 }

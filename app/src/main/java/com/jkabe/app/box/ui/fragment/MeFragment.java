@@ -11,14 +11,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.jkabe.app.box.adapter.MeAdapter;
 import com.jkabe.app.box.base.BaseApplication;
 import com.jkabe.app.box.base.BaseFragment;
-import com.jkabe.app.box.bean.CarInfo;
+import com.jkabe.app.box.bean.Block;
 import com.jkabe.app.box.bean.CommonalityModel;
 import com.jkabe.app.box.bean.UserInfo;
 import com.jkabe.app.box.box.ChangeActivity;
@@ -43,8 +49,13 @@ import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.PreferenceUtils;
 import com.jkabe.box.R;
+
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+
 import crossoverone.statuslib.StatusUtil;
 
 /**
@@ -54,11 +65,12 @@ import crossoverone.statuslib.StatusUtil;
  */
 public class MeFragment extends BaseFragment implements View.OnClickListener, NetWorkListener {
     private View rootView;
-    private TextView text_name, text_edit, text_invitation, text_contacts, text_about, text_out, text_means, text_key, text_password;
+    private TextView text_name, text_edit, text_invitation,  text_means, text_key,text_team;
     private UserInfo info;
     private ImageView icon_head;
-    private TextView text_team, text_Reset, text_change,text_msg,text_bind;
-    private View tab1, tab2;
+    private RecyclerView recyclerView;
+    private List<Block> array = new ArrayList<>();
+    private MeAdapter adapter;
 
 
     @Nullable
@@ -75,8 +87,8 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
     @Override
     public void onResume() {
         super.onResume();
-        StatusUtil.setUseStatusBarColor(getActivity(), Color.parseColor("#FFFFFF"));
-        StatusUtil.setSystemStatus(getActivity(), false, true);
+        StatusUtil.setUseStatusBarColor(getActivity(), Color.parseColor("#5476FF"));
+        StatusUtil.setSystemStatus(getActivity(), false, false);
         info = SaveUtils.getSaveInfo();
         if (Utility.isEmpty(info.getNickname())) {
             text_name.setText(info.getMobile());
@@ -86,23 +98,10 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
         if (!Utility.isEmpty(info.getUsericon())) {
             GlideUtils.CreateImageCircular(info.getUsericon(), icon_head, 5);
         }
-        if ("1".equals(info.getIsPayPassword())) {
-            text_password.setVisibility(View.GONE);
-            text_Reset.setVisibility(View.VISIBLE);
-            text_change.setVisibility(View.VISIBLE);
-            tab1.setVisibility(View.VISIBLE);
-            tab2.setVisibility(View.VISIBLE);
-        }
     }
 
     private void initView() {
-        text_bind= getView(rootView, R.id.text_bind);
-        text_msg= getView(rootView, R.id.text_msg);
-        tab1 = getView(rootView, R.id.tab1);
-        tab2 = getView(rootView, R.id.tab2);
-        text_change = getView(rootView, R.id.text_change);
-        text_Reset = getView(rootView, R.id.text_Reset);
-        text_password = getView(rootView, R.id.text_password);
+        recyclerView = getView(rootView, R.id.recyclerView);
         text_key = getView(rootView, R.id.text_key);
         text_means = getView(rootView, R.id.text_means);
         text_team = getView(rootView, R.id.text_team);
@@ -110,29 +109,54 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
         text_name = getView(rootView, R.id.text_name);
         text_edit = getView(rootView, R.id.text_edit);
         text_invitation = getView(rootView, R.id.text_invitation);
-        text_contacts = getView(rootView, R.id.text_contacts);
-        text_about = getView(rootView, R.id.text_about);
-        text_out = getView(rootView, R.id.text_out);
-        text_out.setOnClickListener(this);
         text_edit.setOnClickListener(this);
         text_invitation.setOnClickListener(this);
-        text_contacts.setOnClickListener(this);
-        text_about.setOnClickListener(this);
         text_edit.setOnClickListener(this);
         text_team.setOnClickListener(this);
         text_means.setOnClickListener(this);
         text_key.setOnClickListener(this);
-        text_password.setOnClickListener(this);
-        text_Reset.setOnClickListener(this);
-        text_change.setOnClickListener(this);
-        text_msg.setOnClickListener(this);
-        text_bind.setOnClickListener(this);
-        CarInfo carInfo = SaveUtils.getCar();
-        if (carInfo != null) {
-            text_bind.setVisibility(View.VISIBLE);
-        } else {
-            text_bind.setVisibility(View.GONE);
-        }
+        GridLayoutManager manager = new GridLayoutManager(getContext(), 4);
+        recyclerView.setLayoutManager(manager);
+        array = SaveUtils.getArray();
+        adapter = new MeAdapter(getContext(), array);
+        recyclerView.setAdapter(adapter);
+
+
+        adapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String name = array.get(position).getName();
+                switch (name) {
+                    case "交易密码":
+                        startActivity(new Intent(getContext(), TransactionActivity.class));
+                        break;
+                    case "修改密码":
+                        startActivity(new Intent(getContext(), ChangeActivity.class));
+                        break;
+                    case "重置密码":
+                        startActivity(new Intent(getContext(), ResetActivity.class));
+                        break;
+                    case "联系我们":
+                        Intent intent = new Intent(getContext(), PreviewActivity.class);
+                        intent.putExtra("name", "加入社群");
+                        intent.putExtra("url", "http://openapi.jkabe.com/golo/about");
+                        startActivity(intent);
+                        break;
+                    case "解除绑定":
+                        showBindDialog();
+                        break;
+                    case "关于我们":
+                        startActivity(new Intent(getContext(), AboutActivity.class));
+                        break;
+                    case "消息中心":
+                        startActivity(new Intent(getContext(), MsgActivity.class));
+                        break;
+                    case "退出登录":
+                        showDialog();
+                        break;
+                }
+            }
+        });
     }
 
     @Override
@@ -144,18 +168,6 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
     public void onClick(View v) {
         Intent intent = null;
         switch (v.getId()) {
-            case R.id.text_msg:
-                startActivity(new Intent(getContext(), MsgActivity.class));
-                break;
-            case R.id.text_change:
-                startActivity(new Intent(getContext(), ChangeActivity.class));
-                break;
-            case R.id.text_password:
-                startActivity(new Intent(getContext(), TransactionActivity.class));
-                break;
-            case R.id.text_Reset:
-                startActivity(new Intent(getContext(), ResetActivity.class));
-                break;
             case R.id.text_key:
                 startActivity(new Intent(getContext(), ActivationActivity.class));
                 break;
@@ -172,26 +184,11 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
             case R.id.text_team:
                 intent = new Intent(getContext(), PreviewActivity.class);
                 intent.putExtra("name", "我的团队");
-                intent.putExtra("url", "http://kb.jkabe.com/box/myteam?friendcode=" + SaveUtils.getSaveInfo().getRmcode() + "&memberid=" + SaveUtils.getSaveInfo().getId()+"&apptype="+ Constants.TYPE);
+                intent.putExtra("url", "http://kb.jkabe.com/box/myteam?friendcode=" + SaveUtils.getSaveInfo().getRmcode() + "&memberid=" + SaveUtils.getSaveInfo().getId() + "&apptype=" + Constants.TYPE);
                 startActivity(intent);
                 break;
             case R.id.text_invitation:
                 startActivity(new Intent(getContext(), InvitationActivity.class));
-                break;
-            case R.id.text_about:
-                startActivity(new Intent(getContext(), AboutActivity.class));
-                break;
-            case R.id.text_contacts:
-                intent = new Intent(getContext(), PreviewActivity.class);
-                intent.putExtra("name", "加入社群");
-                intent.putExtra("url", "http://openapi.jkabe.com/golo/about");
-                startActivity(intent);
-                break;
-            case R.id.text_out:
-                showDialog();
-                break;
-            case R.id.text_bind:
-                showBindDialog();
                 break;
         }
     }
@@ -212,12 +209,12 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
             public void onClick(View v) {
                 SaveUtils.clealCacheDisk();
                 PreferenceUtils.setPrefString(getContext(), Constants.TOKEN, "");
-                String mobile=PreferenceUtils.getPrefString(getContext(),Constants.MOBILE,"");
-                String password=PreferenceUtils.getPrefString(getContext(),Constants.PASSWORD,"");
+                String mobile = PreferenceUtils.getPrefString(getContext(), Constants.MOBILE, "");
+                String password = PreferenceUtils.getPrefString(getContext(), Constants.PASSWORD, "");
                 final SharedPreferences sharedPreferences = getActivity().getSharedPreferences("north", Context.MODE_PRIVATE);
                 PreferenceUtils.clearPreference(getContext(), sharedPreferences);
-                PreferenceUtils.setPrefString(getContext(),Constants.MOBILE,mobile);
-                PreferenceUtils.setPrefString(getContext(),Constants.PASSWORD,password);
+                PreferenceUtils.setPrefString(getContext(), Constants.MOBILE, mobile);
+                PreferenceUtils.setPrefString(getContext(), Constants.PASSWORD, password);
                 BaseApplication.activityTaskManager.closeAllActivityExceptOne("LoginActivity");
                 startActivity(new Intent(getContext(), LoginActivity.class));
                 getActivity().finish();
@@ -226,7 +223,6 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
         });
         dialog.show();
     }
-
 
 
     public void showBindDialog() {
@@ -294,9 +290,6 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
     }
 
 
-
-
-
     @Override
     public void onSucceed(JSONObject object, int id, CommonalityModel commonality) {
         if (object != null && commonality != null && !Utility.isEmpty(commonality.getStatusCode())) {
@@ -328,6 +321,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
     }
 
     CountDownTimer timer;
+
     private void countDown(TextView btn_code) {
         timer = new CountDownTimer(90000, 1000) {
             @Override

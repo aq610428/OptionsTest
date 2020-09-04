@@ -228,7 +228,7 @@ public class MainActivity extends BaseActivity1 implements NetWorkListener {
     @Override
     protected void onResume() {
         super.onResume();
-//        queryToken();
+        queryToken();
     }
 
 
