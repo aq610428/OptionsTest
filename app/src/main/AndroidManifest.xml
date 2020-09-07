@@ -267,6 +267,10 @@
             android:name="com.jkabe.app.box.ui.StoreDeilActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name="com.jkabe.app.box.ui.BindActivity"
+            android:screenOrientation="portrait" />
+
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="0fc2ec2f7f7658f6e1a3b2e4b08b298a" />

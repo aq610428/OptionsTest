@@ -18,6 +18,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.jkabe.app.box.ui.BindActivity;
 import com.jkabe.app.box.ui.BrandCarActivity;
 import com.jkabe.box.R;
 import com.jkabe.app.box.base.BaseApplication;
@@ -137,12 +138,17 @@ public class MineFragment extends BaseFragment implements View.OnClickListener, 
                 if (SaveUtils.getCar() != null && !Utility.isEmpty(SaveUtils.getCar().getSimcode())) {
                     startActivity(new Intent(getContext(), VehicleActivity.class));
                 } else {
-                    startActivity(new Intent(getContext(), BrandCarActivity.BindActivity.class));
+                    startActivity(new Intent(getContext(), BindActivity.class));
                 }
                 break;
 
             case R.id.text_bind:
-                showBindDialog();
+                if (SaveUtils.getCar() != null && !Utility.isEmpty(SaveUtils.getCar().getSimcode())){
+                    showBindDialog();
+                }else{
+                    ToastUtil.showToast("您未绑定设备，快去绑定吧~");
+                }
+
                 break;
 
             case R.id.text_invitation:

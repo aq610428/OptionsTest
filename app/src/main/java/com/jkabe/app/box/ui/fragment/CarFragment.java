@@ -39,6 +39,7 @@ import com.jkabe.app.box.config.Api;
 import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
 import com.jkabe.app.box.ui.BatteryActivity;
+import com.jkabe.app.box.ui.BindActivity;
 import com.jkabe.app.box.ui.BlockActivity;
 import com.jkabe.app.box.ui.BrandCarActivity;
 import com.jkabe.app.box.ui.DrivingLicenseActivity;
@@ -241,7 +242,7 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
 
             }
         } else {
-            startActivity(new Intent(getContext(), BrandCarActivity.BindActivity.class));
+            startActivity(new Intent(getContext(), BindActivity.class));
         }
     }
 

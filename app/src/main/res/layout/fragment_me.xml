@@ -131,6 +131,16 @@
 
             </RelativeLayout>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:gravity="center|left"
+                android:text="常用工具"
+                android:textColor="#131313"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -138,16 +148,8 @@
                 android:layout_margin="10dp"
                 android:background="@drawable/base_press"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:padding="5dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="常用工具"
-                    android:textColor="#131313"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
