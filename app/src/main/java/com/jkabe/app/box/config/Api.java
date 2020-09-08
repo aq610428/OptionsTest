@@ -255,6 +255,15 @@ public interface Api {
     String RESET_TOKEN_OIL = Config.getOpenNewApi() + "/carchain/queryDataOilInfoData";
 
     int RESET_TOKEN_TRIP_ID = 100086;
+    String RESET_FLOW_DEVICE = Config.getOpenNewApi() + "/flow/getTerminalDetail";
+    int RESET_FLOW_DEVICEE_ID = 100087;
+
+    String RESET_FLOW_List = Config.getOpenNewApi() + "/flow/getRenewalsPackageList";
+    int RESET_FLOW_List_ID = 100088;
+
+    String RESET_FLOW_CODE = Config.getOpenNewApi() + "/flow/getPackageQrcode";
+    int RESET_FLOW_CODE_ID = 100089;
+
 
 
 }

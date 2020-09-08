@@ -37,10 +37,12 @@ import com.jkabe.app.box.bean.UserInfo;
 import com.jkabe.app.box.bean.Verison;
 import com.jkabe.app.box.bean.Violation;
 import com.jkabe.app.box.bean.YearCar;
+import com.jkabe.app.box.bean.icadBean;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,7 +64,6 @@ public class JsonParse {
     }
 
 
-
     public static StoreInfo getStoreDeilJson(JSONObject object) {
         List<StoreInfo> infos = new ArrayList<>();
         JSONObject jsonObject = object.optJSONObject("result");
@@ -77,6 +78,7 @@ public class JsonParse {
         Verison verison = (Verison) JsonUtilComm.jsonToBean(jsonObject.toString(), Verison.class);
         return verison;
     }
+
     public static List<BrandVo> getBespokebrandsJson1(JSONObject object) {
         List<BrandVo> infos = new ArrayList<>();
         JSONArray jsonArray = object.optJSONArray("result");
@@ -96,6 +98,7 @@ public class JsonParse {
         }
         return infos;
     }
+
     public static List<OreInfo> getBespokemoniesJson1(JSONObject object) {
         List<OreInfo> infos = new ArrayList<>();
         JSONArray jsonArray = object.optJSONArray("result");
@@ -117,6 +120,7 @@ public class JsonParse {
         }
         return infos;
     }
+
     public static List<Brand> getBespokebrandsJson(JSONObject object) {
         List<Brand> infos = new ArrayList<>();
         JSONArray jsonArray = object.optJSONArray("result");
@@ -248,7 +252,6 @@ public class JsonParse {
         }
         return infos;
     }
-
 
 
     public static List<EarlyInfo> getEarlyInfoJson(JSONObject object) {
@@ -427,5 +430,11 @@ public class JsonParse {
             infos.add(info);
         }
         return infos;
+    }
+
+    public static icadBean getJSONicon(JSONObject object) {
+        JSONObject jsonObject = object.optJSONObject("result");
+        icadBean info = (icadBean) JsonUtilComm.jsonToBean(jsonObject.toString(), AddressInfo.class);
+        return info;
     }
 }

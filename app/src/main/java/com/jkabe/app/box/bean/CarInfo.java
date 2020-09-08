@@ -49,6 +49,16 @@ public class CarInfo implements Serializable {
     private int isreal;
     private String descriptionToString;
 
+    public String getIccid() {
+        return iccid;
+    }
+
+    public void setIccid(String iccid) {
+        this.iccid = iccid;
+    }
+
+    private String iccid;
+
     public String getId() {
         return id;
     }

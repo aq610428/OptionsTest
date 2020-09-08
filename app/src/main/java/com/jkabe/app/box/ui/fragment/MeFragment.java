@@ -27,9 +27,6 @@ import com.jkabe.app.box.base.BaseFragment;
 import com.jkabe.app.box.bean.Block;
 import com.jkabe.app.box.bean.CommonalityModel;
 import com.jkabe.app.box.bean.UserInfo;
-import com.jkabe.app.box.box.ChangeActivity;
-import com.jkabe.app.box.box.ResetActivity;
-import com.jkabe.app.box.box.TransactionActivity;
 import com.jkabe.app.box.config.Api;
 import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
@@ -40,7 +37,9 @@ import com.jkabe.app.box.ui.InvitationActivity;
 import com.jkabe.app.box.ui.LoginActivity;
 import com.jkabe.app.box.ui.MainActivity;
 import com.jkabe.app.box.ui.MsgActivity;
+import com.jkabe.app.box.ui.PassworadActivity;
 import com.jkabe.app.box.ui.PreviewActivity;
+import com.jkabe.app.box.ui.SalesActivity;
 import com.jkabe.app.box.ui.UserActivity;
 import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.Md5Util;
@@ -120,21 +119,16 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
         array = SaveUtils.getArray();
         adapter = new MeAdapter(getContext(), array);
         recyclerView.setAdapter(adapter);
-
-
         adapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String name = array.get(position).getName();
                 switch (name) {
                     case "交易密码":
-                        startActivity(new Intent(getContext(), TransactionActivity.class));
+                        startActivity(new Intent(getContext(), SalesActivity.class));
                         break;
-                    case "修改密码":
-                        startActivity(new Intent(getContext(), ChangeActivity.class));
-                        break;
-                    case "重置密码":
-                        startActivity(new Intent(getContext(), ResetActivity.class));
+                    case "流量查询":
+                        startActivity(new Intent(getContext(), PassworadActivity.class));
                         break;
                     case "联系我们":
                         Intent intent = new Intent(getContext(), PreviewActivity.class);

@@ -11,15 +11,21 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.os.Message;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 
+import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -29,6 +35,26 @@ import java.util.Date;
  * @name:ImageFactory
  */
 public class ImageFactory {
+
+
+    public static Bitmap getDrawable(Drawable drawable) {
+        int width = drawable.getIntrinsicWidth();
+        int heigh = drawable.getIntrinsicHeight();
+
+        drawable.setBounds(0, 0, width, heigh);
+
+        // 获取drawable的颜色格式
+        Bitmap.Config config = drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888
+                : Bitmap.Config.RGB_565;
+        // 创建bitmap
+        Bitmap bitmap = Bitmap.createBitmap(width, heigh, config);
+        // 创建bitmap画布
+        Canvas canvas = new Canvas(bitmap);
+        // 将drawable 内容画到画布中
+        drawable.draw(canvas);
+        return bitmap;
+    }
+
     /**
      * 从指定的图像路径获取位图
      *
@@ -111,13 +137,9 @@ public class ImageFactory {
     /**
      * 通过像素压缩图像，这将改变图像的宽度/高度。用于获取缩略图
      *
-     *
-     * @param imgPath
-     *            image path
-     * @param pixelW
-     *            目标宽度像素
-     * @param pixelH
-     *            高度目标像素
+     * @param imgPath image path
+     * @param pixelW  目标宽度像素
+     * @param pixelH  高度目标像素
      * @return
      */
     public static Bitmap ratio(String imgPath, float pixelW, float pixelH) {
@@ -154,12 +176,9 @@ public class ImageFactory {
     /**
      * 压缩图像的大小，这将修改图像宽度/高度。用于获取缩略图
      *
-     *
      * @param image
-     * @param pixelW
-     *            target pixel of width
-     * @param pixelH
-     *            target pixel of height
+     * @param pixelW target pixel of width
+     * @param pixelH target pixel of height
      * @return
      */
     public Bitmap ratio(Bitmap image, float pixelW, float pixelH) {
@@ -203,8 +222,7 @@ public class ImageFactory {
      *
      * @param image
      * @param outPath
-     * @param maxSize
-     *            目标将被压缩到小于这个大小（KB）。
+     * @param maxSize 目标将被压缩到小于这个大小（KB）。
      * @throws IOException
      */
     public void compressAndGenImage(Bitmap image, String outPath, int maxSize) throws IOException {
@@ -234,10 +252,8 @@ public class ImageFactory {
      *
      * @param imgPath
      * @param outPath
-     * @param maxSize
-     *            目标将被压缩到小于这个大小（KB）。
-     * @param needsDelete
-     *            是否压缩后删除原始文件
+     * @param maxSize     目标将被压缩到小于这个大小（KB）。
+     * @param needsDelete 是否压缩后删除原始文件
      * @throws IOException
      */
     public void compressAndGenImage(String imgPath, String outPath, int maxSize, boolean needsDelete)
@@ -258,10 +274,8 @@ public class ImageFactory {
      *
      * @param image
      * @param outPath
-     * @param pixelW
-     *            目标宽度像素
-     * @param pixelH
-     *            高度目标像素
+     * @param pixelW  目标宽度像素
+     * @param pixelH  高度目标像素
      * @throws FileNotFoundException
      */
     public void ratioAndGenThumb(Bitmap image, String outPath, float pixelW, float pixelH)
@@ -274,12 +288,9 @@ public class ImageFactory {
      * 比例和生成拇指的路径指定
      *
      * @param outPath
-     * @param pixelW
-     *            目标宽度像素
-     * @param pixelH
-     *            高度目标像素
-     * @param needsDelete
-     *            是否压缩后删除原始文件
+     * @param pixelW      目标宽度像素
+     * @param pixelH      高度目标像素
+     * @param needsDelete 是否压缩后删除原始文件
      * @throws FileNotFoundException
      */
     public void ratioAndGenThumb(String imgPath, String outPath, float pixelW, float pixelH, boolean needsDelete)
@@ -295,8 +306,6 @@ public class ImageFactory {
             }
         }
     }
-
-
 
 
     public static String getPhotoPathFromContentUri(Context context, Uri uri) {
@@ -343,6 +352,7 @@ public class ImageFactory {
 
         return photoPath;
     }
+
     private static boolean isExternalStorageDocument(Uri uri) {
         return "com.android.externalstorage.documents".equals(uri.getAuthority());
     }
@@ -372,7 +382,6 @@ public class ImageFactory {
         }
         return null;
     }
-
 
 
     public static Bitmap DrawableToBitmap(Drawable drawable) {

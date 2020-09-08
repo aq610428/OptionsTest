@@ -89,6 +89,12 @@
             android:name="com.jkabe.app.box.box.TransactionActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name="com.jkabe.app.box.ui.PassworadActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.jkabe.app.box.ui.SalesActivity"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name="com.jkabe.app.box.box.ResetActivity"

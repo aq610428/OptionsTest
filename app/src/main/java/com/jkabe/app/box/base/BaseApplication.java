@@ -40,17 +40,6 @@ public class BaseApplication extends Application {
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
         builder.detectFileUriExposure();
-        initWebView();
-    }
-
-    /******兼容Android P WebView多进程异常*****/
-    private void initWebView() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            String processName = getProcessName();
-            if (!PROCESSNAME.equals(processName)) {
-                WebView.setDataDirectorySuffix(processName);
-            }
-        }
     }
 
 
