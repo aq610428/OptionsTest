@@ -29,7 +29,7 @@ public class SaveUtils {
     }
 
 
-    /******用户基本信息*****/
+    /******清除缓存*****/
     public static void clealCacheDisk() {
         CacheDiskUtils cacheDiskUtils = CacheDiskUtils.getInstance();
         cacheDiskUtils.remove("userInfo");
@@ -64,7 +64,7 @@ public class SaveUtils {
 
     public static List<Block> getArray() {
         List<Block> blocks = new ArrayList<>();
-        blocks.add(new Block("交易密码", R.mipmap.icon_pass_usd));
+        blocks.add(new Block("交易密码", R.mipmap.icon_pass_usd1));
         blocks.add(new Block("修改密码", R.mipmap.icon_pass_usd));
         blocks.add(new Block("重置密码", R.mipmap.icon_key_usd));
         blocks.add(new Block("联系我们", R.mipmap.icon_contoct));

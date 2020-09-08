@@ -189,8 +189,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@mipmap/icon_write1"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        android:gravity="top|left"
+                        android:orientation="vertical"
+                        android:paddingLeft="17dp"
+                        android:paddingTop="11dp">
 
 
                         <TextView
@@ -204,7 +206,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:gravity="center"
@@ -220,11 +222,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:background="@mipmap/icon_travel1"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        android:gravity="top|left"
+                        android:orientation="vertical"
+                        android:paddingLeft="17dp"
+                        android:paddingTop="11dp">
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="区块数据"
@@ -233,7 +237,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:gravity="center"
@@ -256,12 +260,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@mipmap/icon_detection1"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        android:gravity="top|left"
+                        android:orientation="vertical"
+                        android:paddingLeft="17dp"
+                        android:paddingTop="11dp">
 
                         <TextView
                             android:id="@+id/text_detection"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="违章查询"
@@ -270,11 +276,11 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:gravity="center"
-                            android:text="遵守交通规则,安全伴你到永远"
+                            android:text="遵守交通规则"
                             android:textColor="@color/colorWhite"
                             android:textSize="@dimen/ctv_sizen_12" />
                     </LinearLayout>
@@ -285,11 +291,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:background="@mipmap/icon_travel1"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        android:gravity="top|left"
+                        android:orientation="vertical"
+                        android:paddingLeft="17dp"
+                        android:paddingTop="11dp">
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="车辆体检"
@@ -298,7 +306,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:gravity="center"

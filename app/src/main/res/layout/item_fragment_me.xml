@@ -13,9 +13,9 @@
         android:drawableTop="@mipmap/icon_pass_usd"
         android:drawablePadding="6dp"
         android:gravity="center"
-        android:padding="15dp"
+        android:padding="10dp"
         android:text="交易密码"
-        android:textColor="@color/black33"
-        android:textSize="14sp" />
+        android:textColor="#131313"
+        android:textSize="12sp" />
 
 </RelativeLayout>

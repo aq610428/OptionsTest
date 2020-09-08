@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Build;
 import android.os.StrictMode;
+import android.webkit.WebView;
 import androidx.annotation.RequiresApi;
 import androidx.multidex.MultiDex;
 import com.jkabe.app.box.weight.ActivityTaskManager;
@@ -15,12 +16,15 @@ import cn.jpush.android.api.JPushInterface;
 import okhttp3.OkHttpClient;
 
 /**
- * Created by will wu on 2016/10/8.
+ * Created 2016/10/8.
  */
 public class BaseApplication extends Application {
     public static Context myContext;
     public static BaseApplication baseApplicition;
     public static ActivityTaskManager activityTaskManager;
+    private static final String PROCESSNAME = "com.jkabe.box";
+
+
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
 
@@ -36,7 +40,19 @@ public class BaseApplication extends Application {
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
         builder.detectFileUriExposure();
+        initWebView();
     }
+
+    /******兼容Android P WebView多进程异常*****/
+    private void initWebView() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            String processName = getProcessName();
+            if (!PROCESSNAME.equals(processName)) {
+                WebView.setDataDirectorySuffix(processName);
+            }
+        }
+    }
+
 
 
     /****网络框架初始化*******/
