@@ -2,6 +2,7 @@ package com.jkabe.app.box.util;
 
 import android.content.ContentUris;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,6 +15,7 @@ import android.os.Environment;
 import android.os.Message;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.view.View;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
@@ -54,6 +56,57 @@ public class ImageFactory {
         drawable.draw(canvas);
         return bitmap;
     }
+
+
+
+    public static Bitmap getConvertViewToBitmap(View view) {
+        int width = view.getMeasuredWidth();
+        int height = view.getMeasuredHeight();
+        Bitmap bp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bp);
+        view.draw(canvas);
+        canvas.save();
+        return bp;
+    }
+
+
+
+    public static void saveImageToGallery(Context context, Bitmap bmp) {
+        // 首先保存图片 创建文件夹
+        File appDir = new File(Environment.getExternalStorageDirectory(), "shy");
+        if (!appDir.exists()) {
+            appDir.mkdir();
+        }
+        //图片文件名称
+        String fileName = "shy_"+System.currentTimeMillis() + ".jpg";
+        File file = new File(appDir, fileName);
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            bmp.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            fos.flush();
+            fos.close();
+        } catch (Exception e) {
+            LogUtils.e(e.getMessage());
+            e.printStackTrace();
+        }
+
+        // 其次把文件插入到系统图库
+        String path = file.getAbsolutePath();
+        try {
+            MediaStore.Images.Media.insertImage(context.getContentResolver(), path, fileName, null);
+        } catch (FileNotFoundException e) {
+            LogUtils.e(e.getMessage());
+            e.printStackTrace();
+        }
+        // 最后通知图库更新
+        Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        Uri uri = Uri.fromFile(file);
+        intent.setData(uri);
+        context.sendBroadcast(intent);
+        ToastUtil.showToast("保存成功");
+    }
+
+
 
     /**
      * 从指定的图像路径获取位图

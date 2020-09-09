@@ -27,6 +27,7 @@ import com.jkabe.app.box.bean.Oil;
 import com.jkabe.app.box.bean.OilInfo;
 import com.jkabe.app.box.bean.OrderInfo;
 import com.jkabe.app.box.bean.OreInfo;
+import com.jkabe.app.box.bean.PackageBean;
 import com.jkabe.app.box.bean.StoreInfo;
 import com.jkabe.app.box.bean.Travrt;
 import com.jkabe.app.box.bean.TripVo;
@@ -434,7 +435,17 @@ public class JsonParse {
 
     public static icadBean getJSONicon(JSONObject object) {
         JSONObject jsonObject = object.optJSONObject("result");
-        icadBean info = (icadBean) JsonUtilComm.jsonToBean(jsonObject.toString(), AddressInfo.class);
+        icadBean info = (icadBean) JsonUtilComm.jsonToBean(jsonObject.toString(), icadBean.class);
         return info;
+    }
+
+    public static List<PackageBean> getStoreListJson(JSONObject object) {
+        List<PackageBean> infos = new ArrayList<>();
+        JSONArray jsonArray = object.optJSONArray("result");
+        for (int i = 0; i < jsonArray.length(); i++) {
+            PackageBean info = (PackageBean) JsonUtilComm.jsonToBean(jsonArray.optJSONObject(i).toString(), PackageBean.class);
+            infos.add(info);
+        }
+        return infos;
     }
 }

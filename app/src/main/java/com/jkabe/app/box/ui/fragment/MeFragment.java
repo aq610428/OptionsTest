@@ -136,7 +136,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
                         intent.putExtra("url", "http://openapi.jkabe.com/golo/about");
                         startActivity(intent);
                         break;
-                    case "解除绑定":
+                    case "设备解除":
                         showBindDialog();
                         break;
                     case "关于我们":

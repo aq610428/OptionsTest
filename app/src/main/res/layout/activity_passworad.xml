@@ -1,11 +1,659 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
 
-    <include layout="@layout/activity_title" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@mipmap/icon_bg_card"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <ImageView
+            android:id="@+id/iv_head"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/icon_tx" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/iv_head"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text_mobile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="158****0169"
+                android:textColor="@color/white"
+                android:textSize="@dimen/ctv_sizen_18"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/btn_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="UID:154456"
+                android:textColor="#BAC7FF"
+                android:textSize="@dimen/ctv_sizen_12" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_power"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:background="@mipmap/icon_power"
+            android:gravity="center"
+            android:text="开机"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/ctv_sizen_13" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/text_condition"
+        android:layout_width="match_parent"
+        android:layout_height="33dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginTop="158dp"
+        android:layout_marginRight="22dp"
+        android:background="@drawable/condition_shape"
+        android:gravity="center"
+        android:text="状态描述：全心全意为您服务~"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/ctv_sizen_13" />
+
+    <LinearLayout
+        android:id="@+id/ll_uid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="190dp"
+        android:background="@drawable/shape_uid"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:orientation="horizontal"
+            android:paddingTop="15dp">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:gravity="center|left">
 
 
-</LinearLayout>
+                <com.lihang.ShadowLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:hl_cornerRadius="5dp"
+                    app:hl_shadowBackColor="#fff"
+                    app:hl_shadowColor="#08000000"
+                    app:hl_shadowLimit="5dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="15dp">
+
+                        <TextView
+                            android:id="@+id/text_pay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginLeft="90dp"
+                            android:background="@mipmap/icon_open"
+                            android:drawableRight="@mipmap/icon_rigtt_icd"
+                            android:gravity="center"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:text="续费"
+                            android:textColor="#3F63F4"
+                            android:textSize="@dimen/ctv_sizen_11" />
+
+                        <ImageView
+                            android:id="@+id/text_balance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="10dp"
+                            android:src="@mipmap/icon_balance_pay" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/text_balance"
+                            android:orientation="vertical"
+                            android:paddingTop="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="卡内余额"
+                                android:textColor="#6B6B6B"
+                                android:textSize="@dimen/ctv_sizen_12" />
+
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="0.5dp">
+
+                                <TextView
+                                    android:id="@+id/text_surplus"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="0"
+                                    android:textColor="#070707"
+                                    android:textSize="@dimen/ctv_sizen_17"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/text_kb"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="元"
+                                    android:textColor="#6B6B6B"
+                                    android:textSize="@dimen/ctv_sizen_12" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                </com.lihang.ShadowLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:gravity="center|left">
+
+                <com.lihang.ShadowLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:hl_cornerRadius="5dp"
+                    app:hl_shadowBackColor="#fff"
+                    app:hl_shadowColor="#08000000"
+                    app:hl_shadowLimit="5dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="15dp">
+
+
+                        <ImageView
+                            android:id="@+id/text_balance_kb"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="10dp"
+                            android:src="@mipmap/icon_surplus" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/text_balance_kb"
+                            android:orientation="vertical"
+                            android:paddingTop="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="剩余流量"
+                                android:textColor="#6B6B6B"
+                                android:textSize="@dimen/ctv_sizen_12" />
+
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="0.5dp">
+
+                                <TextView
+                                    android:id="@+id/text_surplus_kb"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="0"
+                                    android:textColor="#070707"
+                                    android:textSize="@dimen/ctv_sizen_17"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="M"
+                                    android:textColor="#6B6B6B"
+                                    android:textSize="@dimen/ctv_sizen_12" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                </com.lihang.ShadowLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:orientation="horizontal"
+            android:paddingTop="15dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:gravity="center|left">
+
+
+                <com.lihang.ShadowLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:hl_cornerRadius="5dp"
+                    app:hl_shadowBackColor="#fff"
+                    app:hl_shadowColor="#08000000"
+                    app:hl_shadowLimit="5dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="15dp">
+
+                        <ImageView
+                            android:id="@+id/text_user"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="10dp"
+                            android:src="@mipmap/icon_used" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/text_user"
+                            android:orientation="vertical"
+                            android:paddingTop="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="已使用流量"
+                                android:textColor="#6B6B6B"
+                                android:textSize="@dimen/ctv_sizen_12" />
+
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="0.5dp">
+
+                                <TextView
+                                    android:id="@+id/text_surplus_user"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="0"
+                                    android:textColor="#070707"
+                                    android:textSize="@dimen/ctv_sizen_17"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="M"
+                                    android:textColor="#6B6B6B"
+                                    android:textSize="@dimen/ctv_sizen_12" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                </com.lihang.ShadowLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:gravity="center|left">
+
+                <com.lihang.ShadowLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:hl_cornerRadius="5dp"
+                    app:hl_shadowBackColor="#fff"
+                    app:hl_shadowColor="#08000000"
+                    app:hl_shadowLimit="5dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="15dp">
+
+                        <ImageView
+                            android:id="@+id/text_user_cycle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:src="@mipmap/icon_cycle" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/text_user_cycle"
+                            android:orientation="vertical"
+                            android:paddingTop="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="周期总用量"
+                                android:textColor="#6B6B6B"
+                                android:textSize="@dimen/ctv_sizen_12" />
+
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="0.5dp">
+
+                                <TextView
+                                    android:id="@+id/text_surplus_cycle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="0"
+                                    android:textColor="#070707"
+                                    android:textSize="@dimen/ctv_sizen_17"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="M"
+                                    android:textColor="#6B6B6B"
+                                    android:textSize="@dimen/ctv_sizen_12" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </RelativeLayout>
+                </com.lihang.ShadowLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:orientation="horizontal"
+            android:paddingTop="15dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:gravity="center|left">
+
+                <com.lihang.ShadowLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:hl_cornerRadius="5dp"
+                    app:hl_shadowBackColor="#fff"
+                    app:hl_shadowColor="#08000000"
+                    app:hl_shadowLimit="5dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="15dp">
+
+
+                        <ImageView
+                            android:id="@+id/iv_open"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:src="@mipmap/icon_bank" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/iv_open"
+                            android:orientation="vertical"
+                            android:paddingTop="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="开卡时间"
+                                android:textColor="#6B6B6B"
+                                android:textSize="@dimen/ctv_sizen_12" />
+
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="0.5dp">
+
+                                <TextView
+                                    android:id="@+id/text_surplus_open"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="0"
+                                    android:textColor="#070707"
+                                    android:textSize="@dimen/ctv_sizen_17"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="kb"
+                                    android:textColor="#6B6B6B"
+                                    android:textSize="@dimen/ctv_sizen_12"
+                                    android:visibility="gone" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+                    </RelativeLayout>
+                </com.lihang.ShadowLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:gravity="center|left">
+
+                <com.lihang.ShadowLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:hl_cornerRadius="5dp"
+                    app:hl_shadowBackColor="#fff"
+                    app:hl_shadowColor="#08000000"
+                    app:hl_shadowLimit="5dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="15dp">
+
+                        <ImageView
+                            android:id="@+id/text_user_end"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:src="@mipmap/icon_expire" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_toRightOf="@+id/text_user_end"
+                            android:orientation="vertical"
+                            android:paddingTop="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="到期时间"
+                                android:textColor="#6B6B6B"
+                                android:textSize="@dimen/ctv_sizen_12" />
+
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="0.5dp">
+
+                                <TextView
+                                    android:id="@+id/text_surplus_user_end"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="0"
+                                    android:textColor="#070707"
+                                    android:textSize="@dimen/ctv_sizen_17"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="kb"
+                                    android:textColor="#6B6B6B"
+                                    android:textSize="@dimen/ctv_sizen_12"
+                                    android:visibility="gone" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+                    </RelativeLayout>
+                </com.lihang.ShadowLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_code"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparenc"
+        android:visibility="gone">
+
+
+        <RelativeLayout
+            android:id="@+id/rl_tab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@mipmap/icon_bg_slices">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingLeft="65dp"
+                android:paddingTop="25dp"
+                android:text="截图 - 微信扫一扫 - 充值"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/ctv_sizen_15"
+                android:textStyle="bold" />
+
+
+            <ImageView
+                android:id="@+id/iv_scod"
+                android:layout_width="170dp"
+                android:layout_height="170dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="86dp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="283dp"
+                android:gravity="center"
+                android:text="长按保存到相册"
+                android:textColor="#A6A3AB"
+                android:textSize="@dimen/ctv_sizen_15" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/iv_colse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_tab"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:background="@mipmap/icon_close_code" />
+    </RelativeLayout>
+
+
+</RelativeLayout>
