@@ -1,13 +1,21 @@
 package com.jkabe.app.box.ui;
 
+import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.jkabe.app.box.adapter.OpemAdapter;
 import com.jkabe.app.box.base.BaseActivity1;
 import com.jkabe.app.box.bean.CarInfo;
 import com.jkabe.app.box.bean.CommonalityModel;
@@ -45,7 +53,7 @@ public class PassworadActivity extends BaseActivity1 implements NetWorkListener 
     private TextView text_surplus_user, text_surplus_cycle, text_surplus_open, text_surplus_user_end;
     private TextView text_pay;
     private List<PackageBean> beans = new ArrayList<>();
-    private ImageView iv_colse, iv_scod,iv_head;
+    private ImageView iv_colse, iv_scod, iv_head;
     private RelativeLayout rl_code, rl_tab;
 
 
@@ -56,7 +64,7 @@ public class PassworadActivity extends BaseActivity1 implements NetWorkListener 
 
     @Override
     protected void initView() {
-        iv_head= getView(R.id.iv_head);
+        iv_head = getView(R.id.iv_head);
         rl_tab = getView(R.id.rl_tab);
         iv_colse = getView(R.id.iv_colse);
         iv_scod = getView(R.id.iv_scod);
@@ -99,7 +107,20 @@ public class PassworadActivity extends BaseActivity1 implements NetWorkListener 
         super.onClick(v);
         switch (v.getId()) {
             case R.id.text_pay:
-                queryCode();
+                if (beans != null && beans.size() > 0) {
+                    String amout = text_surplus_cycle.getText().toString().trim();
+                    if (!Utility.isEmpty(amout)) {
+                        double am = Double.parseDouble(amout);
+                        if (am == 30) {
+                            showDialog();
+                        } else {
+                            packagesn = beans.get(0).getPackagesn();
+                            queryCode();
+                        }
+                    }
+                }
+
+
                 break;
             case R.id.iv_colse:
                 rl_code.setVisibility(View.GONE);
@@ -112,7 +133,7 @@ public class PassworadActivity extends BaseActivity1 implements NetWorkListener 
     private void saveCode() {
         Bitmap bitmap = ImageFactory.getConvertViewToBitmap(rl_tab);
         if (bitmap != null) {
-            ImageFactory.saveImageToGallery(this,bitmap);
+            ImageFactory.saveImageToGallery(this, bitmap);
         }
     }
 
@@ -153,14 +174,16 @@ public class PassworadActivity extends BaseActivity1 implements NetWorkListener 
     }
 
 
+    int packagesn;
+
     public void queryCode() {
         if (beans != null && beans.size() > 0) {
-            String sign = "iccid=" + SaveUtils.getCar().getIccid() + "&packagesn=" + beans.get(0).getPackagesn() + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+            String sign = "iccid=" + SaveUtils.getCar().getIccid() + "&packagesn=" + packagesn + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
             showProgressDialog(this, false);
             Map<String, String> params = okHttpModel.getParams();
             params.put("iccid", SaveUtils.getCar().getIccid());
             params.put("apptype", Constants.TYPE);
-            params.put("packagesn", beans.get(0).getPackagesn() + "");
+            params.put("packagesn", packagesn + "");
             params.put("partnerid", Constants.PARTNERID);
             params.put("sign", Md5Util.encode(sign));
             okHttpModel.get(Api.RESET_FLOW_CODE, params, Api.RESET_FLOW_CODE_ID, this);
@@ -214,17 +237,17 @@ public class PassworadActivity extends BaseActivity1 implements NetWorkListener 
         text_surplus.setText(bean.getData().getBalance() + "");
 
 
-        if (!Utility.isEmpty(bean.getData().getSurplus_usage())){
-            double usage= BigDecimalUtils.div(new BigDecimal(bean.getData().getSurplus_usage()+""),new BigDecimal(1024+""),2).doubleValue();
-            text_surplus_kb.setText(usage+ "");
+        if (!Utility.isEmpty(bean.getData().getSurplus_usage())) {
+            double usage = BigDecimalUtils.div(new BigDecimal(bean.getData().getSurplus_usage() + ""), new BigDecimal(1024 + ""), 2).doubleValue();
+            text_surplus_kb.setText(usage + "");
         }
-        if (!Utility.isEmpty(bean.getData().getDone_usage())){
-            double done= BigDecimalUtils.div(new BigDecimal(bean.getData().getDone_usage()+""),new BigDecimal(1024+""),2).doubleValue();
+        if (!Utility.isEmpty(bean.getData().getDone_usage())) {
+            double done = BigDecimalUtils.div(new BigDecimal(bean.getData().getDone_usage() + ""), new BigDecimal(1024 + ""), 2).doubleValue();
             text_surplus_user.setText(done + "");
         }
-        if (!Utility.isEmpty(bean.getData().getAmount_usage())){
-            double amout= BigDecimalUtils.div(new BigDecimal(bean.getData().getAmount_usage()+""),new BigDecimal(1024+""),2).doubleValue();
-            text_surplus_cycle.setText(amout+ "");
+        if (!Utility.isEmpty(bean.getData().getAmount_usage())) {
+            double amout = BigDecimalUtils.div(new BigDecimal(bean.getData().getAmount_usage() + ""), new BigDecimal(1024 + ""), 2).doubleValue();
+            text_surplus_cycle.setText(amout + "");
         }
 
         text_surplus_open.setText(bean.getData().getOpen_time() + "");
@@ -240,4 +263,28 @@ public class PassworadActivity extends BaseActivity1 implements NetWorkListener 
     public void onError(Exception e) {
         stopProgressDialog();
     }
+
+
+    public void showDialog() {
+        Dialog dialog = new Dialog(this);
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_layout_card, null);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(view);
+
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        OpemAdapter opemAdapter = new OpemAdapter(this, beans);
+        recyclerView.setAdapter(opemAdapter);
+        opemAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                packagesn = beans.get(position).getPackagesn();
+                dialog.dismiss();
+                queryCode();
+            }
+        });
+        dialog.show();
+    }
+
 }

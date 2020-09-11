@@ -292,7 +292,10 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
     /*****设置车辆状态******/
     private void updateView(OdbAndLocationVO vo) {
         text_bat.setText(Utility.judgeStrState(vo.getLocationdata().getSpeed() + "km/h", "--"));
-        text_temper.setText(vo.getObddata().getControl_module_voltage() + "V");
+        if (!Utility.isEmpty(vo.getObddata().getControl_module_voltage())){
+            text_temper.setText(BigDecimalUtils.round(new BigDecimal(vo.getObddata().getControl_module_voltage()),2) + "V");
+        }
+
         text_load.setText(vo.getObddata().getLoad_calculation_value() + "%");
         text_speed.setText(vo.getObddata().getEngine_speed() + "rmp");
         text_voltage.setText(vo.getObddata().getCoolant_temperature() + "°c");
