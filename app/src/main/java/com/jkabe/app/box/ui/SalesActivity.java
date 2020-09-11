@@ -19,6 +19,7 @@ import com.jkabe.box.R;
  */
 public class SalesActivity extends BaseActivity {
     private TextView title_text_tv, title_left_btn, text_transaction, text_change, text_reset;
+    private View view2,view1;
 
     @Override
     protected void initCreate(Bundle savedInstanceState) {
@@ -27,6 +28,8 @@ public class SalesActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        view1= getView(R.id.view1);
+        view2= getView(R.id.view2);
         text_transaction = getView(R.id.text_transaction);
         text_change = getView(R.id.text_change);
         text_reset = getView(R.id.text_reset);
@@ -40,6 +43,11 @@ public class SalesActivity extends BaseActivity {
         String isPay = SaveUtils.getSaveInfo().getIsPayPassword();
         if ("1".equals(isPay)) {
             text_transaction.setVisibility(View.GONE);
+        }else{
+            text_change.setVisibility(View.GONE);
+            view1.setVisibility(View.GONE);
+            view2.setVisibility(View.GONE);
+            text_reset.setVisibility(View.GONE);
         }
     }
 

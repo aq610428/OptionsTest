@@ -98,7 +98,7 @@ public class ImageFactory {
             LogUtils.e(e.getMessage());
             e.printStackTrace();
         }
-        // 最后通知图库更新
+//        // 最后通知图库更新
         Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         Uri uri = Uri.fromFile(file);
         intent.setData(uri);
