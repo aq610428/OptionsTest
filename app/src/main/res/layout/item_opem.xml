@@ -7,11 +7,14 @@
 
 
     <LinearLayout
+        android:id="@+id/ll_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorWhite"
         android:orientation="vertical"
         android:padding="5dp">
+
+
 
         <TextView
             android:id="@+id/text_name"
@@ -21,7 +24,7 @@
             android:paddingLeft="15dp"
             android:text="30M/月(一年)F"
             android:textColor="#090909"
-            android:textSize="15sp" />
+            android:textSize="14sp" />
 
 
         <TextView
@@ -32,7 +35,7 @@
             android:paddingLeft="15dp"
             android:text="365"
             android:textColor="#090909"
-            android:textSize="15sp" />
+            android:textSize="14sp" />
 
         <View
             android:layout_width="match_parent"

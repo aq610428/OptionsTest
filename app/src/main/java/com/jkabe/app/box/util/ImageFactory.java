@@ -38,27 +38,6 @@ import java.util.Date;
  */
 public class ImageFactory {
 
-
-    public static Bitmap getDrawable(Drawable drawable) {
-        int width = drawable.getIntrinsicWidth();
-        int heigh = drawable.getIntrinsicHeight();
-
-        drawable.setBounds(0, 0, width, heigh);
-
-        // 获取drawable的颜色格式
-        Bitmap.Config config = drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888
-                : Bitmap.Config.RGB_565;
-        // 创建bitmap
-        Bitmap bitmap = Bitmap.createBitmap(width, heigh, config);
-        // 创建bitmap画布
-        Canvas canvas = new Canvas(bitmap);
-        // 将drawable 内容画到画布中
-        drawable.draw(canvas);
-        return bitmap;
-    }
-
-
-
     public static Bitmap getConvertViewToBitmap(View view) {
         int width = view.getMeasuredWidth();
         int height = view.getMeasuredHeight();
@@ -70,40 +49,33 @@ public class ImageFactory {
     }
 
 
-
-    public static void saveImageToGallery(Context context, Bitmap bmp) {
-        // 首先保存图片 创建文件夹
-        File appDir = new File(Environment.getExternalStorageDirectory(), "shy");
+    public static boolean saveImageT(Context context, Bitmap bmp) {
+        String storePath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "dearxy";
+        File appDir = new File(storePath);
         if (!appDir.exists()) {
             appDir.mkdir();
         }
-        //图片文件名称
-        String fileName = "shy_"+System.currentTimeMillis() + ".jpg";
+        String fileName = System.currentTimeMillis() + ".jpg";
         File file = new File(appDir, fileName);
         try {
             FileOutputStream fos = new FileOutputStream(file);
-            bmp.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            //通过io流的方式来压缩保存图片
+            boolean isSuccess = bmp.compress(Bitmap.CompressFormat.JPEG, 60, fos);
             fos.flush();
             fos.close();
-        } catch (Exception e) {
-            LogUtils.e(e.getMessage());
-            e.printStackTrace();
-        }
 
-        // 其次把文件插入到系统图库
-        String path = file.getAbsolutePath();
-        try {
-            MediaStore.Images.Media.insertImage(context.getContentResolver(), path, fileName, null);
-        } catch (FileNotFoundException e) {
-            LogUtils.e(e.getMessage());
+            //保存图片后发送广播通知更新数据库
+            Uri uri = Uri.fromFile(file);
+            context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri));
+            if (isSuccess) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (IOException e) {
             e.printStackTrace();
         }
-//        // 最后通知图库更新
-        Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-        Uri uri = Uri.fromFile(file);
-        intent.setData(uri);
-        context.sendBroadcast(intent);
-        ToastUtil.showToast("保存成功");
+        return false;
     }
 
 
@@ -127,42 +99,7 @@ public class ImageFactory {
         return BitmapFactory.decodeFile(imgPath, newOpts);
     }
 
-    /**
-     * 压缩图片（质量压缩）
-     *
-     * @param bitmap
-     */
-    public static File compressImage(Bitmap bitmap) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);// 质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
-        int options = 100;
-        while (baos.toByteArray().length / 1024 > 500) { // 循环判断如果压缩后图片是否大于500kb,大于继续压缩
-            baos.reset();// 重置baos即清空baos
-            options -= 10;// 每次都减少10
-            bitmap.compress(Bitmap.CompressFormat.JPEG, options, baos);// 这里压缩options%，把压缩后的数据存放到baos中
-            long length = baos.toByteArray().length;
-        }
-        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
-        Date date = new Date(System.currentTimeMillis());
-        String filename = format.format(date);
-        File file = new File(Environment.getExternalStorageDirectory(), filename + ".png");
-        try {
-            FileOutputStream fos = new FileOutputStream(file);
-            try {
-                fos.write(baos.toByteArray());
-                fos.flush();
-                fos.close();
-            } catch (IOException e) {
 
-                e.printStackTrace();
-            }
-        } catch (FileNotFoundException e) {
-
-            e.printStackTrace();
-        }
-        recycleBitmap(bitmap);
-        return file;
-    }
 
     public static void recycleBitmap(Bitmap... bitmaps) {
         if (bitmaps == null) {
@@ -300,65 +237,8 @@ public class ImageFactory {
         fos.close();
     }
 
-    /**
-     * 按质量压缩，并将图像生成指定的路径
-     *
-     * @param imgPath
-     * @param outPath
-     * @param maxSize     目标将被压缩到小于这个大小（KB）。
-     * @param needsDelete 是否压缩后删除原始文件
-     * @throws IOException
-     */
-    public void compressAndGenImage(String imgPath, String outPath, int maxSize, boolean needsDelete)
-            throws IOException {
-        compressAndGenImage(getBitmap(imgPath), outPath, maxSize);
 
-        // Delete original file
-        if (needsDelete) {
-            File file = new File(imgPath);
-            if (file.exists()) {
-                file.delete();
-            }
-        }
-    }
 
-    /**
-     * 比例和生成拇指的路径指定
-     *
-     * @param image
-     * @param outPath
-     * @param pixelW  目标宽度像素
-     * @param pixelH  高度目标像素
-     * @throws FileNotFoundException
-     */
-    public void ratioAndGenThumb(Bitmap image, String outPath, float pixelW, float pixelH)
-            throws FileNotFoundException {
-        Bitmap bitmap = ratio(image, pixelW, pixelH);
-        storeImage(bitmap, outPath);
-    }
-
-    /**
-     * 比例和生成拇指的路径指定
-     *
-     * @param outPath
-     * @param pixelW      目标宽度像素
-     * @param pixelH      高度目标像素
-     * @param needsDelete 是否压缩后删除原始文件
-     * @throws FileNotFoundException
-     */
-    public void ratioAndGenThumb(String imgPath, String outPath, float pixelW, float pixelH, boolean needsDelete)
-            throws FileNotFoundException {
-        Bitmap bitmap = ratio(imgPath, pixelW, pixelH);
-        storeImage(bitmap, outPath);
-
-        // Delete original file
-        if (needsDelete) {
-            File file = new File(imgPath);
-            if (file.exists()) {
-                file.delete();
-            }
-        }
-    }
 
 
     public static String getPhotoPathFromContentUri(Context context, Uri uri) {

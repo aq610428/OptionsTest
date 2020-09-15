@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.core.content.FileProvider;
+
 import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.base.BaseApplication;
 import com.jkabe.app.box.util.Constants;
@@ -89,7 +92,8 @@ public class InvitationActivity extends BaseActivity {
         File file = FileManager.screenShot(bitmap);
         if (file != null) {
             Intent intent = new Intent(Intent.ACTION_SEND); // 启动分享发送的属性
-            intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(file));
+            Uri uri = FileProvider.getUriForFile(this, "com.jkabe.box.provider", file);
+            intent.putExtra(Intent.EXTRA_STREAM, uri);
             intent.setType("image/*");
             Intent chooser = Intent.createChooser(intent, "邀请好友");
             startActivity(chooser);

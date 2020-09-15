@@ -11,10 +11,8 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.jkabe.app.box.adapter.OpemAdapter;
 import com.jkabe.app.box.base.BaseActivity1;
 import com.jkabe.app.box.bean.CarInfo;
@@ -33,10 +31,12 @@ import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.Utility;
+import com.jkabe.app.box.weight.RuntimeRationale;
 import com.jkabe.box.R;
-
+import com.yanzhenjie.permission.Action;
+import com.yanzhenjie.permission.AndPermission;
+import com.yanzhenjie.permission.runtime.Permission;
 import org.json.JSONObject;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -85,7 +85,7 @@ public class PassworadActivity extends BaseActivity1 implements NetWorkListener 
         rl_tab.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                saveCode();
+                applyPermission();
                 return false;
             }
         });
@@ -118,9 +118,9 @@ public class PassworadActivity extends BaseActivity1 implements NetWorkListener 
                             queryCode();
                         }
                     }
+                }else{
+                    ToastUtil.showToast("您当前未购买套餐，请联系客服人员!");
                 }
-
-
                 break;
             case R.id.iv_colse:
                 rl_code.setVisibility(View.GONE);
@@ -129,11 +129,38 @@ public class PassworadActivity extends BaseActivity1 implements NetWorkListener 
         }
     }
 
+
+    public void applyPermission() {
+        AndPermission.with(this).runtime().permission(Permission.WRITE_EXTERNAL_STORAGE)
+                .rationale(new RuntimeRationale())
+                .onGranted(new Action<List<String>>() {
+                    @Override
+                    public void onAction(List<String> permissions) {
+                        saveCode();
+                    }
+                })
+                .onDenied(new Action<List<String>>() {
+                    @Override
+                    public void onAction(List<String> permissions) {
+                        if (AndPermission.hasAlwaysDeniedPermission(PassworadActivity.this, permissions)) {
+                            showSettingDialog(PassworadActivity.this, permissions);
+                        }
+                    }
+                })
+                .start();
+    }
+
+
     /******长按保存*****/
     private void saveCode() {
         Bitmap bitmap = ImageFactory.getConvertViewToBitmap(rl_tab);
         if (bitmap != null) {
-            ImageFactory.saveImageToGallery(this, bitmap);
+            boolean isSuccess = ImageFactory.saveImageT(this, bitmap);
+            if (isSuccess) {
+                ToastUtil.showToast("保存成功");
+            }else{
+                ToastUtil.showToast("图片保存失败，请打开写入权限！");
+            }
         }
     }
 
@@ -145,7 +172,11 @@ public class PassworadActivity extends BaseActivity1 implements NetWorkListener 
             query();
             queryList();
         } else {
-            ToastUtil.showToast("您的流量卡不存在，快去绑定吧~");
+            if (carInfo == null) {
+                ToastUtil.showLongToast("抱歉，您未绑定车辆，快去绑定吧~");
+            } else {
+                ToastUtil.showLongToast("抱歉，未能识别到设备流量卡号，请联系客服人员!");
+            }
         }
     }
 
@@ -188,7 +219,7 @@ public class PassworadActivity extends BaseActivity1 implements NetWorkListener 
             params.put("sign", Md5Util.encode(sign));
             okHttpModel.get(Api.RESET_FLOW_CODE, params, Api.RESET_FLOW_CODE_ID, this);
         } else {
-            ToastUtil.showToast("套餐列表为空，请联系客服~");
+            ToastUtil.showToast("您当前未购买套餐，请联系客服人员!");
         }
 
     }
@@ -200,10 +231,18 @@ public class PassworadActivity extends BaseActivity1 implements NetWorkListener 
             if (Constants.SUCESSCODE.equals(commonality.getStatusCode())) {
                 switch (id) {
                     case Api.RESET_FLOW_DEVICEE_ID:
-                        bean = JsonParse.getJSONicon(object);
-                        if (bean != null) {
-                            updateView();
+                        JSONObject jsonObject1 = object.optJSONObject("result");
+                        String state=jsonObject1.optString("state");
+                        if ("0".equals(state)){
+                            String data = jsonObject1.optString("data");
+                            ToastUtil.showToast(data + "");
+                        }else{
+                            bean = JsonParse.getJSONicon(object);
+                            if (bean != null) {
+                                updateView();
+                            }
                         }
+
                         break;
                     case Api.RESET_FLOW_List_ID:
                         beans = JsonParse.getStoreListJson(object);
@@ -220,6 +259,8 @@ public class PassworadActivity extends BaseActivity1 implements NetWorkListener 
             } else {
                 ToastUtil.showToast(commonality.getErrorDesc());
             }
+        } else {
+            ToastUtil.showToast(commonality.getErrorDesc());
         }
         stopProgressDialog();
     }
@@ -280,6 +321,7 @@ public class PassworadActivity extends BaseActivity1 implements NetWorkListener 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 packagesn = beans.get(position).getPackagesn();
+                opemAdapter.setmPosition(position);
                 dialog.dismiss();
                 queryCode();
             }

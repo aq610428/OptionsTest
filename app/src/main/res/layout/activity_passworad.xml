@@ -34,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="158****0169"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="@dimen/ctv_sizen_18"
                 android:textStyle="bold" />
@@ -47,7 +47,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="5dp"
                 android:gravity="center"
-                android:text="UID:154456"
+                android:text="UID:"
                 android:textColor="#BAC7FF"
                 android:textSize="@dimen/ctv_sizen_12" />
 
@@ -61,7 +61,7 @@
             android:layout_centerInParent="true"
             android:background="@mipmap/icon_power"
             android:gravity="center"
-            android:text="开机"
+            android:text="未知"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/ctv_sizen_13" />
 
