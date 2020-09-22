@@ -11,8 +11,8 @@
         android:layout_marginBottom="10dp"
         app:hl_cornerRadius="3dp"
         app:hl_shadowBackColor="#fff"
-        app:hl_shadowColor="#2A918F8F"
-        app:hl_shadowLimit="4dp">
+        app:hl_shadowColor="#08000000"
+        app:hl_shadowLimit="5dp">
 
 
         <LinearLayout

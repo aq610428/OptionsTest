@@ -7,8 +7,8 @@ android {
         applicationId "com.jkabe.box"
         minSdkVersion 15
         targetSdkVersion 29
-        versionCode 17
-        versionName "1.1.7"
+        versionCode 19
+        versionName "1.1.9"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         flavorDimensions "versionCode"
         multiDexEnabled true
@@ -47,10 +47,15 @@ android {
         release {
             minifyEnabled false //混淆
             zipAlignEnabled true  //压缩优化
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
         }
     }
+
+
+
+
 
     android.applicationVariants.all { variant ->
         variant.outputs.all {

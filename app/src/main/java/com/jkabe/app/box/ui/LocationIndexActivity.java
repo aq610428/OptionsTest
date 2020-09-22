@@ -11,6 +11,7 @@ import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.MapView;
 import com.amap.api.maps.model.BitmapDescriptorFactory;
+import com.amap.api.maps.model.CameraPosition;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
@@ -315,6 +316,7 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
             marker.showInfoWindow();
         }
         aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
+        CameraUpdateFactory.newCameraPosition(new CameraPosition(latLng,14,30,0));
     }
 
 

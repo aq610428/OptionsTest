@@ -95,6 +95,7 @@ public class OilActivity extends BaseActivity implements NetWorkListener {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String price = text_price.getText().toString();
                 if (!Utility.isEmpty(price)) {
+                    price=price.replaceAll("元","");
                     PreferenceUtils.setPrefString(OilActivity.this, Constants.OIL, price);
                     if (oil != null) {
                         updateView();
@@ -158,9 +159,9 @@ public class OilActivity extends BaseActivity implements NetWorkListener {
     private void updateView() {
         text_develop.setText(oil.getMileage() + "公里");
         text_mean.setText(oil.getAvgoil());
-        String price = PreferenceUtils.getPrefString(OilActivity.this, Constants.OIL, "");
+        String price = PreferenceUtils.getPrefString(OilActivity.this, Constants.OIL, "").replaceAll("元","");
         if (!Utility.isEmpty(price)) {
-            String spend = BigDecimalUtils.mul(new BigDecimal(oil.getOils()), new BigDecimal(price)).toPlainString();
+            String spend = BigDecimalUtils.mul(new BigDecimal(oil.getOils()), new BigDecimal(price.replaceAll("元","'"))).toPlainString();
             text_tel.setText(spend + "元");
             BigDecimal spen = BigDecimalUtils.div(new BigDecimal(oil.getOils()), new BigDecimal(oil.getMileage()), 2);
             text_cost.setText(BigDecimalUtils.mul(spen, new BigDecimal(price)).toPlainString() + "元/公里");
