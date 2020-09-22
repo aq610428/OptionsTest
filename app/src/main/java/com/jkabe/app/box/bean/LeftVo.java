@@ -35,7 +35,7 @@ public class LeftVo implements Serializable {
         this.items = items;
     }
 
-    public static class ItemsBean implements Serializable{
+    public class ItemsBean implements Serializable {
         /**
          * color : 1890EF
          * name : 惠保养

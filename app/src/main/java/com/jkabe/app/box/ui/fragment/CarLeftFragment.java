@@ -83,14 +83,12 @@ public class CarLeftFragment extends BaseFragment implements View.OnClickListene
         swipeToLoadLayout.setOnRefreshListener(this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
-
         query();
         queryList();
     }
 
 
     public void updateView() {
-        //设置图片网址或地址的集合
         banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
         //设置图片加载器，图片加载器在下方
         banner.setImageLoader(new MyLoader());

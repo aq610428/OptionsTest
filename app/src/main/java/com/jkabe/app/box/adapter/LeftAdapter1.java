@@ -7,22 +7,22 @@ import android.widget.AdapterView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.jkabe.app.box.ui.BindActivity;
-import com.jkabe.app.box.ui.BrandCarActivity;
-import com.jkabe.app.box.ui.StoreDeilActivity;
-import com.jkabe.box.R;
 import com.jkabe.app.box.bean.CarInfo;
 import com.jkabe.app.box.bean.LeftVo;
+import com.jkabe.app.box.ui.BindActivity;
 import com.jkabe.app.box.ui.LocationActivity;
 import com.jkabe.app.box.ui.PreviewActivity;
+import com.jkabe.app.box.ui.StoreDeilActivity;
 import com.jkabe.app.box.ui.StoreListActivity;
 import com.jkabe.app.box.ui.fragment.CarLeftFragment;
+import com.jkabe.app.box.ui.fragment.LeftFragment;
 import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.DialogUtils;
+import com.jkabe.box.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,11 +32,11 @@ import java.util.List;
  * @date: 2020/5/26
  * @name:清单
  */
-public class LeftAdapter extends AutoRVAdapter {
+public class LeftAdapter1 extends AutoRVAdapter {
     private List<LeftVo> inventories = new ArrayList<>();
-    private CarLeftFragment fragment;
+    private LeftFragment fragment;
 
-    public LeftAdapter(CarLeftFragment fragment, List<LeftVo> inventories) {
+    public LeftAdapter1(LeftFragment fragment, List<LeftVo> inventories) {
         super(fragment.getContext(), inventories);
         this.fragment = fragment;
         this.inventories = inventories;

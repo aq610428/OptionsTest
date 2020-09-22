@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/iv_logo"
-        android:layout_width="55dp"
-        android:layout_height="55dp" />
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
 
     <TextView
         android:id="@+id/text_name"
@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textColor="@color/black33"
-        android:textSize="@dimen/ctv_sizen_14" />
+        android:textSize="@dimen/ctv_sizen_13" />
 
 
 </LinearLayout>

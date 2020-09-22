@@ -50,20 +50,22 @@
             android:id="@+id/icon_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp" />
+            android:layout_marginTop="40dp" />
 
 
-        <TextView
-            android:id="@+id/text_code"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="我的邀请码："
-            android:textStyle="bold"
-            android:textColor="@color/black33"
-            android:textSize="16sp" />
     </LinearLayout>
 
+
+    <TextView
+        android:id="@+id/text_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="540dp"
+        android:gravity="center"
+        android:text="我的邀请码："
+        android:textColor="@color/black33"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="match_parent"

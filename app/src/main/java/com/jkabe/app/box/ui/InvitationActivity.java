@@ -35,10 +35,6 @@ public class InvitationActivity extends BaseActivity {
     private TextView text_head, text_code;
     private ImageView icon_code;
     private RelativeLayout rl_share;
-    protected String[] needPermissions = {
-            Permission.WRITE_EXTERNAL_STORAGE,
-            Permission.READ_EXTERNAL_STORAGE,
-    };
 
     @Override
     protected void initCreate(Bundle savedInstanceState) {
