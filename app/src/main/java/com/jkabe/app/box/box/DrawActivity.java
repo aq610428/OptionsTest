@@ -17,6 +17,7 @@ import com.jkabe.app.box.bean.CommonalityModel;
 import com.jkabe.app.box.bean.Typeitems;
 import com.jkabe.app.box.bean.Usdinfo;
 import com.jkabe.app.box.bean.UsdtBean;
+import com.jkabe.app.box.bean.UserInfo;
 import com.jkabe.app.box.config.Api;
 import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
@@ -32,9 +33,7 @@ import com.jkabe.app.box.zxing.android.CaptureActivity;
 import com.jkabe.box.R;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.runtime.Permission;
-
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -199,8 +198,13 @@ public class DrawActivity extends BaseActivity implements NetWorkListener {
     @Override
     protected void onResume() {
         super.onResume();
-        if ("0".equals(SaveUtils.getSaveInfo().getIsPayPassword() + "")) {//未设置
-            DialogUtils.showPassword(this);
+        UserInfo userInfo = SaveUtils.getSaveInfo();
+        if ("1".equals(userInfo.getIsPayOrExtState())) {//已锁仓
+            DialogUtils.showPassword1(this);
+        } else {
+            if ("0".equals(userInfo.getIsPayPassword() + "")) {//未设置
+                DialogUtils.showPassword(this);
+            }
         }
     }
 

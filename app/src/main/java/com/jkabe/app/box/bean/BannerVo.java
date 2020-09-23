@@ -31,6 +31,10 @@ public class BannerVo implements Serializable {
     private String inwardVal;
     private int advertState;
 
+    public BannerVo(String filepath) {
+        this.filepath = filepath;
+    }
+
     public String getId() {
         return id;
     }

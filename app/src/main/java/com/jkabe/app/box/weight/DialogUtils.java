@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
+
 import com.jkabe.app.box.base.BaseApplication;
 import com.jkabe.app.box.box.TransactionActivity;
 import com.jkabe.app.box.ui.ActivationActivity;
@@ -19,13 +20,13 @@ import com.jkabe.app.box.ui.LicenseActivity;
 
 
 public class DialogUtils {
-    public static void showBind(int type,Context context) {
+    public static void showBind(int type, Context context) {
         Dialog dialog = new Dialog(context);
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_layout_ming, null);
         TextView text_name = view.findViewById(R.id.text_name);
         if (type == 1) {
             text_name.setText("您尚未绑定车辆，快去绑定吧~");
-        }else{
+        } else {
             text_name.setText("您尚未激活box,快去激活吧~");
         }
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -39,9 +40,9 @@ public class DialogUtils {
         view.findViewById(R.id.confirm).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (type==1){
+                if (type == 1) {
                     context.startActivity(new Intent(context, BindActivity.class));
-                }else{
+                } else {
                     context.startActivity(new Intent(context, ActivationActivity.class));
                 }
                 dialog.dismiss();
@@ -74,11 +75,37 @@ public class DialogUtils {
         dialog.show();
     }
 
-    public static void showLogin(Context context,String msg) {
+
+    public static void showPassword1(Activity activity) {
+        Dialog dialog = new Dialog(activity);
+        View view = LayoutInflater.from(activity).inflate(R.layout.dialog_layout_ming, null);
+        TextView text_name = view.findViewById(R.id.text_name);
+        text_name.setText("您的账户已锁定");
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setCancelable(false);
+        dialog.setContentView(view);
+        view.findViewById(R.id.cancel).setVisibility(View.GONE);
+        view.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        view.findViewById(R.id.confirm).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.finish();
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
+    public static void showLogin(Context context, String msg) {
         Dialog dialog = new Dialog(context);
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_layout_ming, null);
         TextView text_name = view.findViewById(R.id.text_name);
-        text_name.setText(msg+"");
+        text_name.setText(msg + "");
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         dialog.setContentView(view);

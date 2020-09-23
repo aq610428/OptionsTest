@@ -35,6 +35,7 @@ import com.jkabe.app.box.ui.LocationActivity;
 import com.jkabe.app.box.ui.PreviewActivity;
 import com.jkabe.app.box.ui.StoreDeilActivity;
 import com.jkabe.app.box.ui.StoreListActivity;
+import com.jkabe.app.box.ui.WareDeilActivity;
 import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.JsonParse;
 import com.jkabe.app.box.util.Md5Util;
@@ -119,6 +120,13 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
         wareAdapter=new WareAdapter(getContext(),list);
         recyclerView1.setHasFixedSize(true);
         recyclerView1.setAdapter(wareAdapter);
+
+        wareAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                startActivity(new Intent(getContext(), WareDeilActivity.class));
+            }
+        });
     }
 
 

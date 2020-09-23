@@ -8,8 +8,6 @@ import java.io.Serializable;
  * @name:UserInfo
  */
 public class UserInfo implements Serializable {
-
-
     /**
      * id : e573c2c0ed4d40aebee62750b507194b
      * loginname : 18588246540
@@ -54,6 +52,15 @@ public class UserInfo implements Serializable {
     private int isstore;
     private String descriptionToString;
     private String isMining;  //是否已激活KB
+
+    public String getIsPayOrExtState() {
+        return isPayOrExtState;
+    }
+
+    public void setIsPayOrExtState(String isPayOrExtState) {
+        this.isPayOrExtState = isPayOrExtState;
+    }
+
     private String isPayOrExtState;// 1  充提已锁定   其它：正常
 
     public String getToken() {
