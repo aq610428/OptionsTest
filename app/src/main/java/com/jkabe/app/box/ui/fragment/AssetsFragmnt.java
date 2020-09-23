@@ -37,7 +37,7 @@ public class AssetsFragmnt extends BaseActivity implements NetWorkListener, OnRe
     private int page = 1;
     private NoDataView mNoDataView;
     private TextView text_num_bc, text_user_bc, text_congeal_bc, text_usd_bc;
-    UsdtBean usdtBean;
+    private  UsdtBean usdtBean;
     private TextView title_text_tv, title_left_btn;
 
 
@@ -67,7 +67,6 @@ public class AssetsFragmnt extends BaseActivity implements NetWorkListener, OnRe
         text_cny = getView(R.id.text_cny);
         swipeToLoadLayout.setOnRefreshListener(this);
         mNoDataView.textView.setText("账户暂无资产流水");
-
 
         text_num_usd.setOnClickListener(this);
         text_num_bc.setOnClickListener(this);

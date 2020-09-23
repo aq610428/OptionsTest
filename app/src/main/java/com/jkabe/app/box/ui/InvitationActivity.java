@@ -55,7 +55,7 @@ public class InvitationActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        text_code.setText("我的邀请码:" + SaveUtils.getSaveInfo().getFriendcode());
+        text_code.setText("我的邀请码:" + SaveUtils.getSaveInfo().getRmcode());
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
         String url = SaveUtils.getSaveInfo().getTgurl() + "&apptype=" + Constants.TYPE;
         Bitmap mBitmap = QRCodeUtil.createQRCodeWithLogo(url, 700, bitmap);

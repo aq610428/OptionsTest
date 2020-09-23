@@ -54,6 +54,7 @@ public class UserInfo implements Serializable {
     private int isstore;
     private String descriptionToString;
     private String isMining;  //是否已激活KB
+    private String isPayOrExtState;// 1  充提已锁定   其它：正常
 
     public String getToken() {
         return token;
