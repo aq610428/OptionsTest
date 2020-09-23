@@ -55,6 +55,15 @@ public final class SystemTools {
     }
 
 
+    public static String getTv(long l){
+        if(l>=10){
+            return l+"";
+        }else{
+            return "0"+l;//小于10,,前面补位一个"0"
+        }
+    }
+
+
     public static String mathKmTwo(int mile) {
         String value = fomatData((Float.valueOf(mile) / 1000), "0.00") + "";
         return value;

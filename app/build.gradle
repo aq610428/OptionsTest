@@ -117,6 +117,5 @@ dependencies {
     implementation files('libs/core-3.0.0.jar')
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     implementation 'noman.weekcalendar:weekcalendar:1.0.6'
-    implementation 'com.github.zrunker:ZCountDownView:v1.1'
 }
 

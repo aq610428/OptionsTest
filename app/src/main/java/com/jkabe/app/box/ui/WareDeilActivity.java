@@ -2,18 +2,23 @@ package com.jkabe.app.box.ui;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
+import android.widget.TextView;
+
 import com.jkabe.app.box.banner.Banner;
 import com.jkabe.app.box.banner.BannerConfig;
 import com.jkabe.app.box.banner.Transformer;
 import com.jkabe.app.box.banner.listener.OnBannerListener;
 import com.jkabe.app.box.base.BaseActivity1;
 import com.jkabe.app.box.bean.BannerVo;
-import com.jkabe.app.box.util.LogUtils;
+import com.jkabe.app.box.util.SystemTools;
 import com.jkabe.app.box.weight.MyLoader;
 import com.jkabe.box.R;
+
 import java.util.ArrayList;
 import java.util.List;
-import cc.ibooker.zcountdownviewlib.CountDownView;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * @author: zt
@@ -23,7 +28,31 @@ import cc.ibooker.zcountdownviewlib.CountDownView;
 public class WareDeilActivity extends BaseActivity1 implements OnBannerListener {
     private Banner banner;
     private List<BannerVo> banners = new ArrayList<>();
-    private CountDownView countDownView;
+    private long mDay = 23;// 天
+    private long mHour = 11;//小时,
+    private long mMin = 56;//分钟,
+    private long mSecond = 32;//秒
+    private Timer mTimer = new Timer();
+    ;
+    private String str;
+    private TextView text_date;
+
+
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (msg.what == 1) {
+                computeTime();
+                str = mDay + "天" + SystemTools.getTv(mHour) + "时" + SystemTools.getTv(mMin) + "分" + SystemTools.getTv(mSecond) + "秒";
+                text_date.setText(str);
+                if (mSecond == 0 && mDay == 0 && mHour == 0 && mMin == 0) {
+                    mTimer.cancel();
+                }
+            }
+        }
+    };
+
 
     @Override
     protected void initCreate(Bundle savedInstanceState) {
@@ -33,57 +62,30 @@ public class WareDeilActivity extends BaseActivity1 implements OnBannerListener 
     @Override
     protected void initView() {
         banner = getView(R.id.banner);
-        countDownView = getView(R.id.countdownView);
+        text_date = getView(R.id.text_date);
         updateView();
     }
 
     @Override
     protected void initData() {
-        countDownView.setCountTime(111111) // 设置倒计时时间戳
-                .setHourTvBackgroundRes(R.drawable.bg_shape_read)
-                .setHourTvTextColorHex("#FFFFFF")
-                .setHourTvGravity(CountDownView.CountDownViewGravity.GRAVITY_CENTER)
-                .setHourTvTextSize(21)
-
-                .setHourColonTvBackgroundColorHex("#00FFFFFF")
-                .setHourColonTvSize(18, 0)
-                .setHourColonTvTextColorHex("#FF7198")
-                .setHourColonTvGravity(CountDownView.CountDownViewGravity.GRAVITY_CENTER)
-                .setHourColonTvTextSize(21)
-
-                .setMinuteTvBackgroundRes(R.drawable.bg_shape_read)
-                .setMinuteTvTextColorHex("#FFFFFF")
-                .setMinuteTvTextSize(21)
-
-                .setMinuteColonTvSize(18, 0)
-                .setMinuteColonTvTextColorHex("#FF7198")
-                .setMinuteColonTvTextSize(21)
-
-                .setSecondTvBackgroundRes(R.drawable.bg_shape_read)
-                .setSecondTvTextColorHex("#FFFFFF")
-                .setSecondTvTextSize(21)
-                .startCountDown();
-        countDownView.setCountDownEndListener(new CountDownView.CountDownEndListener() {
-            @Override
-            public void onCountDownEnd() {
-                LogUtils.e("倒计时结束");
-            }
-        });
-
+        startRun();
 
     }
 
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        new Handler().postDelayed(new Runnable() {
+    /******开始倒计时******/
+    private void startRun() {
+        TimerTask mTimerTask = new TimerTask() {
             @Override
             public void run() {
-                countDownView.stopCountDown();
+                Message message = Message.obtain();
+                message.what = 1;
+                mHandler.sendMessage(message);
             }
-        }, 2000);
+        };
+        mTimer.schedule(mTimerTask, 0, 1000);
     }
+
 
     public void updateView() {
         banners.add(new BannerVo("https://img.alicdn.com/imgextra/i1/2423612906/O1CN01ZdaDVp1XKzaVMxYOA_!!2423612906.jpg"));
@@ -112,5 +114,40 @@ public class WareDeilActivity extends BaseActivity1 implements OnBannerListener 
     @Override
     public void OnBannerClick(int position) {
 
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mHandler.removeMessages(0);
+        mTimer.cancel();
+    }
+
+    /**
+     * 倒计时计算
+     */
+    private void computeTime() {
+        mSecond--;
+        if (mSecond < 0) {
+            mMin--;
+            mSecond = 59;
+            if (mMin < 0) {
+                mMin = 59;
+                mHour--;
+                if (mHour < 0) {
+                    // 倒计时结束
+                    mHour = 23;
+                    mDay--;
+                    if (mDay < 0) {
+                        // 倒计时结束
+                        mDay = 0;
+                        mHour = 0;
+                        mMin = 0;
+                        mSecond = 0;
+                    }
+                }
+            }
+        }
     }
 }

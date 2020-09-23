@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     android:orientation="vertical">
 
 
@@ -29,12 +30,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@mipmap/icon_bg_tb"
-                android:gravity="center|left">
+                android:gravity="center">
 
                 <TextView
                     android:id="@+id/text_rmb"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="60dp"
                     android:gravity="center"
                     android:paddingLeft="15dp"
                     android:text="￥"
@@ -45,7 +46,7 @@
                 <TextView
                     android:id="@+id/text_bat"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="60dp"
                     android:layout_toRightOf="@+id/text_rmb"
                     android:gravity="center"
                     android:text="15.90"
@@ -56,7 +57,10 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <TextView
@@ -65,23 +69,115 @@
                         android:gravity="center"
                         android:text="距结束还剩"
                         android:textColor="#F641AE"
-                        android:textSize="14sp" />
+                        android:textSize="13sp" />
 
-                    <cc.ibooker.zcountdownviewlib.CountDownView
-                        android:id="@+id/countdownView"
+                    <TextView
+                        android:id="@+id/text_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:layout_marginTop="20dp" />
-
+                        android:gravity="center"
+                        android:text="距结束还剩"
+                        android:textColor="#F641AE"
+                        android:textSize="13sp" />
 
                 </LinearLayout>
 
             </RelativeLayout>
+
+            <TextView
+                android:id="@+id/text_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:gravity="center|left"
+                android:text="进口澳洲橙1盒/ 净果肉300g"
+                android:textColor="@color/black33"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/text_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp"
+                android:gravity="center|left"
+                android:text="提货时间：08月13日"
+                android:textColor="#616161"
+                android:textSize="14sp" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="7dp"
+                android:background="#F0F0F0" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:gravity="center|left"
+                android:text="商品详情"
+                android:textColor="@color/black33"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/icon_test" />
 
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
 
 
-</LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorWhite"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/dive_line" />
+
+        <TextView
+            android:id="@+id/text_cart"
+            android:layout_width="84dp"
+            android:layout_height="32dp"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@+id/text_pay"
+            android:background="@drawable/shape_buy_bg"
+            android:gravity="center"
+            android:text="加入购物车"
+            android:textColor="@color/colorWhite"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/text_pay"
+            android:layout_width="84dp"
+            android:layout_height="32dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:background="@drawable/shape_buy"
+            android:gravity="center"
+            android:text="立即购买"
+            android:textColor="@color/colorWhite"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+</RelativeLayout>

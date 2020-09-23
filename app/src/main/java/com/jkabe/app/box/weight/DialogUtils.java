@@ -80,7 +80,7 @@ public class DialogUtils {
         Dialog dialog = new Dialog(activity);
         View view = LayoutInflater.from(activity).inflate(R.layout.dialog_layout_ming, null);
         TextView text_name = view.findViewById(R.id.text_name);
-        text_name.setText("您的账户已锁定");
+        text_name.setText("您的账户已锁仓");
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         dialog.setContentView(view);
