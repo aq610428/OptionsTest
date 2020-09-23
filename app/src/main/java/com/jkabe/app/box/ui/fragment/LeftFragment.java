@@ -74,7 +74,7 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (rootView == null) {
-            rootView = inflater.inflate(R.layout.fragment_car_left, container, false);
+            rootView = inflater.inflate(R.layout.fragment_left, container, false);
             initView();
             lazyLoad();
         }

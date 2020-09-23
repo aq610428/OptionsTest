@@ -1,7 +1,7 @@
 package com.jkabe.app.box.ui;
 
 import android.os.Bundle;
-
+import android.os.Handler;
 import com.jkabe.app.box.banner.Banner;
 import com.jkabe.app.box.banner.BannerConfig;
 import com.jkabe.app.box.banner.Transformer;
@@ -11,10 +11,8 @@ import com.jkabe.app.box.bean.BannerVo;
 import com.jkabe.app.box.util.LogUtils;
 import com.jkabe.app.box.weight.MyLoader;
 import com.jkabe.box.R;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import cc.ibooker.zcountdownviewlib.CountDownView;
 
 /**
@@ -75,6 +73,17 @@ public class WareDeilActivity extends BaseActivity1 implements OnBannerListener 
 
     }
 
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                countDownView.stopCountDown();
+            }
+        }, 2000);
+    }
 
     public void updateView() {
         banners.add(new BannerVo("https://img.alicdn.com/imgextra/i1/2423612906/O1CN01ZdaDVp1XKzaVMxYOA_!!2423612906.jpg"));
