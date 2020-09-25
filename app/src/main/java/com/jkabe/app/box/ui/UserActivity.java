@@ -220,7 +220,7 @@ public class UserActivity extends BaseActivity implements NetWorkListener {
         Album.image(this) // Image selection.
                 .multipleChoice()
                 .camera(true)
-                .columnCount(1)
+                .columnCount(4)
                 .selectCount(1)
                 .checkedList(albumFiles)
                 .onResult(result -> {

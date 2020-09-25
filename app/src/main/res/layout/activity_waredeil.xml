@@ -19,11 +19,39 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <com.jkabe.app.box.banner.Banner
-                android:id="@+id/banner"
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="329dp"
-                android:background="@drawable/dialog_bg" />
+                android:layout_height="329dp">
+
+                <com.jkabe.app.box.banner.Banner
+                    android:id="@+id/banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <ImageView
+                    android:id="@+id/iv_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:padding="15dp"
+                    android:src="@mipmap/icon_left_ware" />
+
+                <TextView
+                    android:id="@+id/text_num"
+                    android:layout_width="43dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/num_bg_shape"
+                    android:gravity="center"
+                    android:text="￥"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="13sp" />
+
+            </RelativeLayout>
 
 
             <RelativeLayout
@@ -88,11 +116,13 @@
                 android:id="@+id/text_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="15dp"
                 android:gravity="center|left"
                 android:text="进口澳洲橙1盒/ 净果肉300g"
                 android:textColor="@color/black33"
-                android:textSize="14sp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -100,12 +130,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="15dp"
                 android:gravity="center|left"
                 android:text="提货时间：08月13日"
                 android:textColor="#616161"
-                android:textSize="14sp" />
+                android:textSize="13sp" />
 
 
             <View
@@ -150,6 +181,19 @@
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:background="@color/dive_line" />
+
+        <TextView
+            android:id="@+id/text_cart_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@+id/text_cart"
+            android:drawableTop="@mipmap/icon_cart_un"
+            android:gravity="center"
+            android:text="购物车"
+            android:textColor="#616161"
+            android:textSize="13sp" />
 
         <TextView
             android:id="@+id/text_cart"

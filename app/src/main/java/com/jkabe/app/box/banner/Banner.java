@@ -314,7 +314,7 @@ public class Banner extends FrameLayout implements ViewPager.OnPageChangeListene
     }
 
     private void setBannerStyleUI() {
-        int visibility = count > 1 ? View.VISIBLE : View.GONE;
+        int visibility = count > 1 ? View.GONE : View.GONE;
         switch (bannerStyle) {
             case BannerConfig.CIRCLE_INDICATOR:
                 indicator.setVisibility(visibility);

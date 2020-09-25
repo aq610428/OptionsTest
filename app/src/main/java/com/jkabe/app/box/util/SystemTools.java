@@ -13,12 +13,8 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.os.Build;
 import android.text.TextUtils;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 import androidx.core.content.FileProvider;
-import com.amap.api.location.CoordinateConverter;
-import com.amap.api.location.DPoint;
 import com.amap.api.maps.model.LatLng;
 import com.jkabe.app.box.base.BaseApplication;
 import java.io.File;
@@ -81,23 +77,6 @@ public final class SystemTools {
     }
 
 
-    public static LatLng getLatLng1(double lat, double lon, Activity activity) {
-        LatLng latLng = null;
-        try {
-            CoordinateConverter converter = new CoordinateConverter(activity);
-            converter.from(CoordinateConverter.CoordType.GPS);
-            DPoint dPoint = new DPoint();
-            dPoint.setLatitude(lat);
-            dPoint.setLongitude(lon);
-            converter.coord(dPoint);
-            DPoint desLatLng = converter.convert();
-            latLng = new LatLng(desLatLng.getLatitude(), desLatLng.getLongitude());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return latLng;
-    }
-
 
     public static List<String> getList() {
         List<String> list = new ArrayList<>();
@@ -110,22 +89,6 @@ public final class SystemTools {
     }
 
 
-
-    //分享图片到微信
-    /**
-     * Context context
-     * 图片 uri
-     */
-    public static void shareWechatFriend(Context context, Uri uri) {
-        Intent intent = new Intent();
-        ComponentName cop = new ComponentName("com.tencent.mm", "com.tencent.mm.ui.tools.ShareImgUI");
-        intent.setComponent(cop);
-        intent.setAction(Intent.ACTION_SEND);
-        intent.setType("image/*");
-        intent.putExtra(Intent.EXTRA_STREAM, uri);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(Intent.createChooser(intent, "Share"));
-    }
 
 
     /**

@@ -3,8 +3,10 @@ package com.jkabe.app.box.ui;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
-
+import androidx.viewpager.widget.ViewPager;
 import com.jkabe.app.box.banner.Banner;
 import com.jkabe.app.box.banner.BannerConfig;
 import com.jkabe.app.box.banner.Transformer;
@@ -12,9 +14,8 @@ import com.jkabe.app.box.banner.listener.OnBannerListener;
 import com.jkabe.app.box.base.BaseActivity1;
 import com.jkabe.app.box.bean.BannerVo;
 import com.jkabe.app.box.util.SystemTools;
-import com.jkabe.app.box.weight.MyLoader;
+import com.jkabe.app.box.weight.MyLoader1;
 import com.jkabe.box.R;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -28,14 +29,14 @@ import java.util.TimerTask;
 public class WareDeilActivity extends BaseActivity1 implements OnBannerListener {
     private Banner banner;
     private List<BannerVo> banners = new ArrayList<>();
-    private long mDay = 23;// 天
-    private long mHour = 11;//小时,
+    private long mDay = 1;// 天
+    private long mHour = 1;//小时,
     private long mMin = 56;//分钟,
     private long mSecond = 32;//秒
     private Timer mTimer = new Timer();
-    ;
     private String str;
-    private TextView text_date;
+    private TextView text_date,text_num;
+    private ImageView iv_left;
 
 
     private Handler mHandler = new Handler() {
@@ -61,15 +62,17 @@ public class WareDeilActivity extends BaseActivity1 implements OnBannerListener 
 
     @Override
     protected void initView() {
+        text_num = getView(R.id.text_num);
+        iv_left = getView(R.id.iv_left);
         banner = getView(R.id.banner);
         text_date = getView(R.id.text_date);
-        updateView();
+        iv_left.setOnClickListener(this);
     }
 
     @Override
     protected void initData() {
         startRun();
-
+        updateView();
     }
 
 
@@ -94,8 +97,9 @@ public class WareDeilActivity extends BaseActivity1 implements OnBannerListener 
         banners.add(new BannerVo("https://img.alicdn.com/imgextra/i2/2423612906/O1CN01d8H5WT1XKzaYvAtHU_!!2423612906.jpg"));
         banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
         //设置图片加载器，图片加载器在下方
-        banner.setImageLoader(new MyLoader());
+        banner.setImageLoader(new MyLoader1());
         banner.setImages(banners);
+        text_num.setText("1/"+banners.size());
         //设置轮播的动画效果，内含多种特效，可点入方法内查找后内逐一体验
         banner.setBannerAnimation(Transformer.Accordion);
         banner.setTitleView(true);
@@ -109,6 +113,22 @@ public class WareDeilActivity extends BaseActivity1 implements OnBannerListener 
                 .setOnBannerListener(this)
                 //必须最后调用的方法，启动轮播图。
                 .start();
+        banner.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                text_num.setText((position+1)+"/"+banners.size());
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     @Override
@@ -116,6 +136,16 @@ public class WareDeilActivity extends BaseActivity1 implements OnBannerListener 
 
     }
 
+
+    @Override
+    public void onClick(View v) {
+        super.onClick(v);
+        switch (v.getId()) {
+            case R.id.iv_left:
+                finish();
+                break;
+        }
+    }
 
     @Override
     protected void onPause() {

@@ -1,7 +1,6 @@
 package com.jkabe.app.box.glide;
 
 import android.graphics.Color;
-
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.jkabe.box.R;
