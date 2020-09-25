@@ -11,7 +11,9 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.Nullable;
+
 import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.bean.CommonalityModel;
 import com.jkabe.app.box.bean.Typeitems;
@@ -199,12 +201,8 @@ public class DrawActivity extends BaseActivity implements NetWorkListener {
     protected void onResume() {
         super.onResume();
         UserInfo userInfo = SaveUtils.getSaveInfo();
-        if ("1".equals(userInfo.getIsPayOrExtState())) {//已锁仓
-            DialogUtils.showPassword1(this);
-        } else {
-            if ("0".equals(userInfo.getIsPayPassword() + "")) {//未设置
-                DialogUtils.showPassword(this);
-            }
+        if ("0".equals(userInfo.getIsPayPassword() + "")) {//未设置
+            DialogUtils.showPassword(this);
         }
     }
 
@@ -260,7 +258,12 @@ public class DrawActivity extends BaseActivity implements NetWorkListener {
             Usdinfo bean = usdinfos.get(i);
             if (coinTypeId.equals(bean.getCoinTypeId())) {
                 userable = bean.getUserable();
-                text_user.setText("可用" + bean.getUserable() + "");
+                if (1 == bean.getIsLock()) {
+                    DialogUtils.showPassword1(this);
+                    text_copy.setVisibility(View.GONE);
+                }else{
+                    text_copy.setVisibility(View.VISIBLE);
+                }
             }
         }
     }
@@ -298,7 +301,13 @@ public class DrawActivity extends BaseActivity implements NetWorkListener {
                     text_dig.setText(usdtBean.getUsdt().getCoinTypeName());
                     text_num_box.setText(usdtBean.getUsdt().getCoinTypeName());
                     text_service_box.setText(usdtBean.getUsdt().getCoinTypeName());
-                    updateView();
+                    text_user.setText("可用" + usdtBean.getUsdt().getUserable() + "");
+                    if (1 == usdtBean.getUsdt().getIsLock()) {
+                        DialogUtils.showPassword1(DrawActivity.this);
+                        text_copy.setVisibility(View.GONE);
+                    }else{
+                        text_copy.setVisibility(View.VISIBLE);
+                    }
                     update();
                 }
                 dialog.dismiss();
@@ -312,7 +321,13 @@ public class DrawActivity extends BaseActivity implements NetWorkListener {
                     text_dig.setText(usdtBean.getBox().getCoinTypeName());
                     text_num_box.setText(usdtBean.getBox().getCoinTypeName());
                     text_service_box.setText(usdtBean.getBox().getCoinTypeName());
-                    updateView();
+                    text_user.setText("可用" + usdtBean.getBox().getUserable() + "");
+                    if (1 == usdtBean.getBox().getIsLock()) {
+                        DialogUtils.showPassword1(DrawActivity.this);
+                        text_copy.setVisibility(View.GONE);
+                    }else{
+                        text_copy.setVisibility(View.VISIBLE);
+                    }
                     update();
                 }
                 dialog.dismiss();

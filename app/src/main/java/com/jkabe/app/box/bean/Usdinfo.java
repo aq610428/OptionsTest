@@ -36,6 +36,18 @@ public class Usdinfo implements Serializable {
     private String descriptionToString;
     private String stringCreateTime;
     private String stringUpdateTime;
+    private int isLock;
+
+    public int getIsLock() {
+        return isLock;
+    }
+
+    public void setIsLock(int isLock) {
+        this.isLock = isLock;
+    }
+
+
+
 
     public String getId() {
         return id;

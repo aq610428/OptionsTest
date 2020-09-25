@@ -21,7 +21,6 @@ import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.PolylineOptions;
 import com.amap.api.maps.utils.SpatialRelationUtil;
 import com.amap.api.maps.utils.overlay.MovingPointOverlay;
-import com.jkabe.app.box.util.LogUtils;
 import com.jkabe.box.R;
 import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.base.BaseApplication;

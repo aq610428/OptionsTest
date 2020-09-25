@@ -82,7 +82,6 @@ public class DialogUtils {
         TextView text_name = view.findViewById(R.id.text_name);
         text_name.setText("您的账户已锁仓");
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(false);
         dialog.setContentView(view);
         view.findViewById(R.id.cancel).setVisibility(View.GONE);
         view.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
@@ -94,7 +93,6 @@ public class DialogUtils {
         view.findViewById(R.id.confirm).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activity.finish();
                 dialog.dismiss();
             }
         });

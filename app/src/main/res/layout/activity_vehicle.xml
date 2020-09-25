@@ -147,10 +147,11 @@
                     android:layout_marginRight="20dp"
                     android:background="@color/colorWhite"
                     android:cursorVisible="true"
+                    android:textColorHint="@color/black99"
                     android:drawableRight="@mipmap/icon_right_arrow"
                     android:drawablePadding="5dp"
                     android:gravity="center|right"
-                    android:textColor="@color/black33"
+                    android:textColor="@color/black99"
                     android:textCursorDrawable="@null"
                     android:textSize="@dimen/ctv_sizen_13" />
             </LinearLayout>

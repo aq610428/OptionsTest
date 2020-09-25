@@ -6,9 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import androidx.annotation.Nullable;
-
 import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.bean.CarInfo;
 import com.jkabe.app.box.bean.CommonalityModel;
@@ -17,15 +15,12 @@ import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
 import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.JsonParse;
-import com.jkabe.app.box.util.LogUtils;
 import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.box.R;
-
 import org.json.JSONObject;
-
 import java.util.Map;
 
 /**

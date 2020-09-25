@@ -194,7 +194,7 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
         super.onResume();
         mapView.onResume();
         mHandler.removeCallbacks(runnable);
-        mHandler.postDelayed(runnable,1000);
+        mHandler.postDelayed(runnable, 1000);
     }
 
     @Override
@@ -293,16 +293,33 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
     /*****设置车辆状态******/
     private void updateView(OdbAndLocationVO vo) {
         text_bat.setText(Utility.judgeStrState(vo.getLocationdata().getSpeed() + "km/h", "--"));
-        if (!Utility.isEmpty(vo.getObddata().getControl_module_voltage())){
-            text_temper.setText(BigDecimalUtils.round(new BigDecimal(vo.getObddata().getControl_module_voltage()),2) + "V");
+        if (!Utility.isEmpty(vo.getObddata().getControl_module_voltage())) {
+            text_temper.setText(BigDecimalUtils.round(new BigDecimal(vo.getObddata().getControl_module_voltage()), 2) + "V");
+        } else {
+            text_temper.setText("--");
+        }
+        if (!Utility.isEmpty(vo.getObddata().getLoad_calculation_value())){
+            text_load.setText(vo.getObddata().getLoad_calculation_value() + "%");
+        }else{
+            text_load.setText("--");
         }
 
-        text_load.setText(vo.getObddata().getLoad_calculation_value() + "%");
-        text_speed.setText(vo.getObddata().getEngine_speed() + "rmp");
-        text_voltage.setText(vo.getObddata().getCoolant_temperature() + "°c");
+        if (!Utility.isEmpty(vo.getObddata().getEngine_speed())){
+            text_speed.setText(vo.getObddata().getEngine_speed() + "rmp");
+        }else{
+            text_speed.setText("--");
+        }
+
+        if (!Utility.isEmpty(vo.getObddata().getEngine_speed())){
+            text_voltage.setText(vo.getObddata().getCoolant_temperature() + "°c");
+        }else{
+            text_voltage.setText("--");
+        }
+
     }
 
     Marker marker;
+
     private void updateMap() {
         LatLng latLng = SystemTools.getLatLng(Double.parseDouble(carVo.getLocationInfo().getLat()), Double.parseDouble(carVo.getLocationInfo().getLng()));
         if (marker == null) {
@@ -311,21 +328,21 @@ public class LocationIndexActivity extends BaseActivity implements AMap.InfoWind
             markerOption.position(latLng);
             marker = aMap.addMarker(markerOption);
             marker.showInfoWindow();
-        }else{
+        } else {
             marker.setPosition(latLng);
             marker.showInfoWindow();
         }
         aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 14));
-        CameraUpdateFactory.newCameraPosition(new CameraPosition(latLng,14,30,0));
+        CameraUpdateFactory.newCameraPosition(new CameraPosition(latLng, 14, 30, 0));
     }
 
 
     private Handler mHandler = new Handler();
     private Runnable runnable = new Runnable() {
-        public void run () {
+        public void run() {
             qury();
             quryDeil();
-            mHandler.postDelayed(this,20000);
+            mHandler.postDelayed(this, 20000);
         }
     };
 

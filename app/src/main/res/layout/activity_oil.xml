@@ -128,7 +128,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="3dp"
                                 android:gravity="center"
-                                android:text="820公里"
+                                android:text="0公里"
                                 android:textColor="#434343"
                                 android:textSize="13sp" />
                         </LinearLayout>
@@ -157,7 +157,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="3dp"
                                 android:gravity="center"
-                                android:text="2.32元"
+                                android:text="0元"
                                 android:textColor="#434343"
                                 android:textSize="13sp" />
 
@@ -188,7 +188,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="3dp"
                                 android:gravity="center"
-                                android:text="0.03元/公里"
+                                android:text="0元/公里"
                                 android:textColor="#434343"
                                 android:textSize="13sp" />
 
@@ -234,7 +234,7 @@
                         android:layout_marginLeft="23dp"
                         android:layout_marginTop="3dp"
                         android:gravity="center"
-                        android:text="816.22"
+                        android:text="0"
                         android:textColor="@color/colorWhite"
                         android:textSize="20sp" />
 

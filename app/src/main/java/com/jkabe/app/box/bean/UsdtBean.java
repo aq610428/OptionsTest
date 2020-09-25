@@ -61,6 +61,15 @@ public class UsdtBean implements Serializable {
         private String descriptionToString;
         private String stringCreateTime;
         private String stringUpdateTime;
+        public int getIsLock() {
+            return isLock;
+        }
+
+        public void setIsLock(int isLock) {
+            this.isLock = isLock;
+        }
+
+        private int isLock;
 
         public String getId() {
             return id;
@@ -187,6 +196,16 @@ public class UsdtBean implements Serializable {
         private String descriptionToString;
         private String stringCreateTime;
         private String stringUpdateTime;
+
+        public int getIsLock() {
+            return isLock;
+        }
+
+        public void setIsLock(int isLock) {
+            this.isLock = isLock;
+        }
+
+        private int isLock;
 
         public String getId() {
             return id;

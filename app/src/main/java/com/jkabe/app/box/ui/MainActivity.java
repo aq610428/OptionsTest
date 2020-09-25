@@ -48,7 +48,7 @@ import cn.jpush.android.api.JPushInterface;
  */
 public class MainActivity extends BaseActivity1 implements NetWorkListener {
     //    private Class fragments[] = {CarFragment.class, CarLeftFragment.class, RecordFragment.class, MineFragment.class};
-    private Class fragments[] = {CarFragment.class, LeftFragment.class, OreFragment.class, MeFragment.class};
+    private Class fragments[] = {CarFragment.class, CarLeftFragment.class, OreFragment.class, MeFragment.class};
     private int drawables[] = {R.drawable.book_drawable, R.drawable.shelf_drawable, R.drawable.chosen_drawable, R.drawable.me_drawable};
     private String textviewArray[] = {"我的车", "车生活", "矿池", "我的"};
     public FragmentTabHost mTabHost;

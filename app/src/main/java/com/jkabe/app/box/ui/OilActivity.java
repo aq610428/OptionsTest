@@ -88,9 +88,7 @@ public class OilActivity extends BaseActivity implements NetWorkListener {
         text_price.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String price = text_price.getText().toString();
@@ -161,10 +159,15 @@ public class OilActivity extends BaseActivity implements NetWorkListener {
         text_mean.setText(oil.getAvgoil());
         String price = PreferenceUtils.getPrefString(OilActivity.this, Constants.OIL, "").replaceAll("元","");
         if (!Utility.isEmpty(price)) {
-            String spend = BigDecimalUtils.mul(new BigDecimal(oil.getOils()), new BigDecimal(price.replaceAll("元","'"))).toPlainString();
-            text_tel.setText(spend + "元");
-            BigDecimal spen = BigDecimalUtils.div(new BigDecimal(oil.getOils()), new BigDecimal(oil.getMileage()), 2);
-            text_cost.setText(BigDecimalUtils.mul(spen, new BigDecimal(price)).toPlainString() + "元/公里");
+            if ("0".equals(oil.getOils()+"")){
+                text_tel.setText("0元");
+                text_cost.setText("0元/公里");
+            }else{
+                String spend = BigDecimalUtils.mul(new BigDecimal(oil.getOils()), new BigDecimal(price.replaceAll("元","'"))).toPlainString();
+                text_tel.setText(spend + "元");
+                BigDecimal spen = BigDecimalUtils.div(new BigDecimal(oil.getOils()), new BigDecimal(oil.getMileage()), 2);
+                text_cost.setText(BigDecimalUtils.mul(spen, new BigDecimal(price)).toPlainString() + "元/公里");
+            }
         }
 
         ArrayList<BarEntry> yValues = new ArrayList<>();
