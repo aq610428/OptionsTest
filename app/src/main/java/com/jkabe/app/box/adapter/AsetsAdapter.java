@@ -1,11 +1,9 @@
 package com.jkabe.app.box.adapter;
 
 import android.content.Context;
-
 import com.jkabe.app.box.bean.AssetsBean;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.box.R;
-
 import java.util.List;
 
 /**
@@ -65,8 +63,6 @@ public class AsetsAdapter extends AutoRVAdapter {
         if (!Utility.isEmpty(time)) {
             vh.getTextView(R.id.text_usd).setText(time.substring(0, 10) + "");
         }
-
-
         switch (assetsBean.getStatus()) {
             case 1:
                 vh.getTextView(R.id.text_congeal).setText("待审核");

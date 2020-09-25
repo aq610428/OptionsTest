@@ -1,11 +1,9 @@
 package com.jkabe.app.box.ui;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -17,7 +15,6 @@ import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.LocationSource;
 import com.amap.api.maps.MapView;
-import com.amap.api.maps.model.BitmapDescriptor;
 import com.amap.api.maps.model.BitmapDescriptorFactory;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
@@ -26,15 +23,15 @@ import com.amap.api.services.core.AMapException;
 import com.amap.api.services.core.PoiItem;
 import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
-import com.jkabe.app.box.util.LogUtils;
-import com.jkabe.box.R;
 import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.base.BaseApplication;
+import com.jkabe.app.box.util.LogUtils;
 import com.jkabe.app.box.util.SystemTools;
 import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.RuntimeRationale;
 import com.jkabe.app.box.weight.SensorEventHelper;
+import com.jkabe.box.R;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.runtime.Permission;
@@ -56,7 +53,7 @@ public class LocationActivity extends BaseActivity implements LocationSource, AM
     private SensorEventHelper mSensorHelper;
     private Marker mLocMarker;
     private static String BACK_LOCATION_PERMISSION = "android.permission.ACCESS_BACKGROUND_LOCATION";
-    protected String[] needPermissions = {
+    private String[] needPermissions = {
             Permission.ACCESS_COARSE_LOCATION,
             Permission.ACCESS_FINE_LOCATION,
             Permission.WRITE_EXTERNAL_STORAGE,
