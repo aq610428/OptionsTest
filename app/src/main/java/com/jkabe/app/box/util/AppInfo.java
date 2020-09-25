@@ -1,9 +1,7 @@
 package com.jkabe.app.box.util;
 
-import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-
 import com.jkabe.app.box.base.BaseApplication;
 
 /**

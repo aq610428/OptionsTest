@@ -54,9 +54,6 @@ android {
     }
 
 
-
-
-
     android.applicationVariants.all { variant ->
         variant.outputs.all {
             outputFileName = "release_box_v${variant.versionName}.apk"
