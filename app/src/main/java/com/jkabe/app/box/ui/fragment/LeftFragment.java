@@ -60,15 +60,15 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
     private View rootView;
     private Banner banner;
     private SwipeToLoadLayout swipeToLoadLayout;
-    private RecyclerView recyclerView, recyclerView1;
+    private RecyclerView recyclerView, recyclerView1,rv_list;
     private List<BannerVo> banners = new ArrayList<>();
     private List<LeftVo> voList = new ArrayList<>();
     private List<LeftVo.ItemsBean> items = new ArrayList<>();
     private CarLiftAdapter leftAdapter;
     public UserInfo info;
-    private WareAdapter wareAdapter;
+    private WareAdapter wareAdapter,wareAdapter1;
     private List<ImageInfo> list = new ArrayList<>();
-
+    private List<ImageInfo> infos = new ArrayList<>();
 
     @Nullable
     @Override
@@ -92,6 +92,7 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
 
 
     private void initView() {
+        rv_list= getView(rootView, R.id.rv_list);
         recyclerView1 = getView(rootView, R.id.recyclerView1);
         swipeToLoadLayout = getView(rootView, R.id.swipeToLoadLayout);
         recyclerView = getView(rootView, R.id.recyclerView);
@@ -103,20 +104,23 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
         StaggeredGridLayoutManager gridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         recyclerView1.setLayoutManager(gridLayoutManager);
 
+        StaggeredGridLayoutManager gridLayoutManager1 = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        rv_list.setLayoutManager(gridLayoutManager1);
+
         query();
         queryList();
     }
 
     @Override
     protected void lazyLoad() {
-        list.add(new ImageInfo("https://img30.360buyimg.com/n7/jfs/t1/33185/14/3374/269370/5cb53d5dEd76ae894/c76a6a6f83a3d9eb.jpg"));
-        list.add(new ImageInfo("https://img30.360buyimg.com/n7/jfs/t1/126045/20/8880/167316/5f2b6de2Ef0d3179f/8b45a499638feee7.jpg"));
-        list.add(new ImageInfo("https://img30.360buyimg.com/n7/jfs/t1/120102/7/3025/433649/5ecc6e7bE10054534/7dce38b9810457dc.jpg"));
-        list.add(new ImageInfo("https://img30.360buyimg.com/n7/jfs/t1/134629/24/8373/92564/5f472824E0e5b7801/7e7c65d1de3a5223.jpg"));
-        list.add(new ImageInfo("https://img30.360buyimg.com/n7/jfs/t1/124028/5/4166/161651/5ed9e96aE4ad3a955/625ad0c22be6af90.jpg"));
-        list.add(new ImageInfo("https://img13.360buyimg.com/n7/jfs/t1/126342/35/10774/571936/5f44980cEd63eee15/af1b53fd9e6d9aeb.jpg"));
-        list.add(new ImageInfo("https://img30.360buyimg.com/n2/jfs/t1/127385/11/9463/153193/5f338f0aEb1861c3a/e0698c1bd3c73bab.jpg"));
-        list.add(new ImageInfo("https://img30.360buyimg.com/n7/jfs/t1/134750/21/3999/91346/5f0701daE7d786cac/acc053adda2fb5b9.jpg"));
+        list.add(new ImageInfo("https://img12.360buyimg.com/cms/jfs/t27778/346/2430433707/118511/4e7f9116/5c00f83cNefb79698.jpg!q95.jpg"));
+        list.add(new ImageInfo("https://img12.360buyimg.com/cms/jfs/t27334/235/2441876903/31081/178d067a/5c00f8b1N3b704a8a.jpg!q95.jpg"));
+        list.add(new ImageInfo("https://img14.360buyimg.com/cms/jfs/t26203/149/2421025166/101783/1fb56c4/5c0105d9N8cac0cc8.jpg!q95.jpg"));
+        list.add(new ImageInfo("https://img10.360buyimg.com/cms/jfs/t28939/324/867114140/18679/f2dbc1f/5c00f7beNc4a1548d.jpg!q95.jpg"));
+        list.add(new ImageInfo("https://img10.360buyimg.com/cms/jfs/t29692/87/886218893/154131/d88ccae6/5c00f803Ne6f79d57.jpg!q95.jpg"));
+        list.add(new ImageInfo("https://img14.360buyimg.com/cms/jfs/t1/15613/5/2437/161341/5c1cb0e6E4436f9a1/538cc36405eede3a.jpg!q95.jpg"));
+        list.add(new ImageInfo("https://img13.360buyimg.com/cms/jfs/t28309/89/893759268/115912/466f67db/5c00fdc2N18582a00.jpg!q95.jpg"));
+        list.add(new ImageInfo("https://img13.360buyimg.com/cms/jfs/t28417/60/894641701/106636/f0373571/5c01106bN2debddeb.jpg!q95.jpg"));
         wareAdapter=new WareAdapter(getContext(),list);
         recyclerView1.setHasFixedSize(true);
         recyclerView1.setAdapter(wareAdapter);
@@ -127,6 +131,15 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
                 startActivity(new Intent(getContext(), WareDeilActivity.class));
             }
         });
+
+
+        infos.add(new ImageInfo("https://img10.360buyimg.com/jdcms/jfs/t18364/240/712560415/55003/c8279b77/5aa0d56cNc872c913.jpeg"));
+        infos.add(new ImageInfo("https://img10.360buyimg.com/jdcms/jfs/t8725/355/2069994950/55537/ddd53173/59c37809Na024da2a.jpeg"));
+        infos.add(new ImageInfo("https://img14.360buyimg.com/jdcms/jfs/t10666/357/15813841/76661/9f9af428/59c37ebbNac18990f.jpeg"));
+        infos.add(new ImageInfo("https://img10.360buyimg.com/jdcms/jfs/t8269/276/2050745230/101127/caedf6c6/59c3832aNc51ff4e6.jpeg"));
+        wareAdapter1=new WareAdapter(getContext(),infos);
+        rv_list.setHasFixedSize(true);
+        rv_list.setAdapter(wareAdapter1);
     }
 
 
