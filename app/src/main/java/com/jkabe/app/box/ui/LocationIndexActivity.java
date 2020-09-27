@@ -3,10 +3,8 @@ package com.jkabe.app.box.ui;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.view.View;
 import android.widget.TextView;
-
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.MapView;
@@ -26,20 +24,15 @@ import com.jkabe.app.box.config.okHttpModel;
 import com.jkabe.app.box.util.BigDecimalUtils;
 import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.JsonParse;
-import com.jkabe.app.box.util.LogUtils;
 import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.app.box.util.SystemTools;
 import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.box.R;
-
 import org.json.JSONObject;
-
 import java.math.BigDecimal;
 import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
 
 
 /**

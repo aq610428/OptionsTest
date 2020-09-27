@@ -4,7 +4,6 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Build;
 import android.os.StrictMode;
-import android.webkit.WebView;
 import androidx.annotation.RequiresApi;
 import androidx.multidex.MultiDex;
 import com.jkabe.app.box.weight.ActivityTaskManager;
@@ -22,9 +21,6 @@ public class BaseApplication extends Application {
     public static Context myContext;
     public static BaseApplication baseApplicition;
     public static ActivityTaskManager activityTaskManager;
-    private static final String PROCESSNAME = "com.jkabe.box";
-
-
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
 
