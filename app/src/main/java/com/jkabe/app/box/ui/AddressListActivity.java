@@ -25,6 +25,7 @@ public class AddressListActivity extends BaseActivity implements OnRefreshListen
     private SwipeToLoadLayout swipeToLoadLayout;
     private List<String> array = new ArrayList<>();
     private AddressAdapter adapter;
+    private TextView text_add;
 
 
     @Override
@@ -34,13 +35,14 @@ public class AddressListActivity extends BaseActivity implements OnRefreshListen
 
     @Override
     protected void initView() {
+        text_add = getView(R.id.text_add);
         swipeToLoadLayout = getView(R.id.swipeToLoadLayout);
         swipe_target = getView(R.id.swipe_target);
         title_text_tv = getView(R.id.title_text_tv);
         title_left_btn = getView(R.id.title_left_btn);
         swipeToLoadLayout.setOnRefreshListener(this);
         swipeToLoadLayout.setOnLoadMoreListener(this);
-
+        text_add.setOnClickListener(this);
         title_left_btn.setOnClickListener(this);
         title_text_tv.setText("收货地址");
 
@@ -54,6 +56,9 @@ public class AddressListActivity extends BaseActivity implements OnRefreshListen
         switch (v.getId()) {
             case R.id.title_left_btn:
                 finish();
+                break;
+            case R.id.text_add:
+
                 break;
         }
     }
