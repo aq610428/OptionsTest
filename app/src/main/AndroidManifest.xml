@@ -95,6 +95,15 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name="com.jkabe.app.box.ui.ConfirmActivity"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name="com.jkabe.app.box.ui.AddressListActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name="com.jkabe.app.box.ui.PassworadActivity"
             android:screenOrientation="portrait" />
         <activity

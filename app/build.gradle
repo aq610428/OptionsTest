@@ -17,18 +17,15 @@ android {
         packagingOptions {
             exclude 'META-INF/rxjava.properties'
         }
-
         lintOptions {
             checkReleaseBuilds false
             abortOnError false
         }
-
         manifestPlaceholders = [
-                JPUSH_PKGNAME : applicationId,
+                JPUSH_PKGNAME: applicationId,
                 JPUSH_APPKEY : "527cea42186cea79765c34f0", //JPush 上注册的包名对应的 Appkey.
-                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
         ]
-
         ndk {
             abiFilters "armeabi", "armeabi-v7a"
         }
@@ -114,5 +111,6 @@ dependencies {
     implementation files('libs/core-3.0.0.jar')
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     implementation 'noman.weekcalendar:weekcalendar:1.0.6'
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
 }
 

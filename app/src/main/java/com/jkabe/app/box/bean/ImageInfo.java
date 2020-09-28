@@ -35,6 +35,11 @@ public class ImageInfo implements Serializable {
     private String stringCreateTime;
     private String stringUpdateTime;
 
+    public ImageInfo(String storeName,String photoFile) {
+        this.photoFile = photoFile;
+        this.storeName=storeName;
+    }
+
     public ImageInfo(String photoFile) {
         this.photoFile = photoFile;
     }

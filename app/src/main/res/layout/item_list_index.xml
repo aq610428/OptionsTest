@@ -33,7 +33,7 @@
                 android:maxLines="2"
                 android:paddingLeft="6dp"
                 android:paddingRight="6dp"
-                android:text="雅佳宝商用汤桶不锈钢塑料双层水桶长效保温保冷奶茶豆浆桶大容量户外存储桶加厚"
+                android:text="三福2020夏装新品男净版圆领短T恤 港潮宽松打底上衣男423820 黑色 L(175/92A)"
                 android:textColor="@color/black33"
                 android:textSize="@dimen/ctv_sizen_14"
                 android:textStyle="bold" />
@@ -47,7 +47,7 @@
                 android:maxLines="1"
                 android:paddingLeft="6dp"
                 android:paddingRight="6dp"
-                android:text="广州市番禺区洛浦街沙溪村"
+                android:text="满减多买优惠仅可任选其一，可在购物车更改"
                 android:textColor="@color/black88"
                 android:textSize="@dimen/ctv_sizen_12" />
 
@@ -78,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/text_rmb"
                     android:gravity="center"
-                    android:text="28.8"
+                    android:text="1028.8"
                     android:textColor="@color/google_red"
                     android:textSize="@dimen/ctv_sizen_16"
                     android:textStyle="bold" />

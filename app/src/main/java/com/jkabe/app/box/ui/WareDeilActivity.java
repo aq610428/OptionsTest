@@ -1,5 +1,6 @@
 package com.jkabe.app.box.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -37,6 +38,7 @@ public class WareDeilActivity extends BaseActivity1 implements OnBannerListener 
     private String str;
     private TextView text_date,text_num;
     private ImageView iv_left;
+    private TextView text_pay;
 
 
     private Handler mHandler = new Handler() {
@@ -62,11 +64,13 @@ public class WareDeilActivity extends BaseActivity1 implements OnBannerListener 
 
     @Override
     protected void initView() {
+        text_pay = getView(R.id.text_pay);
         text_num = getView(R.id.text_num);
         iv_left = getView(R.id.iv_left);
         banner = getView(R.id.banner);
         text_date = getView(R.id.text_date);
         iv_left.setOnClickListener(this);
+        text_pay.setOnClickListener(this);
     }
 
     @Override
@@ -143,6 +147,9 @@ public class WareDeilActivity extends BaseActivity1 implements OnBannerListener 
         switch (v.getId()) {
             case R.id.iv_left:
                 finish();
+                break;
+            case R.id.text_pay:
+                startActivity(new Intent(this,ConfirmActivity.class));
                 break;
         }
     }

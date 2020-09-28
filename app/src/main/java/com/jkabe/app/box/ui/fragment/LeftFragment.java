@@ -133,13 +133,19 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
         });
 
 
-        infos.add(new ImageInfo("https://img10.360buyimg.com/jdcms/jfs/t18364/240/712560415/55003/c8279b77/5aa0d56cNc872c913.jpeg"));
+        infos.add(new ImageInfo("https://img11.360buyimg.com/jdcms/jfs/t10498/294/14648135/58206/a3e53cc6/59c377cdNb3688c82.jpeg"));
         infos.add(new ImageInfo("https://img10.360buyimg.com/jdcms/jfs/t8725/355/2069994950/55537/ddd53173/59c37809Na024da2a.jpeg"));
         infos.add(new ImageInfo("https://img14.360buyimg.com/jdcms/jfs/t10666/357/15813841/76661/9f9af428/59c37ebbNac18990f.jpeg"));
         infos.add(new ImageInfo("https://img10.360buyimg.com/jdcms/jfs/t8269/276/2050745230/101127/caedf6c6/59c3832aNc51ff4e6.jpeg"));
         wareAdapter1=new WareAdapter(getContext(),infos);
         rv_list.setHasFixedSize(true);
         rv_list.setAdapter(wareAdapter1);
+        wareAdapter1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                startActivity(new Intent(getContext(), WareDeilActivity.class));
+            }
+        });
     }
 
 
