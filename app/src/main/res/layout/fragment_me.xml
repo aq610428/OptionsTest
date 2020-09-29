@@ -16,7 +16,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -67,13 +66,16 @@
                 </RelativeLayout>
 
                 <com.lihang.ShadowLayout
+                    android:id="@+id/mLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="150dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="160dp"
+                    android:layout_marginRight="10dp"
                     app:hl_cornerRadius="5dp"
                     app:hl_shadowBackColor="#fff"
                     app:hl_shadowColor="#08000000"
-                    app:hl_shadowLimit="20dp">
+                    app:hl_shadowLimit="5dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -136,16 +138,51 @@
                     </LinearLayout>
                 </com.lihang.ShadowLayout>
 
+                <com.lihang.ShadowLayout
+                    android:id="@+id/rl_note"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/mLayout"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    app:hl_cornerRadius="5dp"
+                    app:hl_shadowBackColor="#fff"
+                    app:hl_shadowColor="#08000000"
+                    app:hl_shadowLimit="5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:gravity="center|left"
+                            android:text="公告"
+                            android:textColor="#131313"
+                            android:textSize="14sp" />
+
+                        <com.jkabe.app.box.weight.ENoticeView
+                            android:id="@+id/mENoticeView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </LinearLayout>
+                </com.lihang.ShadowLayout>
 
                 <com.lihang.ShadowLayout
                     android:id="@+id/msdl_system"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="250dp"
+                    android:layout_below="@+id/rl_note"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     app:hl_cornerRadius="5dp"
                     app:hl_shadowBackColor="#fff"
                     app:hl_shadowColor="#08000000"
-                    app:hl_shadowLimit="20dp">
+                    app:hl_shadowLimit="5dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"

@@ -44,6 +44,7 @@ import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.Utility;
+import com.jkabe.app.box.weight.ENoticeView;
 import com.jkabe.app.box.weight.PreferenceUtils;
 import com.jkabe.box.R;
 import org.json.JSONObject;
@@ -65,6 +66,8 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
     private RecyclerView recyclerView;
     private List<Block> array = new ArrayList<>();
     private MeAdapter adapter;
+    private ENoticeView mENoticeView;
+    private List<String> items = new ArrayList<>();
 
 
     @Nullable
@@ -95,6 +98,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
     }
 
     private void initView() {
+        mENoticeView= getView(rootView, R.id.mENoticeView);
         recyclerView = getView(rootView, R.id.recyclerView);
         text_key = getView(rootView, R.id.text_key);
         text_means = getView(rootView, R.id.text_means);
@@ -146,6 +150,18 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
                 }
             }
         });
+
+        for(int i = 0;i<5;i++){
+            items.add("比比大哥测试比比大哥测试比比大哥测试比比大哥测试");
+        }
+        mENoticeView.setData(items);
+        mENoticeView.setOnNoticeClickListener(new ENoticeView.OnNoticeClickListener() {
+            @Override
+            public void onClick(String item) {
+
+            }
+        });
+
     }
 
 
