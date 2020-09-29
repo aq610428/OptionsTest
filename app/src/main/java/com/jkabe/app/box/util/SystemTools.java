@@ -10,9 +10,11 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.text.TextUtils;
+import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.core.content.FileProvider;
 import com.amap.api.maps.model.LatLng;
@@ -267,6 +269,22 @@ public final class SystemTools {
         intent.setData(Uri.parse("baidumap://map/geocoder?src=openApiDemo&address=" + address));
         mContext.startActivity(intent); //启动调用
     }
+
+
+    /*****分享*****/
+    public static void shareImg(ImageView icon_code,Activity activity) {
+        Bitmap bitmap = ImageFactory.DrawableToBitmap(icon_code.getDrawable());
+        File file = FileManager.screenShot(bitmap);
+        if (file != null) {
+            Intent intent = new Intent(Intent.ACTION_SEND); // 启动分享发送的属性
+            Uri uri = FileProvider.getUriForFile(activity, "com.jkabe.box.provider", file);
+            intent.putExtra(Intent.EXTRA_STREAM, uri);
+            intent.setType("image/*");
+            Intent chooser = Intent.createChooser(intent, "邀请好友");
+            activity.startActivity(chooser);
+        }
+    }
+
 
     /****打开高德地图*****/
     public static void openGaoDeMap(double lat, double lon, String describle, Activity activity) {

@@ -1,30 +1,20 @@
 package com.jkabe.app.box.ui;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import androidx.core.content.FileProvider;
-
 import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.base.BaseApplication;
 import com.jkabe.app.box.util.Constants;
-import com.jkabe.app.box.util.FileManager;
-import com.jkabe.app.box.util.ImageFactory;
 import com.jkabe.app.box.util.QRCodeUtil;
 import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.app.box.util.StatusBarUtil;
+import com.jkabe.app.box.util.SystemTools;
 import com.jkabe.box.R;
-import com.yanzhenjie.permission.runtime.Permission;
-
-import java.io.File;
-
 
 /**
  * @author: zt
@@ -78,22 +68,11 @@ public class InvitationActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.rl_share:
-                shareImg();
+                SystemTools.shareImg(icon_code,this);
                 break;
         }
     }
 
 
-    public void shareImg() {
-        Bitmap bitmap = ImageFactory.DrawableToBitmap(icon_code.getDrawable());
-        File file = FileManager.screenShot(bitmap);
-        if (file != null) {
-            Intent intent = new Intent(Intent.ACTION_SEND); // 启动分享发送的属性
-            Uri uri = FileProvider.getUriForFile(this, "com.jkabe.box.provider", file);
-            intent.putExtra(Intent.EXTRA_STREAM, uri);
-            intent.setType("image/*");
-            Intent chooser = Intent.createChooser(intent, "邀请好友");
-            startActivity(chooser);
-        }
-    }
+
 }

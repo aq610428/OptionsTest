@@ -19,102 +19,81 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="42dp"
-                android:background="#FFF8D8"
-                android:gravity="center"
-                android:orientation="horizontal"
+                android:layout_height="0.5dp"
+                android:background="@color/dive_line" />
+
+            <RelativeLayout
+                android:id="@+id/ll_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
                 android:paddingLeft="20dp"
-                android:paddingRight="20dp">
+                android:paddingTop="10dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="10dp">
+
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:src="@mipmap/icon_ling_org" />
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/icon_right_arrow" />
 
-                <TextView
-                    android:id="@+id/title"
+
+                <ImageView
+                    android:id="@+id/iv_add"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="如您购买的商品任何问题，请直接与购买门店联系， 门店会为您处理，让您售后无忧"
-                    android:textColor="#F75A3F"
-                    android:textSize="@dimen/ctv_sizen_12" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/ll_address"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp">
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/icon_ling_org" />
 
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/iv_add"
+                    android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/text_name"
-                        android:layout_width="49dp"
-                        android:layout_height="24dp"
-                        android:background="#FFEFEC"
-                        android:gravity="center"
-                        android:text="自提店"
-                        android:textColor="#F75A3F"
-                        android:textSize="@dimen/ctv_sizen_12" />
-
-                    <TextView
-                        android:id="@+id/text_store"
+                        android:id="@+id/text_address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="6dp"
-                        android:drawableRight="@mipmap/icon_right_arrow"
                         android:gravity="center|left"
-                        android:text="中国广东省深圳市西丽大学城"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/ctv_sizen_16" />
+                        android:text="广东省深圳市南山区大学城众冠时代广场9栋2单元1904室"
+                        android:textColor="@color/black33"
+                        android:textSize="@dimen/ctv_sizen_13" />
 
+                    <TextView
+                        android:id="@+id/text_mobile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center|left"
+                        android:text="李富  15620120069"
+                        android:textColor="#0F0F0F"
+                        android:textSize="@dimen/ctv_sizen_13" />
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/text_address"
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:gravity="center|left"
-                    android:text="门店地址：众冠时代广场9栋2单元"
-                    android:textColor="@color/black33"
-                    android:textSize="@dimen/ctv_sizen_13" />
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/icon_right_arrow" />
 
-                <TextView
-                    android:id="@+id/text_mobile"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center|left"
-                    android:text="李富 15620120069"
-                    android:textColor="#0F0F0F"
-                    android:textSize="@dimen/ctv_sizen_13" />
-            </LinearLayout>
+            </RelativeLayout>
+
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
                 android:background="@mipmap/icon_line_bg" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="7dp"
-                android:background="#F0F0F0" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
@@ -178,111 +157,6 @@
                 android:textColor="#F93333"
                 android:textSize="15sp" />
         </LinearLayout>
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:id="@+id/rl_success"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/transparenc"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/bottm_lyout"
-            android:gravity="center|top"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="112dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/shape_bg_date"
-                android:gravity="center"
-                android:text="08月20日提货"
-                android:textColor="@color/colorWhite"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="此商品需要您到店自提，请仔细确认地址！"
-                android:textColor="#F75A3F"
-                android:textSize="13sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="13dp"
-                android:layout_marginTop="11dp"
-                android:layout_marginRight="13dp"
-                android:background="@drawable/ll_shape_bg"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="13dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="此商品需要您到店自提，请仔细确认地址！"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="11dp"
-                    android:text="中国广东省深圳市西丽大学城尚美水晶酒店5栋103"
-                    android:textColor="#B4B4B4"
-                    android:textSize="13sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginRight="35dp"
-                android:layout_marginBottom="14dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/text_cancel"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_marginRight="9dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/calce_btn_bg"
-                    android:gravity="center"
-                    android:text="取消订单"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/text_confirm"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="9dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/ok_btn_bg"
-                    android:gravity="center"
-                    android:text="确定订单"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="14sp" />
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-
     </RelativeLayout>
 
 

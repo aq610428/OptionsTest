@@ -73,6 +73,37 @@
 
         </LinearLayout>
 
+        <TextView
+            android:layout_width="0.6dp"
+            android:layout_height="match_parent"
+            android:background="@color/dive_line"
+            tools:ignore="Suspicious0dp" />
+
+        <LinearLayout
+            android:id="@+id/rl_tab3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text_tab3"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:text="系统公告"
+                android:textColor="@color/black33"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/text_line3"
+                android:layout_width="45dp"
+                android:layout_height="1dp"
+                android:background="@color/colorAccent"
+                android:visibility="invisible" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
     <View

@@ -67,14 +67,11 @@ public class StatusBarUtil {
             decorView.setSystemUiVisibility(option);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(Color.TRANSPARENT);
-            //导航栏颜色也可以正常设置
-            //window.setNavigationBarColor(Color.TRANSPARENT);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window window = activity.getWindow();
             WindowManager.LayoutParams attributes = window.getAttributes();
             int flagTranslucentStatus = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
             attributes.flags |= flagTranslucentStatus;
-            //int flagTranslucentNavigation = WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION; //attributes.flags |= flagTranslucentNavigation;
             window.setAttributes(attributes);
         }
     }

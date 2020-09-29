@@ -14,6 +14,7 @@ import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.base.BaseApplication;
 import com.jkabe.app.box.box.fragement.PoliceFragment;
 import com.jkabe.app.box.box.fragement.SystemFragment;
+import com.jkabe.app.box.box.fragement.SystemFragment1;
 import com.jkabe.box.R;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,9 +28,9 @@ public class MsgActivity extends BaseActivity implements ViewPager.OnPageChangeL
     private List<Fragment> mFragmentList = new ArrayList<>();
     private FragmentAdapter mFragmentAdapter;
     private ViewPager mViewPager;
-    private LinearLayout rl_tab1, rl_tab2;
-    private TextView text_tab1, text_tab2;
-    private TextView text_line1, text_line2;
+    private LinearLayout rl_tab1, rl_tab2,rl_tab3;
+    private TextView text_tab1, text_tab2,text_tab3;
+    private TextView text_line1, text_line2,text_line3;
     private TextView title_text_tv, title_left_btn;
 
     @Override
@@ -47,18 +48,23 @@ public class MsgActivity extends BaseActivity implements ViewPager.OnPageChangeL
         mViewPager = getView(R.id.viewPager);
         rl_tab1 = getView(R.id.rl_tab1);
         rl_tab2 = getView(R.id.rl_tab2);
+        rl_tab3= getView(R.id.rl_tab3);
         text_tab1 = getView(R.id.text_tab1);
         text_tab2 = getView(R.id.text_tab2);
+        text_tab3 = getView(R.id.text_tab3);
         text_line1 = getView(R.id.text_line1);
         text_line2 = getView(R.id.text_line2);
+        text_line3 = getView(R.id.text_line3);
     }
 
     @Override
     protected void initData() {
         rl_tab1.setOnClickListener(new MyOnClickListener(0));
         rl_tab2.setOnClickListener(new MyOnClickListener(1));
+        rl_tab3.setOnClickListener(new MyOnClickListener(2));
         mFragmentList.add(new PoliceFragment());
         mFragmentList.add(new SystemFragment());
+        mFragmentList.add(new SystemFragment1());
         mFragmentAdapter = new FragmentAdapter(getSupportFragmentManager(), mFragmentList);
         mViewPager.setAdapter(mFragmentAdapter);
         mViewPager.setCurrentItem(0);
@@ -91,14 +97,20 @@ public class MsgActivity extends BaseActivity implements ViewPager.OnPageChangeL
                 text_line2.setVisibility(View.VISIBLE);
                 text_tab2.setTextColor(Color.parseColor("#3F80F4"));
                 break;
+            case 2:
+                text_line3.setVisibility(View.VISIBLE);
+                text_tab3.setTextColor(Color.parseColor("#3F80F4"));
+                break;
         }
     }
 
     public void clealView() {
         text_tab1.setTextColor(Color.parseColor("#333333"));
         text_tab2.setTextColor(Color.parseColor("#333333"));
+        text_tab3.setTextColor(Color.parseColor("#333333"));
         text_line1.setVisibility(View.INVISIBLE);
         text_line2.setVisibility(View.INVISIBLE);
+        text_line3.setVisibility(View.INVISIBLE);
     }
 
     @Override
