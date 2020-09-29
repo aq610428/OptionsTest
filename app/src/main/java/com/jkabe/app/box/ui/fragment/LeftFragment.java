@@ -60,15 +60,14 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
     private View rootView;
     private Banner banner;
     private SwipeToLoadLayout swipeToLoadLayout;
-    private RecyclerView recyclerView, recyclerView1,rv_list;
+    private RecyclerView recyclerView, recyclerView1;
     private List<BannerVo> banners = new ArrayList<>();
     private List<LeftVo> voList = new ArrayList<>();
     private List<LeftVo.ItemsBean> items = new ArrayList<>();
     private CarLiftAdapter leftAdapter;
     public UserInfo info;
-    private WareAdapter wareAdapter,wareAdapter1;
+    private WareAdapter wareAdapter;
     private List<ImageInfo> list = new ArrayList<>();
-    private List<ImageInfo> infos = new ArrayList<>();
 
     @Nullable
     @Override
@@ -92,7 +91,6 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
 
 
     private void initView() {
-        rv_list= getView(rootView, R.id.rv_list);
         recyclerView1 = getView(rootView, R.id.recyclerView1);
         swipeToLoadLayout = getView(rootView, R.id.swipeToLoadLayout);
         recyclerView = getView(rootView, R.id.recyclerView);
@@ -104,17 +102,12 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
         StaggeredGridLayoutManager gridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         recyclerView1.setLayoutManager(gridLayoutManager);
 
-        StaggeredGridLayoutManager gridLayoutManager1 = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-        rv_list.setLayoutManager(gridLayoutManager1);
-
         query();
         queryList();
     }
 
     @Override
     protected void lazyLoad() {
-        list.add(new ImageInfo("https://img12.360buyimg.com/cms/jfs/t27778/346/2430433707/118511/4e7f9116/5c00f83cNefb79698.jpg!q95.jpg"));
-        list.add(new ImageInfo("https://img12.360buyimg.com/cms/jfs/t27334/235/2441876903/31081/178d067a/5c00f8b1N3b704a8a.jpg!q95.jpg"));
         list.add(new ImageInfo("https://img14.360buyimg.com/cms/jfs/t26203/149/2421025166/101783/1fb56c4/5c0105d9N8cac0cc8.jpg!q95.jpg"));
         list.add(new ImageInfo("https://img10.360buyimg.com/cms/jfs/t28939/324/867114140/18679/f2dbc1f/5c00f7beNc4a1548d.jpg!q95.jpg"));
         list.add(new ImageInfo("https://img10.360buyimg.com/cms/jfs/t29692/87/886218893/154131/d88ccae6/5c00f803Ne6f79d57.jpg!q95.jpg"));
@@ -126,21 +119,6 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
         recyclerView1.setAdapter(wareAdapter);
 
         wareAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(getContext(), WareDeilActivity.class));
-            }
-        });
-
-
-        infos.add(new ImageInfo("https://img11.360buyimg.com/jdcms/jfs/t10498/294/14648135/58206/a3e53cc6/59c377cdNb3688c82.jpeg"));
-        infos.add(new ImageInfo("https://img10.360buyimg.com/jdcms/jfs/t8725/355/2069994950/55537/ddd53173/59c37809Na024da2a.jpeg"));
-        infos.add(new ImageInfo("https://img14.360buyimg.com/jdcms/jfs/t10666/357/15813841/76661/9f9af428/59c37ebbNac18990f.jpeg"));
-        infos.add(new ImageInfo("https://img10.360buyimg.com/jdcms/jfs/t8269/276/2050745230/101127/caedf6c6/59c3832aNc51ff4e6.jpeg"));
-        wareAdapter1=new WareAdapter(getContext(),infos);
-        rv_list.setHasFixedSize(true);
-        rv_list.setAdapter(wareAdapter1);
-        wareAdapter1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 startActivity(new Intent(getContext(), WareDeilActivity.class));
