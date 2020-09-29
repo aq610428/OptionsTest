@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.text.Html;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -68,7 +69,7 @@ public class ENoticeView  extends View {
                 nY = mY;
             }
             String text =  data.get(mIndex);
-            canvas.drawText(text,mRect.left, nY, textPaint);
+            canvas.drawText(Html.fromHtml(text).toString().replace("",""),mRect.left, nY, textPaint);
             if(!isStart){
                 isStart = true;
                 Timer timer = new Timer();

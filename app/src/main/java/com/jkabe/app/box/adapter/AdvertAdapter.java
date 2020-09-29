@@ -1,6 +1,7 @@
 package com.jkabe.app.box.adapter;
 
 import android.content.Context;
+import android.text.Html;
 
 import com.jkabe.app.box.bean.Massage;
 import com.jkabe.app.box.util.Utility;
@@ -36,7 +37,7 @@ public class AdvertAdapter extends AutoRVAdapter {
             String start = createTime.substring(createTime.length() -8, createTime.length());
             vh.getTextView(R.id.text_date).setText(end + "  " + start);
         }
-        vh.getTextView(R.id.text_verify).setText(massage.getContent());
+        vh.getTextView(R.id.text_verify).setText(Html.fromHtml(massage.getContent()));
     }
 
     public void setData(List<Massage> data) {

@@ -36,6 +36,9 @@ public interface Api {
     String GET_MOBILCODE = Config.getOpenNewApi() + "/member/getmembermobilevcode";
     int GET_MOBILCODE_ID = 100006;
 
+    String GET_MOBILCODE_NOTE = Config.getOpenNewApi() + "/resource/getnewnotice";
+
+
 
     String GET_UPDATE = Config.getOpenNewApi() + "/member/forgotmemberpassword";
     int GET_UPDATE_ID = 100005;
@@ -135,6 +138,12 @@ public interface Api {
     /******预警信息******/
     String GET_AGE_MSG = Config.getOpenNewApi() + "/member/getmembermessagelist";
     int GET_AGE_MSGID = 100046;
+
+    /******预警信息******/
+    String GET_AGE_MSG1 = Config.getOpenNewApi() + "/resource/getsystemnoticelist";
+    int GET_AGE_MSGID1 = 100046;
+
+
 
 
     /******预警信息******/

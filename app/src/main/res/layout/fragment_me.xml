@@ -153,22 +153,19 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:paddingLeft="15dp"
-                        android:paddingRight="15dp"
                         android:orientation="horizontal">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="40dp"
-                            android:gravity="center|left"
-                            android:text="公告"
-                            android:textColor="#131313"
-                            android:textSize="14sp" />
-
-                        <com.jkabe.app.box.weight.ENoticeView
+                        <com.jkabe.app.box.weight.MarqueeTextView
                             android:id="@+id/mENoticeView"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
+                            android:layout_width="360dp"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:ellipsize="marquee"
+                            android:gravity="center|left"
+                            android:singleLine="true"
+                            android:textColor="@color/black01"
+                            android:marqueeRepeatLimit="marquee_forever"
+                            />
                     </LinearLayout>
                 </com.lihang.ShadowLayout>
 

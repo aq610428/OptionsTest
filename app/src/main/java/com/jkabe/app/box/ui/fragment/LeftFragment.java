@@ -96,7 +96,7 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
         recyclerView = getView(rootView, R.id.recyclerView);
         banner = getView(rootView, R.id.banner);
         swipeToLoadLayout.setOnRefreshListener(this);
-        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 5);
+        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 4);
         recyclerView.setLayoutManager(layoutManager);
 
         StaggeredGridLayoutManager gridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);

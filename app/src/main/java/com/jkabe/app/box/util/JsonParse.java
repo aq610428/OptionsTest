@@ -255,6 +255,13 @@ public class JsonParse {
     }
 
 
+    public static Massage getEarlyInfoJson2(JSONObject object) {
+        JSONObject jsonObject = object.optJSONObject("result");
+        Massage info = (Massage) JsonUtilComm.jsonToBean(jsonObject.toString(), Massage.class);
+        return info;
+    }
+
+
     public static List<EarlyInfo> getEarlyInfoJson(JSONObject object) {
         List<EarlyInfo> infos = new ArrayList<>();
         JSONObject jsonObject = object.optJSONObject("result");

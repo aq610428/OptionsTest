@@ -75,17 +75,17 @@ public class SystemFragment1 extends BaseFragment implements OnRefreshListener, 
     }
 
     private void qury() {
-        String sign = "memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID+"&type=1" + Constants.SECREKEY;
+        String sign = "memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID+"&type=2" + Constants.SECREKEY;
         showProgressDialog(getActivity(), false);
         Map<String, String> params = okHttpModel.getParams();
         params.put("apptype", Constants.TYPE);
         params.put("memberid", SaveUtils.getSaveInfo().getId() + "");
         params.put("limit", limit + "");
-        params.put("type",  "1");
+        params.put("type",  "2");
         params.put("page", page + "");
         params.put("partnerid", Constants.PARTNERID);
         params.put("sign", Md5Util.encode(sign));
-        okHttpModel.get(Api.GET_AGE_MSG, params, Api.GET_AGE_MSGID, this);
+        okHttpModel.get(Api.GET_AGE_MSG1, params, Api.GET_AGE_MSGID1, this);
     }
 
     @Override
@@ -93,7 +93,7 @@ public class SystemFragment1 extends BaseFragment implements OnRefreshListener, 
         if (object != null && commonality != null && !Utility.isEmpty(commonality.getStatusCode())) {
             if (Constants.SUCESSCODE.equals(commonality.getStatusCode())) {
                 switch (id) {
-                    case Api.GET_AGE_MSGID:
+                    case Api.GET_AGE_MSGID1:
                         List<Massage> infos = JsonParse.getEarlyInfoJson1(object);
                         if (infos != null && infos.size() > 0) {
                             setAdapter(infos);

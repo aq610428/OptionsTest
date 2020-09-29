@@ -72,6 +72,9 @@ public class MsgActivity extends BaseActivity implements ViewPager.OnPageChangeL
     }
 
 
+
+
+
     public class MyOnClickListener implements View.OnClickListener {
         private int index = 0;
 

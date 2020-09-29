@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,15 +16,18 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.jkabe.app.box.adapter.MeAdapter;
 import com.jkabe.app.box.base.BaseApplication;
 import com.jkabe.app.box.base.BaseFragment;
 import com.jkabe.app.box.bean.Block;
 import com.jkabe.app.box.bean.CommonalityModel;
+import com.jkabe.app.box.bean.Massage;
 import com.jkabe.app.box.bean.UserInfo;
 import com.jkabe.app.box.config.Api;
 import com.jkabe.app.box.config.NetWorkListener;
@@ -40,17 +44,23 @@ import com.jkabe.app.box.ui.PreviewActivity;
 import com.jkabe.app.box.ui.SalesActivity;
 import com.jkabe.app.box.ui.UserActivity;
 import com.jkabe.app.box.util.Constants;
+import com.jkabe.app.box.util.JsonParse;
 import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.ENoticeView;
+import com.jkabe.app.box.weight.MarqueeTextView;
 import com.jkabe.app.box.weight.PreferenceUtils;
 import com.jkabe.box.R;
+import com.lihang.ShadowLayout;
+
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 import crossoverone.statuslib.StatusUtil;
 
 /**
@@ -60,14 +70,15 @@ import crossoverone.statuslib.StatusUtil;
  */
 public class MeFragment extends BaseFragment implements View.OnClickListener, NetWorkListener {
     private View rootView;
-    private TextView text_name, text_edit, text_invitation,  text_means, text_key,text_team;
+    private TextView text_name, text_edit, text_invitation, text_means, text_key, text_team;
     private UserInfo info;
     private ImageView icon_head;
     private RecyclerView recyclerView;
     private List<Block> array = new ArrayList<>();
     private MeAdapter adapter;
-    private ENoticeView mENoticeView;
     private List<String> items = new ArrayList<>();
+    private ShadowLayout rl_note;
+    private MarqueeTextView mENoticeView;
 
 
     @Nullable
@@ -95,10 +106,12 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
         if (!Utility.isEmpty(info.getUsericon())) {
             GlideUtils.CreateImageCircular(info.getUsericon(), icon_head, 5);
         }
+        query();
     }
 
     private void initView() {
-        mENoticeView= getView(rootView, R.id.mENoticeView);
+        rl_note = getView(rootView, R.id.rl_note);
+        mENoticeView = getView(rootView, R.id.mENoticeView);
         recyclerView = getView(rootView, R.id.recyclerView);
         text_key = getView(rootView, R.id.text_key);
         text_means = getView(rootView, R.id.text_means);
@@ -151,20 +164,8 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
             }
         });
 
-        for(int i = 0;i<5;i++){
-            items.add("比比大哥测试比比大哥测试比比大哥测试比比大哥测试");
-        }
-        mENoticeView.setData(items);
-        mENoticeView.setOnNoticeClickListener(new ENoticeView.OnNoticeClickListener() {
-            @Override
-            public void onClick(String item) {
-
-            }
-        });
 
     }
-
-
 
 
     @Override
@@ -298,6 +299,19 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
     }
 
 
+    public void query() {
+        String sign = "memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + "&type=2" + Constants.SECREKEY;
+        showProgressDialog(getActivity(), false);
+        Map<String, String> params = okHttpModel.getParams();
+        params.put("memberid", SaveUtils.getSaveInfo().getId());
+        params.put("type", "2");
+        params.put("apptype", Constants.TYPE);
+        params.put("partnerid", Constants.PARTNERID);
+        params.put("sign", Md5Util.encode(sign));
+        okHttpModel.get(Api.GET_MOBILCODE_NOTE, params, Api.GET_UPDATE_ID, this);
+    }
+
+
     @Override
     public void onSucceed(JSONObject object, int id, CommonalityModel commonality) {
         if (object != null && commonality != null && !Utility.isEmpty(commonality.getStatusCode())) {
@@ -310,12 +324,26 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
                     case Api.GET_MOBILCODE_ID:
                         ToastUtil.showToast(commonality.getErrorDesc());
                         break;
+                    case Api.GET_UPDATE_ID:
+                        Massage massage = JsonParse.getEarlyInfoJson2(object);
+                        updateView(massage);
+                        break;
                 }
             } else {
                 ToastUtil.showToast(commonality.getErrorDesc());
             }
         }
         stopProgressDialog();
+    }
+
+    private void updateView(Massage massage) {
+        if (massage != null ) {
+            rl_note.setVisibility(View.VISIBLE);
+            items.add(massage.getContent());
+            mENoticeView.setText(Html.fromHtml(massage.getContent()).toString().trim());
+        } else {
+            rl_note.setVisibility(View.GONE);
+        }
     }
 
     @Override
