@@ -9,6 +9,14 @@ import java.io.Serializable;
  */
 public class Massage implements Serializable {
 
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
     /**
      * id : 31b804f15695425abd6c179b60059b1b
      * memberid : e573c2c0ed4d40aebee62750b507194b
@@ -29,6 +37,7 @@ public class Massage implements Serializable {
      * stringgpstime :
      */
 
+    private String remark;
     private String id;
     private String memberid;
     private String title;

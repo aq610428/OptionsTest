@@ -64,6 +64,7 @@ public class SaveUtils {
 
     public static List<Block> getArray() {
         List<Block> blocks = new ArrayList<>();
+        blocks.add(new Block("添加地址", R.mipmap.icon_address_me));
         blocks.add(new Block("交易密码", R.mipmap.icon_pass_usd1));
         blocks.add(new Block("联系我们", R.mipmap.icon_contoct));
         blocks.add(new Block("设备解除", R.mipmap.icon_unbind));

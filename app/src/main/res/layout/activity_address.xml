@@ -42,13 +42,11 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/btn_shape_bg"
+        android:background="#3F69F4"
         android:gravity="center"
-        android:text="添加收货地址"
+        android:text="新建收货地址"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/ctv_sizen_14" />
-
-
 
 
 </RelativeLayout>

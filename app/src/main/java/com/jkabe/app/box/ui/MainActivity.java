@@ -17,6 +17,8 @@ import com.jkabe.app.box.config.Api;
 import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
 import com.jkabe.app.box.ui.fragment.CarFragment;
+import com.jkabe.app.box.ui.fragment.CarLeftFragment;
+import com.jkabe.app.box.ui.fragment.CartFragment;
 import com.jkabe.app.box.ui.fragment.LeftFragment;
 import com.jkabe.app.box.ui.fragment.MeFragment;
 import com.jkabe.app.box.ui.fragment.OreFragment;
@@ -47,9 +49,9 @@ import cn.jpush.android.api.JPushInterface;
  */
 public class MainActivity extends BaseActivity1 implements NetWorkListener {
     //    private Class fragments[] = {CarFragment.class, CarLeftFragment.class, RecordFragment.class, MineFragment.class};
-    private Class fragments[] = {CarFragment.class, LeftFragment.class, OreFragment.class, MeFragment.class};
-    private int drawables[] = {R.drawable.book_drawable, R.drawable.shelf_drawable, R.drawable.chosen_drawable, R.drawable.me_drawable};
-    private String textviewArray[] = {"我的车", "车生活", "矿池", "我的"};
+    private Class fragments[] = {CarFragment.class, LeftFragment.class, OreFragment.class,  CartFragment.class,MeFragment.class};
+    private int drawables[] = {R.drawable.book_drawable, R.drawable.shelf_drawable, R.drawable.chosen_drawable,R.drawable.chosen_cart, R.drawable.me_drawable};
+    private String textviewArray[] = {"我的车", "车生活", "矿池","购物车", "我的"};
     public FragmentTabHost mTabHost;
     private Verison verison;
 
@@ -97,6 +99,12 @@ public class MainActivity extends BaseActivity1 implements NetWorkListener {
                 if (tabId.equals(textviewArray[3])) {
                     clearViewColor();
                     TextView tv_mine = mTabHost.getTabWidget().getChildAt(3).findViewById(R.id.textview);
+                    tv_mine.setTextColor(Color.parseColor("#3F69F4"));
+                }
+
+                if (tabId.equals(textviewArray[4])) {
+                    clearViewColor();
+                    TextView tv_mine = mTabHost.getTabWidget().getChildAt(4).findViewById(R.id.textview);
                     tv_mine.setTextColor(Color.parseColor("#3F69F4"));
                 }
 
@@ -165,6 +173,9 @@ public class MainActivity extends BaseActivity1 implements NetWorkListener {
 
         TextView tv_mine3 = mTabHost.getTabWidget().getChildAt(3).findViewById(R.id.textview);
         tv_mine3.setTextColor(Color.parseColor("#666666"));
+//
+        TextView tv_mine4 = mTabHost.getTabWidget().getChildAt(4).findViewById(R.id.textview);
+        tv_mine4.setTextColor(Color.parseColor("#666666"));
     }
 
     /*******绑定Jpush

@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +15,10 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.jkabe.app.box.adapter.MeAdapter;
 import com.jkabe.app.box.base.BaseApplication;
 import com.jkabe.app.box.base.BaseFragment;
@@ -35,6 +32,7 @@ import com.jkabe.app.box.config.okHttpModel;
 import com.jkabe.app.box.glide.GlideUtils;
 import com.jkabe.app.box.ui.AboutActivity;
 import com.jkabe.app.box.ui.ActivationActivity;
+import com.jkabe.app.box.ui.AddressActivity;
 import com.jkabe.app.box.ui.InvitationActivity;
 import com.jkabe.app.box.ui.LoginActivity;
 import com.jkabe.app.box.ui.MainActivity;
@@ -49,18 +47,14 @@ import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.Utility;
-import com.jkabe.app.box.weight.ENoticeView;
 import com.jkabe.app.box.weight.MarqueeTextView;
 import com.jkabe.app.box.weight.PreferenceUtils;
 import com.jkabe.box.R;
 import com.lihang.ShadowLayout;
-
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import crossoverone.statuslib.StatusUtil;
 
 /**
@@ -78,7 +72,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
     private MeAdapter adapter;
     private List<String> items = new ArrayList<>();
     private ShadowLayout rl_note;
-    private MarqueeTextView mENoticeView;
+    private MarqueeTextView marqueeTextView;
 
 
     @Nullable
@@ -111,7 +105,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
 
     private void initView() {
         rl_note = getView(rootView, R.id.rl_note);
-        mENoticeView = getView(rootView, R.id.mENoticeView);
+        marqueeTextView = getView(rootView, R.id.mENoticeView);
         recyclerView = getView(rootView, R.id.recyclerView);
         text_key = getView(rootView, R.id.text_key);
         text_means = getView(rootView, R.id.text_means);
@@ -160,6 +154,10 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
                     case "退出登录":
                         showDialog();
                         break;
+                    case "添加地址":
+                        startActivity(new Intent(getContext(), AddressActivity.class));
+
+                        break;
                 }
             }
         });
@@ -180,7 +178,6 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
             case R.id.text_key:
                 startActivity(new Intent(getContext(), ActivationActivity.class));
                 break;
-
             case R.id.text_means:
                 MainActivity activity = (MainActivity) getActivity();
                 if (activity != null) {
@@ -336,11 +333,20 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
         stopProgressDialog();
     }
 
+    /********公告******/
     private void updateView(Massage massage) {
         if (massage != null ) {
             rl_note.setVisibility(View.VISIBLE);
-            items.add(massage.getContent());
-            mENoticeView.setText(Html.fromHtml(massage.getContent()).toString().trim());
+            items.add(massage.getTitle()+":"+massage.getRemark());
+            marqueeTextView.setText(massage.getTitle()+":"+massage.getRemark());
+            marqueeTextView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(getContext(),MsgActivity.class);
+                    intent.putExtra("index",2);
+                    startActivity(intent);
+                }
+            });
         } else {
             rl_note.setVisibility(View.GONE);
         }

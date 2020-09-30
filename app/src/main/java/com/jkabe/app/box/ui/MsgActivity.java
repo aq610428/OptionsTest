@@ -69,9 +69,16 @@ public class MsgActivity extends BaseActivity implements ViewPager.OnPageChangeL
         mViewPager.setAdapter(mFragmentAdapter);
         mViewPager.setCurrentItem(0);
         mViewPager.setOnPageChangeListener(this);
+        int index=getIntent().getIntExtra("index",0);
+        Update(index);
     }
 
 
+
+    public void  Update(int index){
+        setView(index);
+        mViewPager.setCurrentItem(index);
+    }
 
 
 
