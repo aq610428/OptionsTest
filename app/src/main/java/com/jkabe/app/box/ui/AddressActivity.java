@@ -1,9 +1,11 @@
 package com.jkabe.app.box.ui;
 
+import android.app.Dialog;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.TextView;
-
 import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.lljjcoder.Interface.OnCityItemClickListener;
 import com.jkabe.app.box.lljjcoder.bean.CityBean;
@@ -22,6 +24,7 @@ import com.jkabe.box.R;
 public class AddressActivity extends BaseActivity {
     private TextView title_text_tv, title_left_btn, text_address;
     private CityPickerView mCityPickerView = new CityPickerView();
+    private TextView text_save;
 
     @Override
     protected void initCreate(Bundle savedInstanceState) {
@@ -31,11 +34,13 @@ public class AddressActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        text_save = getView(R.id.text_save);
         text_address = getView(R.id.text_address);
         title_text_tv = getView(R.id.title_text_tv);
         title_left_btn = getView(R.id.title_left_btn);
         title_left_btn.setOnClickListener(this);
         text_address.setOnClickListener(this);
+        text_save.setOnClickListener(this);
         title_text_tv.setText("新建收货人");
     }
 
@@ -55,8 +60,33 @@ public class AddressActivity extends BaseActivity {
             case R.id.text_address:
                 showAddress();
                 break;
+            case R.id.text_save:
+                saveDialog();
+                break;
         }
     }
+
+
+    public void saveDialog() {
+        Dialog dialog = new Dialog(this);
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_layout_bgt, null);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(view);
+        view.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        view.findViewById(R.id.confirm).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
 
 
     private void showAddress() {
@@ -81,7 +111,7 @@ public class AddressActivity extends BaseActivity {
                 String province = provinceBean.getName();
                 String city = cityBean.getName();
                 String area = districtBean.getName();
-                text_address.setText(province+city+area);
+                text_address.setText(province + city + area);
             }
 
             @Override

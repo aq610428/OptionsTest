@@ -1,5 +1,6 @@
 package com.jkabe.app.box.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -57,7 +58,7 @@ public class AddressListActivity extends BaseActivity implements OnRefreshListen
                 finish();
                 break;
             case R.id.text_add:
-
+               startActivity(new Intent(this,AddressActivity.class));
                 break;
         }
     }
