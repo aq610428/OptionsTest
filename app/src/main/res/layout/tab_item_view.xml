@@ -7,11 +7,11 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.1dp"
-        android:background="@color/tab_line" />
+        android:layout_height="0.5dp"
+        android:background="@color/dive_line" />
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center">
 
@@ -27,8 +27,8 @@
                 android:id="@+id/imageview"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:focusable="false"
                 android:elevation="5dp"
+                android:focusable="false"
                 android:src="@mipmap/icon_home" />
 
             <TextView
@@ -39,7 +39,29 @@
                 android:text="首页"
                 android:textColor="@color/black66"
                 android:textSize="12sp" />
+
         </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/text_num"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:textSize="9sp"
+                android:background="@drawable/text_num"
+                android:gravity="center"
+                android:textColor="@color/colorWhite"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
 
     </RelativeLayout>
 </LinearLayout>

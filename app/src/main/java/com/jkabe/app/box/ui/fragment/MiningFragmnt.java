@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.jkabe.app.box.base.BaseActivity;
@@ -14,12 +15,17 @@ import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
 import com.jkabe.app.box.ui.ActivationActivity;
 import com.jkabe.app.box.util.Constants;
+import com.jkabe.app.box.util.DateUtils;
+import com.jkabe.app.box.util.LogUtils;
 import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.DialogUtils;
 import com.jkabe.box.R;
+
 import org.json.JSONObject;
+
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -105,8 +111,18 @@ public class MiningFragmnt extends BaseActivity implements NetWorkListener, View
             text_dig.setText(jsonObject.optString("miningBox") + " BOX");
             text_cny.setText(jsonObject.optString("totalBox") + "");
             String stat = jsonObject.optString("state");
+            String miningDate = jsonObject.optString("miningDate");
             if ("1".equals(stat + "") || "3".equals(stat)) {
                 text_bind.setVisibility(View.GONE);
+            } else if ("2".equals(stat + "") && !Utility.isEmpty(miningDate)) {
+                String str[] = miningDate.split("T");
+                if (str.length == 2) {
+                    String date = str[0] + " " + str[1].substring(0, 8);
+                    float day = DateUtils.getDayLong(date);
+                    if (day <= 7) {
+                        DialogUtils.showPay(this);
+                    }
+                }
             }
         }
 

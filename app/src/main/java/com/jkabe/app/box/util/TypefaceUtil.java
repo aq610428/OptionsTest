@@ -1,5 +1,6 @@
 package com.jkabe.app.box.util;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.text.TextPaint;
@@ -25,6 +26,15 @@ public class TypefaceUtil {
         mContext = context;
         mTypeface = getTypefaceFromTTF(ttfPath);
     }
+
+    public static void setTextType(Activity activity, String name,TextView textView) {
+        Typeface typeface = Typeface.createFromAsset(activity.getAssets(), name);
+        textView.setTypeface(typeface);
+    }
+
+
+
+
 
     /**
      * 从ttf文件创建Typeface对象

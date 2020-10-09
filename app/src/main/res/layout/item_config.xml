@@ -94,24 +94,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="22dp"
                         android:layout_alignParentRight="true"
-                        android:background="@drawable/shape_cart"
                         android:gravity="center"
                         android:orientation="horizontal">
-
-
-                        <LinearLayout
-                            android:id="@+id/ll_redue"
-                            android:layout_width="30dp"
-                            android:layout_height="match_parent"
-                            android:gravity="center">
-
-                            <ImageView
-                                android:id="@+id/text_redue"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@mipmap/icon_redue" />
-
-                        </LinearLayout>
 
 
                         <TextView
@@ -119,24 +103,10 @@
                             android:layout_width="30dp"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:text="1"
-                            android:textColor="#C8C8C8"
-                            android:textSize="@dimen/ctv_sizen_12" />
+                            android:text="x1"
+                            android:textColor="@color/black7e"
+                            android:textSize="@dimen/ctv_sizen_14" />
 
-
-                        <LinearLayout
-                            android:id="@+id/ll_add"
-                            android:layout_width="30dp"
-                            android:layout_height="match_parent"
-                            android:gravity="center">
-
-                            <ImageView
-                                android:id="@+id/text_add"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@mipmap/icon_add" />
-
-                        </LinearLayout>
                     </LinearLayout>
                 </RelativeLayout>
             </LinearLayout>

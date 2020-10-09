@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.lihang.ShadowLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        app:hl_cornerRadius="5dp"
+        app:hl_shadowBackColor="#fff"
+        app:hl_shadowColor="#08000000"
+        app:hl_shadowLimit="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/text_choose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/ic_choose"
+                android:gravity="center"
+                android:padding="12dp"
+                android:textColor="#0F0F0F"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/iv_logo"
+                android:layout_width="83dp"
+                android:layout_height="86dp"
+                android:layout_marginLeft="10dp"
+                android:scaleType="centerCrop" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="14dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|left"
+                    android:maxLines="1"
+                    android:text="菲律宾菠萝片 100g"
+                    android:textColor="#0F0F0F"
+                    android:textSize="@dimen/ctv_sizen_14"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/text_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:gravity="center|left"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:text="40斤正负25g"
+                    android:textColor="#BEBEBE"
+                    android:textSize="@dimen/ctv_sizen_12" />
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:paddingBottom="10dp">
+
+                    <TextView
+                        android:id="@+id/text_rmb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:paddingTop="6dp"
+                        android:text="￥"
+                        android:textColor="#3F63F4"
+                        android:textSize="@dimen/ctv_sizen_11"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/text_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/text_rmb"
+                        android:gravity="center"
+                        android:text="28.8"
+                        android:textColor="#3F63F4"
+                        android:textSize="@dimen/ctv_sizen_17"
+                        android:textStyle="bold" />
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="22dp"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/shape_cart"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+
+                        <LinearLayout
+                            android:id="@+id/ll_redue"
+                            android:layout_width="30dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:id="@+id/text_redue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@mipmap/icon_redue" />
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/text_number"
+                            android:layout_width="30dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="1"
+                            android:textColor="#C8C8C8"
+                            android:textSize="@dimen/ctv_sizen_12" />
+
+
+                        <LinearLayout
+                            android:id="@+id/ll_add"
+                            android:layout_width="30dp"
+                            android:layout_height="match_parent"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:id="@+id/text_add"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@mipmap/icon_add" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </com.lihang.ShadowLayout>
+</RelativeLayout>

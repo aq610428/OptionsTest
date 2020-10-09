@@ -52,6 +52,30 @@ public class DialogUtils {
     }
 
 
+
+    public static void showPay(Context context) {
+        Dialog dialog = new Dialog(context);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_layout_ming, null);
+        TextView text_name = view.findViewById(R.id.text_name);
+        text_name.setText("您当前的挖矿已结束，是否要再次激活？");
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(view);
+        view.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        view.findViewById(R.id.confirm).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent( context, ActivationActivity.class));
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
     public static void showPassword(Context context) {
         Dialog dialog = new Dialog(context);
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_layout_ming, null);

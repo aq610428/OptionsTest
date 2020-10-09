@@ -17,7 +17,6 @@ import com.jkabe.app.box.config.Api;
 import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
 import com.jkabe.app.box.ui.fragment.CarFragment;
-import com.jkabe.app.box.ui.fragment.CarLeftFragment;
 import com.jkabe.app.box.ui.fragment.CartFragment;
 import com.jkabe.app.box.ui.fragment.LeftFragment;
 import com.jkabe.app.box.ui.fragment.MeFragment;

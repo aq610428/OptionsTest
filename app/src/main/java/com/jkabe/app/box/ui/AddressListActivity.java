@@ -3,6 +3,7 @@ package com.jkabe.app.box.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -73,6 +74,16 @@ public class AddressListActivity extends BaseActivity implements OnRefreshListen
         array.addAll(array);
         adapter = new AddressAdapter(this, array);
         swipe_target.setAdapter(adapter);
+
+
+        adapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent=new Intent();
+                setResult(101,intent);
+                finish();
+            }
+        });
     }
 
     @Override

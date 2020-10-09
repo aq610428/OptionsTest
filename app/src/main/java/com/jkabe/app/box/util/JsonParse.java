@@ -28,6 +28,7 @@ import com.jkabe.app.box.bean.OilInfo;
 import com.jkabe.app.box.bean.OrderInfo;
 import com.jkabe.app.box.bean.OreInfo;
 import com.jkabe.app.box.bean.PackageBean;
+import com.jkabe.app.box.bean.PayBean;
 import com.jkabe.app.box.bean.StoreInfo;
 import com.jkabe.app.box.bean.Travrt;
 import com.jkabe.app.box.bean.TripVo;
@@ -454,5 +455,18 @@ public class JsonParse {
             infos.add(info);
         }
         return infos;
+    }
+
+    public static PayBean getPayJson(String str) {
+        PayBean info = null;
+        try {
+            JSONObject jsonObject = new JSONObject(str);
+            info = (PayBean) JsonUtilComm.jsonToBean(jsonObject.toString(), PayBean.class);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return info;
+
+
     }
 }

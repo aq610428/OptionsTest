@@ -2,11 +2,15 @@ package com.jkabe.app.box.adapter;
 
 
 import android.content.Context;
+import android.view.View;
+import android.widget.TextView;
 
 import com.jkabe.app.box.bean.ImageInfo;
 import com.jkabe.app.box.glide.GlideUtils;
+import com.jkabe.app.box.util.BigDecimalUtils;
 import com.jkabe.box.R;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 

@@ -33,7 +33,7 @@ public class DateUtils {
     }
 
 
-    public static String changeTimeToDayTwo(long time){
+    public static String changeTimeToDayTwo(long time) {
         Date date = new Date(time);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return simpleDateFormat.format(date);
@@ -55,9 +55,6 @@ public class DateUtils {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         return format.format(date);
     }
-
-
-
 
 
     public static String getNextDay(long endTime) {
@@ -161,8 +158,6 @@ public class DateUtils {
         }
         return date;
     }
-
-
 
 
     public static String DateToStr(Date date) {
@@ -508,5 +503,20 @@ public class DateUtils {
         Date date = new Date(lt);
         res = simpleDateFormat.format(date);
         return res;
+    }
+
+    public static float getDayLong(String date) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            Date end = simpleDateFormat.parse(date);
+            Date begin = new Date(System.currentTimeMillis());
+            long result = (begin.getTime() - end.getTime());
+            Long day = result / (1000 * 60 * 60 * 24);
+            LogUtils.e("day="+day);
+            return day;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return 0f;
     }
 }
