@@ -32,7 +32,7 @@
     </com.aspsine.swipetoloadlayout.SwipeToLoadLayout>
 
 
-    <com.lefu.tao.weight.NoDataView
+    <com.jkabe.app.box.weight.NoDataView
         android:id="@+id/mNoDataView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

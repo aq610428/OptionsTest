@@ -14,6 +14,7 @@ import com.jkabe.app.box.box.fragement.AllFragment;
 import com.jkabe.app.box.box.fragement.CompletedFragment;
 import com.jkabe.app.box.box.fragement.PayFragment;
 import com.jkabe.app.box.box.fragement.TakeFragment;
+import com.jkabe.app.box.weight.PreferenceUtils;
 import com.jkabe.box.R;
 
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ public class OrderPayActivity extends BaseActivity implements ViewPager.OnPageCh
     @Override
     protected void initCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_order_list);
+        PreferenceUtils.setPrefString(this,"pay","1002");
     }
 
     @Override
@@ -114,19 +116,19 @@ public class OrderPayActivity extends BaseActivity implements ViewPager.OnPageCh
         switch (index) {
             case 0:
                 text_line1.setVisibility(View.VISIBLE);
-                text_tab1.setTextColor(Color.parseColor("#F75A3F"));
+                text_tab1.setTextColor(Color.parseColor("#3F63F4"));
                 break;
             case 1:
                 text_line2.setVisibility(View.VISIBLE);
-                text_tab2.setTextColor(Color.parseColor("#F75A3F"));
+                text_tab2.setTextColor(Color.parseColor("#3F63F4"));
                 break;
             case 2:
                 text_line3.setVisibility(View.VISIBLE);
-                text_tab3.setTextColor(Color.parseColor("#F75A3F"));
+                text_tab3.setTextColor(Color.parseColor("#3F63F4"));
                 break;
             case 3:
                 text_line4.setVisibility(View.VISIBLE);
-                text_tab4.setTextColor(Color.parseColor("#F75A3F"));
+                text_tab4.setTextColor(Color.parseColor("#3F63F4"));
                 break;
         }
     }

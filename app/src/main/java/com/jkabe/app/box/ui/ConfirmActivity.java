@@ -12,6 +12,7 @@ import com.jkabe.app.box.adapter.ConfimAdapter;
 import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.bean.ImageInfo;
 import com.jkabe.app.box.bean.PayBean;
+import com.jkabe.app.box.box.OrderPayActivity;
 import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.JsonParse;
 import com.jkabe.app.box.util.ToastUtil;
@@ -42,7 +43,6 @@ public class ConfirmActivity extends BaseActivity {
     protected void initCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_confirm);
         api = WXAPIFactory.createWXAPI(this, Constants.APP_ID);
-        api.registerApp(Constants.APP_ID);
     }
 
     @Override
@@ -124,13 +124,16 @@ public class ConfirmActivity extends BaseActivity {
             req.extData = "app data"; // optional
             api.sendReq(req);
         }
+
+
+        startActivity(new Intent(this,OrderPayActivity.class));
     }
 
 
     @Override
     protected void onResume() {
         super.onResume();
-        String pay=PreferenceUtils.getPrefString(this,"pay","-1000");
+        String pay=PreferenceUtils.getPrefString(this,"pay","1002");
         switch (pay){
             case "0":
                 ToastUtil.showToast("支付正常");
@@ -141,6 +144,8 @@ public class ConfirmActivity extends BaseActivity {
             case "-2":
                 ToastUtil.showToast("用户取消");
                 break;
+            default:
+                PreferenceUtils.setPrefString(this,"pay","1002");
         }
     }
 }
