@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Constants {
+    public static final String APPID = "2021001198636188";
+    public static final String RSA_PRIVATE = "G/m92T9Vvo5fAaeNL+ACcQ==";
     public static final String APP_ID = "wxdebf49e4963895e1";
     public static String SUCESSCODE = "EXECUTE_SUCCESS";
     public static final String PARTNERID = "761ea3b34cc74aa58ac74d5e60048997";//区分动画

@@ -1,7 +1,11 @@
 package com.jkabe.app.box.ui;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -15,15 +19,20 @@ import com.jkabe.app.box.bean.PayBean;
 import com.jkabe.app.box.box.OrderPayActivity;
 import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.JsonParse;
+import com.jkabe.app.box.util.LogUtils;
+import com.jkabe.app.box.util.PayUtils;
 import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.TypefaceUtil;
 import com.jkabe.app.box.weight.PreferenceUtils;
 import com.jkabe.box.R;
+import com.jkabe.box.alipay.AuthResult;
+import com.jkabe.box.alipay.PayResult;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author: zt
@@ -38,6 +47,9 @@ public class ConfirmActivity extends BaseActivity {
     private RelativeLayout ll_address;
     private TextView text_wechat, text_alipay;
     private IWXAPI api;
+    public static final int SDK_PAY_FLAG = 1;
+    public static final int SDK_AUTH_FLAG = 2;
+    private int isPay=1;
 
     @Override
     protected void initCreate(Bundle savedInstanceState) {
@@ -98,10 +110,12 @@ public class ConfirmActivity extends BaseActivity {
                 pay();
                 break;
             case R.id.text_alipay:
+                isPay=2;
                 text_alipay.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.icon_ailipay, 0, R.mipmap.ic_choose_un, 0);
                 text_wechat.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.icon_wehcat, 0, R.mipmap.ic_choose, 0);
                 break;
             case R.id.text_wechat:
+                isPay=1;
                 text_wechat.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.icon_wehcat, 0, R.mipmap.ic_choose_un, 0);
                 text_alipay.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.icon_ailipay, 0, R.mipmap.ic_choose, 0);
                 break;
@@ -112,21 +126,11 @@ public class ConfirmActivity extends BaseActivity {
     private void pay() {
         String str = "{\"appid\":\"wxb4ba3c02aa476ea1\",\"partnerid\":\"1900006771\",\"package\":\"Sign=WXPay\",\"noncestr\":\"c7886c4ed157f38fdd3ae0baad9726ac\",\"timestamp\":1602224908,\"prepayid\":\"wx091428285854906d23ae226a0647d50000\",\"sign\":\"1A835FCA527CB435098C04F0CB288EE3\"}";
         PayBean payBean = JsonParse.getPayJson(str);
-        if (payBean!=null){
-            PayReq req = new PayReq();
-            req.appId = payBean.getAppid();
-            req.partnerId = payBean.getPartnerid();
-            req.prepayId = payBean.getPrepayid();
-            req.nonceStr = payBean.getNoncestr();
-            req.timeStamp = payBean.getTimestamp()+"";
-            req.packageValue = payBean.getPackageX();
-            req.sign = payBean.getSign();
-            req.extData = "app data"; // optional
-            api.sendReq(req);
+        if (isPay==1){
+            PayUtils.wechatPay(this,payBean,api);
+        }else {
+            PayUtils.AliPay(this,mHandler,"");
         }
-
-
-        startActivity(new Intent(this,OrderPayActivity.class));
     }
 
 
@@ -148,4 +152,30 @@ public class ConfirmActivity extends BaseActivity {
                 PreferenceUtils.setPrefString(this,"pay","1002");
         }
     }
+
+
+
+    @SuppressLint("HandlerLeak")
+    private Handler mHandler = new Handler() {
+        @SuppressWarnings("unused")
+        public void handleMessage(Message msg) {
+            if (msg.what==SDK_PAY_FLAG){
+                PayResult payResult = new PayResult((Map<String, String>) msg.obj);
+                //对于支付结果，请商户依赖服务端的异步通知结果。同步通知结果，仅作为支付结束的通知。
+                String resultInfo = payResult.getResult();// 同步返回需要验证的信息
+                String resultStatus = payResult.getResultStatus();
+                // 判断resultStatus 为9000则代表支付成功
+                if (TextUtils.equals(resultStatus, "9000")) {
+                    // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
+                    LogUtils.e("支付成功"+payResult);
+                } else {
+                    // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
+                    LogUtils.e("支付失败"+payResult);
+                }
+            }
+        };
+    };
+
+
+
 }

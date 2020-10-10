@@ -112,5 +112,6 @@ dependencies {
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     implementation 'noman.weekcalendar:weekcalendar:1.0.6'
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
+    implementation (name: 'alipaySdk-15.7.9-20200727142846', ext: 'aar')
 }
 

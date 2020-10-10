@@ -13,7 +13,7 @@
         app:hl_cornerRadius="5dp"
         app:hl_shadowBackColor="#fff"
         app:hl_shadowColor="#08000000"
-        app:hl_shadowLimit="6dp">
+        app:hl_shadowLimit="5dp">
 
 
         <LinearLayout
