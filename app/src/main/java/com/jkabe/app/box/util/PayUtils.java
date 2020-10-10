@@ -54,6 +54,14 @@ public class PayUtils {
 
             @Override
             public void run() {
+//                Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(Constants.APPID, false);
+//                String orderParam = OrderInfoUtil2_0.buildOrderParam(params);
+//                boolean rsa2 = (RSA_PRIVATE.length() > 0);
+//                String privateKey = rsa2 ? RSA_PRIVATE : RSA_PRIVATE;
+//                String sign = OrderInfoUtil2_0.getSign(params, privateKey, rsa2);
+//                final String orderInfo = orderParam + "&" + sign;
+
+
                 PayTask alipay = new PayTask(activity);
                 Map<String, String> result = alipay.payV2(orderInfo, true);
                 LogUtils.i("支付结果result=" + result.toString());
