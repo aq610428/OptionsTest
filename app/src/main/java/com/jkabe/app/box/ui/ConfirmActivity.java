@@ -21,13 +21,9 @@ import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.JsonParse;
 import com.jkabe.app.box.util.LogUtils;
 import com.jkabe.app.box.util.PayUtils;
-import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.TypefaceUtil;
-import com.jkabe.app.box.weight.PreferenceUtils;
 import com.jkabe.box.R;
-import com.jkabe.box.alipay.AuthResult;
 import com.jkabe.box.alipay.PayResult;
-import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import java.util.ArrayList;
@@ -48,7 +44,6 @@ public class ConfirmActivity extends BaseActivity {
     private TextView text_wechat, text_alipay;
     private IWXAPI api;
     public static final int SDK_PAY_FLAG = 1;
-    public static final int SDK_AUTH_FLAG = 2;
     private int isPay=1;
 
     @Override
@@ -134,24 +129,6 @@ public class ConfirmActivity extends BaseActivity {
     }
 
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        String pay=PreferenceUtils.getPrefString(this,"pay","1002");
-        switch (pay){
-            case "0":
-                ToastUtil.showToast("支付正常");
-                break;
-            case "-1":
-                ToastUtil.showToast("签名错误、未注册APPID、项目设置APPID不正确、注册的APPID与设置的不匹配、其他异常等。");
-                break;
-            case "-2":
-                ToastUtil.showToast("用户取消");
-                break;
-            default:
-                PreferenceUtils.setPrefString(this,"pay","1002");
-        }
-    }
 
 
 
@@ -171,6 +148,7 @@ public class ConfirmActivity extends BaseActivity {
                 } else {
                     // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
                     LogUtils.e("支付失败"+payResult);
+                    startActivity(new Intent(ConfirmActivity.this, OrderPayActivity.class));
                 }
             }
         };

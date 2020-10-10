@@ -1,6 +1,7 @@
 package com.jkabe.app.box.adapter;
 
 import android.content.Context;
+import android.view.View;
 
 import com.jkabe.app.box.bean.ImageInfo;
 import com.jkabe.app.box.glide.GlideUtils;
@@ -30,5 +31,11 @@ public class TakeAdapter extends AutoRVAdapter {
     @Override
     public void onBindViewHolder(ViewHolder vh, int position) {
         GlideUtils.CreateImageRound(list.get(position).getPhotoFile(),vh.getImageView(R.id.iv_logo),5);
+        vh.getTextView(R.id.text_logistics).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 }
