@@ -41,6 +41,15 @@ public class GoodBean implements Serializable {
     private int integral;
     private String brandName;
 
+    public String getFollowid() {
+        return followid;
+    }
+
+    public void setFollowid(String followid) {
+        this.followid = followid;
+    }
+
+    private String followid;
 
     private int goodNumber;
     private String categoryAname;

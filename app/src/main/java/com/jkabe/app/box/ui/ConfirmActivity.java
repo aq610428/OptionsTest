@@ -65,6 +65,7 @@ public class ConfirmActivity extends BaseActivity implements NetWorkListener {
     private int isPay = 1;
     private EditText text_remark;
     private PayBean payBean;
+    private GoodBean goodBean;
 
     @Override
     protected void initCreate(Bundle savedInstanceState) {
@@ -107,7 +108,7 @@ public class ConfirmActivity extends BaseActivity implements NetWorkListener {
         if (beanList != null && beanList.size() > 0) {
             updateView();
         } else {
-            GoodBean goodBean = (GoodBean) getIntent().getSerializableExtra("goodBean");
+            goodBean = (GoodBean) getIntent().getSerializableExtra("goodBean");
             if (goodBean != null) {
                 beanList = new ArrayList<>();
                 CartBean cartBean = new CartBean();
@@ -152,7 +153,6 @@ public class ConfirmActivity extends BaseActivity implements NetWorkListener {
                 break;
             case R.id.text_sumber:
                 checkOrder();
-                pay();
                 break;
             case R.id.text_alipay:
                 isPay = 2;
@@ -174,15 +174,47 @@ public class ConfirmActivity extends BaseActivity implements NetWorkListener {
             ToastUtil.showToast("收货地址不能为空");
             return;
         }
-        String shoppingids = "";
-        for (int i = 0; i < beanList.size(); i++) {
-            if (i == 0) {
-                shoppingids = beanList.get(i).getId();
-            } else {
-                shoppingids = shoppingids + "," + beanList.get(i).getId();
+        if (goodBean != null) {
+            query1();
+        } else {
+            String shoppingids = "";
+            for (int i = 0; i < beanList.size(); i++) {
+                if (i == 0) {
+                    shoppingids = beanList.get(i).getId();
+                } else {
+                    shoppingids = shoppingids + "," + beanList.get(i).getId();
+                }
             }
+            query(shoppingids);
         }
-        query(shoppingids);
+    }
+
+    /******直接购买*****/
+    private void query1() {
+        showProgressDialog(this, false);
+        String remark = text_remark.getText().toString();
+        String goodid = beanList.get(0).getGoodid();
+        String goodNumber = beanList.get(0).getGoodNumber()+"";
+
+        String sign ="goodid="+goodid+"&goodNumber="+goodNumber+ "&memberid=" + SaveUtils.getSaveInfo().getId();
+        if (!Utility.isEmpty(remark)) {
+            sign = sign + "&message=" + remark;
+        }
+        sign = sign + "&partnerid=" + Constants.PARTNERID + "&receiveAddress=" + receiveAddress + "&receiveMobile=" + receiveMobile + "&receiveName=" + receiveName + Constants.SECREKEY;
+        Map<String, String> params = okHttpModel.getParams();
+        params.put("goodid", goodid);
+        params.put("goodNumber", goodNumber);
+        params.put("memberid", SaveUtils.getSaveInfo().getId());
+        if (!Utility.isEmpty(remark)) {
+            params.put("message", remark);
+        }
+        params.put("partnerid", Constants.PARTNERID);
+        params.put("receiveAddress", receiveAddress);
+        params.put("receiveMobile", receiveMobile);
+        params.put("receiveName", receiveName);
+        params.put("apptype", Constants.TYPE);
+        params.put("sign", Md5Util.encode(sign));
+        okHttpModel.post(Api.PAY_ORDER_NOW, params, Api.PAY_ORDER_NOW_ID, this);
     }
 
 
@@ -217,6 +249,7 @@ public class ConfirmActivity extends BaseActivity implements NetWorkListener {
         if (object != null && commonality != null && !Utility.isEmpty(commonality.getStatusCode())) {
             if (Constants.SUCESSCODE.equals(commonality.getStatusCode())) {
                 switch (id) {
+                    case Api.PAY_ORDER_NOW_ID:
                     case Api.MallGood_PAY_SAVE_ID:
                         ToastUtil.showToast(commonality.getErrorDesc());
                         payBean = JsonParse.getPayJson(object);

@@ -78,6 +78,7 @@ public class CartAdapter extends AutoRVAdapter {
                     bean.setGoodNumber(num.intValue());
                     fragment.updateView();
                 }
+                fragment.queryNum(bean.getGoodNumber()+"",bean.getGoodid());
             }
         });
 
@@ -89,6 +90,7 @@ public class CartAdapter extends AutoRVAdapter {
                 text_number.setText(num.toPlainString());
                 bean.setGoodNumber(num.intValue());
                 fragment.updateView();
+                fragment.queryNum(bean.getGoodNumber()+"",bean.getGoodid());
             }
         });
     }

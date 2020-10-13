@@ -2,22 +2,17 @@ package com.jkabe.app.box.ui;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
-
 import com.jkabe.app.box.adapter.GoodAdapter;
 import com.jkabe.app.box.banner.Banner;
 import com.jkabe.app.box.banner.BannerConfig;
@@ -33,16 +28,13 @@ import com.jkabe.app.box.util.BigDecimalUtils;
 import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.JsonParse;
 import com.jkabe.app.box.util.Md5Util;
-import com.jkabe.app.box.util.PayUtils;
 import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.app.box.util.SystemTools;
 import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.MyLoader1;
 import com.jkabe.box.R;
-
 import org.json.JSONObject;
-
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
@@ -118,13 +110,11 @@ public class WareDeilActivity extends BaseActivity1 implements OnBannerListener,
     @Override
     protected void initData() {
         goodBean = (GoodBean) getIntent().getSerializableExtra("goodBean");
+        String goodId = getIntent().getStringExtra("goodId");
         if (goodBean != null) {
-            update();
-
-        } else {
-            String goodId = getIntent().getStringExtra("goodId");
-            query(goodId);
+            goodId=goodBean.getId();
         }
+        query(goodId);
     }
 
 
@@ -159,7 +149,11 @@ public class WareDeilActivity extends BaseActivity1 implements OnBannerListener,
                 startActivity(intent);
                 break;
             case R.id.text_cart_share:
-                PayUtils.shareWx(goodBean.getTitle(), goodBean.getDetails(), goodBean.getCategoryAname(), this);
+                if (Utility.isEmpty(goodBean.getFollowid())) {
+                    queryLove();
+                } else {
+                    ToastUtil.showToast("不能重复关注");
+                }
                 break;
             case R.id.ll_redue:
                 redueNum();
@@ -181,6 +175,18 @@ public class WareDeilActivity extends BaseActivity1 implements OnBannerListener,
                 break;
 
         }
+    }
+
+    //商品关注
+    private void queryLove() {
+        String sign = "goodid=" + goodBean.getId() + "&memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        Map<String, String> params = okHttpModel.getParams();
+        params.put("goodid", goodBean.getId());
+        params.put("memberid", SaveUtils.getSaveInfo().getId());
+        params.put("partnerid", Constants.PARTNERID);
+        params.put("apptype", Constants.TYPE);
+        params.put("sign", Md5Util.encode(sign));
+        okHttpModel.get(Api.PAY_ORDER_LOVE, params, Api.PAY_ORDER_LOVE_ID, this);
     }
 
 
@@ -225,6 +231,9 @@ public class WareDeilActivity extends BaseActivity1 implements OnBannerListener,
                         if (goodBean != null) {
                             update();
                         }
+                        break;
+                    case Api.PAY_ORDER_LOVE_ID:
+                        ToastUtil.showToast(commonality.getErrorDesc());
                         break;
 
                 }

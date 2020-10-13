@@ -322,5 +322,16 @@ public interface Api {
     String PAY_ORDER_LIST = Config.getOpenNewApi() + "/mall/gotoPayOrderInfo";
     int PAY_ORDER_LIST_ID = 20012;
 
+    //直接生成订单
+    String PAY_ORDER_NOW = Config.getOpenNewApi() + "/mall/buyNowOrderInfo";
+    int PAY_ORDER_NOW_ID = 20013;
 
+
+    //修改购物车商品数量
+    String PAY_ORDER_NUW = Config.getOpenNewApi() + "/mall/updateShoppingNum";
+    int PAY_ORDER_NUW_ID = 20014;
+
+    //关注
+    String PAY_ORDER_LOVE = Config.getOpenNewApi() + "/mall/saveMallGoodFollow";
+    int PAY_ORDER_LOVE_ID = 20015;
 }

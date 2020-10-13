@@ -243,7 +243,7 @@
             android:drawableTop="@mipmap/icon_cart_share"
             android:drawablePadding="5dp"
             android:gravity="center"
-            android:text="分享"
+            android:text="关注"
             android:textColor="@color/black01"
             android:textSize="13sp" />
 
