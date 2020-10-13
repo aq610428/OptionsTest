@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
 
+import com.jkabe.app.box.bean.CartBean;
 import com.jkabe.app.box.bean.ImageInfo;
 import com.jkabe.app.box.glide.GlideUtils;
 import com.jkabe.app.box.util.BigDecimalUtils;
@@ -20,11 +21,11 @@ import java.util.List;
  * @name:ConfimAdapter
  */
 public class ConfimAdapter extends AutoRVAdapter {
-    List<ImageInfo> list;
+    List<CartBean> list;
 
-    public ConfimAdapter(Context context, List<ImageInfo> list) {
+    public ConfimAdapter(Context context, List<CartBean> list) {
         super(context, list);
-        this.list=list;
+        this.list = list;
     }
 
     @Override
@@ -34,6 +35,10 @@ public class ConfimAdapter extends AutoRVAdapter {
 
     @Override
     public void onBindViewHolder(ViewHolder vh, int position) {
-        GlideUtils.CreateImageRound(list.get(position).getPhotoFile(),vh.getImageView(R.id.iv_logo),5);
+        CartBean bean = list.get(position);
+        GlideUtils.CreateImageRound(bean.getSmallImg(), vh.getImageView(R.id.iv_logo), 5);
+        vh.getTextView(R.id.text_name).setText(bean.getTitle());
+        vh.getTextView(R.id.text_price).setText(bean.getSellPrice() + "");
+        vh.getTextView(R.id.text_number).setText("x"+bean.getGoodNumber() + "");
     }
 }

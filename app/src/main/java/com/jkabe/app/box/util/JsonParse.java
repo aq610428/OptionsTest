@@ -1,5 +1,6 @@
 package com.jkabe.app.box.util;
 
+import com.jkabe.app.box.bean.AddressBean;
 import com.jkabe.app.box.bean.AddressInfo;
 import com.jkabe.app.box.bean.AssetsBean;
 import com.jkabe.app.box.bean.BannerVo;
@@ -11,10 +12,12 @@ import com.jkabe.app.box.bean.CarInfo;
 import com.jkabe.app.box.bean.CarRulesVO;
 import com.jkabe.app.box.bean.CarSafeVO;
 import com.jkabe.app.box.bean.CarVo;
+import com.jkabe.app.box.bean.CartBean;
 import com.jkabe.app.box.bean.CommonalityModel;
 import com.jkabe.app.box.bean.EarlyInfo;
 import com.jkabe.app.box.bean.Electronic;
 import com.jkabe.app.box.bean.EnceInfo;
+import com.jkabe.app.box.bean.GoodBean;
 import com.jkabe.app.box.bean.HealthItemVO;
 import com.jkabe.app.box.bean.ImageInfo;
 import com.jkabe.app.box.bean.InsureInfo;
@@ -170,6 +173,8 @@ public class JsonParse {
     }
 
 
+
+
     public static List<StoreInfo> getStoreJson(JSONObject object) {
         List<StoreInfo> infos = new ArrayList<>();
         JSONObject jsonObject = object.optJSONObject("result");
@@ -261,6 +266,13 @@ public class JsonParse {
         Massage info = (Massage) JsonUtilComm.jsonToBean(jsonObject.toString(), Massage.class);
         return info;
     }
+
+    public static GoodBean getgoodBean(JSONObject object) {
+        JSONObject jsonObject = object.optJSONObject("result");
+        GoodBean info = (GoodBean) JsonUtilComm.jsonToBean(jsonObject.toString(), GoodBean.class);
+        return info;
+    }
+
 
 
     public static List<EarlyInfo> getEarlyInfoJson(JSONObject object) {
@@ -468,5 +480,39 @@ public class JsonParse {
         return info;
 
 
+    }
+
+    public static List<GoodBean> getGoodBeanJson(JSONObject object) {
+        List<GoodBean> infos = new ArrayList<>();
+        JSONObject jsonObject = object.optJSONObject("result");
+        JSONArray jsonArray = jsonObject.optJSONArray("items");
+        for (int i = 0; i < jsonArray.length(); i++) {
+            GoodBean info = (GoodBean) JsonUtilComm.jsonToBean(jsonArray.optJSONObject(i).toString(), GoodBean.class);
+            infos.add(info);
+        }
+        return infos;
+    }
+
+    public static List<CartBean> getCartBeanJson(JSONObject object) {
+
+        List<CartBean> infos = new ArrayList<>();
+        JSONObject jsonObject = object.optJSONObject("result");
+        JSONArray jsonArray = jsonObject.optJSONArray("items");
+        for (int i = 0; i < jsonArray.length(); i++) {
+            CartBean info = (CartBean) JsonUtilComm.jsonToBean(jsonArray.optJSONObject(i).toString(), CartBean.class);
+            infos.add(info);
+        }
+        return infos;
+    }
+
+    public static List<AddressBean> getAddressBeanJson(JSONObject object) {
+        List<AddressBean> infos = new ArrayList<>();
+        JSONObject jsonObject = object.optJSONObject("result");
+        JSONArray jsonArray = jsonObject.optJSONArray("items");
+        for (int i = 0; i < jsonArray.length(); i++) {
+            AddressBean info = (AddressBean) JsonUtilComm.jsonToBean(jsonArray.optJSONObject(i).toString(), AddressBean.class);
+            infos.add(info);
+        }
+        return infos;
     }
 }

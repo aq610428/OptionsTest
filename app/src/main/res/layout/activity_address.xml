@@ -34,6 +34,13 @@
     </com.aspsine.swipetoloadlayout.SwipeToLoadLayout>
 
 
+    <com.jkabe.app.box.weight.NoDataView
+        android:id="@+id/noDataView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+
     <TextView
         android:id="@+id/text_add"
         android:layout_width="match_parent"

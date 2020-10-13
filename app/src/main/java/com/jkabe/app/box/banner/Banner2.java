@@ -21,20 +21,19 @@ import android.widget.TextView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.jkabe.app.box.bean.GoodBean;
-import com.jkabe.box.R;
 import com.jkabe.app.box.banner.listener.OnBannerClickListener;
 import com.jkabe.app.box.banner.listener.OnBannerListener;
 import com.jkabe.app.box.banner.loader.ImageLoaderInterface;
 import com.jkabe.app.box.banner.view.BannerViewPager;
 import com.jkabe.app.box.bean.BannerVo;
+import com.jkabe.box.R;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class Banner extends FrameLayout implements ViewPager.OnPageChangeListener {
+public class Banner2 extends FrameLayout implements ViewPager.OnPageChangeListener {
     public String tag = "banner";
     private int mIndicatorMargin = BannerConfig.PADDING_SIZE;
     private int mIndicatorWidth;
@@ -62,7 +61,7 @@ public class Banner extends FrameLayout implements ViewPager.OnPageChangeListene
     private int lastPosition = 1;
     private int scaleType = 1;
     private List<String> titles;
-    private List<GoodBean.GoodsImageListBean> imageUrls;
+    private List<BannerVo> imageUrls;
     private List<View> imageViews;
     private List<ImageView> indicatorImages;
     private Context context;
@@ -80,15 +79,15 @@ public class Banner extends FrameLayout implements ViewPager.OnPageChangeListene
 
     private WeakHandler handler = new WeakHandler();
 
-    public Banner(Context context) {
+    public Banner2(Context context) {
         this(context, null);
     }
 
-    public Banner(Context context, AttributeSet attrs) {
+    public Banner2(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public Banner(Context context, AttributeSet attrs, int defStyle) {
+    public Banner2(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         this.context = context;
         titles = new ArrayList<>();
@@ -154,22 +153,22 @@ public class Banner extends FrameLayout implements ViewPager.OnPageChangeListene
     }
 
 
-    public Banner isAutoPlay(boolean isAutoPlay) {
+    public Banner2 isAutoPlay(boolean isAutoPlay) {
         this.isAutoPlay = isAutoPlay;
         return this;
     }
 
-    public Banner setImageLoader(ImageLoaderInterface imageLoader) {
+    public Banner2 setImageLoader(ImageLoaderInterface imageLoader) {
         this.imageLoader = imageLoader;
         return this;
     }
 
-    public Banner setDelayTime(int delayTime) {
+    public Banner2 setDelayTime(int delayTime) {
         this.delayTime = delayTime;
         return this;
     }
 
-    public Banner setIndicatorGravity(int type) {
+    public Banner2 setIndicatorGravity(int type) {
         switch (type) {
             case BannerConfig.LEFT:
                 this.gravity = Gravity.LEFT | Gravity.CENTER_VERTICAL;
@@ -184,7 +183,7 @@ public class Banner extends FrameLayout implements ViewPager.OnPageChangeListene
         return this;
     }
 
-    public Banner setBannerAnimation(Class<? extends ViewPager.PageTransformer> transformer) {
+    public Banner2 setBannerAnimation(Class<? extends ViewPager.PageTransformer> transformer) {
         try {
             setPageTransformer(true, transformer.newInstance());
         } catch (Exception e) {
@@ -201,7 +200,7 @@ public class Banner extends FrameLayout implements ViewPager.OnPageChangeListene
      * @param limit How many pages will be kept offscreen in an idle state.
      * @return Banner
      */
-    public Banner setOffscreenPageLimit(int limit) {
+    public Banner2 setOffscreenPageLimit(int limit) {
         if (viewPager != null) {
             viewPager.setOffscreenPageLimit(limit);
         }
@@ -218,39 +217,39 @@ public class Banner extends FrameLayout implements ViewPager.OnPageChangeListene
      * @param transformer         PageTransformer that will modify each page's animation properties
      * @return Banner
      */
-    public Banner setPageTransformer(boolean reverseDrawingOrder, ViewPager.PageTransformer transformer) {
+    public Banner2 setPageTransformer(boolean reverseDrawingOrder, ViewPager.PageTransformer transformer) {
         viewPager.setPageTransformer(reverseDrawingOrder, transformer);
         return this;
     }
 
-    public Banner setBannerTitles(List<String> titles) {
+    public Banner2 setBannerTitles(List<String> titles) {
         this.titles = titles;
         return this;
     }
 
-    public Banner setBannerStyle(int bannerStyle) {
+    public Banner2 setBannerStyle(int bannerStyle) {
         this.bannerStyle = bannerStyle;
         return this;
     }
 
-    public Banner setViewPagerIsScroll(boolean isScroll) {
+    public Banner2 setViewPagerIsScroll(boolean isScroll) {
         this.isScroll = isScroll;
         return this;
     }
 
-    public Banner setImages(List<GoodBean.GoodsImageListBean> imageUrls) {
+    public Banner2 setImages(List<BannerVo> imageUrls) {
         this.imageUrls.addAll(imageUrls);
         this.count = imageUrls.size();
         return this;
     }
 
-    public void update(List<GoodBean.GoodsImageListBean> imageUrls, List<String> titles) {
+    public void update(List<BannerVo> imageUrls, List<String> titles) {
         this.titles.clear();
         this.titles.addAll(titles);
         update(imageUrls);
     }
 
-    public void update(List<GoodBean.GoodsImageListBean> imageUrls) {
+    public void update(List<BannerVo> imageUrls) {
         this.imageUrls.clear();
         this.imageViews.clear();
         this.indicatorImages.clear();
@@ -279,7 +278,7 @@ public class Banner extends FrameLayout implements ViewPager.OnPageChangeListene
     }
 
 
-    public Banner start() {
+    public Banner2 start() {
         setBannerStyleUI();
         setImageList(imageUrls);
         setData();
@@ -315,7 +314,7 @@ public class Banner extends FrameLayout implements ViewPager.OnPageChangeListene
     }
 
     private void setBannerStyleUI() {
-        int visibility = count > 1 ? View.GONE : View.GONE;
+        int visibility = count > 1 ? View.VISIBLE : View.GONE;
         switch (bannerStyle) {
             case BannerConfig.CIRCLE_INDICATOR:
                 indicator.setVisibility(visibility);
@@ -351,7 +350,7 @@ public class Banner extends FrameLayout implements ViewPager.OnPageChangeListene
         }
     }
 
-    private void setImageList(List<GoodBean.GoodsImageListBean> imagesUrl) {
+    private void setImageList(List<BannerVo> imagesUrl) {
         if (imagesUrl == null || imagesUrl.size() <= 0) {
             bannerDefaultImage.setVisibility(VISIBLE);
             Log.e(tag, "The image data set is empty.");
@@ -362,11 +361,11 @@ public class Banner extends FrameLayout implements ViewPager.OnPageChangeListene
         for (int i = 0; i <= count + 1; i++) {
             Object url = null;
             if (i == 0) {
-                url = imagesUrl.get(count - 1).getGoodImg();
+                url = imagesUrl.get(count - 1).getFilepath();
             } else if (i == count + 1) {
-                url = imagesUrl.get(0).getGoodImg();
+                url = imagesUrl.get(0).getFilepath();
             } else {
-                url = imagesUrl.get(i - 1).getGoodImg();
+                url = imagesUrl.get(i - 1).getFilepath();
             }
             View imageView = null;
             if (imageLoader != null) {
@@ -662,7 +661,7 @@ public class Banner extends FrameLayout implements ViewPager.OnPageChangeListene
     }
 
     @Deprecated
-    public Banner setOnBannerClickListener(OnBannerClickListener listener) {
+    public Banner2 setOnBannerClickListener(OnBannerClickListener listener) {
         this.bannerListener = listener;
         return this;
     }
@@ -673,12 +672,12 @@ public class Banner extends FrameLayout implements ViewPager.OnPageChangeListene
      * @param listener
      * @return
      */
-    public Banner setOnBannerListener(OnBannerListener listener) {
+    public Banner2 setOnBannerListener(OnBannerListener listener) {
         this.listener = listener;
         return this;
     }
 
-    public Banner setStartIndex(int index) {
+    public Banner2 setStartIndex(int index) {
         this.startIndex = index;
         return this;
     }

@@ -110,7 +110,8 @@ public class MainActivity extends BaseActivity1 implements NetWorkListener {
             } catch (Exception e) {
             }
         };
-        setCurrentTab(0);
+        int index=getIntent().getIntExtra("index",0);
+        setCurrentTab(index);
         mTabHost.setOnTabChangedListener(l);
         mTabHost.getTabWidget().setDividerDrawable(null);
     }

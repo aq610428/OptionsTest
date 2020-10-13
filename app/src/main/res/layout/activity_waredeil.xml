@@ -57,56 +57,82 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@mipmap/icon_bg_tb"
-                android:gravity="center">
+                android:layout_marginTop="9dp"
+                android:gravity="center|left"
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/text_rmb"
                     android:layout_width="wrap_content"
-                    android:layout_height="60dp"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
                     android:paddingLeft="15dp"
+                    android:paddingTop="5dp"
                     android:text="￥"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="12sp" />
+                    android:textColor="#3F63F4"
+                    android:textSize="16sp" />
 
 
                 <TextView
                     android:id="@+id/text_bat"
                     android:layout_width="wrap_content"
-                    android:layout_height="60dp"
+                    android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/text_rmb"
                     android:gravity="center"
-                    android:text="15.90"
-                    android:textColor="@color/white"
-                    android:textSize="14sp"
+                    android:text="0.00"
+                    android:textColor="#3F63F4"
+                    android:textSize="25sp"
                     android:textStyle="bold" />
-
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="60dp"
+                    android:layout_height="22dp"
                     android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
                     android:layout_marginRight="15dp"
+                    android:background="@drawable/shape_cart"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
+
+
+                    <LinearLayout
+                        android:id="@+id/ll_redue"
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/text_redue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/icon_redue" />
+
+                    </LinearLayout>
+
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/text_number"
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
                         android:gravity="center"
-                        android:text="距结束还剩"
-                        android:textColor="#F641AE"
-                        android:textSize="13sp" />
+                        android:text="1"
+                        android:textColor="@color/black01"
+                        android:textSize="@dimen/ctv_sizen_12" />
 
-                    <TextView
-                        android:id="@+id/text_date"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="距结束还剩"
-                        android:textColor="#F641AE"
-                        android:textSize="13sp" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_add"
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/text_add"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/icon_add" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -117,11 +143,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginRight="15dp"
                 android:gravity="center|left"
                 android:text="进口澳洲橙1盒/ 净果肉300g"
-                android:textColor="@color/black33"
+                android:textColor="@color/black01"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -147,23 +173,47 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="15dp"
                 android:gravity="center|left"
                 android:text="商品详情"
                 android:textColor="@color/black33"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
-
-            <ImageView
+            <WebView
+                android:id="@+id/mWebView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:layout_marginBottom="15dp"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                android:src="@mipmap/icon_test" />
+                android:gravity="center|left"
+                android:text="产品规格"
+                android:textColor="@color/black33"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/dive_line" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="60dp" />
+
 
         </LinearLayout>
 
@@ -176,8 +226,7 @@
         android:layout_alignParentBottom="true"
         android:background="@color/colorWhite"
         android:gravity="center"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp">
+        android:paddingLeft="12dp">
 
         <View
             android:layout_width="match_parent"
@@ -190,53 +239,72 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_marginRight="20dp"
-            android:layout_toLeftOf="@+id/text_cart_add"
+            android:layout_toLeftOf="@+id/rl_cart"
             android:drawableTop="@mipmap/icon_cart_share"
+            android:drawablePadding="5dp"
             android:gravity="center"
             android:text="分享"
-            android:textColor="#616161"
+            android:textColor="@color/black01"
             android:textSize="13sp" />
 
-        <TextView
-            android:id="@+id/text_cart_add"
+        <RelativeLayout
+            android:id="@+id/rl_cart"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_height="match_parent"
             android:layout_marginRight="20dp"
-            android:layout_toLeftOf="@+id/text_cart"
-            android:drawableTop="@mipmap/icon_cart_un"
-            android:gravity="center"
-            android:text="购物车"
-            android:textColor="#616161"
-            android:textSize="13sp" />
+            android:layout_toLeftOf="@+id/text_cart">
+
+            <TextView
+                android:id="@+id/text_cart_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:drawableTop="@mipmap/icon_cart_un"
+                android:drawablePadding="5dp"
+                android:gravity="center"
+                android:text="购物车"
+                android:textColor="@color/black01"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/text_num_cart"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginLeft="25dp"
+                android:background="@drawable/text_num"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/colorWhite"
+                android:textSize="9sp"
+                android:visibility="gone" />
+
+        </RelativeLayout>
+
 
         <TextView
             android:id="@+id/text_cart"
-            android:layout_width="84dp"
-            android:layout_height="32dp"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
             android:layout_centerInParent="true"
-            android:layout_marginRight="20dp"
             android:layout_toLeftOf="@+id/text_pay"
-            android:background="@drawable/shape_buy_bg"
+            android:background="#DDF65840"
             android:gravity="center"
             android:text="加入购物车"
             android:textColor="@color/colorWhite"
-            android:textSize="13sp"
-            android:textStyle="bold" />
+            android:textSize="14sp" />
 
 
         <TextView
             android:id="@+id/text_pay"
-            android:layout_width="84dp"
-            android:layout_height="32dp"
+            android:layout_width="140dp"
+            android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
-            android:background="@drawable/shape_buy"
+            android:background="#EA2B1D"
             android:gravity="center"
             android:text="立即购买"
             android:textColor="@color/colorWhite"
-            android:textSize="13sp"
-            android:textStyle="bold" />
+            android:textSize="14sp" />
     </RelativeLayout>
 
 </RelativeLayout>

@@ -53,7 +53,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center|left"
-                        android:text="广东省深圳市南山区大学城众冠时代广场9栋2单元1904室"
+                        android:hint=""
                         android:textColor="@color/black"
                         android:textSize="@dimen/ctv_sizen_15"
                         android:textStyle="bold" />
@@ -64,10 +64,21 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:gravity="center|left"
-                        android:text="李富  15620120069"
+                        android:text=""
                         android:textColor="#0F0F0F"
                         android:textSize="@dimen/ctv_sizen_14" />
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/text_def"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center|left"
+                    android:text="请选择收货地址"
+                    android:textColor="#0F0F0F"
+                    android:textSize="@dimen/ctv_sizen_14" />
+
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -95,35 +106,6 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:layout_marginTop="8dp"
-                android:background="@color/colorWhite"
-                android:orientation="horizontal"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center|left"
-                    android:text="配送方式"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/ctv_sizen_14" />
-
-                <TextView
-                    android:id="@+id/text_postage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentRight="true"
-                    android:gravity="center"
-                    android:text="圆通快递"
-                    android:textColor="#0F0F0F"
-                    android:textSize="@dimen/ctv_sizen_14" />
-            </RelativeLayout>
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
                 android:background="@color/colorWhite"
                 android:orientation="horizontal"
                 android:paddingLeft="20dp"
@@ -134,7 +116,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center|left"
                     android:text="商品金额"
-                    android:textColor="@color/black"
+                    android:textColor="@color/black01"
                     android:textSize="@dimen/ctv_sizen_14" />
 
                 <TextView
@@ -143,7 +125,7 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:gravity="center"
-                    android:text="￥39.00"
+                    android:text="￥0.00"
                     android:textColor="@color/black"
                     android:textSize="@dimen/ctv_sizen_13"
                     android:textStyle="bold" />
@@ -151,7 +133,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="25dp"
                 android:background="@color/colorWhite"
                 android:orientation="horizontal"
                 android:paddingLeft="20dp"
@@ -162,7 +144,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center|left"
                     android:text="运费"
-                    android:textColor="@color/black"
+                    android:textColor="@color/black01"
                     android:textSize="@dimen/ctv_sizen_14" />
 
                 <TextView
@@ -171,10 +153,42 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:gravity="center"
-                    android:text="￥0.00"
+                    android:text="包邮"
                     android:textColor="@color/black"
                     android:textSize="@dimen/ctv_sizen_13"
                     android:textStyle="bold" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingRight="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center|left"
+                    android:text="备注"
+                    android:textColor="@color/black01"
+                    android:textSize="@dimen/ctv_sizen_14" />
+
+                <EditText
+                    android:id="@+id/text_remark"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="40dp"
+                    android:background="@color/colorWhite"
+                    android:gravity="center|right"
+                    android:hint="请先和商家协商一致"
+                    android:textColor="@color/black01"
+                    android:textSize="@dimen/ctv_sizen_14" />
             </RelativeLayout>
 
             <View
@@ -187,8 +201,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:background="@color/colorWhite"
-                android:orientation="horizontal"
                 android:gravity="center|right"
+                android:orientation="horizontal"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp">
 
@@ -205,7 +219,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="￥396.00"
+                    android:text="0.00"
                     android:textColor="#3F63F4"
                     android:textSize="@dimen/ctv_sizen_14"
                     android:textStyle="bold" />
@@ -302,12 +316,15 @@
                 android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/text_rmb"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:paddingBottom="3dp"
                 android:text="￥"
+                android:textStyle="bold"
                 android:textColor="#3F63F4"
-                android:textSize="13sp" />
+                android:textSize="14sp" />
 
 
             <TextView
@@ -315,7 +332,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="23.65"
+                android:text="0.00"
                 android:textColor="#3F63F4"
                 android:textSize="27.5sp" />
         </LinearLayout>

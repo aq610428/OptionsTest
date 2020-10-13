@@ -92,7 +92,7 @@ public class CarLeftFragment extends BaseFragment implements View.OnClickListene
         banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
         //设置图片加载器，图片加载器在下方
         banner.setImageLoader(new MyLoader());
-        banner.setImages(banners);
+//        banner.setImages(banners);
         //设置轮播的动画效果，内含多种特效，可点入方法内查找后内逐一体验
         banner.setBannerAnimation(Transformer.Default);
         banner.setTitleView(true);

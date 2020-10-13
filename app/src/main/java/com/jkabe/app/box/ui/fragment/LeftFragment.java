@@ -7,16 +7,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+
+import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.jkabe.app.box.adapter.CarLiftAdapter;
 import com.jkabe.app.box.adapter.WareAdapter;
 import com.jkabe.app.box.banner.Banner;
+import com.jkabe.app.box.banner.Banner1;
+import com.jkabe.app.box.banner.Banner2;
 import com.jkabe.app.box.banner.BannerConfig;
 import com.jkabe.app.box.banner.Transformer;
 import com.jkabe.app.box.banner.listener.OnBannerListener;
@@ -24,9 +29,10 @@ import com.jkabe.app.box.base.BaseFragment;
 import com.jkabe.app.box.bean.BannerVo;
 import com.jkabe.app.box.bean.CarInfo;
 import com.jkabe.app.box.bean.CommonalityModel;
+import com.jkabe.app.box.bean.GoodBean;
 import com.jkabe.app.box.bean.ImageInfo;
 import com.jkabe.app.box.bean.LeftVo;
-import com.jkabe.app.box.bean.UserInfo;
+import com.jkabe.app.box.bean.StoreInfo;
 import com.jkabe.app.box.config.Api;
 import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
@@ -35,6 +41,7 @@ import com.jkabe.app.box.ui.LocationActivity;
 import com.jkabe.app.box.ui.PreviewActivity;
 import com.jkabe.app.box.ui.StoreDeilActivity;
 import com.jkabe.app.box.ui.StoreListActivity;
+import com.jkabe.app.box.ui.StoreListAdapter;
 import com.jkabe.app.box.ui.WareDeilActivity;
 import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.JsonParse;
@@ -45,10 +52,13 @@ import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.DialogUtils;
 import com.jkabe.app.box.weight.MyLoader;
 import com.jkabe.box.R;
+
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 import crossoverone.statuslib.StatusUtil;
 
 /**
@@ -56,18 +66,20 @@ import crossoverone.statuslib.StatusUtil;
  * @date: 2020/9/22
  * @name:车生活
  */
-public class LeftFragment extends BaseFragment implements OnBannerListener, NetWorkListener, OnRefreshListener {
+public class LeftFragment extends BaseFragment implements OnBannerListener, NetWorkListener, OnRefreshListener, OnLoadMoreListener {
     private View rootView;
-    private Banner banner;
+    private Banner2 banner;
     private SwipeToLoadLayout swipeToLoadLayout;
     private RecyclerView recyclerView, recyclerView1;
     private List<BannerVo> banners = new ArrayList<>();
     private List<LeftVo> voList = new ArrayList<>();
     private List<LeftVo.ItemsBean> items = new ArrayList<>();
     private CarLiftAdapter leftAdapter;
-    public UserInfo info;
     private WareAdapter wareAdapter;
-    private List<ImageInfo> list = new ArrayList<>();
+    private List<GoodBean> list = new ArrayList<>();
+    private int page = 1;
+    private int limit = 10000;
+    private boolean isRefresh;
 
     @Nullable
     @Override
@@ -86,7 +98,6 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
         super.onResume();
         StatusUtil.setUseStatusBarColor(getActivity(), Color.parseColor("#FFFFFF"));
         StatusUtil.setSystemStatus(getActivity(), false, true);
-        queryUser();
     }
 
 
@@ -95,6 +106,7 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
         swipeToLoadLayout = getView(rootView, R.id.swipeToLoadLayout);
         recyclerView = getView(rootView, R.id.recyclerView);
         banner = getView(rootView, R.id.banner);
+        swipeToLoadLayout.setOnLoadMoreListener(this);
         swipeToLoadLayout.setOnRefreshListener(this);
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 4);
         recyclerView.setLayoutManager(layoutManager);
@@ -102,36 +114,19 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
         StaggeredGridLayoutManager gridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         recyclerView1.setLayoutManager(gridLayoutManager);
 
+        recyclerView1.setNestedScrollingEnabled(false);
+
         query();
         queryList();
+        queryGoodList();
     }
 
     @Override
     protected void lazyLoad() {
-        list.add(new ImageInfo("https://img14.360buyimg.com/cms/jfs/t26203/149/2421025166/101783/1fb56c4/5c0105d9N8cac0cc8.jpg!q95.jpg"));
-        list.add(new ImageInfo("https://img10.360buyimg.com/cms/jfs/t28939/324/867114140/18679/f2dbc1f/5c00f7beNc4a1548d.jpg!q95.jpg"));
-        list.add(new ImageInfo("https://img10.360buyimg.com/cms/jfs/t29692/87/886218893/154131/d88ccae6/5c00f803Ne6f79d57.jpg!q95.jpg"));
-        list.add(new ImageInfo("https://img14.360buyimg.com/cms/jfs/t1/15613/5/2437/161341/5c1cb0e6E4436f9a1/538cc36405eede3a.jpg!q95.jpg"));
-        list.add(new ImageInfo("https://img13.360buyimg.com/cms/jfs/t28309/89/893759268/115912/466f67db/5c00fdc2N18582a00.jpg!q95.jpg"));
-        list.add(new ImageInfo("https://img13.360buyimg.com/cms/jfs/t28417/60/894641701/106636/f0373571/5c01106bN2debddeb.jpg!q95.jpg"));
-        wareAdapter=new WareAdapter(getContext(),list);
-        recyclerView1.setHasFixedSize(true);
-        recyclerView1.setAdapter(wareAdapter);
 
-        wareAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(getContext(), WareDeilActivity.class));
-            }
-        });
+
     }
 
-
-    @Override
-    public void onRefresh() {
-        queryList();
-        query();
-    }
 
     @Override
     public void OnBannerClick(int position) {
@@ -147,7 +142,6 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
 
     /******广告*****/
     public void query() {
-        showProgressDialog(getActivity(), false);
         String sign = "advertType=" + Constants.ADVER + "&pagecount=4" + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
         Map<String, String> params = okHttpModel.getParams();
         params.put("advertType", Constants.ADVER);
@@ -160,7 +154,6 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
 
     /******车生活三方服务列表信息*****/
     public void queryList() {
-        showProgressDialog(getActivity(), false);
         String sign = "partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
         Map<String, String> params = okHttpModel.getParams();
         params.put("partnerid", Constants.PARTNERID);
@@ -169,17 +162,17 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
         okHttpModel.get(Api.GET_ADVERT_TAG, params, Api.GET_ADVERT_TAG_ID, this);
     }
 
-
-    /******查询个人资料*****/
-    public void queryUser() {
+    /******商品列表*****/
+    public void queryGoodList() {
         showProgressDialog(getActivity(), false);
-        String sign = "memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        String sign = "partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
         Map<String, String> params = okHttpModel.getParams();
-        params.put("memberid", SaveUtils.getSaveInfo().getId());
+        params.put("limit", limit + "");
+        params.put("page", page + "");
         params.put("partnerid", Constants.PARTNERID);
         params.put("apptype", Constants.TYPE);
         params.put("sign", Md5Util.encode(sign));
-        okHttpModel.get(Api.GET_MEID_USER, params, Api.GET_MEID_USER_ID, this);
+        okHttpModel.get(Api.GOODDATA, params, Api.GOODDATA_ID, this);
     }
 
 
@@ -200,8 +193,15 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
                             setAdapter();
                         }
                         break;
-                    case Api.GET_MEID_USER_ID:
-                        info = JsonParse.getUserInfo(object);
+                    case Api.GOODDATA_ID:
+                        List<GoodBean> beans = JsonParse.getGoodBeanJson(object);
+                        if (beans != null && beans.size() > 0) {
+                            setAdapter(beans);
+                        } else {
+                            if (isRefresh && page > 1) {
+                                ToastUtil.showToast("无更多商品");
+                            }
+                        }
                         break;
 
                 }
@@ -210,7 +210,32 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
         }
         stopProgressDialog();
         swipeToLoadLayout.setRefreshing(false);
+        swipeToLoadLayout.setLoadingMore(false);
     }
+
+
+    private void setAdapter(List<GoodBean> beans) {
+        if (!isRefresh) {
+            list.clear();
+            list.addAll(beans);
+            wareAdapter = new WareAdapter(getContext(), list);
+            recyclerView1.setHasFixedSize(true);
+            recyclerView1.setAdapter(wareAdapter);
+        } else {
+            list.addAll(beans);
+            wareAdapter.setData(list);
+        }
+
+        wareAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getContext(), WareDeilActivity.class);
+                intent.putExtra("goodBean", list.get(position));
+                startActivity(intent);
+            }
+        });
+    }
+
 
     private void setAdapter() {
         items.clear();
@@ -227,7 +252,7 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
                 switch (name) {
                     case "惠保养":
                         if (SaveUtils.getCar() != null && !Utility.isEmpty(SaveUtils.getCar().getImeicode())) {
-                            if (info.getIsstore() == 2) {
+                            if (SaveUtils.getSaveInfo().getIsstore() == 2) {
                                 intent = new Intent(getContext(), StoreDeilActivity.class);
                             } else {
                                 intent = new Intent(getContext(), StoreListActivity.class);
@@ -269,6 +294,22 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
     }
 
 
+    @Override
+    public void onRefresh() {
+        isRefresh = false;
+        page = 1;
+        queryGoodList();
+    }
+
+
+    @Override
+    public void onLoadMore() {
+        isRefresh = true;
+        page++;
+        queryGoodList();
+    }
+
+
     public void updateView() {
         banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
         //设置图片加载器，图片加载器在下方
@@ -294,13 +335,16 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
     public void onFail() {
         stopProgressDialog();
         swipeToLoadLayout.setRefreshing(false);
+        swipeToLoadLayout.setLoadingMore(false);
     }
 
     @Override
     public void onError(Exception e) {
         stopProgressDialog();
         swipeToLoadLayout.setRefreshing(false);
+        swipeToLoadLayout.setLoadingMore(false);
     }
+
 
     private void checkLogin() {
         CarInfo info = SaveUtils.getCar();
@@ -330,4 +374,5 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
         String sign = Md5Util.encode(phone + uid + timeM + source + "wcp20200402");
         return "?phone=" + phone + "&source=" + source + "&uid=" + uid + "&timestamp=" + timeM + "&sign=" + sign;
     }
+
 }

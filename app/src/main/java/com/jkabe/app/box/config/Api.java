@@ -274,5 +274,41 @@ public interface Api {
     int RESET_FLOW_CODE_ID = 100089;
 
 
+    //商品列表信息
+    String GOODDATA = Config.getOpenNewApi() + "/mall/queryMallGoodsInfoData";
+    int GOODDATA_ID = 20001;
+
+    //加入购物车
+    String GOODD_MALL = Config.getOpenNewApi() + "/mall/saveMallShoppingInfo";
+    int GOODD_MALL_ID = 20002;
+    //加入购物车
+    String GOODD_MALL_QUERY = Config.getOpenNewApi() + "/mall/queryMallShoppingData";
+    int GOODD_MALL_QUERY_ID = 20003;
+
+    //商品详情
+    String MallGood = Config.getOpenNewApi() + "/mall/getMallGoodsInfoById";
+    int MallGood_ID = 20004;
+
+    //购物车删除
+    String MallGood_REMOVE = Config.getOpenNewApi() + "/mall/removeMallShoppingInfo";
+    int MallGood_REMOVE_ID = 20005;
+
+
+    //微信支付
+    String MallGood_PAY = Config.getOpenNewApi() + "/mall/gotoPayOrderInfo";
+    int MallGood_PAY_ID = 20006;
+
+    //新增订单
+    String MallGood_PAY_SAVE = Config.getOpenNewApi() + "/mall/saveMallOrderInfo";
+    int MallGood_PAY_SAVE_ID = 20007;
+
+    //新增收货地址
+    String MallGood_ADDRESS = Config.getOpenNewApi() + "/member/saveMemberReceiveAddressInfo";
+    int MallGood_ADDRESS_ID = 20008;
+
+    //收货地址列表
+    String MallGood_ADDRESS_LIST = Config.getOpenNewApi() + "/member/queryMemberReceiveAddressInfoData";
+    int MallGood_ADDRESS_LIST_ID = 20009;
+
 
 }

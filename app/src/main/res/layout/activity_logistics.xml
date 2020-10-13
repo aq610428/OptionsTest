@@ -7,5 +7,16 @@
 
     <include layout="@layout/activity_title" />
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fadingEdge="none"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+
+
+
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

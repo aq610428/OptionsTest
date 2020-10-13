@@ -7,7 +7,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
-
 import com.jkabe.app.box.adapter.FragmentAdapter;
 import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.box.fragement.AllFragment;
@@ -16,7 +15,6 @@ import com.jkabe.app.box.box.fragement.PayFragment;
 import com.jkabe.app.box.box.fragement.TakeFragment;
 import com.jkabe.app.box.weight.PreferenceUtils;
 import com.jkabe.box.R;
-
 import java.util.ArrayList;
 import java.util.List;
 

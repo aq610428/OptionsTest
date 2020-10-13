@@ -14,17 +14,29 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.text.TextUtils;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.Toast;
+
 import androidx.core.content.FileProvider;
+
 import com.amap.api.maps.model.LatLng;
 import com.jkabe.app.box.base.BaseApplication;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 import java.io.File;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.regex.Pattern;
+
+import static android.content.Context.INPUT_METHOD_SERVICE;
 
 
 /**
@@ -34,8 +46,40 @@ import java.util.regex.Pattern;
  */
 public final class SystemTools {
 
+
+//    <p><img src=\"http://img.jkabe.com/ueditor/image/20201012/1602469358609072298.jpg\" title=\"1602469358609072298.jpg\" alt=\"保迪斯煎锅.jpg\"/></p>
+
+
+    /*****设置图片宽度自适应****/
+    public static String getNewData(String data) {
+        String[] name = data.split("\"");
+        if (name != null && name.length > 0) {
+            return name[1].replaceAll("\"", "");
+        }
+        return "";
+    }
+
+
+    public static String getNewDataView(String data, Activity activity) {
+        Document document = Jsoup.parse(data);
+
+        Elements pElements = document.select("p:has(img)");
+        for (Element pElement : pElements) {
+            pElement.attr("style", "text-align:center");
+            pElement.attr("max-width", String.valueOf(MeasureWidthUtils.getScreenWidth(activity) + "px"))
+                    .attr("height", "auto");
+        }
+        Elements imgElements = document.select("img");
+        for (Element imgElement : imgElements) {
+            //重新设置宽高
+            imgElement.attr("max-width", "100%")
+                    .attr("height", "auto");
+            imgElement.attr("style", "max-width:100%;height:auto");
+        }
+        return document.toString();
+    }
+
     /**
-     *
      * @return
      */
     public static boolean isCarnumberNO(String carNumber) {
@@ -53,11 +97,11 @@ public final class SystemTools {
     }
 
 
-    public static String getTv(long l){
-        if(l>=10){
-            return l+"";
-        }else{
-            return "0"+l;//小于10,,前面补位一个"0"
+    public static String getTv(long l) {
+        if (l >= 10) {
+            return l + "";
+        } else {
+            return "0" + l;//小于10,,前面补位一个"0"
         }
     }
 
@@ -79,7 +123,6 @@ public final class SystemTools {
     }
 
 
-
     public static List<String> getList() {
         List<String> list = new ArrayList<>();
         list.add("http://ww4.sinaimg.cn/large/006uZZy8jw1faic21363tj30ci08ct96.jpg");
@@ -89,8 +132,6 @@ public final class SystemTools {
         list.add("http://a0.att.hudong.com/56/12/01300000164151121576126282411.jpg");
         return list;
     }
-
-
 
 
     /**
@@ -129,7 +170,6 @@ public final class SystemTools {
     }
 
 
-
     /**
      * 安装apk
      *
@@ -154,6 +194,7 @@ public final class SystemTools {
 
     /**
      * 重启整个APP
+     *
      * @param context
      */
     public static void restartAPP(Context context) {
@@ -201,7 +242,7 @@ public final class SystemTools {
      * 145, 147;
      * 130, 131, 132, 133, 134, 135, 136, 137, 138, 139;
      * 150, 151, 152, 153, 155, 156, 157, 158, 159;
-     *
+     * <p>
      * "13"代表前两位为数字13,
      * "[0-9]"代表第二位可以为0-9中的一个,
      * "[^4]" 代表除了4
@@ -242,6 +283,7 @@ public final class SystemTools {
 
     /**
      * 判断是否安装目标应用
+     *
      * @param packageName 目标应用安装后的包名
      * @return 是否已安装目标应用
      */
@@ -272,7 +314,7 @@ public final class SystemTools {
 
 
     /*****分享*****/
-    public static void shareImg(ImageView icon_code,Activity activity) {
+    public static void shareImg(ImageView icon_code, Activity activity) {
         Bitmap bitmap = ImageFactory.DrawableToBitmap(icon_code.getDrawable());
         File file = FileManager.screenShot(bitmap);
         if (file != null) {
@@ -355,16 +397,29 @@ public final class SystemTools {
 
 
     public static LatLng getLatLng(double lat, double lon) {
-        double[] bdToGaoDe= bdToGaoDe(lat,lon);
-        return new LatLng(bdToGaoDe[1],bdToGaoDe[0]);
+        double[] bdToGaoDe = bdToGaoDe(lat, lon);
+        return new LatLng(bdToGaoDe[1], bdToGaoDe[0]);
     }
 
 
     public static int getPress() {
-        int max=99;
-        int min=90;
+        int max = 99;
+        int min = 90;
         Random random = new Random();
-        int s = random.nextInt(max)%(max-min+1) + min;
+        int s = random.nextInt(max) % (max - min + 1) + min;
         return s;
+    }
+
+
+    /**
+     * 隐藏键盘
+     */
+    public static void hideInput(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(INPUT_METHOD_SERVICE);
+        View v = activity.getWindow().peekDecorView();
+        if (null != v) {
+            imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+        }
+
     }
 }
