@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jkabe.app.box.bean.OrderBean;
+import com.jkabe.app.box.box.fragement.CompletedFragment;
 import com.jkabe.app.box.box.fragement.TakeFragment;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.box.R;
@@ -18,11 +19,11 @@ import java.util.List;
  * @date: 2020/9/22
  * @name:TakeAdapter
  */
-public class TakeAdapter1 extends AutoRVAdapter {
+public class TakeAdapter2 extends AutoRVAdapter {
     private List<OrderBean> list;
-    private TakeFragment allFragment;
+    private CompletedFragment allFragment;
 
-    public TakeAdapter1(TakeFragment allFragment, List<OrderBean> list) {
+    public TakeAdapter2(CompletedFragment allFragment, List<OrderBean> list) {
         super(allFragment.getContext(), list);
         this.list = list;
         this.allFragment = allFragment;
@@ -30,7 +31,7 @@ public class TakeAdapter1 extends AutoRVAdapter {
 
     @Override
     public int onCreateViewLayoutID(int viewType) {
-        return R.layout.item_take_vh;
+        return R.layout.item_take_vh2;
     }
 
     @Override
@@ -50,8 +51,14 @@ public class TakeAdapter1 extends AutoRVAdapter {
             String[] str = orderBean.getOrdertime().split("T");
             vh.getTextView(R.id.text_date).setText(str[0] + " " + str[1].substring(0, str[1].length() - 5));
         }
-        vh.getTextView(R.id.text_stats).setText("待发货");
+        vh.getTextView(R.id.text_stats).setText("已发货未收货");
         vh.getTextView(R.id.text_buy).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        vh.getTextView(R.id.text_confirm).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

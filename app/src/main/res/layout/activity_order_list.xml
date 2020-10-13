@@ -102,7 +102,7 @@
                 android:id="@+id/text_tab4"
                 android:layout_width="wrap_content"
                 android:layout_height="25dp"
-                android:text="已收货"
+                android:text="未收货"
                 android:textColor="@color/black33"
                 android:textSize="14sp" />
 

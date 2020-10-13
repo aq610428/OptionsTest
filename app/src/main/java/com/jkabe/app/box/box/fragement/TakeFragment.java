@@ -45,7 +45,7 @@ import java.util.Map;
 /**
  * @author: zt
  * @date: 2020/9/22
- * @name:待提货
+ * @name:待发货
  */
 public class TakeFragment extends BaseFragment implements OnLoadMoreListener, OnRefreshListener, NetWorkListener {
     private View rootView;
@@ -100,11 +100,11 @@ public class TakeFragment extends BaseFragment implements OnLoadMoreListener, On
     /******商品列表*****/
     public void query() {
         showProgressDialog(getActivity(), false);
-        String sign = "memberid=" + SaveUtils.getSaveInfo().getId() + "&orderStatus=2" + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        String sign = "memberid=" + SaveUtils.getSaveInfo().getId() + "&orderStatus=1" + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
         Map<String, String> params = okHttpModel.getParams();
         params.put("limit", limit + "");
         params.put("page", page + "");
-        params.put("orderStatus", "2");
+        params.put("orderStatus", "1");
         params.put("memberid", SaveUtils.getSaveInfo().getId());
         params.put("partnerid", Constants.PARTNERID);
         params.put("apptype", Constants.TYPE);
