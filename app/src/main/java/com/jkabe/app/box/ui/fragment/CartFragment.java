@@ -110,7 +110,6 @@ public class CartFragment extends BaseFragment implements NetWorkListener, View.
         swipe_target.setLayoutManager(manager);
         swipeToLoadLayout.setOnLoadMoreListener(this);
         swipeToLoadLayout.setOnRefreshListener(this);
-
     }
 
 
@@ -258,10 +257,8 @@ public class CartFragment extends BaseFragment implements NetWorkListener, View.
         switch (v.getId()) {
             case R.id.text_choose:
                 if (!isChoose) {
-
                     chooseAll();
                 } else {
-
                     cancelAll();
                 }
                 break;

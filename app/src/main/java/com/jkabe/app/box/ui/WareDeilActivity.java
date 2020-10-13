@@ -137,7 +137,7 @@ public class WareDeilActivity extends BaseActivity1 implements OnBannerListener,
             String body = "<p><img src=" + SystemTools.getNewData(goodBean.getDetails()) + " title=1602469358609072298.jpg alt=保迪斯煎锅.jpg/></p>";
             mWebView.loadDataWithBaseURL("", SystemTools.getNewDataView(body, this), "text/html", "utf-8", null);
         }
-
+        goodBean.setGoodNumber(1);
         if (goodBean.getGoodsSpecList() != null && goodBean.getGoodsSpecList().size() > 0) {
             goodAdapter = new GoodAdapter(this, goodBean.getGoodsSpecList());
             recyclerView.setAdapter(goodAdapter);
@@ -148,12 +148,15 @@ public class WareDeilActivity extends BaseActivity1 implements OnBannerListener,
     @Override
     public void onClick(View v) {
         super.onClick(v);
+        Intent intent = null;
         switch (v.getId()) {
             case R.id.iv_left:
                 finish();
                 break;
             case R.id.text_pay:
-                startActivity(new Intent(this, ConfirmActivity.class));
+                intent = new Intent(this, ConfirmActivity.class);
+                intent.putExtra("goodBean", goodBean);
+                startActivity(intent);
                 break;
             case R.id.text_cart_share:
                 PayUtils.shareWx(goodBean.getTitle(), goodBean.getDetails(), goodBean.getCategoryAname(), this);
@@ -162,7 +165,7 @@ public class WareDeilActivity extends BaseActivity1 implements OnBannerListener,
                 redueNum();
                 break;
             case R.id.text_cart_add:
-                Intent intent = new Intent(this, MainActivity.class);
+                intent = new Intent(this, MainActivity.class);
                 intent.putExtra("index", 3);
                 startActivity(intent);
                 finish();
@@ -237,6 +240,7 @@ public class WareDeilActivity extends BaseActivity1 implements OnBannerListener,
         String num = text_number.getText().toString();
         BigDecimal count = BigDecimalUtils.add(new BigDecimal(text_num_cart.getText().toString()), new BigDecimal(num));
         text_num_cart.setText(count.toPlainString());
+        goodBean.setGoodNumber(count.intValue());
     }
 
 
@@ -246,8 +250,10 @@ public class WareDeilActivity extends BaseActivity1 implements OnBannerListener,
         BigDecimal count = BigDecimalUtils.sub(new BigDecimal(num), BigDecimal.ONE);
         if (count.doubleValue() > 1) {
             text_number.setText(count.toPlainString());
+            goodBean.setGoodNumber(count.intValue());
         } else {
             text_number.setText("1");
+            goodBean.setGoodNumber(1);
         }
 
     }
@@ -257,6 +263,7 @@ public class WareDeilActivity extends BaseActivity1 implements OnBannerListener,
         String num = text_number.getText().toString();
         BigDecimal count = BigDecimalUtils.add(new BigDecimal(num), BigDecimal.ONE);
         text_number.setText(count.toPlainString());
+        goodBean.setGoodNumber(count.intValue());
     }
 
 

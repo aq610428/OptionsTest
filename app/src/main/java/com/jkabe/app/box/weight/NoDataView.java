@@ -9,7 +9,7 @@ import com.jkabe.box.R;
 
 
 public class NoDataView extends RelativeLayout {
-    public TextView textView,text_refresh;
+    public TextView textView;
 
 
     public NoDataView(Context context) {

@@ -54,13 +54,13 @@ public class PayUtils {
         }
         if (payBean != null) {
             PayReq req = new PayReq();
-            req.appId = payBean.getAppid();
-            req.partnerId = payBean.getPartnerid();
-            req.prepayId = payBean.getPrepayid();
-            req.nonceStr = payBean.getNoncestr();
-            req.timeStamp = payBean.getTimestamp() + "";
-            req.packageValue = payBean.getPackageX();
-            req.sign = payBean.getSign();
+            req.appId = payBean.getPayMap().getAppid();
+            req.partnerId = payBean.getPayMap().getPartnerid();
+            req.prepayId = payBean.getPayMap().getPrepayid();
+            req.nonceStr = payBean.getPayMap().getNoncestr();
+            req.timeStamp = payBean.getPayMap().getTimestamp() + "";
+            req.packageValue = payBean.getPayMap().getPackageX();
+            req.sign = payBean.getPayMap().getSign();
             req.extData = "app data"; // optional
             api.sendReq(req);
         }

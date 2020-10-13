@@ -10,14 +10,17 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.jkabe.app.box.adapter.ConfimAdapter;
 import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.bean.AddressBean;
 import com.jkabe.app.box.bean.CartBean;
 import com.jkabe.app.box.bean.CommonalityModel;
+import com.jkabe.app.box.bean.GoodBean;
 import com.jkabe.app.box.bean.PayBean;
 import com.jkabe.app.box.box.OrderPayActivity;
 import com.jkabe.app.box.config.Api;
@@ -37,7 +40,9 @@ import com.jkabe.box.R;
 import com.jkabe.box.alipay.PayResult;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+
 import org.json.JSONObject;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,6 +64,7 @@ public class ConfirmActivity extends BaseActivity implements NetWorkListener {
     public static final int SDK_PAY_FLAG = 1;
     private int isPay = 1;
     private EditText text_remark;
+    private PayBean payBean;
 
     @Override
     protected void initCreate(Bundle savedInstanceState) {
@@ -99,18 +105,37 @@ public class ConfirmActivity extends BaseActivity implements NetWorkListener {
         recyclerView.setLayoutManager(linearLayoutManager);
         beanList = (List<CartBean>) getIntent().getSerializableExtra("beanList");
         if (beanList != null && beanList.size() > 0) {
-            adapter = new ConfimAdapter(this, beanList);
-            recyclerView.setAdapter(adapter);
-
-            BigDecimal total = BigDecimal.ZERO;
-            for (int i = 0; i < beanList.size(); i++) {
-                total = BigDecimalUtils.add(total, BigDecimalUtils.mul(new BigDecimal(beanList.get(i).getSellPrice()), new BigDecimal(beanList.get(i).getGoodNumber())));
+            updateView();
+        } else {
+            GoodBean goodBean = (GoodBean) getIntent().getSerializableExtra("goodBean");
+            if (goodBean != null) {
+                beanList = new ArrayList<>();
+                CartBean cartBean = new CartBean();
+                cartBean.setGoodNumber(goodBean.getGoodNumber());
+                cartBean.setGoodid(goodBean.getId());
+                cartBean.setSmallImg(goodBean.getGoodsImageList().get(0).getGoodImg());
+                cartBean.setSellPrice(goodBean.getSellPrice());
+                cartBean.setTitle(goodBean.getTitle());
+                beanList.add(cartBean);
+                updateView();
             }
-            text_total_next.setText("￥" + BigDecimalUtils.round(total, 0).toPlainString());
-            text_total.setText("￥" + BigDecimalUtils.round(total, 0).toPlainString());
-            text_price.setText(BigDecimalUtils.round(total, 0).toPlainString());
+
         }
 
+    }
+
+
+    public void updateView() {
+        adapter = new ConfimAdapter(this, beanList);
+        recyclerView.setAdapter(adapter);
+
+        BigDecimal total = BigDecimal.ZERO;
+        for (int i = 0; i < beanList.size(); i++) {
+            total = BigDecimalUtils.add(total, BigDecimalUtils.mul(new BigDecimal(beanList.get(i).getSellPrice()), new BigDecimal(beanList.get(i).getGoodNumber())));
+        }
+        text_total_next.setText("￥" + BigDecimalUtils.round(total, 0).toPlainString());
+        text_total.setText("￥" + BigDecimalUtils.round(total, 0).toPlainString());
+        text_price.setText(BigDecimalUtils.round(total, 0).toPlainString());
     }
 
 
@@ -149,26 +174,41 @@ public class ConfirmActivity extends BaseActivity implements NetWorkListener {
             ToastUtil.showToast("收货地址不能为空");
             return;
         }
-        for (int i = 0; i <beanList.size() ; i++) {
-
+        String shoppingids = "";
+        for (int i = 0; i < beanList.size(); i++) {
+            if (i == 0) {
+                shoppingids = beanList.get(i).getId();
+            } else {
+                shoppingids = shoppingids + "," + beanList.get(i).getId();
+            }
         }
-
-
-
-        query();
+        query(shoppingids);
     }
 
 
     /******生成订单*****/
-    public void query() {
+    public void query(String shoppingids) {
         showProgressDialog(this, false);
-        String sign = "memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        String remark = text_remark.getText().toString();
+        String sign = "memberid=" + SaveUtils.getSaveInfo().getId();
+        if (!Utility.isEmpty(remark)) {
+            sign = sign + "&message=" + remark;
+        }
+        sign = sign + "&partnerid=" + Constants.PARTNERID + "&receiveAddress=" + receiveAddress + "&receiveMobile=" + receiveMobile + "&receiveName=" + receiveName + "&shoppingids=" + shoppingids + Constants.SECREKEY;
         Map<String, String> params = okHttpModel.getParams();
         params.put("memberid", SaveUtils.getSaveInfo().getId());
+        if (!Utility.isEmpty(remark)) {
+            params.put("message", remark);
+        }
         params.put("partnerid", Constants.PARTNERID);
+        params.put("receiveAddress", receiveAddress);
+        params.put("receiveMobile", receiveMobile);
+        params.put("receiveName", receiveName);
+
+        params.put("shoppingids", shoppingids);
         params.put("apptype", Constants.TYPE);
         params.put("sign", Md5Util.encode(sign));
-        okHttpModel.get(Api.MallGood_PAY_SAVE, params, Api.MallGood_PAY_SAVE_ID, this);
+        okHttpModel.post(Api.MallGood_PAY_SAVE, params, Api.MallGood_PAY_SAVE_ID, this);
     }
 
 
@@ -178,13 +218,19 @@ public class ConfirmActivity extends BaseActivity implements NetWorkListener {
             if (Constants.SUCESSCODE.equals(commonality.getStatusCode())) {
                 switch (id) {
                     case Api.MallGood_PAY_SAVE_ID:
-
+                        ToastUtil.showToast(commonality.getErrorDesc());
+                        payBean = JsonParse.getPayJson(object);
+                        if (payBean != null) {
+                            pay();
+                        }
                         break;
 
                 }
             } else {
                 ToastUtil.showToast(commonality.getErrorDesc());
             }
+        } else {
+            ToastUtil.showToast(commonality.getErrorDesc());
         }
         stopProgressDialog();
     }
@@ -210,8 +256,6 @@ public class ConfirmActivity extends BaseActivity implements NetWorkListener {
 
     /******微信支付*****/
     private void pay() {
-        String str = "{\"appid\":\"wxb4ba3c02aa476ea1\",\"partnerid\":\"1900006771\",\"package\":\"Sign=WXPay\",\"noncestr\":\"c7886c4ed157f38fdd3ae0baad9726ac\",\"timestamp\":1602224908,\"prepayid\":\"wx091428285854906d23ae226a0647d50000\",\"sign\":\"1A835FCA527CB435098C04F0CB288EE3\"}";
-        PayBean payBean = JsonParse.getPayJson(str);
         if (isPay == 1) {
             PayUtils.wechatPay(this, payBean, api);
         } else {

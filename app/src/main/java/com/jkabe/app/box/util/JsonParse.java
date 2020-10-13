@@ -28,6 +28,7 @@ import com.jkabe.app.box.bean.Money;
 import com.jkabe.app.box.bean.OdbAndLocationVO;
 import com.jkabe.app.box.bean.Oil;
 import com.jkabe.app.box.bean.OilInfo;
+import com.jkabe.app.box.bean.OrderBean;
 import com.jkabe.app.box.bean.OrderInfo;
 import com.jkabe.app.box.bean.OreInfo;
 import com.jkabe.app.box.bean.PackageBean;
@@ -173,8 +174,6 @@ public class JsonParse {
     }
 
 
-
-
     public static List<StoreInfo> getStoreJson(JSONObject object) {
         List<StoreInfo> infos = new ArrayList<>();
         JSONObject jsonObject = object.optJSONObject("result");
@@ -272,7 +271,6 @@ public class JsonParse {
         GoodBean info = (GoodBean) JsonUtilComm.jsonToBean(jsonObject.toString(), GoodBean.class);
         return info;
     }
-
 
 
     public static List<EarlyInfo> getEarlyInfoJson(JSONObject object) {
@@ -469,17 +467,10 @@ public class JsonParse {
         return infos;
     }
 
-    public static PayBean getPayJson(String str) {
-        PayBean info = null;
-        try {
-            JSONObject jsonObject = new JSONObject(str);
-            info = (PayBean) JsonUtilComm.jsonToBean(jsonObject.toString(), PayBean.class);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+    public static PayBean getPayJson(JSONObject object) {
+        JSONObject jsonObject = object.optJSONObject("result");
+        PayBean info = (PayBean) JsonUtilComm.jsonToBean(jsonObject.toString(), PayBean.class);
         return info;
-
-
     }
 
     public static List<GoodBean> getGoodBeanJson(JSONObject object) {
@@ -513,6 +504,17 @@ public class JsonParse {
             AddressBean info = (AddressBean) JsonUtilComm.jsonToBean(jsonArray.optJSONObject(i).toString(), AddressBean.class);
             infos.add(info);
         }
+        return infos;
+    }
+
+    public static List<OrderBean> getOrderBeanJSON(JSONObject object) {
+        List<OrderBean> infos = new ArrayList<>();
+        JSONArray jsonArray = object.optJSONArray("result");
+        for (int i = 0; i < jsonArray.length(); i++) {
+            OrderBean info = (OrderBean) JsonUtilComm.jsonToBean(jsonArray.optJSONObject(i).toString(), OrderBean.class);
+            infos.add(info);
+        }
+
         return infos;
     }
 }

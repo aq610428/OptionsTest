@@ -35,6 +35,9 @@ public class CartBean implements Serializable {
     private String stringCreateTime;
     private String descriptionToString;
 
+    public CartBean() {
+    }
+
     public String getId() {
         return id;
     }

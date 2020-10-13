@@ -309,6 +309,18 @@ public interface Api {
     //收货地址列表
     String MallGood_ADDRESS_LIST = Config.getOpenNewApi() + "/member/queryMemberReceiveAddressInfoData";
     int MallGood_ADDRESS_LIST_ID = 20009;
+    //订单列表
+    String MallGood_ORDER_LIST = Config.getOpenNewApi() + "/mall/queryMallOrderInfoData";
+    int MallGood_ORDER_LIST_ID = 20010;
+
+
+    //取消订单
+    String CANCAL_ORDER_LIST = Config.getOpenNewApi() + "/mall/cancalMallOrderInfo";
+    int CANCAL_ORDER_LIST_ID = 20011;
+
+    //取消订单
+    String PAY_ORDER_LIST = Config.getOpenNewApi() + "/mall/gotoPayOrderInfo";
+    int PAY_ORDER_LIST_ID = 20012;
 
 
 }

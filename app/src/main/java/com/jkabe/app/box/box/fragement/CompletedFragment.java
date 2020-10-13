@@ -55,8 +55,7 @@ public class CompletedFragment extends BaseFragment implements OnLoadMoreListene
         array.add(new ImageInfo("https://img.alicdn.com/imgextra/i2/2423612906/O1CN01Z36kSU1XKzaYaBtHb_!!2423612906.jpg"));
         array.add(new ImageInfo("https://img.alicdn.com/imgextra/i2/2423612906/O1CN01z935sk1XKzaYvBd0d_!!2423612906.jpg"));
         array.add(new ImageInfo("https://img.alicdn.com/imgextra/i2/2423612906/O1CN01d8H5WT1XKzaYvAtHU_!!2423612906.jpg"));
-        takeAdapter = new TakeAdapter(getContext(), array);
-        swipe_target.setAdapter(takeAdapter);
+
     }
 
     @Override

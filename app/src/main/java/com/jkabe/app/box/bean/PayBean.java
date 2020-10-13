@@ -2,86 +2,114 @@ package com.jkabe.app.box.bean;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * @author: zt
  * @date: 2020/10/9
  * @name:PayBean
  */
-public class PayBean {
+public class PayBean implements Serializable{
 
 
     /**
-     * appid : wxb4ba3c02aa476ea1
-     * partnerid : 1900006771
-     * package : Sign=WXPay
-     * noncestr : c7886c4ed157f38fdd3ae0baad9726ac
-     * timestamp : 1602224908
-     * prepayid : wx091428285854906d23ae226a0647d50000
-     * sign : 1A835FCA527CB435098C04F0CB288EE3
+     * orderid : 2010131059421055649
+     * payMap : {"appid":"wxdebf49e4963895e1","noncestr":"4d0054b806a44a1db1f1c7a59e908c05","package":"Sign=WXPay","partnerid":"1559301821","prepayid":"wx131059429905259a1e8a13c12a78a10000","sign":"16C8E3DE12A741EB42EBADE521EC21EE","timestamp":"1602557983"}
      */
 
-    private String appid;
-    private String partnerid;
-    @SerializedName("package")
-    private String packageX;
-    private String noncestr;
-    private int timestamp;
-    private String prepayid;
-    private String sign;
+    private String orderid;
+    private PayMapBean payMap;
 
-    public String getAppid() {
-        return appid;
+    public String getOrderid() {
+        return orderid;
     }
 
-    public void setAppid(String appid) {
-        this.appid = appid;
+    public void setOrderid(String orderid) {
+        this.orderid = orderid;
     }
 
-    public String getPartnerid() {
-        return partnerid;
+    public PayMapBean getPayMap() {
+        return payMap;
     }
 
-    public void setPartnerid(String partnerid) {
-        this.partnerid = partnerid;
+    public void setPayMap(PayMapBean payMap) {
+        this.payMap = payMap;
     }
 
-    public String getPackageX() {
-        return packageX;
-    }
+    public static class PayMapBean implements Serializable {
+        /**
+         * appid : wxdebf49e4963895e1
+         * noncestr : 4d0054b806a44a1db1f1c7a59e908c05
+         * package : Sign=WXPay
+         * partnerid : 1559301821
+         * prepayid : wx131059429905259a1e8a13c12a78a10000
+         * sign : 16C8E3DE12A741EB42EBADE521EC21EE
+         * timestamp : 1602557983
+         */
 
-    public void setPackageX(String packageX) {
-        this.packageX = packageX;
-    }
+        private String appid;
+        private String noncestr;
+        @SerializedName("package")
+        private String packageX;
+        private String partnerid;
+        private String prepayid;
+        private String sign;
+        private String timestamp;
 
-    public String getNoncestr() {
-        return noncestr;
-    }
+        public String getAppid() {
+            return appid;
+        }
 
-    public void setNoncestr(String noncestr) {
-        this.noncestr = noncestr;
-    }
+        public void setAppid(String appid) {
+            this.appid = appid;
+        }
 
-    public int getTimestamp() {
-        return timestamp;
-    }
+        public String getNoncestr() {
+            return noncestr;
+        }
 
-    public void setTimestamp(int timestamp) {
-        this.timestamp = timestamp;
-    }
+        public void setNoncestr(String noncestr) {
+            this.noncestr = noncestr;
+        }
 
-    public String getPrepayid() {
-        return prepayid;
-    }
+        public String getPackageX() {
+            return packageX;
+        }
 
-    public void setPrepayid(String prepayid) {
-        this.prepayid = prepayid;
-    }
+        public void setPackageX(String packageX) {
+            this.packageX = packageX;
+        }
 
-    public String getSign() {
-        return sign;
-    }
+        public String getPartnerid() {
+            return partnerid;
+        }
 
-    public void setSign(String sign) {
-        this.sign = sign;
+        public void setPartnerid(String partnerid) {
+            this.partnerid = partnerid;
+        }
+
+        public String getPrepayid() {
+            return prepayid;
+        }
+
+        public void setPrepayid(String prepayid) {
+            this.prepayid = prepayid;
+        }
+
+        public String getSign() {
+            return sign;
+        }
+
+        public void setSign(String sign) {
+            this.sign = sign;
+        }
+
+        public String getTimestamp() {
+            return timestamp;
+        }
+
+        public void setTimestamp(String timestamp) {
+            this.timestamp = timestamp;
+        }
     }
 }

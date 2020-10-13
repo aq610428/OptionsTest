@@ -40,6 +40,9 @@ public class GoodBean implements Serializable {
     private double originalCost;
     private int integral;
     private String brandName;
+
+
+    private int goodNumber;
     private String categoryAname;
     private String categoryBname;
     private String categoryCname;
@@ -50,6 +53,13 @@ public class GoodBean implements Serializable {
     private List<GoodsImageListBean> goodsImageList;
     private List<GoodsSpecListBean> goodsSpecList;
 
+    public int getGoodNumber() {
+        return goodNumber;
+    }
+
+    public void setGoodNumber(int goodNumber) {
+        this.goodNumber = goodNumber;
+    }
     public String getId() {
         return id;
     }

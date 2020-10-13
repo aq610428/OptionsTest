@@ -26,6 +26,7 @@ import com.jkabe.app.box.bean.Block;
 import com.jkabe.app.box.bean.CommonalityModel;
 import com.jkabe.app.box.bean.Massage;
 import com.jkabe.app.box.bean.UserInfo;
+import com.jkabe.app.box.box.OrderPayActivity;
 import com.jkabe.app.box.config.Api;
 import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
@@ -156,7 +157,9 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
                         break;
                     case "添加地址":
                         startActivity(new Intent(getContext(), AddressActivity.class));
-
+                        break;
+                    case "订单管理":
+                        startActivity(new Intent(getContext(), OrderPayActivity.class));
                         break;
                 }
             }

@@ -71,6 +71,7 @@ public class SaveUtils {
         blocks.add(new Block("关于我们", R.mipmap.icon_about_new));
         blocks.add(new Block("消息中心", R.mipmap.icon_goad));
         blocks.add(new Block("流量查询", R.mipmap.icon_pass_usd));
+        blocks.add(new Block("订单管理", R.mipmap.icon_out));
         blocks.add(new Block("退出登录", R.mipmap.icon_out));
         return blocks;
     }
