@@ -132,6 +132,12 @@ public class WareDeilActivity extends BaseActivity1 implements OnBannerListener,
             goodAdapter = new GoodAdapter(this, goodBean.getGoodsSpecList());
             recyclerView.setAdapter(goodAdapter);
         }
+
+        if (Utility.isEmpty(goodBean.getFollowid())){
+            text_cart_share.setCompoundDrawablesWithIntrinsicBounds(0,R.mipmap.icon_like,0,0);
+        }else{
+            text_cart_share.setCompoundDrawablesWithIntrinsicBounds(0,R.mipmap.icon_love,0,0);
+        }
     }
 
 
@@ -152,7 +158,7 @@ public class WareDeilActivity extends BaseActivity1 implements OnBannerListener,
                 if (Utility.isEmpty(goodBean.getFollowid())) {
                     queryLove();
                 } else {
-                    ToastUtil.showToast("不能重复关注");
+                    quereLike();
                 }
                 break;
             case R.id.ll_redue:
@@ -175,6 +181,18 @@ public class WareDeilActivity extends BaseActivity1 implements OnBannerListener,
                 break;
 
         }
+    }
+
+    //取消关注
+    private void quereLike() {
+        String sign = "goodid=" + goodBean.getId() + "&memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        Map<String, String> params = okHttpModel.getParams();
+        params.put("goodid", goodBean.getId());
+        params.put("memberid", SaveUtils.getSaveInfo().getId());
+        params.put("partnerid", Constants.PARTNERID);
+        params.put("apptype", Constants.TYPE);
+        params.put("sign", Md5Util.encode(sign));
+        okHttpModel.get(Api.PAY_REMOVE_LOVE, params, Api.PAY_REMOVE_LOVE_ID, this);
     }
 
     //商品关注
@@ -234,6 +252,11 @@ public class WareDeilActivity extends BaseActivity1 implements OnBannerListener,
                         break;
                     case Api.PAY_ORDER_LOVE_ID:
                         ToastUtil.showToast(commonality.getErrorDesc());
+                        text_cart_share.setCompoundDrawablesWithIntrinsicBounds(0,R.mipmap.icon_love,0,0);
+                        break;
+                    case Api.PAY_REMOVE_LOVE_ID:
+                        ToastUtil.showToast(commonality.getErrorDesc());
+                        text_cart_share.setCompoundDrawablesWithIntrinsicBounds(0,R.mipmap.icon_like,0,0);
                         break;
 
                 }

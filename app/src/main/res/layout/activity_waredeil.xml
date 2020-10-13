@@ -240,7 +240,7 @@
             android:layout_centerInParent="true"
             android:layout_marginRight="20dp"
             android:layout_toLeftOf="@+id/rl_cart"
-            android:drawableTop="@mipmap/icon_cart_share"
+            android:drawableTop="@mipmap/icon_like"
             android:drawablePadding="5dp"
             android:gravity="center"
             android:text="关注"
