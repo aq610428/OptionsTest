@@ -56,15 +56,20 @@ public class TakeAdapter3 extends AutoRVAdapter {
                 }
             });
         }
-        vh.getTextView(R.id.text_count).setText("订单总额 ￥" + orderBean.getGoodMoney());
+        vh.getTextView(R.id.text_count).setText("实付 ￥" + orderBean.getGoodMoney());
 
         if (!Utility.isEmpty(orderBean.getOrdertime())) {
             String[] str = orderBean.getOrdertime().split("T");
             vh.getTextView(R.id.text_date).setText(str[0] + " " + str[1].substring(0, str[1].length() - 5));
         }
         vh.getTextView(R.id.text_stats).setText("已发货未收货");
-        vh.getTextView(R.id.text_buy).setVisibility(View.GONE);
         vh.getTextView(R.id.text_confirm).setVisibility(View.GONE);
+        vh.getTextView(R.id.text_buy).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     public void setData(List<OrderBean> beanList) {

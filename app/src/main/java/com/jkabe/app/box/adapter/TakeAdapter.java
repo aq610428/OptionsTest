@@ -55,7 +55,7 @@ public class TakeAdapter extends AutoRVAdapter {
                 }
             });
         }
-        vh.getTextView(R.id.text_count).setText("订单总额 ￥" + orderBean.getGoodMoney());
+        vh.getTextView(R.id.text_count).setText("实付 ￥" + orderBean.getGoodMoney());
 
         if (!Utility.isEmpty(orderBean.getOrdertime())) {
             String[] str = orderBean.getOrdertime().split("T");
