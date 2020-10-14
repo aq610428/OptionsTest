@@ -141,14 +141,7 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
 
     /******确认收货*****/
     public void payConfirm(String orderId) {
-        showProgressDialog(this, false);
-        String sign = "id=" + orderId + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
-        Map<String, String> params = okHttpModel.getParams();
-        params.put("id", orderId);
-        params.put("partnerid", Constants.PARTNERID);
-        params.put("apptype", Constants.TYPE);
-        params.put("sign", Md5Util.encode(sign));
-        okHttpModel.get(Api.PAY_ORDER_LIST, params, Api.PAY_ORDER_LIST_ID, this);
+
     }
 
 
