@@ -68,7 +68,7 @@ public class DialogUtils {
         view.findViewById(R.id.confirm).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragment.query(id);
+                fragment.payConfirm(id);
                 dialog.dismiss();
             }
         });

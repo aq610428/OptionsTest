@@ -1,16 +1,23 @@
 package com.jkabe.app.box.box.fragement;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
@@ -20,11 +27,14 @@ import com.jkabe.app.box.base.BaseFragment;
 import com.jkabe.app.box.bean.CommonalityModel;
 import com.jkabe.app.box.bean.OrderBean;
 import com.jkabe.app.box.bean.PayBean;
+import com.jkabe.app.box.box.OrderPayActivity;
 import com.jkabe.app.box.config.Api;
 import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
+import com.jkabe.app.box.ui.ConfirmActivity;
 import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.JsonParse;
+import com.jkabe.app.box.util.LogUtils;
 import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.MeasureWidthUtils;
 import com.jkabe.app.box.util.PayUtils;
@@ -33,9 +43,12 @@ import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.NoDataView;
 import com.jkabe.box.R;
+import com.jkabe.box.alipay.PayResult;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -57,7 +70,7 @@ public class PayFragment extends BaseFragment implements OnLoadMoreListener, OnR
     private NoDataView noDataView;
     private PayBean payBean;
     private IWXAPI api;
-
+    public static final int SDK_PAY_FLAG = 1;
 
     @Nullable
     @Override
@@ -79,14 +92,9 @@ public class PayFragment extends BaseFragment implements OnLoadMoreListener, OnR
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         swipe_target.setLayoutManager(linearLayoutManager);
         noDataView.textView.setText("无更多订单");
-    }
-
-
-    @Override
-    public void onResume() {
-        super.onResume();
         query();
     }
+
 
     @Override
     public void onRefresh() {
@@ -102,7 +110,6 @@ public class PayFragment extends BaseFragment implements OnLoadMoreListener, OnR
         page++;
         query();
     }
-
 
 
     /******商品列表*****/
@@ -186,8 +193,13 @@ public class PayFragment extends BaseFragment implements OnLoadMoreListener, OnR
         swipeToLoadLayout.setRefreshing(false);
         swipeToLoadLayout.setLoadingMore(false);
     }
+
     private void update() {
-        PayUtils.wechatPay(getActivity(), payBean, api);
+        if (pay == 1) {
+            PayUtils.wechatPay(getActivity(), payBean, api);
+        } else {
+            PayUtils.AliPay(this, mHandler,payBean.getAliPayString());
+        }
     }
 
 
@@ -206,6 +218,33 @@ public class PayFragment extends BaseFragment implements OnLoadMoreListener, OnR
     }
 
 
+    @SuppressLint("HandlerLeak")
+    private Handler mHandler = new Handler() {
+        @SuppressWarnings("unused")
+        public void handleMessage(Message msg) {
+            if (msg.what == SDK_PAY_FLAG) {
+                PayResult payResult = new PayResult((Map<String, String>) msg.obj);
+                //对于支付结果，请商户依赖服务端的异步通知结果。同步通知结果，仅作为支付结束的通知。
+                String resultInfo = payResult.getResult();// 同步返回需要验证的信息
+                String resultStatus = payResult.getResultStatus();
+                // 判断resultStatus 为9000则代表支付成功
+                if (TextUtils.equals(resultStatus, "9000")) {
+                    // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
+                    LogUtils.e("支付成功" + payResult);
+                } else {
+                    // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
+                    LogUtils.e("支付失败" + payResult);
+                    startActivity(new Intent(getContext(), OrderPayActivity.class));
+                }
+            }
+        }
+
+        ;
+    };
+
+
+    private int pay = 1;
+
     public void showTip(OrderBean orderBean) {
         final Dialog dialog = new Dialog(getContext(), R.style.dialog_bottom_full);
         View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_layout_pay, null);
@@ -222,6 +261,7 @@ public class PayFragment extends BaseFragment implements OnLoadMoreListener, OnR
             @Override
             public void onClick(View v) {
                 payOrder(orderBean.getId());
+                pay = 1;
                 dialog.dismiss();
             }
         });
@@ -229,6 +269,7 @@ public class PayFragment extends BaseFragment implements OnLoadMoreListener, OnR
             @Override
             public void onClick(View v) {
                 payOrder(orderBean.getId());
+                pay = 2;
                 dialog.dismiss();
             }
         });

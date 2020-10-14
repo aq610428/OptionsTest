@@ -18,6 +18,16 @@ public class PayBean implements Serializable{
      */
 
     private String orderid;
+
+    public String getAliPayString() {
+        return aliPayString;
+    }
+
+    public void setAliPayString(String aliPayString) {
+        this.aliPayString = aliPayString;
+    }
+
+    private String aliPayString;
     private PayMapBean payMap;
 
     public String getOrderid() {

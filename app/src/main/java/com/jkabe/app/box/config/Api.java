@@ -348,5 +348,11 @@ public interface Api {
     String PAY_REMOVE_DELETE = Config.getOpenNewApi() + "/mall/removeMallOrderInfo";
     int PAY_REMOVE_DELETE_ID = 20018;
 
+    //催发货
+    String PAY_REMOVE_GOOD = Config.getOpenNewApi() + "/mall/pressToSendGoods";
+    int PAY_REMOVE_GOOD_ID = 20019;
 
+    //确认收货
+    String PAY_REMOVE_GOODS = Config.getOpenNewApi() + "/mall/comfirmToSendGoods";
+    int PAY_REMOVE_GOODS_ID = 20020;
 }

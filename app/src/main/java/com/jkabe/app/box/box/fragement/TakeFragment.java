@@ -77,14 +77,11 @@ public class TakeFragment extends BaseFragment implements OnLoadMoreListener, On
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         swipe_target.setLayoutManager(linearLayoutManager);
         noDataView.textView.setText("无更多订单");
-    }
-
-
-    @Override
-    public void onResume() {
-        super.onResume();
         query();
     }
+
+
+
 
 
     @Override
@@ -120,6 +117,20 @@ public class TakeFragment extends BaseFragment implements OnLoadMoreListener, On
     }
 
 
+    /******催发货*****/
+    public void showUrge(String id) {
+        showProgressDialog(getActivity(), false);
+        String sign = "id=" + id + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        Map<String, String> params = okHttpModel.getParams();
+        params.put("id", id);
+        params.put("partnerid", Constants.PARTNERID);
+        params.put("apptype", Constants.TYPE);
+        params.put("sign", Md5Util.encode(sign));
+        okHttpModel.get(Api.PAY_REMOVE_GOOD, params, Api.PAY_REMOVE_GOOD_ID, this);
+    }
+
+
+
     @Override
     public void onSucceed(JSONObject object, int id, CommonalityModel commonality) {
         if (object != null && commonality != null && !Utility.isEmpty(commonality.getStatusCode())) {
@@ -137,6 +148,9 @@ public class TakeFragment extends BaseFragment implements OnLoadMoreListener, On
                                 swipeToLoadLayout.setVisibility(View.GONE);
                             }
                         }
+                        break;
+                    case Api.PAY_REMOVE_GOOD_ID:
+                        ToastUtil.showToast(commonality.getErrorDesc());
                         break;
 
                 }

@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
@@ -27,7 +28,9 @@ import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.NoDataView;
 import com.jkabe.box.R;
+
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -68,12 +71,6 @@ public class CompletedFragment extends BaseFragment implements OnLoadMoreListene
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         swipe_target.setLayoutManager(linearLayoutManager);
         noDataView.textView.setText("无更多订单");
-    }
-
-
-    @Override
-    public void onResume() {
-        super.onResume();
         query();
     }
 
@@ -94,7 +91,6 @@ public class CompletedFragment extends BaseFragment implements OnLoadMoreListene
     }
 
 
-
     /******商品列表*****/
     public void query() {
         showProgressDialog(getActivity(), false);
@@ -111,19 +107,17 @@ public class CompletedFragment extends BaseFragment implements OnLoadMoreListene
     }
 
 
-    /******商品列表*****/
-    public void query(String id) {
+    /******确认收货*****/
+    public void payConfirm(String orderId) {
         showProgressDialog(getActivity(), false);
-        String sign = "memberid=" + SaveUtils.getSaveInfo().getId() + "&orderStatus=3" + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        String sign = "id=" + orderId + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
         Map<String, String> params = okHttpModel.getParams();
-        params.put("orderStatus", "3");
-        params.put("memberid", SaveUtils.getSaveInfo().getId());
+        params.put("id", orderId);
         params.put("partnerid", Constants.PARTNERID);
         params.put("apptype", Constants.TYPE);
         params.put("sign", Md5Util.encode(sign));
-        okHttpModel.get(Api.MallGood_ORDER_LIST, params, Api.MallGood_ORDER_LIST_ID, this);
+        okHttpModel.get(Api.PAY_REMOVE_GOODS, params, Api.PAY_REMOVE_GOODS_ID, this);
     }
-
 
 
     @Override
@@ -143,6 +137,9 @@ public class CompletedFragment extends BaseFragment implements OnLoadMoreListene
                                 swipeToLoadLayout.setVisibility(View.GONE);
                             }
                         }
+                        break;
+                    case Api.PAY_REMOVE_GOODS_ID:
+                        ToastUtil.showToast(commonality.getErrorDesc());
                         break;
 
                 }

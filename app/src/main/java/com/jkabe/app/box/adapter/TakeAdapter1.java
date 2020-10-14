@@ -65,7 +65,7 @@ public class TakeAdapter1 extends AutoRVAdapter {
         vh.getTextView(R.id.text_buy).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                allFragment.showUrge(orderBean.getId());
             }
         });
     }

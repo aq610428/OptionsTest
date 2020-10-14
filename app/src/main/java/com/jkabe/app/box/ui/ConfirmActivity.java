@@ -294,7 +294,7 @@ public class ConfirmActivity extends BaseActivity implements NetWorkListener {
         if (isPay == 1) {
             PayUtils.wechatPay(this, payBean, api);
         } else {
-            PayUtils.AliPay(this, mHandler, "");
+            PayUtils.AliPay(this, mHandler, payBean.getAliPayString());
         }
     }
 

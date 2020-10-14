@@ -10,6 +10,9 @@ import android.os.Handler;
 import android.os.Message;
 import com.alipay.sdk.app.PayTask;
 import com.jkabe.app.box.bean.PayBean;
+import com.jkabe.app.box.box.OrderDetileActivity;
+import com.jkabe.app.box.box.fragement.AllFragment;
+import com.jkabe.app.box.box.fragement.PayFragment;
 import com.jkabe.app.box.ui.ConfirmActivity;
 import com.tencent.mm.opensdk.modelmsg.GetMessageFromWX;
 import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;
@@ -68,6 +71,78 @@ public class PayUtils {
     }
 
 
+    public static void AliPay(OrderDetileActivity activity, Handler mHandler, String orderInfo) {
+        if (!isAliPayInstalled(activity)) {
+            ToastUtil.showToast("您未安装支付宝，请安装后再试~");
+            return;
+        }
+        final Runnable payRunnable = new Runnable() {
+
+            @Override
+            public void run() {
+                PayTask alipay = new PayTask(activity);
+                Map<String, String> result = alipay.payV2(orderInfo, true);
+                LogUtils.i("支付结果result=" + result.toString());
+                Message msg = new Message();
+                msg.what = activity.SDK_PAY_FLAG;
+                msg.obj = result;
+                mHandler.sendMessage(msg);
+            }
+        };
+        // 必须异步调用
+        Thread payThread = new Thread(payRunnable);
+        payThread.start();
+    }
+
+
+    public static void AliPay(PayFragment fragment, Handler mHandler, String orderInfo) {
+        if (!isAliPayInstalled(fragment.getActivity())) {
+            ToastUtil.showToast("您未安装支付宝，请安装后再试~");
+            return;
+        }
+        final Runnable payRunnable = new Runnable() {
+
+            @Override
+            public void run() {
+                PayTask alipay = new PayTask(fragment.getActivity());
+                Map<String, String> result = alipay.payV2(orderInfo, true);
+                LogUtils.i("支付结果result=" + result.toString());
+                Message msg = new Message();
+                msg.what = fragment.SDK_PAY_FLAG;
+                msg.obj = result;
+                mHandler.sendMessage(msg);
+            }
+        };
+        // 必须异步调用
+        Thread payThread = new Thread(payRunnable);
+        payThread.start();
+    }
+
+
+    public static void AliPay(AllFragment fragment, Handler mHandler, String orderInfo) {
+        if (!isAliPayInstalled(fragment.getActivity())) {
+            ToastUtil.showToast("您未安装支付宝，请安装后再试~");
+            return;
+        }
+        final Runnable payRunnable = new Runnable() {
+
+            @Override
+            public void run() {
+                PayTask alipay = new PayTask(fragment.getActivity());
+                Map<String, String> result = alipay.payV2(orderInfo, true);
+                LogUtils.i("支付结果result=" + result.toString());
+                Message msg = new Message();
+                msg.what = fragment.SDK_PAY_FLAG;
+                msg.obj = result;
+                mHandler.sendMessage(msg);
+            }
+        };
+        // 必须异步调用
+        Thread payThread = new Thread(payRunnable);
+        payThread.start();
+    }
+
+
     public static void AliPay(ConfirmActivity activity, Handler mHandler,String orderInfo) {
         if (!isAliPayInstalled(activity)) {
             ToastUtil.showToast("您未安装支付宝，请安装后再试~");
@@ -77,14 +152,6 @@ public class PayUtils {
 
             @Override
             public void run() {
-//                Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(Constants.APPID, false);
-//                String orderParam = OrderInfoUtil2_0.buildOrderParam(params);
-//                boolean rsa2 = (RSA_PRIVATE.length() > 0);
-//                String privateKey = rsa2 ? RSA_PRIVATE : RSA_PRIVATE;
-//                String sign = OrderInfoUtil2_0.getSign(params, privateKey, rsa2);
-//                final String orderInfo = orderParam + "&" + sign;
-
-
                 PayTask alipay = new PayTask(activity);
                 Map<String, String> result = alipay.payV2(orderInfo, true);
                 LogUtils.i("支付结果result=" + result.toString());

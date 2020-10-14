@@ -1,7 +1,12 @@
 package com.jkabe.app.box.box;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +27,7 @@ import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
 import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.JsonParse;
+import com.jkabe.app.box.util.LogUtils;
 import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.MeasureWidthUtils;
 import com.jkabe.app.box.util.PayUtils;
@@ -29,6 +35,7 @@ import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.DialogUtils;
 import com.jkabe.box.R;
+import com.jkabe.box.alipay.PayResult;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
@@ -48,7 +55,7 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
     private RecyclerView recyclerView;
     private OrderListAdapter1 orderListAdapter;
     private TextView text_order, text_pay, text_logistics, text_baill, text_next, text_message;
-    private TextView text_cancel, text_buy, text_skills, text_confirm, text_Urge, text_stats,text_delete;
+    private TextView text_cancel, text_buy, text_skills, text_confirm, text_Urge, text_stats, text_delete;
     private PayBean payBean;
     private IWXAPI api;
     private String orderId;
@@ -61,7 +68,7 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
 
     @Override
     protected void initView() {
-        text_delete= getView(R.id.text_delete);
+        text_delete = getView(R.id.text_delete);
         text_stats = getView(R.id.text_stats);
         text_cancel = getView(R.id.text_cancel);
         text_buy = getView(R.id.text_buy);
@@ -139,7 +146,6 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
     }
 
 
-
     /******删除订单*****/
     public void delete(String orderId) {
         showProgressDialog(this, false);
@@ -152,12 +158,30 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
         okHttpModel.get(Api.PAY_REMOVE_DELETE, params, Api.PAY_REMOVE_DELETE_ID, this);
     }
 
+    /******催发货*****/
+    private void showUrge(String id) {
+        showProgressDialog(this, false);
+        String sign = "id=" + id + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        Map<String, String> params = okHttpModel.getParams();
+        params.put("id", id);
+        params.put("partnerid", Constants.PARTNERID);
+        params.put("apptype", Constants.TYPE);
+        params.put("sign", Md5Util.encode(sign));
+        okHttpModel.get(Api.PAY_REMOVE_GOOD, params, Api.PAY_REMOVE_GOOD_ID, this);
+    }
+
 
     /******确认收货*****/
     public void payConfirm(String orderId) {
-
+        showProgressDialog(this, false);
+        String sign = "id=" + orderId + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        Map<String, String> params = okHttpModel.getParams();
+        params.put("id", orderId);
+        params.put("partnerid", Constants.PARTNERID);
+        params.put("apptype", Constants.TYPE);
+        params.put("sign", Md5Util.encode(sign));
+        okHttpModel.get(Api.PAY_REMOVE_GOODS, params, Api.PAY_REMOVE_GOODS_ID, this);
     }
-
 
 
     @Override
@@ -185,6 +209,12 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
                         ToastUtil.showToast(commonality.getErrorDesc());
                         finish();
                         break;
+                    case Api.PAY_REMOVE_GOOD_ID:
+                        ToastUtil.showToast(commonality.getErrorDesc());
+                        break;
+                    case Api.PAY_REMOVE_GOODS_ID:
+                        ToastUtil.showToast(commonality.getErrorDesc());
+                        break;
 
                 }
             } else {
@@ -195,9 +225,15 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
         stopProgressDialog();
     }
 
+    /******微信支付*****/
+    int isPay = 1;
 
     private void update() {
-        PayUtils.wechatPay(this, payBean, api);
+        if (isPay == 1) {
+            PayUtils.wechatPay(this, payBean, api);
+        } else {
+            PayUtils.AliPay(this, mHandler, payBean.getAliPayString());
+        }
     }
 
 
@@ -319,10 +355,16 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
                 }
                 break;
             case R.id.text_delete:
-                DialogUtils.showDelete(OrderDetileActivity.this, "是否删除该订单？",orderBean.getOrderinfo().getId());
+                DialogUtils.showDelete(OrderDetileActivity.this, "是否删除该订单？", orderBean.getOrderinfo().getId());
+                break;
+            case R.id.text_Urge:
+                if (orderBean != null && orderBean.getOrderinfo() != null) {
+                    showUrge(orderBean.getOrderinfo().getId());
+                }
                 break;
         }
     }
+
 
     @Override
     public void onFail() {
@@ -334,6 +376,28 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
         stopProgressDialog();
     }
 
+    public static final int SDK_PAY_FLAG = 1;
+    @SuppressLint("HandlerLeak")
+    private Handler mHandler = new Handler() {
+        @SuppressWarnings("unused")
+        public void handleMessage(Message msg) {
+            if (msg.what == SDK_PAY_FLAG) {
+                PayResult payResult = new PayResult((Map<String, String>) msg.obj);
+                //对于支付结果，请商户依赖服务端的异步通知结果。同步通知结果，仅作为支付结束的通知。
+                String resultInfo = payResult.getResult();// 同步返回需要验证的信息
+                String resultStatus = payResult.getResultStatus();
+                // 判断resultStatus 为9000则代表支付成功
+                if (TextUtils.equals(resultStatus, "9000")) {
+                    // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
+                    LogUtils.e("支付成功" + payResult);
+                } else {
+                    // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
+                    LogUtils.e("支付失败" + payResult);
+                    startActivity(new Intent(OrderDetileActivity.this, OrderPayActivity.class));
+                }
+            }
+        }
+    };
 
     public void showTip(String id) {
         final Dialog dialog = new Dialog(this, R.style.dialog_bottom_full);

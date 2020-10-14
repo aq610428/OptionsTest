@@ -68,7 +68,6 @@ public class PayAdapter extends AutoRVAdapter {
             @Override
             public void onClick(View v) {
                 DialogUtils.showOrder(allFragment,"是否取消订单？",orderBean.getId());
-
             }
         });
 

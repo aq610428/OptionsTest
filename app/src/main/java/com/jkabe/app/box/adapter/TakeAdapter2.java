@@ -73,7 +73,7 @@ public class TakeAdapter2 extends AutoRVAdapter {
         vh.getTextView(R.id.text_confirm).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogUtils.showConfirm(allFragment,"是否确定收货？",orderBean.getOrderid());
+                DialogUtils.showConfirm(allFragment,"是否确定收货？",orderBean.getId());
             }
         });
     }
