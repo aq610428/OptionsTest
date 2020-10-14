@@ -135,9 +135,9 @@ public class CartFragment extends BaseFragment implements NetWorkListener, View.
 
 
     /******商品列表*****/
-    public void queryNum(String goodNumber,String goodid) {
+    public void queryNum(String goodNumber, String goodid) {
         showProgressDialog(getActivity(), false);
-        String sign ="goodid="+goodid+"&goodNumber="+goodNumber+ "&memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        String sign = "goodid=" + goodid + "&goodNumber=" + goodNumber + "&memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
         Map<String, String> params = okHttpModel.getParams();
         params.put("goodid", goodid + "");
         params.put("goodNumber", goodNumber + "");
@@ -284,9 +284,18 @@ public class CartFragment extends BaseFragment implements NetWorkListener, View.
                 setView();
                 break;
             case R.id.text_balance:
-                Intent intent = new Intent(getContext(), ConfirmActivity.class);
-                intent.putExtra("beanList", (Serializable) beanList);
-                startActivity(intent);
+                if (adapter != null && adapter.map.size() > 0) {
+                    List<CartBean> beans = new ArrayList<>();
+                    for (Map.Entry<Integer, CartBean> entry : adapter.map.entrySet()) {
+                        beans.add(entry.getValue());
+                    }
+                    Intent intent = new Intent(getContext(), ConfirmActivity.class);
+                    intent.putExtra("beanList", (Serializable) beans);
+                    startActivity(intent);
+                } else {
+                    ToastUtil.showToast("请选择商品");
+                }
+
                 break;
             case R.id.text_delete:
                 if (adapter != null && adapter.map.size() == 0) {

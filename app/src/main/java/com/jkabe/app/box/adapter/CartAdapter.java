@@ -42,9 +42,6 @@ public class CartAdapter extends AutoRVAdapter {
         vh.getTextView(R.id.text_name).setText(bean.getTitle());
         vh.getTextView(R.id.text_number).setText(bean.getGoodNumber()+"");
         vh.getTextView(R.id.text_price).setText(bean.getSellPrice()+"");
-
-
-
         TextView text_choose = vh.getTextView(R.id.text_choose);
         if (map.get(position) != null) {
             text_choose.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.ic_choose_un, 0, 0, 0);

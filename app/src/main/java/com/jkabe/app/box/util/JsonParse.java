@@ -30,6 +30,7 @@ import com.jkabe.app.box.bean.Oil;
 import com.jkabe.app.box.bean.OilInfo;
 import com.jkabe.app.box.bean.OrderBean;
 import com.jkabe.app.box.bean.OrderInfo;
+import com.jkabe.app.box.bean.OrderVo;
 import com.jkabe.app.box.bean.OreInfo;
 import com.jkabe.app.box.bean.PackageBean;
 import com.jkabe.app.box.bean.PayBean;
@@ -516,5 +517,11 @@ public class JsonParse {
         }
 
         return infos;
+    }
+
+    public static OrderVo getorderBean(JSONObject object) {
+        JSONObject jsonObject = object.optJSONObject("result");
+        OrderVo info = (OrderVo) JsonUtilComm.jsonToBean(jsonObject.toString(), OrderVo.class);
+        return info;
     }
 }

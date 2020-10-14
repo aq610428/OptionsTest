@@ -185,7 +185,9 @@ public class ConfirmActivity extends BaseActivity implements NetWorkListener {
                     shoppingids = shoppingids + "," + beanList.get(i).getId();
                 }
             }
-            query(shoppingids);
+            if (beanList!=null&&beanList.size()>0){
+                query(shoppingids);
+            }
         }
     }
 

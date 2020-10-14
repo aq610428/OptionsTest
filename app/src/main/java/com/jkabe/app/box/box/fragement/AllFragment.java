@@ -1,12 +1,14 @@
 package com.jkabe.app.box.box.fragement;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,6 +21,7 @@ import com.jkabe.app.box.base.BaseFragment;
 import com.jkabe.app.box.bean.CommonalityModel;
 import com.jkabe.app.box.bean.OrderBean;
 import com.jkabe.app.box.bean.PayBean;
+import com.jkabe.app.box.box.OrderDetileActivity;
 import com.jkabe.app.box.config.Api;
 import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
@@ -196,6 +199,7 @@ public class AllFragment extends BaseFragment implements OnLoadMoreListener, OnR
             beanList.addAll(beans);
             takeAdapter.setData(beanList);
         }
+
     }
 
 

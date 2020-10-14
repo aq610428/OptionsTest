@@ -92,6 +92,11 @@
         <activity
             android:name="com.jkabe.app.box.ui.AddressActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.jkabe.app.box.box.OrderDetileActivity"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name="com.jkabe.app.box.box.TransactionActivity"
             android:screenOrientation="portrait" />

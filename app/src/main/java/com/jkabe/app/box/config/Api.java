@@ -339,4 +339,8 @@ public interface Api {
     String PAY_REMOVE_LOVE = Config.getOpenNewApi() + "/mall/removeMallGoodFollow";
     int PAY_REMOVE_LOVE_ID = 20016;
 
+    //取消关注
+    String PAY_REMOVE_ORDER = Config.getOpenNewApi() + "/mall/getMallOrderInfoById";
+    int PAY_REMOVE_ORDER_ID = 20017;
+
 }

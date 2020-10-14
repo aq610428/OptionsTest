@@ -10,9 +10,11 @@ import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
+
 import com.jkabe.app.box.adapter.GoodAdapter;
 import com.jkabe.app.box.banner.Banner;
 import com.jkabe.app.box.banner.BannerConfig;
@@ -34,7 +36,9 @@ import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.MyLoader1;
 import com.jkabe.box.R;
+
 import org.json.JSONObject;
+
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
@@ -54,6 +58,7 @@ public class WareDeilActivity extends BaseActivity1 implements OnBannerListener,
     private GoodAdapter goodAdapter;
     private TextView text_cart_add, text_cart, text_pay, text_number;
     private LinearLayout ll_redue, ll_add;
+    private String goodId;
 
 
     @Override
@@ -110,11 +115,11 @@ public class WareDeilActivity extends BaseActivity1 implements OnBannerListener,
     @Override
     protected void initData() {
         goodBean = (GoodBean) getIntent().getSerializableExtra("goodBean");
-        String goodId = getIntent().getStringExtra("goodId");
+         goodId = getIntent().getStringExtra("goodId");
         if (goodBean != null) {
-            goodId=goodBean.getId();
+            goodId = goodBean.getId();
         }
-        query(goodId);
+        query();
     }
 
 
@@ -133,10 +138,12 @@ public class WareDeilActivity extends BaseActivity1 implements OnBannerListener,
             recyclerView.setAdapter(goodAdapter);
         }
 
-        if (Utility.isEmpty(goodBean.getFollowid())){
-            text_cart_share.setCompoundDrawablesWithIntrinsicBounds(0,R.mipmap.icon_like,0,0);
-        }else{
-            text_cart_share.setCompoundDrawablesWithIntrinsicBounds(0,R.mipmap.icon_love,0,0);
+        if (Utility.isEmpty(goodBean.getFollowid())) {
+            text_cart_share.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.icon_like, 0, 0);
+            text_cart_share.setText("关注");
+        } else {
+            text_cart_share.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.icon_love, 0, 0);
+            text_cart_share.setText("已关注");
         }
     }
 
@@ -209,8 +216,8 @@ public class WareDeilActivity extends BaseActivity1 implements OnBannerListener,
 
 
     /********商品详情
-     * @param goodId*******/
-    private void query(String goodId) {
+     * @param *******/
+    private void query() {
         String sign = "id=" + goodId + "&memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
         Map<String, String> params = okHttpModel.getParams();
         params.put("id", goodId);
@@ -252,11 +259,15 @@ public class WareDeilActivity extends BaseActivity1 implements OnBannerListener,
                         break;
                     case Api.PAY_ORDER_LOVE_ID:
                         ToastUtil.showToast(commonality.getErrorDesc());
-                        text_cart_share.setCompoundDrawablesWithIntrinsicBounds(0,R.mipmap.icon_love,0,0);
+                        text_cart_share.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.icon_love, 0, 0);
+                        text_cart_share.setText("已关注");
+                        goodBean.setFollowid(goodId);
                         break;
                     case Api.PAY_REMOVE_LOVE_ID:
                         ToastUtil.showToast(commonality.getErrorDesc());
-                        text_cart_share.setCompoundDrawablesWithIntrinsicBounds(0,R.mipmap.icon_like,0,0);
+                        text_cart_share.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.icon_like, 0, 0);
+                        text_cart_share.setText("关注");
+                        goodBean.setFollowid("");
                         break;
 
                 }
