@@ -77,9 +77,16 @@ public class TakeFragment extends BaseFragment implements OnLoadMoreListener, On
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         swipe_target.setLayoutManager(linearLayoutManager);
         noDataView.textView.setText("无更多订单");
-        query();
-
     }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        query();
+    }
+
+
     @Override
     public void onRefresh() {
         isRefresh = false;

@@ -27,6 +27,31 @@ public class DialogUtils {
 
 
     /******取消订单****/
+    public static void showDelete(OrderDetileActivity activity, String msg,String id) {
+        Dialog dialog = new Dialog(activity);
+        View view = LayoutInflater.from(activity).inflate(R.layout.dialog_layout_ming, null);
+        TextView text_name = view.findViewById(R.id.text_name);
+        text_name.setText(msg);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(view);
+        view.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        view.findViewById(R.id.confirm).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.delete(id);
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
+
+    /******取消订单****/
     public static void showConfirm(CompletedFragment fragment, String msg,String id) {
         Dialog dialog = new Dialog(fragment.getContext());
         View view = LayoutInflater.from(fragment.getContext()).inflate(R.layout.dialog_layout_ming, null);

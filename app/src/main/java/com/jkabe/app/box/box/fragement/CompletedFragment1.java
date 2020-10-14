@@ -72,6 +72,11 @@ public class CompletedFragment1 extends BaseFragment implements OnLoadMoreListen
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         swipe_target.setLayoutManager(linearLayoutManager);
         noDataView.textView.setText("无更多订单");
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         query();
     }
 

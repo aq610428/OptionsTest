@@ -9,10 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
@@ -37,7 +39,9 @@ import com.jkabe.app.box.weight.NoDataView;
 import com.jkabe.box.R;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -81,6 +85,12 @@ public class AllFragment extends BaseFragment implements OnLoadMoreListener, OnR
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         swipe_target.setLayoutManager(linearLayoutManager);
         noDataView.textView.setText("无更多订单");
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
         query();
     }
 
@@ -199,6 +209,15 @@ public class AllFragment extends BaseFragment implements OnLoadMoreListener, OnR
             beanList.addAll(beans);
             takeAdapter.setData(beanList);
         }
+
+        takeAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getContext(), OrderDetileActivity.class);
+                intent.putExtra("id", beanList.get(position).getId());
+                getContext().startActivity(intent);
+            }
+        });
 
     }
 

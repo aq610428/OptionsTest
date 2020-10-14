@@ -48,7 +48,7 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
     private RecyclerView recyclerView;
     private OrderListAdapter1 orderListAdapter;
     private TextView text_order, text_pay, text_logistics, text_baill, text_next, text_message;
-    private TextView text_cancel, text_buy, text_skills, text_confirm, text_Urge, text_stats;
+    private TextView text_cancel, text_buy, text_skills, text_confirm, text_Urge, text_stats,text_delete;
     private PayBean payBean;
     private IWXAPI api;
     private String orderId;
@@ -61,6 +61,7 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
 
     @Override
     protected void initView() {
+        text_delete= getView(R.id.text_delete);
         text_stats = getView(R.id.text_stats);
         text_cancel = getView(R.id.text_cancel);
         text_buy = getView(R.id.text_buy);
@@ -87,7 +88,7 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
         text_skills.setOnClickListener(this);
         text_confirm.setOnClickListener(this);
         text_Urge.setOnClickListener(this);
-
+        text_delete.setOnClickListener(this);
     }
 
     @Override
@@ -139,6 +140,19 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
 
 
 
+    /******删除订单*****/
+    public void delete(String orderId) {
+        showProgressDialog(this, false);
+        String sign = "id=" + orderId + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        Map<String, String> params = okHttpModel.getParams();
+        params.put("id", orderId);
+        params.put("partnerid", Constants.PARTNERID);
+        params.put("apptype", Constants.TYPE);
+        params.put("sign", Md5Util.encode(sign));
+        okHttpModel.get(Api.PAY_REMOVE_DELETE, params, Api.PAY_REMOVE_DELETE_ID, this);
+    }
+
+
     /******确认收货*****/
     public void payConfirm(String orderId) {
 
@@ -166,6 +180,10 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
                         if (payBean != null) {
                             update();
                         }
+                        break;
+                    case Api.PAY_REMOVE_DELETE_ID:
+                        ToastUtil.showToast(commonality.getErrorDesc());
+                        finish();
                         break;
 
                 }
@@ -241,6 +259,8 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
                     text_cancel.setVisibility(View.GONE);
                     text_buy.setVisibility(View.GONE);
                     text_Urge.setVisibility(View.VISIBLE);
+                    text_skills.setVisibility(View.GONE);
+                    text_confirm.setVisibility(View.GONE);
                     text_stats.setText("已支付待发货");
                     break;
                 case 3://已发货
@@ -258,7 +278,8 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
                     break;
                 case 5://订单取消
                 case 8://订单已完成
-                    text_skills.setVisibility(View.GONE);
+                    text_delete.setVisibility(View.VISIBLE);
+                    text_skills.setVisibility(View.VISIBLE);
                     text_confirm.setVisibility(View.GONE);
                     text_cancel.setVisibility(View.GONE);
                     text_buy.setVisibility(View.GONE);
@@ -296,6 +317,9 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
                 if (orderBean != null && orderBean.getOrderinfo() != null) {
                     showTip(orderBean.getOrderinfo().getId());
                 }
+                break;
+            case R.id.text_delete:
+                DialogUtils.showDelete(OrderDetileActivity.this, "是否删除该订单？",orderBean.getOrderinfo().getId());
                 break;
         }
     }

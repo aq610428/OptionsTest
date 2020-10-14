@@ -343,4 +343,10 @@ public interface Api {
     String PAY_REMOVE_ORDER = Config.getOpenNewApi() + "/mall/getMallOrderInfoById";
     int PAY_REMOVE_ORDER_ID = 20017;
 
+
+    //取消关注
+    String PAY_REMOVE_DELETE = Config.getOpenNewApi() + "/mall/removeMallOrderInfo";
+    int PAY_REMOVE_DELETE_ID = 20018;
+
+
 }
