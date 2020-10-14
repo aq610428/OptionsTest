@@ -12,6 +12,7 @@ import com.jkabe.app.box.box.OrderDetileActivity;
 import com.jkabe.app.box.box.fragement.AllFragment;
 import com.jkabe.app.box.box.fragement.PayFragment;
 import com.jkabe.app.box.util.Utility;
+import com.jkabe.app.box.weight.DialogUtils;
 import com.jkabe.box.R;
 
 import java.util.List;
@@ -66,7 +67,8 @@ public class PayAdapter extends AutoRVAdapter {
         vh.getTextView(R.id.text_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                allFragment.cancelOrder(orderBean.getId());
+                DialogUtils.showOrder(allFragment,"是否取消订单？",orderBean.getId());
+
             }
         });
 

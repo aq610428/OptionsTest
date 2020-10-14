@@ -104,6 +104,21 @@ public class CompletedFragment extends BaseFragment implements OnLoadMoreListene
     }
 
 
+    /******商品列表*****/
+    public void query(String id) {
+        showProgressDialog(getActivity(), false);
+        String sign = "memberid=" + SaveUtils.getSaveInfo().getId() + "&orderStatus=3" + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        Map<String, String> params = okHttpModel.getParams();
+        params.put("orderStatus", "3");
+        params.put("memberid", SaveUtils.getSaveInfo().getId());
+        params.put("partnerid", Constants.PARTNERID);
+        params.put("apptype", Constants.TYPE);
+        params.put("sign", Md5Util.encode(sign));
+        okHttpModel.get(Api.MallGood_ORDER_LIST, params, Api.MallGood_ORDER_LIST_ID, this);
+    }
+
+
+
     @Override
     public void onSucceed(JSONObject object, int id, CommonalityModel commonality) {
         if (object != null && commonality != null && !Utility.isEmpty(commonality.getStatusCode())) {

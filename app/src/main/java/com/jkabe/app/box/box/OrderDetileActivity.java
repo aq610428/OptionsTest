@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.jkabe.app.box.adapter.OrderListAdapter1;
 import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.bean.CommonalityModel;
-import com.jkabe.app.box.bean.OrderBean;
 import com.jkabe.app.box.bean.OrderVo;
 import com.jkabe.app.box.bean.PayBean;
 import com.jkabe.app.box.config.Api;
@@ -28,6 +27,7 @@ import com.jkabe.app.box.util.MeasureWidthUtils;
 import com.jkabe.app.box.util.PayUtils;
 import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.Utility;
+import com.jkabe.app.box.weight.DialogUtils;
 import com.jkabe.box.R;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
@@ -44,7 +44,7 @@ import java.util.Map;
  */
 public class OrderDetileActivity extends BaseActivity implements NetWorkListener {
     private TextView title_text_tv, title_left_btn, text_name, text_address, text_price, text_postage;
-    private OrderVo orderBean;
+    public OrderVo orderBean;
     private RecyclerView recyclerView;
     private OrderListAdapter1 orderListAdapter;
     private TextView text_order, text_pay, text_logistics, text_baill, text_next, text_message;
@@ -104,7 +104,7 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
         showProgressDialog(this, false);
         String sign = "id=" + orderId + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
         Map<String, String> params = okHttpModel.getParams();
-        params.put("id", orderId+"");
+        params.put("id", orderId + "");
         params.put("partnerid", Constants.PARTNERID);
         params.put("apptype", Constants.TYPE);
         params.put("sign", Md5Util.encode(sign));
@@ -136,6 +136,21 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
         params.put("sign", Md5Util.encode(sign));
         okHttpModel.get(Api.PAY_ORDER_LIST, params, Api.PAY_ORDER_LIST_ID, this);
     }
+
+
+
+    /******确认收货*****/
+    public void payConfirm(String orderId) {
+        showProgressDialog(this, false);
+        String sign = "id=" + orderId + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        Map<String, String> params = okHttpModel.getParams();
+        params.put("id", orderId);
+        params.put("partnerid", Constants.PARTNERID);
+        params.put("apptype", Constants.TYPE);
+        params.put("sign", Md5Util.encode(sign));
+        okHttpModel.get(Api.PAY_ORDER_LIST, params, Api.PAY_ORDER_LIST_ID, this);
+    }
+
 
 
     @Override
@@ -270,7 +285,6 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
     }
 
 
-
     @Override
     public void onClick(View v) {
         super.onClick(v);
@@ -279,12 +293,14 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
                 finish();
                 break;
             case R.id.text_cancel:
-                if (orderBean!=null&&orderBean.getOrderinfo()!=null){
-                    cancelOrder(orderBean.getOrderinfo().getId());
-                }
+                DialogUtils.showOrder(OrderDetileActivity.this, "是否取消订单？");
                 break;
+            case R.id.text_confirm:
+                DialogUtils.showConfirm(OrderDetileActivity.this, "是否确定收货？");
+                break;
+
             case R.id.text_buy:
-                if (orderBean!=null&&orderBean.getOrderinfo()!=null){
+                if (orderBean != null && orderBean.getOrderinfo() != null) {
                     showTip(orderBean.getOrderinfo().getId());
                 }
                 break;
@@ -302,7 +318,7 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
     }
 
 
-    public void showTip(String  id) {
+    public void showTip(String id) {
         final Dialog dialog = new Dialog(this, R.style.dialog_bottom_full);
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_layout_pay, null);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);

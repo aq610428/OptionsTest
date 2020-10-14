@@ -10,7 +10,11 @@ import android.view.Window;
 import android.widget.TextView;
 
 import com.jkabe.app.box.base.BaseApplication;
+import com.jkabe.app.box.box.OrderDetileActivity;
 import com.jkabe.app.box.box.TransactionActivity;
+import com.jkabe.app.box.box.fragement.AllFragment;
+import com.jkabe.app.box.box.fragement.CompletedFragment;
+import com.jkabe.app.box.box.fragement.PayFragment;
 import com.jkabe.app.box.ui.ActivationActivity;
 import com.jkabe.app.box.ui.BindActivity;
 import com.jkabe.app.box.ui.BrandCarActivity;
@@ -20,6 +24,146 @@ import com.jkabe.app.box.ui.LicenseActivity;
 
 
 public class DialogUtils {
+
+
+    /******取消订单****/
+    public static void showConfirm(CompletedFragment fragment, String msg,String id) {
+        Dialog dialog = new Dialog(fragment.getContext());
+        View view = LayoutInflater.from(fragment.getContext()).inflate(R.layout.dialog_layout_ming, null);
+        TextView text_name = view.findViewById(R.id.text_name);
+        text_name.setText(msg);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(view);
+        view.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        view.findViewById(R.id.confirm).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragment.query(id);
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
+
+
+    /******取消订单****/
+    public static void showConfirm(OrderDetileActivity activity, String msg) {
+        Dialog dialog = new Dialog(activity);
+        View view = LayoutInflater.from(activity).inflate(R.layout.dialog_layout_ming, null);
+        TextView text_name = view.findViewById(R.id.text_name);
+        text_name.setText(msg);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(view);
+        view.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        view.findViewById(R.id.confirm).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (activity.orderBean!=null&&activity.orderBean.getOrderinfo()!=null){
+                    activity.payConfirm(activity.orderBean.getOrderinfo().getId());
+                }
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
+
+    /******取消订单****/
+    public static void showOrder(OrderDetileActivity activity, String msg) {
+        Dialog dialog = new Dialog(activity);
+        View view = LayoutInflater.from(activity).inflate(R.layout.dialog_layout_ming, null);
+        TextView text_name = view.findViewById(R.id.text_name);
+        text_name.setText(msg);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(view);
+        view.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        view.findViewById(R.id.confirm).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (activity.orderBean!=null&&activity.orderBean.getOrderinfo()!=null){
+                    activity.cancelOrder(activity.orderBean.getOrderinfo().getId());
+                }
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
+
+    /******取消订单****/
+    public static void showOrder(AllFragment fragment, String msg,String orderId) {
+        Dialog dialog = new Dialog(fragment.getContext());
+        View view = LayoutInflater.from(fragment.getContext()).inflate(R.layout.dialog_layout_ming, null);
+        TextView text_name = view.findViewById(R.id.text_name);
+        text_name.setText(msg);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(view);
+        view.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        view.findViewById(R.id.confirm).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragment.cancelOrder(orderId);
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
+
+
+
+
+    /******取消订单****/
+    public static void showOrder(PayFragment fragment, String msg, String orderId) {
+        Dialog dialog = new Dialog(fragment.getContext());
+        View view = LayoutInflater.from(fragment.getContext()).inflate(R.layout.dialog_layout_ming, null);
+        TextView text_name = view.findViewById(R.id.text_name);
+        text_name.setText(msg);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(view);
+        view.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        view.findViewById(R.id.confirm).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragment.cancelOrder(orderId);
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
+
+
+
+
+
+
     public static void showBind(int type, Context context) {
         Dialog dialog = new Dialog(context);
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_layout_ming, null);

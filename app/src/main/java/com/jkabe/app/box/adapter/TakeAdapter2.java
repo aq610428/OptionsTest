@@ -12,6 +12,7 @@ import com.jkabe.app.box.box.OrderDetileActivity;
 import com.jkabe.app.box.box.fragement.CompletedFragment;
 import com.jkabe.app.box.box.fragement.TakeFragment;
 import com.jkabe.app.box.util.Utility;
+import com.jkabe.app.box.weight.DialogUtils;
 import com.jkabe.box.R;
 
 import java.util.List;
@@ -72,7 +73,7 @@ public class TakeAdapter2 extends AutoRVAdapter {
         vh.getTextView(R.id.text_confirm).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                DialogUtils.showConfirm(allFragment,"是否确定收货？",orderBean.getOrderid());
             }
         });
     }
