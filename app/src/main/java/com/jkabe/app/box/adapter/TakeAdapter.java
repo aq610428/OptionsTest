@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jkabe.app.box.bean.OrderBean;
 import com.jkabe.app.box.box.OrderDetileActivity;
+import com.jkabe.app.box.box.OrderDetileActivity1;
 import com.jkabe.app.box.box.fragement.AllFragment;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.DialogUtils;
@@ -50,7 +51,13 @@ public class TakeAdapter extends AutoRVAdapter {
             adapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Intent intent = new Intent(allFragment.getContext(), OrderDetileActivity.class);
+                    int stats = orderBean.getOrderStatus();
+                    Intent intent = null;
+                    if (stats==3) {
+                        intent = new Intent(allFragment.getContext(), OrderDetileActivity1.class);
+                    } else {
+                        intent = new Intent(allFragment.getContext(), OrderDetileActivity.class);
+                    }
                     intent.putExtra("id", orderBean.getId());
                     allFragment.getContext().startActivity(intent);
                 }
@@ -115,7 +122,7 @@ public class TakeAdapter extends AutoRVAdapter {
         vh.getTextView(R.id.text_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogUtils.showOrder(allFragment,"是否取消订单？",orderBean.getId());
+                DialogUtils.showOrder(allFragment, "是否取消订单？", orderBean.getId());
 
             }
         });

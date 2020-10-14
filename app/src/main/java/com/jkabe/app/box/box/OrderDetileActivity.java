@@ -315,7 +315,7 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
                 case 5://订单取消
                 case 8://订单已完成
                     text_delete.setVisibility(View.VISIBLE);
-                    text_skills.setVisibility(View.VISIBLE);
+                    text_skills.setVisibility(View.GONE);
                     text_confirm.setVisibility(View.GONE);
                     text_cancel.setVisibility(View.GONE);
                     text_buy.setVisibility(View.GONE);

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jkabe.app.box.bean.OrderBean;
 import com.jkabe.app.box.box.OrderDetileActivity;
+import com.jkabe.app.box.box.OrderDetileActivity1;
 import com.jkabe.app.box.box.fragement.CompletedFragment;
 import com.jkabe.app.box.box.fragement.TakeFragment;
 import com.jkabe.app.box.util.Utility;
@@ -45,13 +46,13 @@ public class TakeAdapter2 extends AutoRVAdapter {
             RecyclerView recyclerView = vh.getRecyclerView(R.id.recyclerView);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(allFragment.getContext());
             recyclerView.setLayoutManager(linearLayoutManager);
-            OrderListAdapter adapter = new OrderListAdapter(allFragment.getContext(), orderBean.getItems());
+            OrderListAdapter2 adapter = new OrderListAdapter2(allFragment, orderBean.getItems());
             recyclerView.setAdapter(adapter);
             vh.getTextView(R.id.text_num).setText("共" + orderBean.getItems().size() + "件");
             adapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Intent intent = new Intent(allFragment.getContext(), OrderDetileActivity.class);
+                    Intent intent = new Intent(allFragment.getContext(), OrderDetileActivity1.class);
                     intent.putExtra("id", orderBean.getId());
                     allFragment.getContext().startActivity(intent);
                 }
@@ -64,18 +65,7 @@ public class TakeAdapter2 extends AutoRVAdapter {
             vh.getTextView(R.id.text_date).setText(str[0] + " " + str[1].substring(0, str[1].length() - 5));
         }
         vh.getTextView(R.id.text_stats).setText("订单已完成");
-        vh.getTextView(R.id.text_buy).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        vh.getTextView(R.id.text_confirm).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogUtils.showConfirm(allFragment,"是否确定收货？",orderBean.getId());
-            }
-        });
+//        DialogUtils.showConfirm(allFragment,"是否确定收货？",orderBean.getId());
     }
 
     public void setData(List<OrderBean> beanList) {

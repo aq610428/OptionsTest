@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.jkabe.app.box.base.BaseApplication;
 import com.jkabe.app.box.box.OrderDetileActivity;
+import com.jkabe.app.box.box.OrderDetileActivity1;
 import com.jkabe.app.box.box.TransactionActivity;
 import com.jkabe.app.box.box.fragement.AllFragment;
 import com.jkabe.app.box.box.fragement.CompletedFragment;
@@ -76,6 +77,29 @@ public class DialogUtils {
     }
 
 
+    /******去人订单****/
+    public static void showConfirm(OrderDetileActivity1 activity, String msg,String id) {
+        Dialog dialog = new Dialog(activity);
+        View view = LayoutInflater.from(activity).inflate(R.layout.dialog_layout_ming, null);
+        TextView text_name = view.findViewById(R.id.text_name);
+        text_name.setText(msg);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(view);
+        view.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        view.findViewById(R.id.confirm).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.payConfirm(id);
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
 
     /******取消订单****/
     public static void showConfirm(OrderDetileActivity activity, String msg) {

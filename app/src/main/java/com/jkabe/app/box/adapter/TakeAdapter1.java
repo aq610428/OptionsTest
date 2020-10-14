@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jkabe.app.box.bean.OrderBean;
 import com.jkabe.app.box.box.OrderDetileActivity;
+import com.jkabe.app.box.box.OrderDetileActivity1;
 import com.jkabe.app.box.box.fragement.TakeFragment;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.box.R;
@@ -49,7 +50,13 @@ public class TakeAdapter1 extends AutoRVAdapter {
             adapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Intent intent = new Intent(allFragment.getContext(), OrderDetileActivity.class);
+                    int stats = orderBean.getOrderStatus();
+                    Intent intent = null;
+                    if (3 == stats) {
+                        intent = new Intent(allFragment.getContext(), OrderDetileActivity1.class);
+                    } else {
+                        intent = new Intent(allFragment.getContext(), OrderDetileActivity.class);
+                    }
                     intent.putExtra("id", orderBean.getId());
                     allFragment.getContext().startActivity(intent);
                 }

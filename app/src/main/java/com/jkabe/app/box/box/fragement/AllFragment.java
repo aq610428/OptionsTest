@@ -28,6 +28,7 @@ import com.jkabe.app.box.bean.CommonalityModel;
 import com.jkabe.app.box.bean.OrderBean;
 import com.jkabe.app.box.bean.PayBean;
 import com.jkabe.app.box.box.OrderDetileActivity;
+import com.jkabe.app.box.box.OrderDetileActivity1;
 import com.jkabe.app.box.box.OrderPayActivity;
 import com.jkabe.app.box.config.Api;
 import com.jkabe.app.box.config.NetWorkListener;
@@ -222,7 +223,12 @@ public class AllFragment extends BaseFragment implements OnLoadMoreListener, OnR
         takeAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getContext(), OrderDetileActivity.class);
+                Intent intent=null;
+                if (beanList.get(position).getOrderStatus()==3){
+                    intent = new Intent(getContext(), OrderDetileActivity1.class);
+                }else{
+                    intent = new Intent(getContext(), OrderDetileActivity.class);
+                }
                 intent.putExtra("id", beanList.get(position).getId());
                 getContext().startActivity(intent);
             }
