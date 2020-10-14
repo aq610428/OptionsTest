@@ -9,10 +9,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.jkabe.app.box.adapter.TakeAdapter2;
+import com.jkabe.app.box.adapter.TakeAdapter3;
 import com.jkabe.app.box.base.BaseFragment;
 import com.jkabe.app.box.bean.CommonalityModel;
 import com.jkabe.app.box.bean.OrderBean;
@@ -27,7 +29,9 @@ import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.NoDataView;
 import com.jkabe.box.R;
+
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -37,12 +41,12 @@ import java.util.Map;
  * @date: 2020/9/22
  * @name:CompletedFragment
  */
-public class CompletedFragment extends BaseFragment implements OnLoadMoreListener, OnRefreshListener, NetWorkListener {
+public class CompletedFragment1 extends BaseFragment implements OnLoadMoreListener, OnRefreshListener, NetWorkListener {
     private View rootView;
     private RecyclerView swipe_target;
     private SwipeToLoadLayout swipeToLoadLayout;
     private List<OrderBean> beanList = new ArrayList<>();
-    private TakeAdapter2 payAdapter;
+    private TakeAdapter3 payAdapter;
     private int page = 1;
     private int limit = 10;
     private boolean isRefresh;
@@ -91,11 +95,11 @@ public class CompletedFragment extends BaseFragment implements OnLoadMoreListene
     /******商品列表*****/
     public void query() {
         showProgressDialog(getActivity(), false);
-        String sign = "memberid=" + SaveUtils.getSaveInfo().getId() + "&orderStatus=3" + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        String sign = "memberid=" + SaveUtils.getSaveInfo().getId() + "&orderStatus=8" + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
         Map<String, String> params = okHttpModel.getParams();
         params.put("limit", limit + "");
         params.put("page", page + "");
-        params.put("orderStatus", "3");
+        params.put("orderStatus", "8");
         params.put("memberid", SaveUtils.getSaveInfo().getId());
         params.put("partnerid", Constants.PARTNERID);
         params.put("apptype", Constants.TYPE);
@@ -140,7 +144,7 @@ public class CompletedFragment extends BaseFragment implements OnLoadMoreListene
         if (!isRefresh) {
             beanList.clear();
             beanList.addAll(beans);
-            payAdapter = new TakeAdapter2(this, beanList);
+            payAdapter = new TakeAdapter3(this, beanList);
             swipe_target.setAdapter(payAdapter);
         } else {
             beanList.addAll(beans);

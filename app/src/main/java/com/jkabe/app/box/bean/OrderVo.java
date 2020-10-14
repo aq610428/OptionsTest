@@ -35,6 +35,14 @@ public class OrderVo implements Serializable {
     }
 
     public static class OrderinfoBean implements Serializable{
+        public String getExpressorder() {
+            return expressorder;
+        }
+
+        public void setExpressorder(String expressorder) {
+            this.expressorder = expressorder;
+        }
+
         /**
          * id : 45c01549ca9a4341bdc1b19f09502faa
          * memberid : c773bf27d09d49999ac0dee5fc1b28b6
@@ -54,7 +62,7 @@ public class OrderVo implements Serializable {
          * integral : 0
          * descriptionToString : {"deletetime":"会员删除时间","orderid":"订单号","receiveAddress":"收货地址","orderStatus":"订单状态 1=待支付,2=已支付待发货,3=已发货,4=已确认收货,5=订单取消,6=退款申请,7=退款成功,8=订单已完成,9=退货申请,10=退货成功","expressorder":"快递单号","paytime":"支付时间","updateTime":"更新时间","message":"买家留言","ordertime":"下单时间","expresscompany":"快递公司","postage":"运费","receiveName":"收货人","payType":"支付方式 1=微信,2=支付宝,3=银行卡","payAmount":"支付金额","createTime":"创建时间","integral":"积分","goodMoney":"商品金额","confirmtime":"确认收货时间","id":"商品金额","sendtime":"发货时间","payStatus":"支付状态 1=待支付,2=已支付","memberid":"会员","goodNum":"商品件数","receiveMobile":"联系手机"}
          */
-
+        private String expressorder;
         private String id;
         private String memberid;
         private String orderid;
@@ -72,6 +80,19 @@ public class OrderVo implements Serializable {
         private String ordertime;
         private int integral;
         private String descriptionToString;
+        private String expresscompany;
+
+
+        public String getExpresscompany() {
+            return expresscompany;
+        }
+
+        public void setExpresscompany(String expresscompany) {
+            this.expresscompany = expresscompany;
+        }
+
+
+
 
         public String getId() {
             return id;

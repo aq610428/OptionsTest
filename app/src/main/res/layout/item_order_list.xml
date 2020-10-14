@@ -45,7 +45,8 @@
                     android:gravity="center"
                     android:text="￥12.00"
                     android:textColor="#3F63F4"
-                    android:textSize="@dimen/ctv_sizen_13" />
+                    android:textSize="@dimen/ctv_sizen_14"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/text_num"
@@ -55,7 +56,7 @@
                     android:gravity="center"
                     android:text="x2"
                     android:textColor="#3F63F4"
-                    android:textSize="@dimen/ctv_sizen_13" />
+                    android:textSize="@dimen/ctv_sizen_14" />
 
             </RelativeLayout>
 

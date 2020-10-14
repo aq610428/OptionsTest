@@ -45,66 +45,12 @@
 
 
                     <TextView
-                        android:id="@+id/text_express"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center|left"
-                        android:text="客户已签收，提货点广东省深圳市宝安区马鞍山"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="14sp" />
-
-
-                    <TextView
-                        android:id="@+id/text_date"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center|left"
-                        android:text="2020.10.14 22:30:36"
-                        android:textColor="@color/black7e"
-                        android:textSize="13sp" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:background="@color/dive_line" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="center|left"
-                android:orientation="horizontal"
-                android:paddingLeft="14dp"
-                android:paddingRight="14dp">
-
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/icon_car_mine" />
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="vertical">
-
-
-                    <TextView
                         android:id="@+id/text_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center|left"
                         android:text="客户已签收，提货点广东省深圳市宝安区马鞍山"
-                        android:textColor="@color/colorAccent"
+                        android:textColor="@color/black01"
                         android:textSize="14sp" />
 
 
@@ -115,8 +61,8 @@
                         android:layout_marginTop="5dp"
                         android:gravity="center|left"
                         android:text="2020.10.14 22:30:36"
-                        android:textColor="@color/black7e"
-                        android:textSize="13sp" />
+                        android:textColor="@color/black01"
+                        android:textSize="14sp" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -124,21 +70,53 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
+                android:layout_marginTop="10dp"
                 android:background="#F0F0F0" />
 
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_margin="14dp" />
 
 
-            <LinearLayout
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="14dp"
+                android:paddingRight="14dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center|left"
+                    android:text="运费"
+                    android:textColor="@color/black01"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/text_postage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center|left"
+                    android:text="￥34.00"
+                    android:textColor="@color/black01"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:gravity="center|right"
+                android:gravity="center"
                 android:orientation="horizontal"
+                android:paddingLeft="14dp"
                 android:paddingRight="14dp">
 
                 <TextView
@@ -146,28 +124,58 @@
                     android:layout_height="wrap_content"
                     android:gravity="center|left"
                     android:text="实付"
-                    android:textColor="@color/black33"
+                    android:textColor="@color/black01"
                     android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/text_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
                     android:gravity="center|left"
                     android:text="￥34.00"
                     android:textColor="@color/colorAccent"
                     android:textSize="14sp"
                     android:textStyle="bold" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="14dp"
+                android:paddingRight="14dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center|left"
-                    android:text="(免运费)"
-                    android:textColor="@color/black33"
+                    android:text="订单状态"
+                    android:textColor="@color/black01"
                     android:textSize="14sp" />
-            </LinearLayout>
 
+                <TextView
+                    android:id="@+id/text_stats"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center|left"
+                    android:text="￥34.00"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="#F0F0F0" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -183,7 +191,7 @@
                     android:layout_height="20dp"
                     android:gravity="center|left"
                     android:text="订单编号: 222222222222222222222"
-                    android:textColor="@color/black7e"
+                    android:textColor="@color/black01"
                     android:textSize="14sp" />
 
                 <TextView
@@ -193,7 +201,7 @@
                     android:layout_marginTop="5dp"
                     android:gravity="center|left"
                     android:text="支付方式: 微信支付"
-                    android:textColor="@color/black7e"
+                    android:textColor="@color/black01"
                     android:textSize="14sp" />
 
                 <TextView
@@ -203,7 +211,7 @@
                     android:layout_marginTop="5dp"
                     android:gravity="center|left"
                     android:text="物流公司: 圆通快递"
-                    android:textColor="@color/black33"
+                    android:textColor="@color/black01"
                     android:textSize="14sp" />
 
                 <TextView
@@ -213,7 +221,7 @@
                     android:layout_marginTop="5dp"
                     android:gravity="center|left"
                     android:text="快递单号: 336665564545"
-                    android:textColor="@color/black33"
+                    android:textColor="@color/black01"
                     android:textSize="14sp" />
 
                 <TextView
@@ -223,10 +231,87 @@
                     android:layout_marginTop="5dp"
                     android:gravity="center|left"
                     android:text="下单时间: 336665564545"
-                    android:textColor="@color/black33"
+                    android:textColor="@color/black01"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/text_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center|left"
+                    android:text="买家留言: 336665564545"
+                    android:textColor="@color/black01"
                     android:textSize="14sp" />
             </LinearLayout>
 
+
+            <LinearLayout
+                android:id="@+id/rl_pay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="right"
+                android:orientation="horizontal"
+                android:paddingLeft="14dp"
+                android:paddingRight="14dp">
+
+                <TextView
+                    android:id="@+id/text_cancel"
+                    android:layout_width="76dp"
+                    android:layout_height="26dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/btn_shape"
+                    android:gravity="center"
+                    android:text="取消订单"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/ctv_sizen_13" />
+
+                <TextView
+                    android:id="@+id/text_buy"
+                    android:layout_width="76dp"
+                    android:layout_height="26dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/btn_shape"
+                    android:gravity="center"
+                    android:text="立即支付"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/ctv_sizen_13" />
+
+                <TextView
+                    android:id="@+id/text_skills"
+                    android:layout_width="76dp"
+                    android:layout_height="26dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/btn_shape"
+                    android:gravity="center"
+                    android:text="查看物流"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/ctv_sizen_13" />
+
+                <TextView
+                    android:id="@+id/text_Urge"
+                    android:layout_width="76dp"
+                    android:layout_height="26dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/btn_shape"
+                    android:gravity="center"
+                    android:text="崔发货"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/ctv_sizen_13" />
+
+
+                <TextView
+                    android:id="@+id/text_confirm"
+                    android:layout_width="76dp"
+                    android:layout_height="26dp"
+                    android:background="@drawable/btn_shape"
+                    android:gravity="center"
+                    android:text="确认收货"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/ctv_sizen_13" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

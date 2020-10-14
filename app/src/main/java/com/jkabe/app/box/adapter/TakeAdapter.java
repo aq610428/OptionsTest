@@ -62,34 +62,54 @@ public class TakeAdapter extends AutoRVAdapter {
             vh.getTextView(R.id.text_date).setText(str[0] + " " + str[1].substring(0, str[1].length() - 5));
         }
 
-
         switch (orderBean.getOrderStatus()) {
-            case 1:
+            case 1://未支付
                 vh.getTextView(R.id.text_stats).setText("待支付");
-                vh.getRelativeLayout(R.id.rl_pay).setVisibility(View.VISIBLE);
-
+                vh.getTextView(R.id.text_skills).setVisibility(View.GONE);
+                vh.getTextView(R.id.text_confirm).setVisibility(View.GONE);
+                vh.getTextView(R.id.text_Urge).setVisibility(View.GONE);
+                vh.getLinearLayout(R.id.rl_tab1).setVisibility(View.VISIBLE);
+                vh.getTextView(R.id.text_stats).setText("未支付");
                 break;
-            case 2:
+            case 2://已支付待发货
                 vh.getTextView(R.id.text_stats).setText("待发货");
-                vh.getRelativeLayout(R.id.rl_pay).setVisibility(View.GONE);
+                vh.getLinearLayout(R.id.rl_tab1).setVisibility(View.GONE);
+                vh.getTextView(R.id.text_skills).setVisibility(View.GONE);
+                vh.getTextView(R.id.text_confirm).setVisibility(View.GONE);
+                vh.getTextView(R.id.text_Urge).setVisibility(View.VISIBLE);
+                vh.getTextView(R.id.text_stats).setText("已支付待发货");
                 break;
-            case 3:
+            case 3://已发货
                 vh.getTextView(R.id.text_stats).setText("已发货");
-                vh.getRelativeLayout(R.id.rl_pay).setVisibility(View.GONE);
+                vh.getLinearLayout(R.id.rl_tab1).setVisibility(View.GONE);
+                vh.getTextView(R.id.text_Urge).setVisibility(View.GONE);
+                vh.getTextView(R.id.text_confirm).setVisibility(View.VISIBLE);
+                vh.getTextView(R.id.text_skills).setVisibility(View.VISIBLE);
+                vh.getTextView(R.id.text_stats).setText("已发货待收货");
                 break;
-            case 4:
+            case 4://已确认收货
                 vh.getTextView(R.id.text_stats).setText("已收货");
-                vh.getRelativeLayout(R.id.rl_pay).setVisibility(View.GONE);
+                vh.getLinearLayout(R.id.rl_tab1).setVisibility(View.GONE);
+                vh.getTextView(R.id.text_buy).setVisibility(View.GONE);
+                vh.getTextView(R.id.text_Urge).setVisibility(View.GONE);
+                vh.getTextView(R.id.text_skills).setVisibility(View.VISIBLE);
+                vh.getTextView(R.id.text_stats).setText("已确认收货");
                 break;
-            case 5:
-                vh.getTextView(R.id.text_stats).setText("订单已取消");
-                vh.getRelativeLayout(R.id.rl_pay).setVisibility(View.GONE);
-                break;
-            case 8:
-                vh.getTextView(R.id.text_stats).setText("订单已完成");
-                vh.getRelativeLayout(R.id.rl_pay).setVisibility(View.GONE);
+            case 5://订单取消
+            case 8://订单已完成
+                vh.getTextView(R.id.text_skills).setVisibility(View.GONE);
+                vh.getTextView(R.id.text_confirm).setVisibility(View.GONE);
+                vh.getLinearLayout(R.id.rl_tab1).setVisibility(View.GONE);
+                vh.getTextView(R.id.text_Urge).setVisibility(View.GONE);
                 break;
         }
+
+        if (orderBean.getOrderStatus() == 5) {
+            vh.getTextView(R.id.text_stats).setText("订单已取消");
+        } else if (orderBean.getOrderStatus() == 8) {
+            vh.getTextView(R.id.text_stats).setText("订单已完成");
+        }
+
 
         vh.getTextView(R.id.text_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,7 +122,7 @@ public class TakeAdapter extends AutoRVAdapter {
         vh.getTextView(R.id.text_buy).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 allFragment.showTip(orderBean);
+                allFragment.showTip(orderBean);
             }
         });
 
