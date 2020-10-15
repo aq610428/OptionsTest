@@ -330,10 +330,7 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
             } else if (orderinfoBean.getOrderStatus() == 8) {
                 text_stats.setText("订单已完成");
             }
-
         }
-
-
     }
 
 
@@ -395,7 +392,6 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
                 } else {
                     // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
                     LogUtils.e("支付失败" + payResult);
-                    startActivity(new Intent(OrderDetileActivity.this, OrderPayActivity.class));
                 }
             }
         }

@@ -234,7 +234,6 @@ public class PayFragment extends BaseFragment implements OnLoadMoreListener, OnR
                 } else {
                     // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
                     LogUtils.e("支付失败" + payResult);
-                    startActivity(new Intent(getContext(), OrderPayActivity.class));
                 }
             }
         }
