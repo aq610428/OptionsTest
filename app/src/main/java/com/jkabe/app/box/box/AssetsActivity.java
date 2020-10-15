@@ -13,6 +13,7 @@ import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.jkabe.app.box.adapter.AsetsAdapter;
 import com.jkabe.app.box.base.BaseActivity;
+import com.jkabe.app.box.base.BaseApplication;
 import com.jkabe.app.box.bean.AssetsBean;
 import com.jkabe.app.box.bean.CommonalityModel;
 import com.jkabe.app.box.bean.UsdtBean;
@@ -56,6 +57,7 @@ public class AssetsActivity extends BaseActivity implements OnRefreshListener, O
     @Override
     protected void initCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_assets);
+        BaseApplication.activityTaskManager.putActivity("AssetsActivity", this);
     }
 
     @Override

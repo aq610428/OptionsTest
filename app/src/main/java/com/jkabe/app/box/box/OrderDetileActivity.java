@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jkabe.app.box.adapter.OrderListAdapter1;
 import com.jkabe.app.box.base.BaseActivity;
+import com.jkabe.app.box.base.BaseApplication;
 import com.jkabe.app.box.bean.CommonalityModel;
 import com.jkabe.app.box.bean.OrderVo;
 import com.jkabe.app.box.bean.PayBean;
@@ -64,6 +65,7 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
     protected void initCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_orderdetile);
         api = WXAPIFactory.createWXAPI(this, Constants.APP_ID);
+        BaseApplication.activityTaskManager.putActivity("OrderDetileActivity", this);
     }
 
     @Override

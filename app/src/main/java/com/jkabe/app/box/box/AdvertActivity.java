@@ -10,6 +10,7 @@ import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.jkabe.app.box.adapter.AdvertAdapter;
 import com.jkabe.app.box.base.BaseActivity;
+import com.jkabe.app.box.base.BaseApplication;
 import com.jkabe.app.box.bean.CommonalityModel;
 import com.jkabe.app.box.bean.EarlyInfo;
 import com.jkabe.app.box.config.Api;
@@ -47,6 +48,7 @@ public class AdvertActivity extends BaseActivity implements OnRefreshListener, O
     @Override
     protected void initCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_advert);
+        BaseApplication.activityTaskManager.putActivity("AdvertActivity", this);
     }
 
     @Override

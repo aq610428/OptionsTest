@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.jkabe.app.box.base.BaseActivity;
+import com.jkabe.app.box.base.BaseApplication;
 import com.jkabe.app.box.bean.CommonalityModel;
 import com.jkabe.app.box.config.Api;
 import com.jkabe.app.box.config.NetWorkListener;
@@ -38,6 +39,7 @@ public class ChangeActivity extends BaseActivity implements NetWorkListener {
     @Override
     protected void initCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_change);
+        BaseApplication.activityTaskManager.putActivity("ChangeActivity", this);
     }
 
     @Override

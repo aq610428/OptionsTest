@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.jkabe.app.box.base.BaseActivity;
+import com.jkabe.app.box.base.BaseApplication;
 import com.jkabe.app.box.bean.EnceInfo;
 import com.jkabe.app.box.bean.InsureInfo;
 import com.jkabe.app.box.util.SystemTools;
@@ -24,6 +25,7 @@ public class InsureDeilActivity extends BaseActivity {
     @Override
     protected void initCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_insuredeil);
+        BaseApplication.activityTaskManager.putActivity("InsureDeilActivity", this);
     }
 
     @Override

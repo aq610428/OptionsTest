@@ -326,6 +326,7 @@ public class ConfirmActivity extends BaseActivity implements NetWorkListener {
                     // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
                     LogUtils.e("支付失败" + payResult);
                     startActivity(new Intent(ConfirmActivity.this, OrderPayActivity.class));
+                    finish();
                 }
             }
         }

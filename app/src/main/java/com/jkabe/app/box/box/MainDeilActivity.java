@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.jkabe.app.box.base.BaseActivity;
+import com.jkabe.app.box.base.BaseApplication;
 import com.jkabe.app.box.bean.EnceInfo;
 import com.jkabe.app.box.bean.TripVo;
 import com.jkabe.app.box.util.BigDecimalUtils;
@@ -27,6 +28,7 @@ public class MainDeilActivity extends BaseActivity {
     @Override
     protected void initCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_miandeil);
+        BaseApplication.activityTaskManager.putActivity("MainDeilActivity", this);
     }
 
     @Override

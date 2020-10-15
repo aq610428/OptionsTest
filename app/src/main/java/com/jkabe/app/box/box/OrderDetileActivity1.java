@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.jkabe.app.box.adapter.OrderListAdapter3;
 import com.jkabe.app.box.base.BaseActivity;
+import com.jkabe.app.box.base.BaseApplication;
 import com.jkabe.app.box.bean.CommonalityModel;
 import com.jkabe.app.box.bean.OrderVo;
 import com.jkabe.app.box.config.Api;
@@ -39,6 +40,7 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
     @Override
     protected void initCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_orderdetile1);
+        BaseApplication.activityTaskManager.putActivity("OrderDetileActivity1", this);
     }
 
     @Override
