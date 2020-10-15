@@ -535,4 +535,10 @@ public class JsonParse {
         }
         return infos;
     }
+
+    public static AddressBean getAddressBeanJSON(JSONObject object) {
+        JSONObject jsonObject = object.optJSONObject("result");
+        AddressBean info = (AddressBean) JsonUtilComm.jsonToBean(jsonObject.toString(), AddressBean.class);
+        return info;
+    }
 }

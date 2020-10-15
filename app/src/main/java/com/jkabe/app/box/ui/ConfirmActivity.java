@@ -105,6 +105,7 @@ public class ConfirmActivity extends BaseActivity implements NetWorkListener {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         beanList = (List<CartBean>) getIntent().getSerializableExtra("beanList");
+        queryAddress();
         if (beanList != null && beanList.size() > 0) {
             updateView();
         } else {
@@ -185,20 +186,34 @@ public class ConfirmActivity extends BaseActivity implements NetWorkListener {
                     shoppingids = shoppingids + "," + beanList.get(i).getId();
                 }
             }
-            if (beanList!=null&&beanList.size()>0){
+            if (beanList != null && beanList.size() > 0) {
                 query(shoppingids);
             }
         }
     }
+
+
+    /******查询默认地址*****/
+    private void queryAddress() {
+        showProgressDialog(this, false);
+        String sign = "memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        Map<String, String> params = okHttpModel.getParams();
+        params.put("memberid", SaveUtils.getSaveInfo().getId());
+        params.put("partnerid", Constants.PARTNERID);
+        params.put("apptype", Constants.TYPE);
+        params.put("sign", Md5Util.encode(sign));
+        okHttpModel.get(Api.PAY_REMOVE_INFO, params, Api.PAY_REMOVE_INFO_ID, this);
+    }
+
 
     /******直接购买*****/
     private void query1() {
         showProgressDialog(this, false);
         String remark = text_remark.getText().toString();
         String goodid = beanList.get(0).getGoodid();
-        String goodNumber = beanList.get(0).getGoodNumber()+"";
+        String goodNumber = beanList.get(0).getGoodNumber() + "";
 
-        String sign ="goodid="+goodid+"&goodNumber="+goodNumber+ "&memberid=" + SaveUtils.getSaveInfo().getId();
+        String sign = "goodid=" + goodid + "&goodNumber=" + goodNumber + "&memberid=" + SaveUtils.getSaveInfo().getId();
         if (!Utility.isEmpty(remark)) {
             sign = sign + "&message=" + remark;
         }
@@ -259,6 +274,12 @@ public class ConfirmActivity extends BaseActivity implements NetWorkListener {
                             pay();
                         }
                         break;
+                    case Api.PAY_REMOVE_INFO_ID:
+                        AddressBean addressBean=JsonParse.getAddressBeanJSON(object);
+                        if (addressBean != null) {
+                            update(addressBean);
+                        }
+                        break;
 
                 }
             } else {
@@ -279,15 +300,21 @@ public class ConfirmActivity extends BaseActivity implements NetWorkListener {
         if (resultCode == 101 && data != null) {
             AddressBean addressBean = (AddressBean) data.getSerializableExtra("addressBean");
             if (addressBean != null) {
-                text_def.setVisibility(View.GONE);
-                receiveAddress = addressBean.getProvince() + addressBean.getCity() + addressBean.getArea() + addressBean.getAddress();
-                receiveName = addressBean.getReceivename();
-                receiveMobile = addressBean.getMobile();
-                text_address.setText(receiveAddress);
-                text_mobile.setText(receiveName + " " + receiveMobile);
+                update(addressBean);
             }
         }
     }
+
+
+    public void  update( AddressBean addressBean){
+        text_def.setVisibility(View.GONE);
+        receiveAddress = addressBean.getProvince() + addressBean.getCity() + addressBean.getArea() + addressBean.getAddress();
+        receiveName = addressBean.getReceivename();
+        receiveMobile = addressBean.getMobile();
+        text_address.setText(receiveAddress);
+        text_mobile.setText(receiveName + " " + receiveMobile);
+    }
+
 
     /******微信支付*****/
     private void pay() {

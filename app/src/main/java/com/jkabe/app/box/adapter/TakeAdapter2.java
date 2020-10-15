@@ -64,11 +64,10 @@ public class TakeAdapter2 extends AutoRVAdapter {
             String[] str = orderBean.getOrdertime().split("T");
             vh.getTextView(R.id.text_date).setText(str[0] + " " + str[1].substring(0, str[1].length() - 5));
         }
-        vh.getTextView(R.id.text_stats).setText("订单已完成");
+        vh.getTextView(R.id.text_stats).setText("订单已发货");
     }
 
     public void setData(List<OrderBean> beanList) {
         this.list = beanList;
-
     }
 }

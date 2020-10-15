@@ -360,4 +360,9 @@ public interface Api {
     String PAY_REMOVE_EXO = Config.getOpenNewApi() + "/mall/getExpressList";
     int PAY_REMOVE_EXO_ID = 20021;
 
+    //查看物流
+    String PAY_REMOVE_INFO = Config.getOpenNewApi() + "/member/getDefaultMemberReceiveAddressInfoById";
+    int PAY_REMOVE_INFO_ID = 20022;
+
+
 }
