@@ -24,8 +24,6 @@ public class MyReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         try {
             Bundle bundle = intent.getExtras();
-            LogUtils.e("[MyReceiver] onReceive - " + intent.getAction() + ", extras: " + printBundle(bundle));
-
             if (JPushInterface.ACTION_REGISTRATION_ID.equals(intent.getAction())) {
                 String regId = bundle.getString(JPushInterface.EXTRA_REGISTRATION_ID);
                 LogUtils.e("[MyReceiver] 接收Registration Id : " + regId);
@@ -50,9 +48,9 @@ public class MyReceiver extends BroadcastReceiver {
 
             } else if (JPushInterface.ACTION_CONNECTION_CHANGE.equals(intent.getAction())) {
                 boolean connected = intent.getBooleanExtra(JPushInterface.EXTRA_CONNECTION_CHANGE, false);
-                LogUtils.e("[MyReceiver]" + intent.getAction() + " connected state change to " + connected);
+//                LogUtils.e("[MyReceiver]" + intent.getAction() + " connected state change to " + connected);
             } else {
-                LogUtils.e("[MyReceiver] Unhandled intent - " + intent.getAction());
+//                LogUtils.e("[MyReceiver] Unhandled intent - " + intent.getAction());
             }
         } catch (Exception e) {
 

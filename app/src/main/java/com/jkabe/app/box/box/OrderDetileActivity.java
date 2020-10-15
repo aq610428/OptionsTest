@@ -207,8 +207,6 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
                         finish();
                         break;
                     case Api.PAY_REMOVE_GOOD_ID:
-                        ToastUtil.showToast(commonality.getErrorDesc());
-                        break;
                     case Api.PAY_REMOVE_GOODS_ID:
                         ToastUtil.showToast(commonality.getErrorDesc());
                         break;

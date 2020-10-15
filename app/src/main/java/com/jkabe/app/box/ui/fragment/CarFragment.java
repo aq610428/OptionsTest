@@ -257,7 +257,6 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
                 PreferenceUtils.setPrefString(getContext(), Constants.LAT, BigDecimalUtils.subLastBit(latLng.latitude, 6).doubleValue() + "");
                 PreferenceUtils.setPrefString(getContext(), Constants.LON, BigDecimalUtils.subLastBit(latLng.longitude, 6).doubleValue() + "");
                 aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
-                LogUtils.e("执行定位....");
             }
         } else {
             String errText = "定位失败," + amapLocation.getErrorCode() + ": " + amapLocation.getErrorInfo();
