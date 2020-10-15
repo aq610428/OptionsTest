@@ -201,7 +201,7 @@ public class AllFragment extends BaseFragment implements OnLoadMoreListener, OnR
     int isPay = 1;
     private void update() {
         if (isPay == 1) {
-            PayUtils.wechatPay(getActivity(), payBean, api);
+            PayUtils.wechatPay(getActivity(), payBean);
         } else {
             PayUtils.AliPay(this, mHandler, payBean.getAliPayString());
         }

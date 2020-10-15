@@ -38,6 +38,8 @@ import com.jkabe.app.box.util.TypefaceUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.box.R;
 import com.jkabe.box.alipay.PayResult;
+import com.tencent.mm.opensdk.constants.Build;
+import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
@@ -60,7 +62,6 @@ public class ConfirmActivity extends BaseActivity implements NetWorkListener {
     private ConfimAdapter adapter;
     private RelativeLayout ll_address;
     private TextView text_wechat, text_alipay, text_address, text_def, text_mobile;
-    private IWXAPI api;
     public static final int SDK_PAY_FLAG = 1;
     private int isPay = 1;
     private EditText text_remark;
@@ -70,7 +71,6 @@ public class ConfirmActivity extends BaseActivity implements NetWorkListener {
     @Override
     protected void initCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_confirm);
-        api = WXAPIFactory.createWXAPI(this, Constants.APP_ID);
     }
 
     @Override
@@ -319,11 +319,12 @@ public class ConfirmActivity extends BaseActivity implements NetWorkListener {
     /******微信支付*****/
     private void pay() {
         if (isPay == 1) {
-            PayUtils.wechatPay(this, payBean, api);
+            PayUtils.wechatPay(this, payBean);
         } else {
             PayUtils.AliPay(this, mHandler, payBean.getAliPayString());
         }
     }
+
 
     @Override
     public void onFail() {
@@ -348,13 +349,12 @@ public class ConfirmActivity extends BaseActivity implements NetWorkListener {
                 // 判断resultStatus 为9000则代表支付成功
                 if (TextUtils.equals(resultStatus, "9000")) {
                     // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
-                    LogUtils.e("支付成功" + payResult);
+                    ToastUtil.showToast("支付成功");
                 } else {
-                    // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
-                    LogUtils.e("支付失败" + payResult);
-                    startActivity(new Intent(ConfirmActivity.this, OrderPayActivity.class));
-                    finish();
+                    ToastUtil.showToast("支付失败" + payResult);
                 }
+                startActivity(new Intent(ConfirmActivity.this, OrderPayActivity.class));
+                finish();
             }
         }
 

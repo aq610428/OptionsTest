@@ -69,7 +69,6 @@ public class PayFragment extends BaseFragment implements OnLoadMoreListener, OnR
     private boolean isRefresh;
     private NoDataView noDataView;
     private PayBean payBean;
-    private IWXAPI api;
     public static final int SDK_PAY_FLAG = 1;
 
     @Nullable
@@ -83,7 +82,6 @@ public class PayFragment extends BaseFragment implements OnLoadMoreListener, OnR
     }
 
     private void initView() {
-        api = WXAPIFactory.createWXAPI(getContext(), Constants.APP_ID);
         noDataView = getView(rootView, R.id.mNoDataView);
         swipeToLoadLayout = getView(rootView, R.id.swipeToLoadLayout);
         swipe_target = getView(rootView, R.id.swipe_target);
@@ -196,7 +194,7 @@ public class PayFragment extends BaseFragment implements OnLoadMoreListener, OnR
 
     private void update() {
         if (pay == 1) {
-            PayUtils.wechatPay(getActivity(), payBean, api);
+            PayUtils.wechatPay(getActivity(), payBean);
         } else {
             PayUtils.AliPay(this, mHandler,payBean.getAliPayString());
         }

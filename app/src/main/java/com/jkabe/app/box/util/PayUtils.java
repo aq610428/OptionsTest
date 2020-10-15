@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
+
 import com.alipay.sdk.app.PayTask;
 import com.jkabe.app.box.bean.PayBean;
 import com.jkabe.app.box.box.OrderDetileActivity;
@@ -31,23 +32,9 @@ import java.util.Map;
  */
 public class PayUtils {
 
-    public static void shareWx(String title,String url,String desc,Activity activity){
-        IWXAPI api = WXAPIFactory.createWXAPI(activity, Constants.APP_ID);
-        WXWebpageObject webpage = new WXWebpageObject();
-        webpage.webpageUrl = url;
 
-        WXMediaMessage msg = new WXMediaMessage(webpage);
-        msg.title =title;
-        msg.description = "WebPage Description";
-
-        GetMessageFromWX.Resp resp = new GetMessageFromWX.Resp();
-        resp.transaction = desc;
-        resp.message = msg;
-        api.sendResp(resp);
-    }
-
-
-    public static void wechatPay(Activity activity, PayBean payBean, IWXAPI api) {
+    public static void wechatPay(Activity activity, PayBean payBean) {
+        IWXAPI wxapi = WXAPIFactory.createWXAPI(activity, Constants.APP_ID);
         if (!isWeixinAvilible(activity)) {
             ToastUtil.showToast("您未安装微信，请安装后再试~");
             return;
@@ -62,7 +49,7 @@ public class PayUtils {
             req.packageValue = payBean.getPayMap().getPackageX();
             req.sign = payBean.getPayMap().getSign();
             req.extData = "app data"; // optional
-            api.sendReq(req);
+            wxapi.sendReq(req);
         }
 
     }
@@ -140,7 +127,7 @@ public class PayUtils {
     }
 
 
-    public static void AliPay(ConfirmActivity activity, Handler mHandler,String orderInfo) {
+    public static void AliPay(ConfirmActivity activity, Handler mHandler, String orderInfo) {
         if (!isAliPayInstalled(activity)) {
             ToastUtil.showToast("您未安装支付宝，请安装后再试~");
             return;

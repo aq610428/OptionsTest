@@ -53,13 +53,11 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
     private TextView text_order, text_pay, text_logistics, text_baill, text_next, text_message;
     private TextView text_cancel, text_buy, text_skills, text_confirm, text_Urge, text_stats, text_delete;
     private PayBean payBean;
-    private IWXAPI api;
     private String orderId;
 
     @Override
     protected void initCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_orderdetile);
-        api = WXAPIFactory.createWXAPI(this, Constants.APP_ID);
         BaseApplication.activityTaskManager.putActivity("OrderDetileActivity", this);
     }
 
@@ -225,7 +223,7 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
 
     private void update() {
         if (isPay == 1) {
-            PayUtils.wechatPay(this, payBean, api);
+            PayUtils.wechatPay(this, payBean);
         } else {
             PayUtils.AliPay(this, mHandler, payBean.getAliPayString());
         }

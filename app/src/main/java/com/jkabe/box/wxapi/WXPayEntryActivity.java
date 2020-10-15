@@ -47,16 +47,15 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
     public void onResp(BaseResp resp) {
         LogUtils.e("errCode = " + resp.errCode);
         if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
-            String pay = PreferenceUtils.getPrefString(this, "pay", "1002");
-            switch (pay) {
-                case "0":
-                    ToastUtil.showToast("支付成功");
+            String result ="";
+            switch (resp.errCode) {
+                case 0:
                     startActivity(new Intent(this, OrderPayActivity.class));
                     break;
-                case "-1":
+                case -1:
                     ToastUtil.showToast("签名错误、未注册APPID、项目设置APPID不正确、注册的APPID与设置的不匹配、其他异常等。");
                     break;
-                case "-2":
+                case -2:
                     ToastUtil.showToast("用户取消支付");
                     break;
             }
