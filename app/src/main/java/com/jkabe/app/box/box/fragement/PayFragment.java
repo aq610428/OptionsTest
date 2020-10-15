@@ -231,6 +231,8 @@ public class PayFragment extends BaseFragment implements OnLoadMoreListener, OnR
                 if (TextUtils.equals(resultStatus, "9000")) {
                     // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
                     LogUtils.e("支付成功" + payResult);
+                    ToastUtil.showToast("支付成功");
+                    query();
                 } else {
                     // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
                     LogUtils.e("支付失败" + payResult);

@@ -94,9 +94,14 @@ public class AllFragment extends BaseFragment implements OnLoadMoreListener, OnR
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         swipe_target.setLayoutManager(linearLayoutManager);
         noDataView.textView.setText("无更多订单");
-        query();
     }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        query();
+    }
 
     @Override
     public void onRefresh() {
@@ -250,6 +255,8 @@ public class AllFragment extends BaseFragment implements OnLoadMoreListener, OnR
                 if (TextUtils.equals(resultStatus, "9000")) {
                     // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
                     LogUtils.e("支付成功" + payResult);
+                    ToastUtil.showToast("支付成功");
+                    onRefresh();
                 } else {
                     // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
                     LogUtils.e("支付失败" + payResult);

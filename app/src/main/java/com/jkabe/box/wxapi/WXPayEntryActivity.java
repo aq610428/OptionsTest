@@ -50,7 +50,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
             String pay = PreferenceUtils.getPrefString(this, "pay", "1002");
             switch (pay) {
                 case "0":
-                    ToastUtil.showToast("支付正常");
+                    ToastUtil.showToast("支付成功");
                     startActivity(new Intent(this, OrderPayActivity.class));
                     break;
                 case "-1":

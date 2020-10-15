@@ -87,8 +87,8 @@ public class LogisticsActivity extends BaseActivity implements NetWorkListener {
             text_name.setText("订单编号:" + goodBean.getOrderid());
             text_order.setText("物流单号:" + goodBean.getExpressorder());
             GlideUtils.setImageUrl(goodBean.getSmallImg(), iv_logo);
-            if (!Utility.isEmpty(itemsBean.getExpressorder())) {
-                query(itemsBean.getExpressorder(), itemsBean.getExpresscompany());
+            if (!Utility.isEmpty(goodBean.getExpressorder())) {
+                query(goodBean.getExpressorder(), goodBean.getExpresscompany());
             }
         }
 

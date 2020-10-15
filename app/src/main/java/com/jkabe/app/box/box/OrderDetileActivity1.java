@@ -3,8 +3,10 @@ package com.jkabe.app.box.box;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.jkabe.app.box.adapter.OrderListAdapter3;
 import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.base.BaseApplication;
@@ -19,7 +21,9 @@ import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.box.R;
+
 import org.json.JSONObject;
+
 import java.util.List;
 import java.util.Map;
 
@@ -85,8 +89,6 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
     }
 
 
-
-
     /******确认收货*****/
     public void payConfirm(String orderId) {
         showProgressDialog(this, false);
@@ -125,12 +127,24 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
     }
 
 
-
     private void updateView() {
         List<OrderVo.GooditemsBean> beans = orderBean.getGooditems();
         if (beans != null && beans.size() > 0) {
             orderListAdapter = new OrderListAdapter3(this, beans);
             recyclerView.setAdapter(orderListAdapter);
+            if (Utility.isEmpty(beans.get(0).getExpresscompanyname())) {
+                text_logistics.setText("物流公司: 暂无");
+            } else {
+                text_logistics.setText("物流公司: " + beans.get(0).getExpresscompanyname());
+            }
+
+            if (Utility.isEmpty(beans.get(0).getExpressorder())) {
+                text_baill.setText("快递单号: 暂无");
+            } else {
+                text_baill.setText("快递单号: " + beans.get(0).getExpressorder());
+            }
+
+
         }
         OrderVo.OrderinfoBean orderinfoBean = orderBean.getOrderinfo();
         if (orderinfoBean != null) {
@@ -150,19 +164,10 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
                 String[] str = orderinfoBean.getOrdertime().split("T");
                 text_next.setText("下单时间: " + str[0] + " " + str[1].substring(0, str[1].length() - 5));
             }
-            if (Utility.isEmpty(orderinfoBean.getExpresscompany())) {
-                text_logistics.setText("物流公司: 暂无");
-            } else {
-                text_logistics.setText("物流公司: " + orderinfoBean.getExpresscompany());
-            }
 
-            if (Utility.isEmpty(orderinfoBean.getExpressorder())) {
-                text_baill.setText("快递单号: 暂无");
-            } else {
-                text_baill.setText("快递单号: " + orderinfoBean.getExpressorder());
-            }
+
             if (Utility.isEmpty(orderinfoBean.getMessage())) {
-                text_message.setText("买家留言: 暂无");
+                text_message.setText("买家留言: 暂无留言");
             } else {
                 text_message.setText("买家留言: " + orderinfoBean.getMessage());
             }

@@ -109,7 +109,7 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
     }
 
 
-    /******去支付*****/
+    /******订单详情*****/
     public void query() {
         showProgressDialog(this, false);
         String sign = "id=" + orderId + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
@@ -389,6 +389,8 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
                 if (TextUtils.equals(resultStatus, "9000")) {
                     // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
                     LogUtils.e("支付成功" + payResult);
+                    ToastUtil.showToast("支付成功");
+                    query();
                 } else {
                     // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
                     LogUtils.e("支付失败" + payResult);
@@ -412,7 +414,7 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
         view.findViewById(R.id.text_wechat).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isPay=1;
+                isPay = 1;
                 payOrder(id);
                 dialog.dismiss();
             }
@@ -420,7 +422,7 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
         view.findViewById(R.id.text_alipay).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isPay=2;
+                isPay = 2;
                 payOrder(id);
                 dialog.dismiss();
             }
