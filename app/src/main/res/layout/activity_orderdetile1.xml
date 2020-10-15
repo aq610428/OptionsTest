@@ -103,8 +103,7 @@
                     android:gravity="center|left"
                     android:text="￥34.00"
                     android:textColor="@color/black01"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textSize="14sp" />
 
 
             </RelativeLayout>
@@ -165,8 +164,7 @@
                     android:gravity="center|left"
                     android:text="￥34.00"
                     android:textColor="@color/colorAccent"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textSize="14sp" />
             </RelativeLayout>
 
 

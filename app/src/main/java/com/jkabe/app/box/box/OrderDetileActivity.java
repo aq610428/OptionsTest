@@ -2,7 +2,6 @@ package com.jkabe.app.box.box;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -13,10 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.TextView;
-
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.jkabe.app.box.adapter.OrderListAdapter1;
 import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.base.BaseApplication;
@@ -39,9 +36,7 @@ import com.jkabe.box.R;
 import com.jkabe.box.alipay.PayResult;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
-
 import org.json.JSONObject;
-
 import java.util.List;
 import java.util.Map;
 

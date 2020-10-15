@@ -103,8 +103,7 @@
                     android:gravity="center|left"
                     android:text="￥34.00"
                     android:textColor="@color/black01"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textSize="14sp" />
 
 
             </RelativeLayout>
@@ -165,8 +164,7 @@
                     android:gravity="center|left"
                     android:text="￥34.00"
                     android:textColor="@color/colorAccent"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textSize="14sp" />
             </RelativeLayout>
 
 
@@ -296,7 +294,7 @@
                     android:layout_marginRight="20dp"
                     android:background="@drawable/btn_shape"
                     android:gravity="center"
-                    android:text="崔发货"
+                    android:text="催发货"
                     android:textColor="@color/colorWhite"
                     android:textSize="@dimen/ctv_sizen_13" />
 
