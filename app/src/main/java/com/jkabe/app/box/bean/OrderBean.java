@@ -218,6 +218,35 @@ public class OrderBean implements Serializable {
         private double sellPrice;
         private int integral;
         private String descriptionToString;
+        private String expressorder;
+        private String expresscompany;
+
+        public String getExpresscompanyname() {
+            return expresscompanyname;
+        }
+
+        public void setExpresscompanyname(String expresscompanyname) {
+            this.expresscompanyname = expresscompanyname;
+        }
+
+        private String expresscompanyname;
+
+        public String getExpressorder() {
+            return expressorder;
+        }
+
+        public void setExpressorder(String expressorder) {
+            this.expressorder = expressorder;
+        }
+
+        public String getExpresscompany() {
+            return expresscompany;
+        }
+
+        public void setExpresscompany(String expresscompany) {
+            this.expresscompany = expresscompany;
+        }
+
 
         public String getId() {
             return id;

@@ -32,9 +32,63 @@
 
 
                 <ImageView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/iv_logo"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:src="@mipmap/ic_launcher" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/icon_car_mine" />
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:id="@+id/text_company"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center|left"
+                        android:text="圆通快递"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="13sp" />
+
+
+                    <TextView
+                        android:id="@+id/text_order"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center|left"
+                        android:text="快递单号:154482654548"
+                        android:textColor="@color/black01"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center|left"
+                android:orientation="horizontal"
+                android:paddingLeft="14dp"
+                android:paddingRight="14dp">
+
+
+                <RelativeLayout
+                    android:layout_width="55dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/icon_load_test" />
+                </RelativeLayout>
 
 
                 <LinearLayout
@@ -51,7 +105,7 @@
                         android:gravity="center|left"
                         android:text="客户已签收，提货点广东省深圳市宝安区马鞍山"
                         android:textColor="@color/black01"
-                        android:textSize="14sp" />
+                        android:textSize="13sp" />
 
 
                     <TextView
@@ -62,7 +116,7 @@
                         android:gravity="center|left"
                         android:text="2020.10.14 22:30:36"
                         android:textColor="@color/black01"
-                        android:textSize="14sp" />
+                        android:textSize="13sp" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -70,7 +124,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_margin="14dp" />
 
 
         </LinearLayout>

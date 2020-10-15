@@ -23,6 +23,7 @@ import com.jkabe.app.box.bean.ImageInfo;
 import com.jkabe.app.box.bean.InsureInfo;
 import com.jkabe.app.box.bean.LatInfo;
 import com.jkabe.app.box.bean.LeftVo;
+import com.jkabe.app.box.bean.LocgistBean;
 import com.jkabe.app.box.bean.Massage;
 import com.jkabe.app.box.bean.Money;
 import com.jkabe.app.box.bean.OdbAndLocationVO;
@@ -523,5 +524,15 @@ public class JsonParse {
         JSONObject jsonObject = object.optJSONObject("result");
         OrderVo info = (OrderVo) JsonUtilComm.jsonToBean(jsonObject.toString(), OrderVo.class);
         return info;
+    }
+
+    public static List<LocgistBean> getLocgistBeanJSON(JSONObject object) {
+        List<LocgistBean> infos = new ArrayList<>();
+        JSONArray jsonArray = object.optJSONArray("result");
+        for (int i = 0; i < jsonArray.length(); i++) {
+            LocgistBean info = (LocgistBean) JsonUtilComm.jsonToBean(jsonArray.optJSONObject(i).toString(), LocgistBean.class);
+            infos.add(info);
+        }
+        return infos;
     }
 }

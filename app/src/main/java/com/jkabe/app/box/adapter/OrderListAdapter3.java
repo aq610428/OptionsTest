@@ -47,8 +47,7 @@ public class OrderListAdapter3 extends AutoRVAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(activity1, LogisticsActivity.class);
-                intent.putExtra("bean", bean);
-                intent.putExtra("name", activity1.orderBean.getOrderinfo().getReceiveName()+" "+activity1.orderBean.getOrderinfo().getReceiveMobile());
+                intent.putExtra("goodBean", bean);
                 intent.putExtra("address", activity1.orderBean.getOrderinfo().getReceiveAddress());
                 activity1.startActivity(intent);
             }

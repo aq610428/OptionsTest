@@ -355,4 +355,9 @@ public interface Api {
     //确认收货
     String PAY_REMOVE_GOODS = Config.getOpenNewApi() + "/mall/comfirmToSendGoods";
     int PAY_REMOVE_GOODS_ID = 20020;
+
+    //查看物流
+    String PAY_REMOVE_EXO = Config.getOpenNewApi() + "/mall/getExpressList";
+    int PAY_REMOVE_EXO_ID = 20021;
+
 }
