@@ -13,11 +13,14 @@ public class PayBean implements Serializable{
 
 
     /**
-     * orderid : 2010131059421055649
-     * payMap : {"appid":"wxdebf49e4963895e1","noncestr":"4d0054b806a44a1db1f1c7a59e908c05","package":"Sign=WXPay","partnerid":"1559301821","prepayid":"wx131059429905259a1e8a13c12a78a10000","sign":"16C8E3DE12A741EB42EBADE521EC21EE","timestamp":"1602557983"}
+     * aliPayString : alipay_sdk=alipay-sdk-java-3.6.0.ALL&app_id=2021001198636188&biz_content=%7B%22body%22%3A%22%E5%8D%A1%E8%B4%9D%E8%BD%A6%E5%AE%9D%E5%95%86%E5%9F%8E%E8%B4%AD%E4%B9%B0%E8%AE%A2%E5%8D%95%E6%94%AF%E4%BB%98%22%2C%22out_trade_no%22%3A%222010151557290206880%22%2C%22product_code%22%3A%22QUICK_MSECURITY_PAY%22%2C%22subject%22%3A%22%E5%8D%A1%E8%B4%9D%E8%BD%A6%E5%AE%9D%E8%B4%AD%E4%B9%B0%E6%94%AF%E4%BB%98%22%2C%22timeout_express%22%3A%2230m%22%2C%22total_amount%22%3A%220.1%22%7D&charset=UTF-8&format=json&method=alipay.trade.app.pay¬ify_url=http%3A%2F%2Fadmin.jkabe.com%2Fasyn%2FgetAliPayData&sign=0E2WrIHt5dUvWy52VrpU1mas2O%2F5KcKjvPs7PYPk7Tje1iAU36p%2B47pj4cn1cA%2B3MvKh%2BEWaIAolDBtevQkGCo48YadNTDcBtAO02D9GIdnqiR2bbNeeuvmH1bW8AdHdqhjSca1HcfpOJNM2c6OrZSg0FDieDKdQ8kG1i9ajNjcg%2BpQYKx3RmvjtiflJl49ZbjiCzBi5vWO89lAsmUseb8k40zk8737asSD0L2UNDhndpENRcaGBCvu6gyzLg2vGm6oH9xZvZzXyJR5BAop%2BOy3xNv3Y7NbXpMOGss8CQNlDEJVoV6K2mNk3a9DlJsKk6jLGOzB1qAyrPOedIO8AmA%3D%3D&sign_type=RSA2×tamp=2020-10-15+15%3A57%3A29&version=1.0
+     * orderid : 5c36a275901d4ef585aaa949b490e9a2
+     * payMap : {"appid":"wxdebf49e4963895e1","noncestr":"8458e0772c0e428fb5a8e012544976b0","package":"Sign=WXPay","partnerid":"1559301821","prepayid":"wx1515572925714911cdfa26c80515e10000","sign":"7BF24A075C4AFEEAB798EA1DA1121D03","timestamp":"1602748649"}
      */
 
+    private String aliPayString;
     private String orderid;
+    private PayMapBean payMap;
 
     public String getAliPayString() {
         return aliPayString;
@@ -26,9 +29,6 @@ public class PayBean implements Serializable{
     public void setAliPayString(String aliPayString) {
         this.aliPayString = aliPayString;
     }
-
-    private String aliPayString;
-    private PayMapBean payMap;
 
     public String getOrderid() {
         return orderid;
@@ -46,15 +46,15 @@ public class PayBean implements Serializable{
         this.payMap = payMap;
     }
 
-    public static class PayMapBean implements Serializable {
+    public static class PayMapBean implements Serializable{
         /**
          * appid : wxdebf49e4963895e1
-         * noncestr : 4d0054b806a44a1db1f1c7a59e908c05
+         * noncestr : 8458e0772c0e428fb5a8e012544976b0
          * package : Sign=WXPay
          * partnerid : 1559301821
-         * prepayid : wx131059429905259a1e8a13c12a78a10000
-         * sign : 16C8E3DE12A741EB42EBADE521EC21EE
-         * timestamp : 1602557983
+         * prepayid : wx1515572925714911cdfa26c80515e10000
+         * sign : 7BF24A075C4AFEEAB798EA1DA1121D03
+         * timestamp : 1602748649
          */
 
         private String appid;

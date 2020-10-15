@@ -47,9 +47,6 @@ public class PayUtils {
     }
 
 
-
-
-
     public static void wechatPay(Activity activity, PayBean payBean, IWXAPI api) {
         if (!isWeixinAvilible(activity)) {
             ToastUtil.showToast("您未安装微信，请安装后再试~");
