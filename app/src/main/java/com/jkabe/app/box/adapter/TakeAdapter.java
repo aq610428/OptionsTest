@@ -53,7 +53,7 @@ public class TakeAdapter extends AutoRVAdapter {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     int stats = orderBean.getOrderStatus();
                     Intent intent = null;
-                    if (stats==3) {
+                    if (stats==3||stats==4) {
                         intent = new Intent(allFragment.getContext(), OrderDetileActivity1.class);
                     } else {
                         intent = new Intent(allFragment.getContext(), OrderDetileActivity.class);

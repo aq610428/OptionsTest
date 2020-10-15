@@ -37,12 +37,24 @@ public class OrderListAdapter3 extends AutoRVAdapter {
         vh.getTextView(R.id.text_name).setText(bean.getTitle());
         vh.getTextView(R.id.text_price).setText("￥"+bean.getSellPrice());
         vh.getTextView(R.id.text_num).setText("x"+bean.getGoodNumber());
-        vh.getTextView(R.id.text_confirm).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogUtils.showConfirm(activity1, "是否确定收货？",bean.getId());
-            }
-        });
+
+        if (bean.getOrderStatus()==3){
+            vh.getTextView(R.id.text_confirm).setText("确认收货");
+            vh.getTextView(R.id.text_confirm).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DialogUtils.showConfirm(activity1, "是否确定收货？",bean.getId());
+                }
+            });
+        }else if (bean.getOrderStatus()==4){
+            vh.getTextView(R.id.text_confirm).setText("已收货");
+            vh.getTextView(R.id.text_confirm).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                }
+            });
+        }
+
         vh.getTextView(R.id.text_buy).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

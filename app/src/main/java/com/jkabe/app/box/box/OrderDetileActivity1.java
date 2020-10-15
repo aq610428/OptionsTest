@@ -143,7 +143,20 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
             } else {
                 text_baill.setText("快递单号: " + beans.get(0).getExpressorder());
             }
-
+            switch (beans.get(0).getOrderStatus()) {
+                case 3://已发货
+                    text_stats.setText("已发货待收货");
+                    break;
+                case 4://已确认收货
+                    text_stats.setText("已确认收货");
+                    break;
+                case 5://订单取消
+                    text_stats.setText("订单已取消");
+                    break;
+                case 8://订单已完成
+                    text_stats.setText("订单已完成");
+                    break;
+            }
 
         }
         OrderVo.OrderinfoBean orderinfoBean = orderBean.getOrderinfo();
@@ -178,33 +191,8 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
                 text_postage.setText("￥" + orderinfoBean.getPostage());
             }
 
-            switch (orderinfoBean.getOrderStatus()) {
-                case 1://未支付
-                    text_stats.setText("未支付");
-                    break;
-                case 2://已支付待发货
-                    text_stats.setText("已支付待发货");
-                    break;
-                case 3://已发货
-                    text_stats.setText("已发货待收货");
-                    break;
-                case 4://已确认收货
-                    text_stats.setText("已确认收货");
-                    break;
-                case 5://订单取消
-                case 8://订单已完成
-                    break;
-            }
-
-            if (orderinfoBean.getOrderStatus() == 5) {
-                text_stats.setText("订单已取消");
-            } else if (orderinfoBean.getOrderStatus() == 8) {
-                text_stats.setText("订单已完成");
-            }
 
         }
-
-
     }
 
 

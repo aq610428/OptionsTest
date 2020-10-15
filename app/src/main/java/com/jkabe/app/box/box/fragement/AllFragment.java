@@ -224,7 +224,7 @@ public class AllFragment extends BaseFragment implements OnLoadMoreListener, OnR
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent=null;
-                if (beanList.get(position).getOrderStatus()==3){
+                if (beanList.get(position).getOrderStatus()==3||beanList.get(position).getOrderStatus()==4){
                     intent = new Intent(getContext(), OrderDetileActivity1.class);
                 }else{
                     intent = new Intent(getContext(), OrderDetileActivity.class);

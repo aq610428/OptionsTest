@@ -258,6 +258,16 @@ public class OrderVo implements Serializable {
         private String expressorder;
         private String expresscompany;
 
+        public int getOrderStatus() {
+            return orderStatus;
+        }
+
+        public void setOrderStatus(int orderStatus) {
+            this.orderStatus = orderStatus;
+        }
+
+        private int orderStatus;
+
         public String getExpresscompanyname() {
             return expresscompanyname;
         }
