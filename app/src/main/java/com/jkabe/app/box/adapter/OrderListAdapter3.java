@@ -1,14 +1,13 @@
 package com.jkabe.app.box.adapter;
 
-import android.content.Context;
+import android.content.Intent;
 import android.view.View;
-
 import com.jkabe.app.box.bean.OrderVo;
+import com.jkabe.app.box.box.LogisticsActivity;
 import com.jkabe.app.box.box.OrderDetileActivity1;
 import com.jkabe.app.box.glide.GlideUtils;
 import com.jkabe.app.box.weight.DialogUtils;
 import com.jkabe.box.R;
-
 import java.util.List;
 
 /**
@@ -47,7 +46,11 @@ public class OrderListAdapter3 extends AutoRVAdapter {
         vh.getTextView(R.id.text_buy).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(activity1, LogisticsActivity.class);
+                intent.putExtra("bean", bean);
+                intent.putExtra("name", activity1.orderBean.getOrderinfo().getReceiveName()+" "+activity1.orderBean.getOrderinfo().getReceiveMobile());
+                intent.putExtra("address", activity1.orderBean.getOrderinfo().getReceiveAddress());
+                activity1.startActivity(intent);
             }
         });
 

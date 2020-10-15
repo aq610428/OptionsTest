@@ -412,6 +412,7 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
         view.findViewById(R.id.text_wechat).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isPay=1;
                 payOrder(id);
                 dialog.dismiss();
             }
@@ -419,6 +420,7 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
         view.findViewById(R.id.text_alipay).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isPay=2;
                 payOrder(id);
                 dialog.dismiss();
             }
