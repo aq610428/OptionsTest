@@ -64,7 +64,7 @@ public class TakeAdapter2 extends AutoRVAdapter {
             String stringOrdertime = orderBean.getStringOrdertime();
             vh.getTextView(R.id.text_date).setText(stringOrdertime.substring(0,10) + " " + stringOrdertime.substring(stringOrdertime.length()-8, stringOrdertime.length()));
         }
-        vh.getTextView(R.id.text_stats).setText("已发货待收货");
+        vh.getTextView(R.id.text_stats).setText("待收货");
     }
 
     public void setData(List<OrderBean> beanList) {

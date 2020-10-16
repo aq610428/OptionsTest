@@ -146,16 +146,16 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
             }
             switch (beans.get(0).getOrderStatus()) {
                 case 3://已发货
-                    text_stats.setText("已发货待收货");
+                    text_stats.setText("待收货");
                     break;
                 case 4://已确认收货
-                    text_stats.setText("已确认收货");
+                    text_stats.setText("已收货");
                     break;
                 case 5://订单取消
-                    text_stats.setText("订单已取消");
+                    text_stats.setText("已取消");
                     break;
                 case 8://订单已完成
-                    text_stats.setText("订单已完成");
+                    text_stats.setText("已完成");
                     break;
             }
 

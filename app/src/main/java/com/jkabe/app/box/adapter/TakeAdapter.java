@@ -79,21 +79,20 @@ public class TakeAdapter extends AutoRVAdapter {
                 vh.getLinearLayout(R.id.rl_tab1).setVisibility(View.GONE);
                 vh.getTextView(R.id.text_skills).setVisibility(View.GONE);
                 vh.getTextView(R.id.text_Urge).setVisibility(View.VISIBLE);
-                vh.getTextView(R.id.text_stats).setText("已支付待发货");
+                vh.getTextView(R.id.text_stats).setText("待发货");
                 break;
             case 3://已发货
                 vh.getTextView(R.id.text_stats).setText("已发货");
                 vh.getLinearLayout(R.id.rl_tab1).setVisibility(View.GONE);
                 vh.getTextView(R.id.text_Urge).setVisibility(View.GONE);
                 vh.getTextView(R.id.text_skills).setVisibility(View.VISIBLE);
-                vh.getTextView(R.id.text_stats).setText("已发货待收货");
+                vh.getTextView(R.id.text_stats).setText("待收货");
                 break;
             case 4://已确认收货
-                vh.getTextView(R.id.text_stats).setText("已收货");
                 vh.getLinearLayout(R.id.rl_tab1).setVisibility(View.GONE);
                 vh.getTextView(R.id.text_Urge).setVisibility(View.GONE);
                 vh.getTextView(R.id.text_skills).setVisibility(View.VISIBLE);
-                vh.getTextView(R.id.text_stats).setText("已确认收货");
+                vh.getTextView(R.id.text_stats).setText("已收货");
                 break;
             case 5://订单取消
             case 8://订单已完成
@@ -104,9 +103,9 @@ public class TakeAdapter extends AutoRVAdapter {
         }
 
         if (orderBean.getOrderStatus() == 5) {
-            vh.getTextView(R.id.text_stats).setText("订单已取消");
+            vh.getTextView(R.id.text_stats).setText("已取消");
         } else if (orderBean.getOrderStatus() == 8) {
-            vh.getTextView(R.id.text_stats).setText("订单已完成");
+            vh.getTextView(R.id.text_stats).setText("已完成");
         }
         vh.getTextView(R.id.text_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
