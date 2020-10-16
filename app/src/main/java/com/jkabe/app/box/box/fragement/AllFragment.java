@@ -230,7 +230,7 @@ public class AllFragment extends BaseFragment implements OnLoadMoreListener, OnR
                 }else{
                     intent = new Intent(getContext(), OrderDetileActivity.class);
                 }
-                intent.putExtra("orderStatus", beanList.get(position).getOrderStatus());
+                intent.putExtra("orderStatus", beanList.get(position).getOrderStatus()+"");
                 intent.putExtra("id", beanList.get(position).getId());
                 getContext().startActivity(intent);
             }

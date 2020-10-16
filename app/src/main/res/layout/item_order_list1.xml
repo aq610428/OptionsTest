@@ -67,31 +67,31 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/text_confirm"
-                    android:layout_width="76dp"
-                    android:layout_height="26dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginRight="20dp"
-                    android:layout_toLeftOf="@+id/text_buy"
-                    android:background="@drawable/btn_shape"
-                    android:gravity="center"
-                    android:text="确认收货"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="@dimen/ctv_sizen_13" />
-
-
-                <TextView
                     android:id="@+id/text_buy"
                     android:layout_width="76dp"
                     android:layout_height="26dp"
                     android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_toLeftOf="@+id/text_confirm"
                     android:layout_centerInParent="true"
                     android:background="@drawable/btn_shape"
                     android:gravity="center"
                     android:text="查看物流"
                     android:textColor="@color/colorWhite"
                     android:textSize="@dimen/ctv_sizen_13" />
+
+                <TextView
+                    android:id="@+id/text_confirm"
+                    android:layout_width="76dp"
+                    android:layout_height="26dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/btn_shape"
+                    android:gravity="center"
+                    android:text="确认收货"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/ctv_sizen_13" />
+
 
             </RelativeLayout>
         </LinearLayout>

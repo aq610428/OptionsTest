@@ -17,11 +17,14 @@ import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
 import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.JsonParse;
+import com.jkabe.app.box.util.LogUtils;
 import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.box.R;
+
 import org.json.JSONObject;
+
 import java.util.List;
 import java.util.Map;
 
@@ -35,9 +38,9 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
     public OrderVo orderBean;
     private RecyclerView recyclerView;
     private OrderListAdapter3 orderListAdapter;
-    private TextView text_order, text_pay, text_logistics, text_baill, text_next, text_message, text_paytime,text_delete;
+    private TextView text_order, text_pay, text_logistics, text_baill, text_next, text_message, text_paytime, text_delete;
     private TextView text_stats;
-    private String orderId,orderStatus;
+    private String orderId, orderStatus;
 
     @Override
     protected void initCreate(Bundle savedInstanceState) {
@@ -47,7 +50,7 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
 
     @Override
     protected void initView() {
-        text_delete= getView(R.id.text_delete);
+        text_delete = getView(R.id.text_delete);
         text_paytime = getView(R.id.text_paytime);
         text_stats = getView(R.id.text_stats);
         text_postage = getView(R.id.text_postage);
@@ -81,7 +84,7 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
     /******查询订单详情*****/
     public void query() {
         showProgressDialog(this, false);
-        String sign = "id=" + orderId +"&orderStatus="+orderStatus+ "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        String sign = "id=" + orderId + "&orderStatus=" + orderStatus + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
         Map<String, String> params = okHttpModel.getParams();
         params.put("id", orderId + "");
         params.put("orderStatus", orderStatus + "");
@@ -89,6 +92,18 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
         params.put("apptype", Constants.TYPE);
         params.put("sign", Md5Util.encode(sign));
         okHttpModel.get(Api.PAY_REMOVE_ORDER, params, Api.PAY_REMOVE_ORDER_ID, this);
+    }
+
+    /******催发货*****/
+    public void showUrge(String id) {
+        showProgressDialog(this, false);
+        String sign = "id=" + id + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        Map<String, String> params = okHttpModel.getParams();
+        params.put("id", id);
+        params.put("partnerid", Constants.PARTNERID);
+        params.put("apptype", Constants.TYPE);
+        params.put("sign", Md5Util.encode(sign));
+        okHttpModel.get(Api.PAY_REMOVE_GOOD, params, Api.PAY_REMOVE_GOOD_ID, this);
     }
 
 
@@ -133,6 +148,9 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
                         ToastUtil.showToast(commonality.getErrorDesc());
                         finish();
                         break;
+                    case Api.PAY_REMOVE_GOOD_ID:
+
+                        break;
                 }
             } else {
                 ToastUtil.showToast(commonality.getErrorDesc());
@@ -160,6 +178,9 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
                 text_baill.setText("快递单号: " + beans.get(0).getExpressorder());
             }
             switch (beans.get(0).getOrderStatus()) {
+                case 2://已发货
+                    text_stats.setText("待发货");
+                    break;
                 case 3://已发货
                     text_stats.setText("待收货");
                     break;
@@ -195,14 +216,14 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
             if (!Utility.isEmpty(orderinfoBean.getStringPaytime())) {
                 String stringPaytime = orderinfoBean.getStringPaytime();
                 text_paytime.setText("支付时间: " + stringPaytime.substring(0, 10) + " " + stringPaytime.substring(stringPaytime.length() - 8, stringPaytime.length()));
-            }else{
+            } else {
                 text_paytime.setText("支付时间: --");
             }
 
             if (!Utility.isEmpty(orderinfoBean.getStringOrdertime())) {
                 String stringOrdertime = orderinfoBean.getStringOrdertime();
                 text_next.setText("下单时间: " + stringOrdertime.substring(0, 10) + " " + stringOrdertime.substring(stringOrdertime.length() - 8, stringOrdertime.length()));
-            }else{
+            } else {
                 text_next.setText("下单时间: --");
             }
 
