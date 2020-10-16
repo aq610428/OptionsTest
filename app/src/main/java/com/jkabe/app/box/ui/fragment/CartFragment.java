@@ -85,6 +85,7 @@ public class CartFragment extends BaseFragment implements NetWorkListener, View.
         super.onResume();
         StatusUtil.setUseStatusBarColor(getActivity(), Color.parseColor("#FFFFFF"));
         StatusUtil.setSystemStatus(getActivity(), false, true);
+        update();
         cancelAll();
         query();
     }
@@ -246,7 +247,7 @@ public class CartFragment extends BaseFragment implements NetWorkListener, View.
         MainActivity mainActivity = (MainActivity) getActivity();
         if (mainActivity != null) {
             TextView text_num = mainActivity.mTabHost.getTabWidget().getChildAt(3).findViewById(R.id.text_num);
-            if (beanList.size() > 0) {
+            if (beanList!=null&&beanList.size() > 0) {
                 text_num.setVisibility(View.VISIBLE);
                 text_num.setText(beanList.size() + "");
             } else {
