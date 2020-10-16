@@ -46,7 +46,7 @@ public class OrderListAdapter3 extends AutoRVAdapter {
             vh.getTextView(R.id.text_confirm).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    activity1.showUrge(bean.getId());
+                    activity1.showUrge(bean.getOrderid());
                 }
             });
         } else if (bean.getOrderStatus() == 3) {

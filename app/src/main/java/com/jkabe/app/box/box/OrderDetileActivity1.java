@@ -149,7 +149,7 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
                         finish();
                         break;
                     case Api.PAY_REMOVE_GOOD_ID:
-
+                        ToastUtil.showToast(commonality.getErrorDesc());
                         break;
                 }
             } else {
