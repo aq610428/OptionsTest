@@ -185,6 +185,7 @@ public class CartFragment extends BaseFragment implements NetWorkListener, View.
                             } else {
                                 mNoDataView1.setVisibility(View.VISIBLE);
                                 swipeToLoadLayout.setVisibility(View.GONE);
+                                update();
                             }
                         }
                         break;
@@ -248,6 +249,9 @@ public class CartFragment extends BaseFragment implements NetWorkListener, View.
             if (beanList.size() > 0) {
                 text_num.setVisibility(View.VISIBLE);
                 text_num.setText(beanList.size() + "");
+            } else {
+                text_num.setVisibility(View.GONE);
+                text_num.setText("0");
             }
         }
     }
@@ -340,7 +344,7 @@ public class CartFragment extends BaseFragment implements NetWorkListener, View.
                 total = BigDecimalUtils.add(total, BigDecimalUtils.mul(new BigDecimal(beanList.get(i).getSellPrice()), new BigDecimal(beanList.get(i).getGoodNumber())));
             }
             adapter.notifyItemRangeChanged(0, beanList.size());
-            text_total.setText("￥" + BigDecimalUtils.round(total,2).toPlainString());
+            text_total.setText("￥" + BigDecimalUtils.round(total, 2).toPlainString());
         }
     }
 
@@ -364,7 +368,7 @@ public class CartFragment extends BaseFragment implements NetWorkListener, View.
             for (Map.Entry<Integer, CartBean> entry : adapter.map.entrySet()) {
                 total = BigDecimalUtils.add(total, BigDecimalUtils.mul(new BigDecimal(entry.getValue().getSellPrice()), new BigDecimal(entry.getValue().getGoodNumber())));
             }
-            text_total.setText("￥" + BigDecimalUtils.round(total,2).toPlainString());
+            text_total.setText("￥" + BigDecimalUtils.round(total, 2).toPlainString());
         }
     }
 

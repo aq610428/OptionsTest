@@ -37,7 +37,7 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
     public OrderVo orderBean;
     private RecyclerView recyclerView;
     private OrderListAdapter3 orderListAdapter;
-    private TextView text_order, text_pay, text_logistics, text_baill, text_next, text_message;
+    private TextView text_order, text_pay, text_logistics, text_baill, text_next, text_message,text_paytime;
     private TextView text_stats;
     private String orderId;
 
@@ -49,6 +49,7 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
 
     @Override
     protected void initView() {
+        text_paytime= getView(R.id.text_paytime);
         text_stats = getView(R.id.text_stats);
         text_postage = getView(R.id.text_postage);
         text_pay = getView(R.id.text_pay);
@@ -172,6 +173,12 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
             } else {
                 text_pay.setText("支付方式: 未知");
             }
+
+            if (!Utility.isEmpty(orderinfoBean.getPaytime())){
+                String[] str = orderinfoBean.getPaytime().split("T");
+                text_paytime.setText("支付时间: " + str[0] + " " + str[1].substring(0, str[1].length() - 5));
+            }
+
 
             if (!Utility.isEmpty(orderinfoBean.getOrdertime())) {
                 String[] str = orderinfoBean.getOrdertime().split("T");

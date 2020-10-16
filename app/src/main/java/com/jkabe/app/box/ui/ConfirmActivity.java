@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jkabe.app.box.adapter.ConfimAdapter;
 import com.jkabe.app.box.base.BaseActivity;
+import com.jkabe.app.box.base.BaseApplication;
 import com.jkabe.app.box.bean.AddressBean;
 import com.jkabe.app.box.bean.CartBean;
 import com.jkabe.app.box.bean.CommonalityModel;
@@ -71,6 +72,7 @@ public class ConfirmActivity extends BaseActivity implements NetWorkListener {
     @Override
     protected void initCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_confirm);
+        BaseApplication.activityTaskManager.putActivity("ConfirmActivity", this);
     }
 
     @Override

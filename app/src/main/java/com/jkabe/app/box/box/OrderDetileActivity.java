@@ -51,7 +51,7 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
     private RecyclerView recyclerView;
     private OrderListAdapter1 orderListAdapter;
     private TextView text_order, text_pay, text_logistics, text_baill, text_next, text_message;
-    private TextView text_cancel, text_buy, text_skills, text_confirm, text_Urge, text_stats, text_delete;
+    private TextView text_cancel, text_buy, text_skills, text_confirm, text_Urge, text_stats, text_delete,text_paytime;
     private PayBean payBean;
     private String orderId;
 
@@ -63,6 +63,7 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
 
     @Override
     protected void initView() {
+        text_paytime = getView(R.id.text_paytime);
         text_delete = getView(R.id.text_delete);
         text_stats = getView(R.id.text_stats);
         text_cancel = getView(R.id.text_cancel);
@@ -248,6 +249,12 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
                 text_pay.setText("支付方式: 支付宝支付");
             } else {
                 text_pay.setText("支付方式: 未知");
+            }
+
+
+            if (!Utility.isEmpty(orderinfoBean.getPaytime())){
+                String[] str = orderinfoBean.getPaytime().split("T");
+                text_paytime.setText("支付时间: " + str[0] + " " + str[1].substring(0, str[1].length() - 5));
             }
 
             if (!Utility.isEmpty(orderinfoBean.getOrdertime())) {

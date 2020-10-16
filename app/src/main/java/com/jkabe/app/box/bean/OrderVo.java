@@ -75,12 +75,24 @@ public class OrderVo implements Serializable {
         private int orderStatus;
         private int payStatus;
         private int payType;
+
+        public String getPaytime() {
+            return paytime;
+        }
+
+        public void setPaytime(String paytime) {
+            this.paytime = paytime;
+        }
+
+        private String paytime;
+
         private double postage;
         private double payAmount;
         private String ordertime;
         private int integral;
         private String descriptionToString;
         private String expresscompany;
+
 
 
         public String getExpresscompany() {
