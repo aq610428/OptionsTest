@@ -53,7 +53,7 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
     private TextView text_order, text_pay, text_logistics, text_baill, text_next, text_message;
     private TextView text_cancel, text_buy, text_skills, text_confirm, text_Urge, text_stats, text_delete,text_paytime;
     private PayBean payBean;
-    private String orderId;
+    private String orderId,orderStatus;
 
     @Override
     protected void initCreate(Bundle savedInstanceState) {
@@ -99,16 +99,18 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         orderId = getIntent().getStringExtra("id");
+        orderStatus = getIntent().getStringExtra("orderStatus");
         query();
     }
 
 
-    /******订单详情*****/
+    /******查询订单详情*****/
     public void query() {
         showProgressDialog(this, false);
-        String sign = "id=" + orderId + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        String sign = "id=" + orderId +"&orderStatus="+orderStatus+ "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
         Map<String, String> params = okHttpModel.getParams();
         params.put("id", orderId + "");
+        params.put("orderStatus", orderStatus + "");
         params.put("partnerid", Constants.PARTNERID);
         params.put("apptype", Constants.TYPE);
         params.put("sign", Md5Util.encode(sign));
@@ -266,17 +268,29 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
                 text_next.setText("下单时间: --");
             }
 
-            if (Utility.isEmpty(orderinfoBean.getExpresscompany())) {
-                text_logistics.setText("物流公司: --");
-            } else {
-                text_logistics.setText("物流公司: " + orderinfoBean.getExpresscompany());
+            if (beans!=null&&beans.size()==1){
+                if (Utility.isEmpty(orderinfoBean.getExpresscompany())) {
+                    text_logistics.setText("物流公司: --");
+                } else {
+                    text_logistics.setText("物流公司: " + orderinfoBean.getExpresscompany());
+                }
+
+                if (Utility.isEmpty(orderinfoBean.getExpressorder())) {
+                    text_baill.setText("快递单号: --");
+                } else {
+                    text_baill.setText("快递单号: " + orderinfoBean.getExpressorder());
+                }
+                text_logistics.setVisibility(View.VISIBLE);
+                text_baill.setVisibility(View.VISIBLE);
+            }else{
+                text_logistics.setVisibility(View.GONE);
+                text_baill.setVisibility(View.GONE);
             }
 
-            if (Utility.isEmpty(orderinfoBean.getExpressorder())) {
-                text_baill.setText("快递单号: --");
-            } else {
-                text_baill.setText("快递单号: " + orderinfoBean.getExpressorder());
-            }
+
+
+
+
             if (Utility.isEmpty(orderinfoBean.getMessage())) {
                 text_message.setText("买家留言: --");
             } else {

@@ -55,6 +55,7 @@ public class TakeAdapter extends AutoRVAdapter {
                     } else {
                         intent = new Intent(allFragment.getContext(), OrderDetileActivity.class);
                     }
+                    intent.putExtra("orderStatus", stats);
                     intent.putExtra("id", orderBean.getId());
                     allFragment.getContext().startActivity(intent);
                 }

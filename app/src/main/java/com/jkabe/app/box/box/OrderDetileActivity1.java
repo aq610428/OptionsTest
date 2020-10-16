@@ -37,7 +37,7 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
     private OrderListAdapter3 orderListAdapter;
     private TextView text_order, text_pay, text_logistics, text_baill, text_next, text_message, text_paytime,text_delete;
     private TextView text_stats;
-    private String orderId;
+    private String orderId,orderStatus;
 
     @Override
     protected void initCreate(Bundle savedInstanceState) {
@@ -73,6 +73,7 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         orderId = getIntent().getStringExtra("id");
+        orderStatus = getIntent().getStringExtra("orderStatus");
         query();
     }
 
@@ -80,9 +81,10 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
     /******查询订单详情*****/
     public void query() {
         showProgressDialog(this, false);
-        String sign = "id=" + orderId + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        String sign = "id=" + orderId +"&orderStatus="+orderStatus+ "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
         Map<String, String> params = okHttpModel.getParams();
         params.put("id", orderId + "");
+        params.put("orderStatus", orderStatus + "");
         params.put("partnerid", Constants.PARTNERID);
         params.put("apptype", Constants.TYPE);
         params.put("sign", Md5Util.encode(sign));

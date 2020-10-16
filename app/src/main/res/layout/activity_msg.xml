@@ -41,11 +41,7 @@
 
         </LinearLayout>
 
-        <TextView
-            android:layout_width="0.6dp"
-            android:layout_height="match_parent"
-            android:background="@color/dive_line"
-            tools:ignore="Suspicious0dp" />
+
 
 
         <LinearLayout
@@ -73,11 +69,7 @@
 
         </LinearLayout>
 
-        <TextView
-            android:layout_width="0.6dp"
-            android:layout_height="match_parent"
-            android:background="@color/dive_line"
-            tools:ignore="Suspicious0dp" />
+
 
         <LinearLayout
             android:id="@+id/rl_tab3"

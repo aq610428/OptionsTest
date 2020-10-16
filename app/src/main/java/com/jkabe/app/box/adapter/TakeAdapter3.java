@@ -53,6 +53,7 @@ public class TakeAdapter3 extends AutoRVAdapter {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Intent intent = new Intent(allFragment.getContext(), OrderDetileActivity1.class);
                     intent.putExtra("id", orderBean.getId());
+                    intent.putExtra("orderStatus", orderBean.getOrderStatus());
                     allFragment.getContext().startActivity(intent);
                 }
             });
