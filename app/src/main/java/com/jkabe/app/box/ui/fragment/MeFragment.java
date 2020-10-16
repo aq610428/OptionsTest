@@ -15,12 +15,10 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.jkabe.app.box.adapter.MeAdapter;
 import com.jkabe.app.box.base.BaseApplication;
 import com.jkabe.app.box.base.BaseFragment;
@@ -38,7 +36,6 @@ import com.jkabe.app.box.ui.ActivationActivity;
 import com.jkabe.app.box.ui.AddressActivity;
 import com.jkabe.app.box.ui.InvitationActivity;
 import com.jkabe.app.box.ui.LoginActivity;
-import com.jkabe.app.box.ui.MainActivity;
 import com.jkabe.app.box.ui.MsgActivity;
 import com.jkabe.app.box.ui.PassworadActivity;
 import com.jkabe.app.box.ui.PreviewActivity;
@@ -54,13 +51,10 @@ import com.jkabe.app.box.weight.MarqueeTextView;
 import com.jkabe.app.box.weight.PreferenceUtils;
 import com.jkabe.box.R;
 import com.lihang.ShadowLayout;
-
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import crossoverone.statuslib.StatusUtil;
 
 /**

@@ -91,8 +91,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
             android:orientation="horizontal"
             android:paddingTop="15dp">
 
@@ -115,7 +115,7 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="15dp">
+                        android:padding="12dp">
 
                         <TextView
                             android:id="@+id/text_pay"
@@ -126,8 +126,8 @@
                             android:background="@mipmap/icon_open"
                             android:drawableRight="@mipmap/icon_rigtt_icd"
                             android:gravity="center"
-                            android:paddingLeft="5dp"
-                            android:paddingRight="5dp"
+                            android:paddingLeft="7dp"
+                            android:paddingRight="7dp"
                             android:text="续费"
                             android:textColor="#3F63F4"
                             android:textSize="@dimen/ctv_sizen_11" />
@@ -269,8 +269,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
             android:orientation="horizontal"
             android:paddingTop="15dp">
 
@@ -434,8 +434,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
             android:orientation="horizontal"
             android:paddingTop="15dp">
 
@@ -496,7 +496,7 @@
                                     android:gravity="center"
                                     android:text="0"
                                     android:textColor="#070707"
-                                    android:textSize="@dimen/ctv_sizen_17"
+                                    android:textSize="@dimen/ctv_sizen_15"
                                     android:textStyle="bold" />
 
                                 <TextView
@@ -572,7 +572,7 @@
                                     android:gravity="center"
                                     android:text="0"
                                     android:textColor="#070707"
-                                    android:textSize="@dimen/ctv_sizen_17"
+                                    android:textSize="@dimen/ctv_sizen_15"
                                     android:textStyle="bold" />
 
                                 <TextView
