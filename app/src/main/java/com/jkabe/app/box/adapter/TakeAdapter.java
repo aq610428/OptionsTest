@@ -3,15 +3,19 @@ package com.jkabe.app.box.adapter;
 import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.jkabe.app.box.bean.OrderBean;
 import com.jkabe.app.box.box.OrderDetileActivity;
 import com.jkabe.app.box.box.OrderDetileActivity1;
 import com.jkabe.app.box.box.fragement.AllFragment;
+import com.jkabe.app.box.ui.PreviewActivity;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.DialogUtils;
 import com.jkabe.box.R;
+
 import java.util.List;
 
 
@@ -50,12 +54,12 @@ public class TakeAdapter extends AutoRVAdapter {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     int stats = orderBean.getOrderStatus();
                     Intent intent = null;
-                    if (stats==3||stats==4||stats==8) {
+                    if (stats == 3 || stats == 4 || stats == 8) {
                         intent = new Intent(allFragment.getContext(), OrderDetileActivity1.class);
                     } else {
                         intent = new Intent(allFragment.getContext(), OrderDetileActivity.class);
                     }
-                    intent.putExtra("orderStatus", stats+"");
+                    intent.putExtra("orderStatus", stats + "");
                     intent.putExtra("id", orderBean.getId());
                     allFragment.getContext().startActivity(intent);
                 }
@@ -64,7 +68,7 @@ public class TakeAdapter extends AutoRVAdapter {
         vh.getTextView(R.id.text_count).setText("实付 ￥" + orderBean.getGoodMoney());
         if (!Utility.isEmpty(orderBean.getStringOrdertime())) {
             String stringOrdertime = orderBean.getStringOrdertime();
-            vh.getTextView(R.id.text_date).setText(stringOrdertime.substring(0,10) + " " + stringOrdertime.substring(stringOrdertime.length()-8, stringOrdertime.length()));
+            vh.getTextView(R.id.text_date).setText(stringOrdertime.substring(0, 10) + " " + stringOrdertime.substring(stringOrdertime.length() - 8, stringOrdertime.length()));
         }
 
         switch (orderBean.getOrderStatus()) {
@@ -73,6 +77,7 @@ public class TakeAdapter extends AutoRVAdapter {
                 vh.getTextView(R.id.text_skills).setVisibility(View.GONE);
                 vh.getTextView(R.id.text_Urge).setVisibility(View.GONE);
                 vh.getLinearLayout(R.id.rl_tab1).setVisibility(View.VISIBLE);
+                vh.getTextView(R.id.text_server).setVisibility(View.GONE);
                 vh.getTextView(R.id.text_stats).setText("未支付");
                 break;
             case 2://已支付待发货
@@ -80,6 +85,7 @@ public class TakeAdapter extends AutoRVAdapter {
                 vh.getLinearLayout(R.id.rl_tab1).setVisibility(View.GONE);
                 vh.getTextView(R.id.text_skills).setVisibility(View.GONE);
                 vh.getTextView(R.id.text_Urge).setVisibility(View.VISIBLE);
+                vh.getTextView(R.id.text_server).setVisibility(View.VISIBLE);
                 vh.getTextView(R.id.text_stats).setText("待发货");
                 break;
             case 3://已发货
@@ -87,12 +93,14 @@ public class TakeAdapter extends AutoRVAdapter {
                 vh.getLinearLayout(R.id.rl_tab1).setVisibility(View.GONE);
                 vh.getTextView(R.id.text_Urge).setVisibility(View.GONE);
                 vh.getTextView(R.id.text_skills).setVisibility(View.VISIBLE);
+                vh.getTextView(R.id.text_server).setVisibility(View.VISIBLE);
                 vh.getTextView(R.id.text_stats).setText("待收货");
                 break;
             case 4://已确认收货
                 vh.getLinearLayout(R.id.rl_tab1).setVisibility(View.GONE);
                 vh.getTextView(R.id.text_Urge).setVisibility(View.GONE);
                 vh.getTextView(R.id.text_skills).setVisibility(View.VISIBLE);
+                vh.getTextView(R.id.text_server).setVisibility(View.VISIBLE);
                 vh.getTextView(R.id.text_stats).setText("已收货");
                 break;
             case 5://订单取消
@@ -100,6 +108,7 @@ public class TakeAdapter extends AutoRVAdapter {
                 vh.getTextView(R.id.text_skills).setVisibility(View.GONE);
                 vh.getLinearLayout(R.id.rl_tab1).setVisibility(View.GONE);
                 vh.getTextView(R.id.text_Urge).setVisibility(View.GONE);
+                vh.getTextView(R.id.text_server).setVisibility(View.VISIBLE);
                 break;
         }
 
@@ -119,6 +128,16 @@ public class TakeAdapter extends AutoRVAdapter {
             @Override
             public void onClick(View v) {
                 allFragment.showTip(orderBean);
+            }
+        });
+
+        vh.getTextView(R.id.text_server).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(allFragment.getContext(), PreviewActivity.class);
+                intent.putExtra("name", "加入社群");
+                intent.putExtra("url", "http://openapi.jkabe.com/golo/about");
+                allFragment.getContext().startActivity(intent);
             }
         });
     }
