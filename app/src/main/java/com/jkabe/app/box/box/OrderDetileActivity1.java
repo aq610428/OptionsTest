@@ -1,5 +1,6 @@
 package com.jkabe.app.box.box;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ import com.jkabe.app.box.bean.OrderVo;
 import com.jkabe.app.box.config.Api;
 import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
+import com.jkabe.app.box.ui.PreviewActivity;
 import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.JsonParse;
 import com.jkabe.app.box.util.LogUtils;
@@ -34,7 +36,7 @@ import java.util.Map;
  * @name:OrderDetileActivity
  */
 public class OrderDetileActivity1 extends BaseActivity implements NetWorkListener {
-    private TextView title_text_tv, title_left_btn, text_name, text_address, text_price, text_postage;
+    private TextView title_text_tv, title_left_btn, text_name, text_address, text_price, text_postage,text_server;
     public OrderVo orderBean;
     private RecyclerView recyclerView;
     private OrderListAdapter3 orderListAdapter;
@@ -50,6 +52,7 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
 
     @Override
     protected void initView() {
+        text_server= getView(R.id.text_server);
         text_delete = getView(R.id.text_delete);
         text_paytime = getView(R.id.text_paytime);
         text_stats = getView(R.id.text_stats);
@@ -68,6 +71,7 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
         title_left_btn = getView(R.id.title_left_btn);
         title_left_btn.setOnClickListener(this);
         text_delete.setOnClickListener(this);
+        text_server.setOnClickListener(this);
         title_text_tv.setText("订单详情");
     }
 
@@ -180,20 +184,25 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
             switch (beans.get(0).getOrderStatus()) {
                 case 2://已发货
                     text_stats.setText("待发货");
+                    text_server.setVisibility(View.VISIBLE);
                     break;
                 case 3://已发货
                     text_stats.setText("待收货");
+                    text_server.setVisibility(View.VISIBLE);
                     break;
                 case 4://已确认收货
                     text_stats.setText("已收货");
+                    text_server.setVisibility(View.VISIBLE);
                     text_delete.setVisibility(View.VISIBLE);
                     break;
                 case 5://订单取消
                     text_stats.setText("已取消");
+                    text_server.setVisibility(View.VISIBLE);
                     text_delete.setVisibility(View.VISIBLE);
                     break;
                 case 8://订单已完成
                     text_stats.setText("已完成");
+                    text_server.setVisibility(View.VISIBLE);
                     text_delete.setVisibility(View.VISIBLE);
                     break;
             }
@@ -239,8 +248,6 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
             } else {
                 text_postage.setText("￥" + orderinfoBean.getPostage());
             }
-
-
         }
     }
 
@@ -254,6 +261,12 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
                 break;
             case R.id.text_delete:
                 delete();
+                break;
+            case R.id.text_server:
+                Intent intent = new Intent(OrderDetileActivity1.this, PreviewActivity.class);
+                intent.putExtra("name", "加入社群");
+                intent.putExtra("url", "http://openapi.jkabe.com/golo/about");
+                startActivity(intent);
                 break;
         }
     }

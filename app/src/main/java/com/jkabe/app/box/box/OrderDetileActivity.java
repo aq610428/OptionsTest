@@ -2,6 +2,7 @@ package com.jkabe.app.box.box;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -23,6 +24,7 @@ import com.jkabe.app.box.bean.PayBean;
 import com.jkabe.app.box.config.Api;
 import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
+import com.jkabe.app.box.ui.PreviewActivity;
 import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.JsonParse;
 import com.jkabe.app.box.util.LogUtils;
@@ -34,8 +36,6 @@ import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.DialogUtils;
 import com.jkabe.box.R;
 import com.jkabe.box.alipay.PayResult;
-import com.tencent.mm.opensdk.openapi.IWXAPI;
-import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import org.json.JSONObject;
 import java.util.List;
 import java.util.Map;
@@ -46,7 +46,7 @@ import java.util.Map;
  * @name:OrderDetileActivity
  */
 public class OrderDetileActivity extends BaseActivity implements NetWorkListener {
-    private TextView title_text_tv, title_left_btn, text_name, text_address, text_price, text_postage;
+    private TextView title_text_tv, title_left_btn, text_name, text_address, text_price, text_postage,text_server;
     public OrderVo orderBean;
     private RecyclerView recyclerView;
     private OrderListAdapter1 orderListAdapter;
@@ -63,6 +63,7 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
 
     @Override
     protected void initView() {
+        text_server = getView(R.id.text_server);
         text_paytime = getView(R.id.text_paytime);
         text_delete = getView(R.id.text_delete);
         text_stats = getView(R.id.text_stats);
@@ -92,6 +93,7 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
         text_confirm.setOnClickListener(this);
         text_Urge.setOnClickListener(this);
         text_delete.setOnClickListener(this);
+        text_server.setOnClickListener(this);
     }
 
     @Override
@@ -288,9 +290,6 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
             }
 
 
-
-
-
             if (Utility.isEmpty(orderinfoBean.getMessage())) {
                 text_message.setText("买家留言: --");
             } else {
@@ -305,12 +304,14 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
 
             switch (orderinfoBean.getOrderStatus()) {
                 case 1://未支付
+                    text_server.setVisibility(View.GONE);
                     text_skills.setVisibility(View.GONE);
                     text_confirm.setVisibility(View.GONE);
                     text_Urge.setVisibility(View.GONE);
                     text_stats.setText("未支付");
                     break;
                 case 2://已支付待发货
+                    text_server.setVisibility(View.VISIBLE);
                     text_cancel.setVisibility(View.GONE);
                     text_buy.setVisibility(View.GONE);
                     text_Urge.setVisibility(View.VISIBLE);
@@ -319,12 +320,14 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
                     text_stats.setText("待发货");
                     break;
                 case 3://已发货
+                    text_server.setVisibility(View.VISIBLE);
                     text_cancel.setVisibility(View.GONE);
                     text_buy.setVisibility(View.GONE);
                     text_Urge.setVisibility(View.GONE);
                     text_stats.setText("待收货");
                     break;
                 case 4://已确认收货
+                    text_server.setVisibility(View.VISIBLE);
                     text_confirm.setVisibility(View.GONE);
                     text_cancel.setVisibility(View.GONE);
                     text_buy.setVisibility(View.GONE);
@@ -333,6 +336,7 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
                     break;
                 case 5://订单取消
                 case 8://订单已完成
+                    text_server.setVisibility(View.GONE);
                     text_delete.setVisibility(View.VISIBLE);
                     text_skills.setVisibility(View.GONE);
                     text_confirm.setVisibility(View.GONE);
@@ -377,6 +381,12 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
                 if (orderBean != null && orderBean.getOrderinfo() != null) {
                     showUrge(orderBean.getOrderinfo().getId());
                 }
+                break;
+            case R.id.text_server:
+                Intent intent = new Intent(OrderDetileActivity.this, PreviewActivity.class);
+                intent.putExtra("name", "加入社群");
+                intent.putExtra("url", "http://openapi.jkabe.com/golo/about");
+                startActivity(intent);
                 break;
         }
     }

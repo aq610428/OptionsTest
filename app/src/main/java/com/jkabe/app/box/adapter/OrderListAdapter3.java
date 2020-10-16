@@ -2,14 +2,12 @@ package com.jkabe.app.box.adapter;
 
 import android.content.Intent;
 import android.view.View;
-
 import com.jkabe.app.box.bean.OrderVo;
 import com.jkabe.app.box.box.LogisticsActivity;
 import com.jkabe.app.box.box.OrderDetileActivity1;
 import com.jkabe.app.box.glide.GlideUtils;
 import com.jkabe.app.box.weight.DialogUtils;
 import com.jkabe.box.R;
-
 import java.util.List;
 
 /**
@@ -41,16 +39,25 @@ public class OrderListAdapter3 extends AutoRVAdapter {
         vh.getTextView(R.id.text_num).setText("x" + bean.getGoodNumber());
 
         if (bean.getOrderStatus() == 2) {
-            vh.getTextView(R.id.text_confirm).setText("催发货");
+            vh.getTextView(R.id.text_buy1).setVisibility(View.VISIBLE);
+            vh.getTextView(R.id.text_confirm).setVisibility(View.GONE);
             vh.getTextView(R.id.text_buy).setVisibility(View.GONE);
             vh.getTextView(R.id.text_confirm).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+            vh.getTextView(R.id.text_buy1).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     activity1.showUrge(bean.getOrderid());
                 }
             });
         } else if (bean.getOrderStatus() == 3) {
+            vh.getTextView(R.id.text_buy1).setVisibility(View.GONE);
             vh.getTextView(R.id.text_buy).setVisibility(View.VISIBLE);
+            vh.getTextView(R.id.text_confirm).setVisibility(View.VISIBLE);
             vh.getTextView(R.id.text_confirm).setText("确认收货");
             vh.getTextView(R.id.text_confirm).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -59,9 +66,11 @@ public class OrderListAdapter3 extends AutoRVAdapter {
                 }
             });
         } else if (bean.getOrderStatus() == 4 || bean.getOrderStatus() == 8) {
+            vh.getTextView(R.id.text_buy1).setVisibility(View.GONE);
             vh.getTextView(R.id.text_buy).setVisibility(View.VISIBLE);
-            vh.getTextView(R.id.text_confirm).setText("已收货");
             vh.getTextView(R.id.text_confirm).setVisibility(View.GONE);
+            vh.getTextView(R.id.text_confirm).setText("已收货");
+
         }
 
         vh.getTextView(R.id.text_buy).setOnClickListener(new View.OnClickListener() {

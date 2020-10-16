@@ -11,6 +11,7 @@ import com.jkabe.app.box.bean.OrderBean;
 import com.jkabe.app.box.box.OrderDetileActivity;
 import com.jkabe.app.box.box.OrderDetileActivity1;
 import com.jkabe.app.box.box.fragement.TakeFragment;
+import com.jkabe.app.box.ui.PreviewActivity;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.box.R;
 
@@ -74,6 +75,15 @@ public class TakeAdapter1 extends AutoRVAdapter {
             @Override
             public void onClick(View v) {
                 allFragment.showUrge(orderBean.getId());
+            }
+        });
+        vh.getTextView(R.id.text_server).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(allFragment.getContext(), PreviewActivity.class);
+                intent.putExtra("name", "加入社群");
+                intent.putExtra("url", "http://openapi.jkabe.com/golo/about");
+                allFragment.getContext().startActivity(intent);
             }
         });
     }
