@@ -39,15 +39,29 @@ android {
             keyAlias 'jkb'
             keyPassword 'asdfghjkl321'
         }
+        debug {
+            storeFile file('C:\\Users\\ong\\.android\\debug.keystore')
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+        }
+
     }
+
     buildTypes {
         release {
             minifyEnabled false //混淆
             zipAlignEnabled true  //压缩优化
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-
         }
+
+        debug {
+            minifyEnabled false //混淆
+            zipAlignEnabled false  //压缩优化
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
     }
 
 

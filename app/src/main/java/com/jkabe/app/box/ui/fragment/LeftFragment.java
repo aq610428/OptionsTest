@@ -201,14 +201,20 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
                             if (isRefresh && page > 1) {
                                 ToastUtil.showToast("无更多商品");
                             }
+                            stopProgressDialog();
                         }
                         break;
 
                 }
+            }else{
+                ToastUtil.showToast(commonality.getErrorDesc());
+                stopProgressDialog();
             }
 
+        }else{
+            stopProgressDialog();
         }
-        stopProgressDialog();
+
         swipeToLoadLayout.setRefreshing(false);
         swipeToLoadLayout.setLoadingMore(false);
     }
@@ -234,6 +240,7 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
                 startActivity(intent);
             }
         });
+        stopProgressDialog();
     }
 
 

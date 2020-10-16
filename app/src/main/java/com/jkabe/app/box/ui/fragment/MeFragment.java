@@ -199,12 +199,12 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
         switch (v.getId()) {
             case R.id.text_key:
                 intent = new Intent(getContext(), OrderPayActivity.class);
-                intent.putExtra("position", "3");
+                intent.putExtra("position", 3);
                 startActivity(intent);
                 break;
             case R.id.text_means:
                 intent = new Intent(getContext(), OrderPayActivity.class);
-                intent.putExtra("position", "0");
+                intent.putExtra("position", 0);
                 startActivity(intent);
                 break;
             case R.id.text_edit:
@@ -212,17 +212,17 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
                 break;
             case R.id.text_team:
                 intent = new Intent(getContext(), OrderPayActivity.class);
-                intent.putExtra("position", "2");
+                intent.putExtra("position", 2);
                 startActivity(intent);
                 break;
             case R.id.text_invitation:
                 intent = new Intent(getContext(), OrderPayActivity.class);
-                intent.putExtra("position", "1");
+                intent.putExtra("position", 1);
                 startActivity(intent);
                 break;
             case R.id.text_key1:
                 intent = new Intent(getContext(), OrderPayActivity.class);
-                intent.putExtra("position", "4");
+                intent.putExtra("position", 4);
                 startActivity(intent);
                 break;
         }
