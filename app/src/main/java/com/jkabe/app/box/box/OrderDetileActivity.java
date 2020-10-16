@@ -248,32 +248,37 @@ public class OrderDetileActivity extends BaseActivity implements NetWorkListener
             } else if (orderinfoBean.getPayType() == 2) {
                 text_pay.setText("支付方式: 支付宝支付");
             } else {
-                text_pay.setText("支付方式: 未知");
+                text_pay.setText("支付方式: --");
+            }
+
+            if (!Utility.isEmpty(orderinfoBean.getStringPaytime())) {
+                String  stringPaytime = orderinfoBean.getStringPaytime();
+                text_paytime.setText("支付时间: " + stringPaytime.substring(0, 10) + " " + stringPaytime.substring(stringPaytime.length() - 8, stringPaytime.length()));
+            }else{
+                text_paytime.setText("支付时间: --");
             }
 
 
-            if (!Utility.isEmpty(orderinfoBean.getPaytime())){
-                String[] str = orderinfoBean.getPaytime().split("T");
-                text_paytime.setText("支付时间: " + str[0] + " " + str[1].substring(0, str[1].length() - 5));
+            if (!Utility.isEmpty(orderinfoBean.getStringOrdertime())) {
+                String stringOrdertime = orderinfoBean.getStringOrdertime();
+                text_next.setText("下单时间: " + stringOrdertime.substring(0, 10) + " " + stringOrdertime.substring(stringOrdertime.length() - 8, stringOrdertime.length()));
+            }else{
+                text_next.setText("下单时间: --");
             }
 
-            if (!Utility.isEmpty(orderinfoBean.getOrdertime())) {
-                String[] str = orderinfoBean.getOrdertime().split("T");
-                text_next.setText("下单时间: " + str[0] + " " + str[1].substring(0, str[1].length() - 5));
-            }
             if (Utility.isEmpty(orderinfoBean.getExpresscompany())) {
-                text_logistics.setText("物流公司: 暂无");
+                text_logistics.setText("物流公司: --");
             } else {
                 text_logistics.setText("物流公司: " + orderinfoBean.getExpresscompany());
             }
 
             if (Utility.isEmpty(orderinfoBean.getExpressorder())) {
-                text_baill.setText("快递单号: 暂无");
+                text_baill.setText("快递单号: --");
             } else {
                 text_baill.setText("快递单号: " + orderinfoBean.getExpressorder());
             }
             if (Utility.isEmpty(orderinfoBean.getMessage())) {
-                text_message.setText("买家留言: 暂无");
+                text_message.setText("买家留言: --");
             } else {
                 text_message.setText("买家留言: " + orderinfoBean.getMessage());
             }

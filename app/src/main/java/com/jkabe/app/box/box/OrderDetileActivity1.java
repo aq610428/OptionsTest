@@ -37,7 +37,7 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
     public OrderVo orderBean;
     private RecyclerView recyclerView;
     private OrderListAdapter3 orderListAdapter;
-    private TextView text_order, text_pay, text_logistics, text_baill, text_next, text_message,text_paytime;
+    private TextView text_order, text_pay, text_logistics, text_baill, text_next, text_message, text_paytime;
     private TextView text_stats;
     private String orderId;
 
@@ -49,7 +49,7 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
 
     @Override
     protected void initView() {
-        text_paytime= getView(R.id.text_paytime);
+        text_paytime = getView(R.id.text_paytime);
         text_stats = getView(R.id.text_stats);
         text_postage = getView(R.id.text_postage);
         text_pay = getView(R.id.text_pay);
@@ -134,13 +134,13 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
             orderListAdapter = new OrderListAdapter3(this, beans);
             recyclerView.setAdapter(orderListAdapter);
             if (Utility.isEmpty(beans.get(0).getExpresscompanyname())) {
-                text_logistics.setText("物流公司: 暂无");
+                text_logistics.setText("物流公司: --");
             } else {
                 text_logistics.setText("物流公司: " + beans.get(0).getExpresscompanyname());
             }
 
             if (Utility.isEmpty(beans.get(0).getExpressorder())) {
-                text_baill.setText("快递单号: 暂无");
+                text_baill.setText("快递单号: --");
             } else {
                 text_baill.setText("快递单号: " + beans.get(0).getExpressorder());
             }
@@ -171,23 +171,26 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
             } else if (orderinfoBean.getPayType() == 2) {
                 text_pay.setText("支付方式: 支付宝支付");
             } else {
-                text_pay.setText("支付方式: 未知");
+                text_pay.setText("支付方式: --");
             }
 
-            if (!Utility.isEmpty(orderinfoBean.getPaytime())){
-                String[] str = orderinfoBean.getPaytime().split("T");
-                text_paytime.setText("支付时间: " + str[0] + " " + str[1].substring(0, str[1].length() - 5));
+            if (!Utility.isEmpty(orderinfoBean.getStringPaytime())) {
+                String stringPaytime = orderinfoBean.getStringPaytime();
+                text_paytime.setText("支付时间: " + stringPaytime.substring(0, 10) + " " + stringPaytime.substring(stringPaytime.length() - 8, stringPaytime.length()));
+            }else{
+                text_paytime.setText("支付时间: --");
             }
 
-
-            if (!Utility.isEmpty(orderinfoBean.getOrdertime())) {
-                String[] str = orderinfoBean.getOrdertime().split("T");
-                text_next.setText("下单时间: " + str[0] + " " + str[1].substring(0, str[1].length() - 5));
+            if (!Utility.isEmpty(orderinfoBean.getStringOrdertime())) {
+                String stringOrdertime = orderinfoBean.getStringOrdertime();
+                text_next.setText("下单时间: " + stringOrdertime.substring(0, 10) + " " + stringOrdertime.substring(stringOrdertime.length() - 8, stringOrdertime.length()));
+            }else{
+                text_next.setText("下单时间: --");
             }
 
 
             if (Utility.isEmpty(orderinfoBean.getMessage())) {
-                text_message.setText("买家留言: 暂无留言");
+                text_message.setText("买家留言: --");
             } else {
                 text_message.setText("买家留言: " + orderinfoBean.getMessage());
             }

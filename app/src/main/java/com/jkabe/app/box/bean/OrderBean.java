@@ -46,6 +46,16 @@ public class OrderBean implements Serializable {
     private double postage;
     private double payAmount;
     private String ordertime;
+
+    public String getStringOrdertime() {
+        return stringOrdertime;
+    }
+
+    public void setStringOrdertime(String stringOrdertime) {
+        this.stringOrdertime = stringOrdertime;
+    }
+
+    private String stringOrdertime;
     private int integral;
     private String descriptionToString;
     private List<ItemsBean> items;

@@ -76,6 +76,16 @@ public class OrderVo implements Serializable {
         private int payStatus;
         private int payType;
 
+        public String getStringPaytime() {
+            return stringPaytime;
+        }
+
+        public void setStringPaytime(String stringPaytime) {
+            this.stringPaytime = stringPaytime;
+        }
+
+        private String stringPaytime;
+
         public String getPaytime() {
             return paytime;
         }
@@ -103,7 +113,15 @@ public class OrderVo implements Serializable {
             this.expresscompany = expresscompany;
         }
 
+        public String getStringOrdertime() {
+            return stringOrdertime;
+        }
 
+        public void setStringOrdertime(String stringOrdertime) {
+            this.stringOrdertime = stringOrdertime;
+        }
+
+        private String stringOrdertime;
 
 
         public String getId() {

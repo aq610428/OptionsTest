@@ -153,7 +153,7 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:gravity="center"
-                    android:text="包邮"
+                    android:text="免邮"
                     android:textColor="@color/black"
                     android:textSize="@dimen/ctv_sizen_13"
                     android:textStyle="bold" />

@@ -59,9 +59,9 @@ public class PayAdapter extends AutoRVAdapter {
         }
         vh.getTextView(R.id.text_count).setText("实付 ￥" + orderBean.getGoodMoney());
 
-        if (!Utility.isEmpty(orderBean.getOrdertime())) {
-            String[] str = orderBean.getOrdertime().split("T");
-            vh.getTextView(R.id.text_date).setText(str[0] + " " + str[1].substring(0, str[1].length() - 5));
+        if (!Utility.isEmpty(orderBean.getStringOrdertime())) {
+            String stringOrdertime = orderBean.getStringOrdertime();
+            vh.getTextView(R.id.text_date).setText(stringOrdertime.substring(0,10) + " " + stringOrdertime.substring(stringOrdertime.length()-8, stringOrdertime.length()));
         }
         vh.getTextView(R.id.text_stats).setText("待支付");
         vh.getTextView(R.id.text_cancel).setOnClickListener(new View.OnClickListener() {
