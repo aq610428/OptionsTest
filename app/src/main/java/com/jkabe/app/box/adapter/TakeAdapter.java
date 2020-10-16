@@ -3,10 +3,8 @@ package com.jkabe.app.box.adapter;
 import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
-
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.jkabe.app.box.bean.OrderBean;
 import com.jkabe.app.box.box.OrderDetileActivity;
 import com.jkabe.app.box.box.OrderDetileActivity1;
@@ -14,7 +12,6 @@ import com.jkabe.app.box.box.fragement.AllFragment;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.DialogUtils;
 import com.jkabe.box.R;
-
 import java.util.List;
 
 
@@ -64,7 +61,6 @@ public class TakeAdapter extends AutoRVAdapter {
             });
         }
         vh.getTextView(R.id.text_count).setText("实付 ￥" + orderBean.getGoodMoney());
-
         if (!Utility.isEmpty(orderBean.getOrdertime())) {
             String[] str = orderBean.getOrdertime().split("T");
             vh.getTextView(R.id.text_date).setText(str[0] + " " + str[1].substring(0, str[1].length() - 5));
@@ -74,7 +70,6 @@ public class TakeAdapter extends AutoRVAdapter {
             case 1://未支付
                 vh.getTextView(R.id.text_stats).setText("待支付");
                 vh.getTextView(R.id.text_skills).setVisibility(View.GONE);
-                vh.getTextView(R.id.text_confirm).setVisibility(View.GONE);
                 vh.getTextView(R.id.text_Urge).setVisibility(View.GONE);
                 vh.getLinearLayout(R.id.rl_tab1).setVisibility(View.VISIBLE);
                 vh.getTextView(R.id.text_stats).setText("未支付");
@@ -83,7 +78,6 @@ public class TakeAdapter extends AutoRVAdapter {
                 vh.getTextView(R.id.text_stats).setText("待发货");
                 vh.getLinearLayout(R.id.rl_tab1).setVisibility(View.GONE);
                 vh.getTextView(R.id.text_skills).setVisibility(View.GONE);
-                vh.getTextView(R.id.text_confirm).setVisibility(View.GONE);
                 vh.getTextView(R.id.text_Urge).setVisibility(View.VISIBLE);
                 vh.getTextView(R.id.text_stats).setText("已支付待发货");
                 break;
@@ -91,14 +85,12 @@ public class TakeAdapter extends AutoRVAdapter {
                 vh.getTextView(R.id.text_stats).setText("已发货");
                 vh.getLinearLayout(R.id.rl_tab1).setVisibility(View.GONE);
                 vh.getTextView(R.id.text_Urge).setVisibility(View.GONE);
-                vh.getTextView(R.id.text_confirm).setVisibility(View.VISIBLE);
                 vh.getTextView(R.id.text_skills).setVisibility(View.VISIBLE);
                 vh.getTextView(R.id.text_stats).setText("已发货待收货");
                 break;
             case 4://已确认收货
                 vh.getTextView(R.id.text_stats).setText("已收货");
                 vh.getLinearLayout(R.id.rl_tab1).setVisibility(View.GONE);
-                vh.getTextView(R.id.text_buy).setVisibility(View.GONE);
                 vh.getTextView(R.id.text_Urge).setVisibility(View.GONE);
                 vh.getTextView(R.id.text_skills).setVisibility(View.VISIBLE);
                 vh.getTextView(R.id.text_stats).setText("已确认收货");
@@ -106,7 +98,6 @@ public class TakeAdapter extends AutoRVAdapter {
             case 5://订单取消
             case 8://订单已完成
                 vh.getTextView(R.id.text_skills).setVisibility(View.GONE);
-                vh.getTextView(R.id.text_confirm).setVisibility(View.GONE);
                 vh.getLinearLayout(R.id.rl_tab1).setVisibility(View.GONE);
                 vh.getTextView(R.id.text_Urge).setVisibility(View.GONE);
                 break;
@@ -117,8 +108,6 @@ public class TakeAdapter extends AutoRVAdapter {
         } else if (orderBean.getOrderStatus() == 8) {
             vh.getTextView(R.id.text_stats).setText("订单已完成");
         }
-
-
         vh.getTextView(R.id.text_cancel).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,20 +115,15 @@ public class TakeAdapter extends AutoRVAdapter {
 
             }
         });
-
-
         vh.getTextView(R.id.text_buy).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 allFragment.showTip(orderBean);
             }
         });
-
-
     }
 
     public void setData(List<OrderBean> beanList) {
         this.list = beanList;
-
     }
 }

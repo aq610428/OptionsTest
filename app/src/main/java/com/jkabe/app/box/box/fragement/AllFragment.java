@@ -98,6 +98,7 @@ public class AllFragment extends BaseFragment implements OnLoadMoreListener, OnR
     }
 
 
+
     @Override
     public void onRefresh() {
         isRefresh = false;

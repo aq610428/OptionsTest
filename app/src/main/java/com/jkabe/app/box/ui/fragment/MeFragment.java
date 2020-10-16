@@ -15,10 +15,12 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.jkabe.app.box.adapter.MeAdapter;
 import com.jkabe.app.box.base.BaseApplication;
 import com.jkabe.app.box.base.BaseFragment;
@@ -52,10 +54,13 @@ import com.jkabe.app.box.weight.MarqueeTextView;
 import com.jkabe.app.box.weight.PreferenceUtils;
 import com.jkabe.box.R;
 import com.lihang.ShadowLayout;
+
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 import crossoverone.statuslib.StatusUtil;
 
 /**
@@ -65,7 +70,7 @@ import crossoverone.statuslib.StatusUtil;
  */
 public class MeFragment extends BaseFragment implements View.OnClickListener, NetWorkListener {
     private View rootView;
-    private TextView text_name, text_edit, text_invitation, text_means, text_key, text_team;
+    private TextView text_name, text_edit, text_invitation, text_means, text_key, text_team, text_key1;
     private UserInfo info;
     private ImageView icon_head;
     private RecyclerView recyclerView;
@@ -105,6 +110,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
     }
 
     private void initView() {
+        text_key1= getView(rootView, R.id.text_key1);
         rl_note = getView(rootView, R.id.rl_note);
         marqueeTextView = getView(rootView, R.id.mENoticeView);
         recyclerView = getView(rootView, R.id.recyclerView);
@@ -121,6 +127,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
         text_team.setOnClickListener(this);
         text_means.setOnClickListener(this);
         text_key.setOnClickListener(this);
+        text_key1.setOnClickListener(this);
         GridLayoutManager manager = new GridLayoutManager(getContext(), 4);
         recyclerView.setLayoutManager(manager);
         array = SaveUtils.getArray();
@@ -158,8 +165,20 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
                     case "添加地址":
                         startActivity(new Intent(getContext(), AddressActivity.class));
                         break;
-                    case "订单管理":
-                        startActivity(new Intent(getContext(), OrderPayActivity.class));
+                    case "我的资产":
+                        startActivity(new Intent(getContext(), AssetsFragmnt.class));
+                        break;
+                    case "邀请好友":
+                        startActivity(new Intent(getContext(), InvitationActivity.class));
+                        break;
+                    case "我的团队":
+                        Intent intent1 = new Intent(getContext(), PreviewActivity.class);
+                        intent1.putExtra("name", "我的团队");
+                        intent1.putExtra("url", "http://kb.jkabe.com/box/myteam?friendcode=" + SaveUtils.getSaveInfo().getRmcode() + "&memberid=" + SaveUtils.getSaveInfo().getId() + "&apptype=" + Constants.TYPE);
+                        startActivity(intent1);
+                        break;
+                    case "激活挖矿":
+                        startActivity(new Intent(getContext(), ActivationActivity.class));
                         break;
                 }
             }
@@ -179,25 +198,32 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
         Intent intent = null;
         switch (v.getId()) {
             case R.id.text_key:
-                startActivity(new Intent(getContext(), ActivationActivity.class));
+                intent = new Intent(getContext(), OrderPayActivity.class);
+                intent.putExtra("position", "3");
+                startActivity(intent);
                 break;
             case R.id.text_means:
-                MainActivity activity = (MainActivity) getActivity();
-                if (activity != null) {
-                    activity.setCurrentTab(2);
-                }
+                intent = new Intent(getContext(), OrderPayActivity.class);
+                intent.putExtra("position", "0");
+                startActivity(intent);
                 break;
             case R.id.text_edit:
                 startActivity(new Intent(getContext(), UserActivity.class));
                 break;
             case R.id.text_team:
-                intent = new Intent(getContext(), PreviewActivity.class);
-                intent.putExtra("name", "我的团队");
-                intent.putExtra("url", "http://kb.jkabe.com/box/myteam?friendcode=" + SaveUtils.getSaveInfo().getRmcode() + "&memberid=" + SaveUtils.getSaveInfo().getId() + "&apptype=" + Constants.TYPE);
+                intent = new Intent(getContext(), OrderPayActivity.class);
+                intent.putExtra("position", "2");
                 startActivity(intent);
                 break;
             case R.id.text_invitation:
-                startActivity(new Intent(getContext(), InvitationActivity.class));
+                intent = new Intent(getContext(), OrderPayActivity.class);
+                intent.putExtra("position", "1");
+                startActivity(intent);
+                break;
+            case R.id.text_key1:
+                intent = new Intent(getContext(), OrderPayActivity.class);
+                intent.putExtra("position", "4");
+                startActivity(intent);
                 break;
         }
     }
@@ -338,15 +364,15 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
 
     /********公告******/
     private void updateView(Massage massage) {
-        if (massage != null ) {
+        if (massage != null) {
             rl_note.setVisibility(View.VISIBLE);
-            items.add(massage.getTitle()+":"+massage.getRemark());
-            marqueeTextView.setText(massage.getTitle()+":"+massage.getRemark());
+            items.add(massage.getTitle() + ":" + massage.getRemark());
+            marqueeTextView.setText(massage.getTitle() + ":" + massage.getRemark());
             marqueeTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent=new Intent(getContext(),MsgActivity.class);
-                    intent.putExtra("index",2);
+                    Intent intent = new Intent(getContext(), MsgActivity.class);
+                    intent.putExtra("index", 2);
                     startActivity(intent);
                 }
             });
