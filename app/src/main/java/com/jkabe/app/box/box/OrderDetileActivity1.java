@@ -21,9 +21,7 @@ import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.box.R;
-
 import org.json.JSONObject;
-
 import java.util.List;
 import java.util.Map;
 
@@ -37,7 +35,7 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
     public OrderVo orderBean;
     private RecyclerView recyclerView;
     private OrderListAdapter3 orderListAdapter;
-    private TextView text_order, text_pay, text_logistics, text_baill, text_next, text_message, text_paytime;
+    private TextView text_order, text_pay, text_logistics, text_baill, text_next, text_message, text_paytime,text_delete;
     private TextView text_stats;
     private String orderId;
 
@@ -49,6 +47,7 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
 
     @Override
     protected void initView() {
+        text_delete= getView(R.id.text_delete);
         text_paytime = getView(R.id.text_paytime);
         text_stats = getView(R.id.text_stats);
         text_postage = getView(R.id.text_postage);
@@ -65,6 +64,7 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
         title_text_tv = getView(R.id.title_text_tv);
         title_left_btn = getView(R.id.title_left_btn);
         title_left_btn.setOnClickListener(this);
+        text_delete.setOnClickListener(this);
         title_text_tv.setText("订单详情");
     }
 
@@ -102,6 +102,18 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
         okHttpModel.get(Api.PAY_REMOVE_GOODS, params, Api.PAY_REMOVE_GOODS_ID, this);
     }
 
+    /******删除订单*****/
+    public void delete() {
+        showProgressDialog(this, false);
+        String sign = "id=" + orderId + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        Map<String, String> params = okHttpModel.getParams();
+        params.put("id", orderId);
+        params.put("partnerid", Constants.PARTNERID);
+        params.put("apptype", Constants.TYPE);
+        params.put("sign", Md5Util.encode(sign));
+        okHttpModel.get(Api.PAY_REMOVE_DELETE, params, Api.PAY_REMOVE_DELETE_ID, this);
+    }
+
 
     @Override
     public void onSucceed(JSONObject object, int id, CommonalityModel commonality) {
@@ -114,6 +126,7 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
                             updateView();
                         }
                         break;
+                    case Api.PAY_REMOVE_DELETE_ID:
                     case Api.PAY_REMOVE_GOODS_ID:
                         ToastUtil.showToast(commonality.getErrorDesc());
                         finish();
@@ -150,12 +163,15 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
                     break;
                 case 4://已确认收货
                     text_stats.setText("已收货");
+                    text_delete.setVisibility(View.VISIBLE);
                     break;
                 case 5://订单取消
                     text_stats.setText("已取消");
+                    text_delete.setVisibility(View.VISIBLE);
                     break;
                 case 8://订单已完成
                     text_stats.setText("已完成");
+                    text_delete.setVisibility(View.VISIBLE);
                     break;
             }
 
@@ -212,6 +228,9 @@ public class OrderDetileActivity1 extends BaseActivity implements NetWorkListene
         switch (v.getId()) {
             case R.id.title_left_btn:
                 finish();
+                break;
+            case R.id.text_delete:
+                delete();
                 break;
         }
     }

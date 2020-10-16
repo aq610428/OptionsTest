@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jkabe.app.box.bean.OrderBean;
 import com.jkabe.app.box.box.OrderDetileActivity;
+import com.jkabe.app.box.box.OrderDetileActivity1;
 import com.jkabe.app.box.box.fragement.CompletedFragment;
 import com.jkabe.app.box.box.fragement.CompletedFragment1;
 import com.jkabe.app.box.util.Utility;
@@ -50,7 +51,7 @@ public class TakeAdapter3 extends AutoRVAdapter {
             adapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Intent intent = new Intent(allFragment.getContext(), OrderDetileActivity.class);
+                    Intent intent = new Intent(allFragment.getContext(), OrderDetileActivity1.class);
                     intent.putExtra("id", orderBean.getId());
                     allFragment.getContext().startActivity(intent);
                 }

@@ -46,13 +46,9 @@ public class OrderListAdapter3 extends AutoRVAdapter {
                     DialogUtils.showConfirm(activity1, "是否确定收货？",bean.getId());
                 }
             });
-        }else if (bean.getOrderStatus()==4){
+        }else if (bean.getOrderStatus()==4||bean.getOrderStatus()==8){
             vh.getTextView(R.id.text_confirm).setText("已收货");
-            vh.getTextView(R.id.text_confirm).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                }
-            });
+            vh.getTextView(R.id.text_confirm).setVisibility(View.GONE);
         }
 
         vh.getTextView(R.id.text_buy).setOnClickListener(new View.OnClickListener() {

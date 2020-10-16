@@ -44,7 +44,7 @@
                     android:layout_alignParentRight="true"
                     android:gravity="center"
                     android:text="未支付"
-                    android:textColor="@color/black01"
+                    android:textColor="@color/colorAccent"
                     android:textSize="@dimen/ctv_sizen_14" />
 
             </RelativeLayout>
@@ -112,7 +112,7 @@
                     android:background="@drawable/btn_shape"
                     android:gravity="center"
                     android:text="立即支付"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorWhite"
                     android:textSize="@dimen/ctv_sizen_13" />
 
             </LinearLayout>
