@@ -103,7 +103,6 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
         query();
     }
 
-    private int REQUEST_QUERY_PRODUCT = 1001;
     private void initView() {
         text_key1= getView(rootView, R.id.text_key1);
         rl_note = getView(rootView, R.id.rl_note);
