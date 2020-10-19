@@ -160,8 +160,6 @@ public class MainActivity extends BaseActivity1 implements NetWorkListener {
 
 
 
-
-
     /**
      * 退出应用
      */

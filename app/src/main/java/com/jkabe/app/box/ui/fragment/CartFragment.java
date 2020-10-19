@@ -184,6 +184,7 @@ public class CartFragment extends BaseFragment implements NetWorkListener, View.
                             if (isRefresh && page > 1) {
                                 ToastUtil.showToast("无更多商品");
                             } else {
+                                beanList.clear();
                                 mNoDataView1.setVisibility(View.VISIBLE);
                                 swipeToLoadLayout.setVisibility(View.GONE);
                                 update();
@@ -200,7 +201,6 @@ public class CartFragment extends BaseFragment implements NetWorkListener, View.
                         text_balance.setVisibility(View.VISIBLE);
                         text_edit.setText("编辑");
                         cancelAll();
-                        update();
                         query();
                         break;
                     case Api.PAY_ORDER_NUW_ID:
