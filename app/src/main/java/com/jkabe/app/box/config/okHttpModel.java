@@ -49,18 +49,6 @@ public class okHttpModel {
 
 
 
-    /****
-     * 添加公用参数
-     *
-     * @param
-     * @return
-     */
-    public static Map<String, String> getParams1() {
-        Map<String, String> paramsMap = getMap();
-
-        return paramsMap;
-    }
-
     /**
      * okHttp网络请求
      */

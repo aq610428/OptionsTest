@@ -75,9 +75,6 @@ public class FileManager {
                     .getAbsolutePath() + "/" + PATH + File.separator);
         } else {
             return null;
-            // return
-            // XinYuanAttribute.getAppContext().getFilesDir()+File.separator+
-            // PATH;
         }
     }
 
@@ -99,53 +96,7 @@ public class FileManager {
         }
     }
 
-    public static void saveInputStream(String newFileName, InputStream inStream)
-            throws Exception {
-        byte[] buffer = new byte[1024 * 10];
-        int readsize = 0;
 
-        File file = new File(newFileName);
-        if (file.exists()) {
-            file.delete();
-        }
-        FileOutputStream fileOutputStream = new FileOutputStream(file);
-        while ((readsize = inStream.read(buffer)) > 0) {
-            fileOutputStream.write(buffer, 0, readsize);
-        }
-        fileOutputStream.flush();
-        fileOutputStream.close();
-    }
-
-    public static void deleteFile(String filepath) {
-        if (!isBlank(filepath)) {
-            File file = new File(filepath);
-            if (file != null && file.exists() && file.isFile()) {
-                file.delete();
-            }
-        }
-    }
-
-
-    public static boolean isExist(String filepath) {
-        if (!isBlank(filepath)) {
-            File file = new File(filepath);
-            if (file != null && file.exists() && file.isFile()) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static boolean isExist(String filepath, long len) {
-        if (!isBlank(filepath)) {
-            File file = new File(filepath);
-            if (file != null && file.exists() && file.isFile()) {
-                System.out.println("size :" + file.length() + "  len:" + len);
-                return (len == 0) || ((len != 0) && file.length() == len);
-            }
-        }
-        return false;
-    }
 
     /**
      * 递归删除文件和文件夹
@@ -215,7 +166,7 @@ public class FileManager {
             os.close();
             return file;
         } catch (Exception e) {
-            LogUtils.e("====screenshot:error====", e.getMessage());
+            LogUtils.e("screenshot:error=", e.getMessage());
         }
         return null;
     }

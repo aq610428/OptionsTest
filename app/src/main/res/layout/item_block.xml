@@ -10,11 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="10dp"
-        app:hl_cornerRadius="3dp"
+        android:layout_marginBottom="5dp"
+        app:hl_cornerRadius="5dp"
         app:hl_shadowBackColor="#fff"
-        app:hl_shadowColor="#2A696969"
-        app:hl_shadowLimit="4dp">
+        app:hl_shadowColor="#08000000"
+        app:hl_shadowLimit="5dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
