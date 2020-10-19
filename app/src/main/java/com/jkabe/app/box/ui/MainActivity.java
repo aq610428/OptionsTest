@@ -2,6 +2,7 @@ package com.jkabe.app.box.ui;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -47,12 +48,11 @@ import cn.jpush.android.api.JPushInterface;
  *
  */
 public class MainActivity extends BaseActivity1 implements NetWorkListener {
-    //    private Class fragments[] = {CarFragment.class, CarLeftFragment.class, RecordFragment.class, MineFragment.class};
-    private Class fragments[] = {CarFragment.class, LeftFragment.class, OreFragment.class,  CartFragment.class,MeFragment.class};
-    private int drawables[] = {R.drawable.book_drawable, R.drawable.shelf_drawable, R.drawable.chosen_drawable,R.drawable.chosen_cart, R.drawable.me_drawable};
-    private String textviewArray[] = {"我的车", "车生活", "矿池","购物车", "我的"};
+    public Class fragments[] = {CarFragment.class, LeftFragment.class, OreFragment.class,  CartFragment.class,MeFragment.class};
+    public int drawables[] = {R.drawable.book_drawable, R.drawable.shelf_drawable, R.drawable.chosen_drawable,R.drawable.chosen_cart, R.drawable.me_drawable};
+    public String textviewArray[] = {"我的车", "车生活", "矿池","购物车", "我的"};
     public FragmentTabHost mTabHost;
-    private Verison verison;
+    public Verison verison;
 
     @Override
     protected void initCreate(Bundle savedInstanceState) {
@@ -138,11 +138,30 @@ public class MainActivity extends BaseActivity1 implements NetWorkListener {
     }
 
 
+
+    private long firstTime = 0;
+
     @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        OnEventExit();
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            long secondTime = System.currentTimeMillis();
+            if (secondTime - firstTime > 2000) {
+                ToastUtil.showToast("再按一次后退键退出程序");
+                firstTime = secondTime;
+                return true;
+            } else {
+                OnEventExit();
+            }
+            return true;
+        } else {
+            return super.onKeyDown(keyCode, event);
+        }
     }
+
+
+
+
+
     /**
      * 退出应用
      */

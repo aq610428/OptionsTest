@@ -46,10 +46,6 @@ import static android.content.Context.INPUT_METHOD_SERVICE;
  */
 public final class SystemTools {
 
-
-//    <p><img src=\"http://img.jkabe.com/ueditor/image/20201012/1602469358609072298.jpg\" title=\"1602469358609072298.jpg\" alt=\"保迪斯煎锅.jpg\"/></p>
-
-
     /*****设置图片宽度自适应****/
     public static String getNewData(String data) {
         String[] name = data.split("\"");
@@ -62,7 +58,6 @@ public final class SystemTools {
 
     public static String getNewDataView(String data, Activity activity) {
         Document document = Jsoup.parse(data);
-
         Elements pElements = document.select("p:has(img)");
         for (Element pElement : pElements) {
             pElement.attr("style", "text-align:center");
