@@ -13,8 +13,7 @@
             android:id="@+id/iv_logo"
             android:layout_width="96dp"
             android:layout_height="96dp"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/icon_test" />
+            android:scaleType="centerCrop" />
 
         <LinearLayout
             android:layout_width="match_parent"

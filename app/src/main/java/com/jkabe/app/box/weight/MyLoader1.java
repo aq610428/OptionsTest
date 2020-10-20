@@ -16,7 +16,7 @@ public class MyLoader1 extends ImageLoader {
     @Override
     public void displayImage(Context context, Object path, ImageView imageView) {
         if (Utility.isEmpty(path)){
-            imageView.setImageResource(R.mipmap.pexels_photo);
+            imageView.setImageResource(R.mipmap.mp_chat_goods_card_default_img);
         }else{
             GlideUtils.setImageUrl(path.toString(),imageView);
         }

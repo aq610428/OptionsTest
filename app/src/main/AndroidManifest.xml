@@ -416,13 +416,10 @@
             android:exported="false"
             android:process=":pushcore" />
 
-
         <activity
             android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
             android:launchMode="singleTop"/>
-
-
 
     </application>
 
