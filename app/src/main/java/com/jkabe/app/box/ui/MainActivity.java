@@ -22,6 +22,7 @@ import com.jkabe.app.box.ui.fragment.CartFragment;
 import com.jkabe.app.box.ui.fragment.LeftFragment;
 import com.jkabe.app.box.ui.fragment.MeFragment;
 import com.jkabe.app.box.ui.fragment.OreFragment;
+import com.jkabe.app.box.ui.fragment.OreLostragment;
 import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.JsonParse;
 import com.jkabe.app.box.util.Md5Util;
@@ -48,7 +49,7 @@ import cn.jpush.android.api.JPushInterface;
  *
  */
 public class MainActivity extends BaseActivity1 implements NetWorkListener {
-    public Class fragments[] = {CarFragment.class, LeftFragment.class, OreFragment.class,  CartFragment.class,MeFragment.class};
+    public Class fragments[] = {CarFragment.class, LeftFragment.class, OreLostragment.class,  CartFragment.class,MeFragment.class};
     public int drawables[] = {R.drawable.book_drawable, R.drawable.shelf_drawable, R.drawable.chosen_drawable,R.drawable.chosen_cart, R.drawable.me_drawable};
     public String textviewArray[] = {"我的车", "车生活", "矿池","购物车", "我的"};
     public FragmentTabHost mTabHost;
