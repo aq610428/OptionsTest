@@ -3,12 +3,10 @@ package com.jkabe.app.box.adapter;
 import android.content.Context;
 
 import com.jkabe.app.box.bean.OreInfo;
-import com.jkabe.app.box.glide.GlideUtils;
 import com.jkabe.app.box.util.BigDecimalUtils;
 import com.jkabe.app.box.util.TypefaceUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.box.R;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +56,8 @@ public class CarAdapter1 extends AutoRVAdapter {
         BigDecimal div=BigDecimalUtils.div(scale,new BigDecimal(inventory.getQuotation().getOpen()),2);
         double str=BigDecimalUtils.mul(div,new BigDecimal(100)).doubleValue();
         TypefaceUtil.setTextType(mContext, "DINOT-Bold.ttf", vh.getTextView(R.id.text_price));
+        TypefaceUtil.setTextType(mContext, "DINOT-Bold.ttf", vh.getTextView(R.id.text_name));
+        TypefaceUtil.setTextType(mContext, "DINOT-Bold.ttf", vh.getTextView(R.id.text_Increase));
 
         if (scale.doubleValue()>0) {
             vh.getTextView(R.id.text_Increase).setBackgroundResource(R.drawable.shape_login_red);
