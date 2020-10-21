@@ -27,8 +27,8 @@ public class TypefaceUtil {
         mTypeface = getTypefaceFromTTF(ttfPath);
     }
 
-    public static void setTextType(Activity activity, String name,TextView textView) {
-        Typeface typeface = Typeface.createFromAsset(activity.getAssets(), name);
+    public static void setTextType(Context mContext, String name,TextView textView) {
+        Typeface typeface = Typeface.createFromAsset(mContext.getAssets(), name);
         textView.setTypeface(typeface);
     }
 

@@ -13,7 +13,7 @@
         android:layout_marginRight="15dp"
         android:background="@drawable/base_press"
         android:orientation="vertical"
-        android:padding="15dp">
+        android:padding="10dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -52,7 +52,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginTop="10dp"
             android:gravity="center|left"
-            android:text="已审核"
+            android:text="已审核已审核已审核已审核已审核已审核已审核已审核已审核已审核已审核已审核已审核已审核已审核已审核已审核已审核已审核已审核已审核已审核已审核已审核"
             android:textColor="#717171"
             android:textSize="@dimen/ctv_sizen_14" />
     </LinearLayout>
