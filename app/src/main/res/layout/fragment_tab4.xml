@@ -39,6 +39,7 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
+                        android:id="@+id/ll_tab1"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginRight="8dp"
@@ -48,6 +49,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/text_account"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -58,6 +60,7 @@
 
 
                         <TextView
+                            android:id="@+id/text_usdt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="3.5dp"
@@ -71,6 +74,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/ll_tab2"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="8dp"
@@ -80,6 +84,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/text_account_box"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
@@ -90,6 +95,7 @@
 
 
                         <TextView
+                            android:id="@+id/text_money_box"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="3.5dp"
