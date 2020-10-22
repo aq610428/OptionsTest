@@ -50,6 +50,7 @@ public final class SystemTools {
     public static String getNewData(String data) {
         String[] name = data.split("\"");
         if (name != null && name.length > 0) {
+            LogUtils.e(name[1].replaceAll("\"", ""));
             return name[1].replaceAll("\"", "");
         }
         return "";
