@@ -33,7 +33,7 @@ public class DefiAdapter extends AutoRVAdapter {
 
     @Override
     public void onBindViewHolder(ViewHolder vh, int position) {
-        OreInfo addressBean = list.get(position);
+        OreInfo beans = list.get(position);
 
 
     }

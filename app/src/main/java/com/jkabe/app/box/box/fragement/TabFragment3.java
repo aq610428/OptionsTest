@@ -1,9 +1,11 @@
 package com.jkabe.app.box.box.fragement;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +17,7 @@ import com.jkabe.app.box.adapter.DefiAdapter;
 import com.jkabe.app.box.base.BaseFragment;
 import com.jkabe.app.box.bean.CommonalityModel;
 import com.jkabe.app.box.bean.OreInfo;
+import com.jkabe.app.box.box.DefiActivity;
 import com.jkabe.app.box.config.Api;
 import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
@@ -40,7 +43,7 @@ public class TabFragment3 extends BaseFragment implements OnRefreshListener, Net
     private RecyclerView swipe_target;
     private TextView text_tab1,text_tab2,text_tab3;
     private DefiAdapter defiAdapter;
-    private List<OreInfo> oreInfos = new ArrayList<>();
+    private List<OreInfo> beans = new ArrayList<>();
 
 
     @Nullable
@@ -94,8 +97,8 @@ public class TabFragment3 extends BaseFragment implements OnRefreshListener, Net
             if (Constants.SUCESSCODE.equals(commonality.getStatusCode())) {
                 switch (id) {
                     case Api.GET_COINS_LIST_ID:
-                        oreInfos = JsonParse.getBespokemoniesJson1(object);
-                        if (oreInfos != null && oreInfos.size() > 0) {
+                        beans = JsonParse.getBespokemoniesJson1(object);
+                        if (beans != null && beans.size() > 0) {
                             setAdapter();
                         }
                         break;
@@ -110,8 +113,15 @@ public class TabFragment3 extends BaseFragment implements OnRefreshListener, Net
     private void setAdapter() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         swipe_target.setLayoutManager(layoutManager);
-        defiAdapter = new DefiAdapter(getContext(), oreInfos);
+        defiAdapter = new DefiAdapter(getContext(), beans);
         swipe_target.setAdapter(defiAdapter);
+
+        defiAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                startActivity(new Intent(getContext(), DefiActivity.class));
+            }
+        });
     }
 
 

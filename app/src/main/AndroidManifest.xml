@@ -97,6 +97,10 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name="com.jkabe.app.box.box.DefiActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name="com.jkabe.app.box.box.OrderDetileActivity1"
             android:screenOrientation="portrait" />
 

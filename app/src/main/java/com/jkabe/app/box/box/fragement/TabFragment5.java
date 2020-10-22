@@ -23,7 +23,7 @@ public class TabFragment5 extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (rootView == null) {
-            rootView = inflater.inflate(R.layout.fragment_tab1, container, false);
+            rootView = inflater.inflate(R.layout.fragment_tab5, container, false);
             initView();
             lazyLoad();
         }
