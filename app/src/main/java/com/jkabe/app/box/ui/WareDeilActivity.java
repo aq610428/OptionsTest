@@ -33,6 +33,7 @@ import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.app.box.util.SystemTools;
 import com.jkabe.app.box.util.ToastUtil;
+import com.jkabe.app.box.util.TypefaceUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.MyLoader1;
 import com.jkabe.box.R;
@@ -114,6 +115,8 @@ public class WareDeilActivity extends BaseActivity1 implements OnBannerListener,
 
     @Override
     protected void initData() {
+        TypefaceUtil.setTextType(this, "DINOT-Bold.ttf", text_bat);
+        TypefaceUtil.setTextType(this, "DINOT-Bold.ttf", text_name);
         goodBean = (GoodBean) getIntent().getSerializableExtra("goodBean");
          goodId = getIntent().getStringExtra("goodId");
         if (goodBean != null) {

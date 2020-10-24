@@ -3,6 +3,7 @@ package com.jkabe.app.box.adapter;
 import android.content.Context;
 import com.jkabe.app.box.bean.GoodBean;
 import com.jkabe.app.box.glide.GlideUtils;
+import com.jkabe.app.box.util.TypefaceUtil;
 import com.jkabe.box.R;
 import java.util.List;
 
@@ -14,10 +15,12 @@ import java.util.List;
  */
 public class WareAdapter extends AutoRVAdapter {
     List<GoodBean> list;
+    private Context context;
 
     public WareAdapter(Context context, List<GoodBean> list) {
         super(context, list);
         this.list = list;
+        this.context=context;
     }
 
     @Override
@@ -34,6 +37,9 @@ public class WareAdapter extends AutoRVAdapter {
         vh.getTextView(R.id.text_name).setText(bean.getTitle());
         vh.getTextView(R.id.text_date).setText(bean.getCategoryAname()+"、"+bean.getCategoryBname()+"、"+bean.getCategoryCname());
         vh.getTextView(R.id.text_price).setText(bean.getSellPrice()+"");
+
+        TypefaceUtil.setTextType(context, "DINOT-Bold.ttf", vh.getTextView(R.id.text_name));
+        TypefaceUtil.setTextType(context, "DINOT-Bold.ttf", vh.getTextView(R.id.text_price));
 
     }
 

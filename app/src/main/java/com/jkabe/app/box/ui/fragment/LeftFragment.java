@@ -108,7 +108,7 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
         recyclerView1.setLayoutManager(gridLayoutManager);
 
 
-        StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         rv_list.setLayoutManager(manager);
 
         recyclerView1.setNestedScrollingEnabled(false);
@@ -116,6 +116,7 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
         query();
         queryList();
         queryGoodList();
+        goodList();
     }
 
     @Override
@@ -173,6 +174,23 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
     }
 
 
+    /******商品列表*****/
+    public void goodList() {
+        showProgressDialog(getActivity(), false);
+        String sign ="categoryA="+Constants.CATEGORYA+ "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        Map<String, String> params = okHttpModel.getParams();
+        params.put("limit", limit + "");
+        params.put("page", page + "");
+        params.put("categoryA",Constants.CATEGORYA);
+        params.put("partnerid", Constants.PARTNERID);
+        params.put("apptype", Constants.TYPE);
+        params.put("sign", Md5Util.encode(sign));
+        okHttpModel.get(Api.GOODDATA, params, Api.MallGood_PAY_ID, this);
+    }
+
+
+
+
     @Override
     public void onSucceed(JSONObject object, int id, CommonalityModel commonality) {
         if (object != null && commonality != null && !Utility.isEmpty(commonality.getStatusCode())) {
@@ -190,6 +208,14 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
                             setAdapter();
                         }
                         break;
+                    case Api.MallGood_PAY_ID:
+                        List<GoodBean> beanList = JsonParse.getGoodBeanJson(object);
+                        if (beanList!=null&&beanList.size()>0){
+                            setAdapter1(beanList);
+                        }
+
+                        break;
+
                     case Api.GOODDATA_ID:
                         List<GoodBean> beans = JsonParse.getGoodBeanJson(object);
                         if (beans != null && beans.size() > 0) {
@@ -214,6 +240,19 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
 
         swipeToLoadLayout.setRefreshing(false);
         swipeToLoadLayout.setLoadingMore(false);
+    }
+
+    private void setAdapter1(List<GoodBean> beanList) {
+        wareAdapter2=new WareAdapter2(getContext(),beanList);
+        rv_list.setAdapter(wareAdapter2);
+        wareAdapter2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getContext(), WareDeilActivity.class);
+                intent.putExtra("goodBean", beanList.get(position));
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -303,6 +342,7 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
         isRefresh = false;
         page = 1;
         queryGoodList();
+        goodList();
     }
 
 
