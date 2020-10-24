@@ -8,6 +8,7 @@
     <include layout="@layout/activity_title" />
 
     <LinearLayout
+        android:id="@+id/ll_usdt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
@@ -16,33 +17,72 @@
         android:orientation="vertical"
         android:padding="20dp">
 
+
         <TextView
-            android:id="@+id/text_usd"
+            android:id="@+id/text_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center|left"
-            android:text="可用USDT:100.00"
-            android:textColor="@color/colorWhite"
+            android:text="充值USDT激活"
+            android:textColor="#ffffff"
             android:textSize="17sp" />
 
 
         <TextView
+            android:id="@+id/text_usd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="本次激活需要消耗USDT数量：100.00"
+            android:gravity="center|left"
+            android:text="可用USDT：249.1983"
             android:textColor="#A5B7FF"
             android:textSize="12sp" />
 
 
         <TextView
+            android:id="@+id/text_about"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="欢迎您激活BOX盒子挖矿，感谢您的支持"
+            android:text="本次激活需要消耗USDT数量：150.00 \n欢迎您激活卡贝车宝BOX盒子挖矿。"
             android:textColor="#A5B7FF"
             android:textSize="12sp" />
+
+
     </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_extension"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="@drawable/usdt_bg_shape"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|left"
+            android:text="推广奖励激活"
+            android:textColor="#3F63F4"
+            android:textSize="17sp" />
+
+
+        <TextView
+            android:id="@+id/text_extension"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="可用奖励激活：1 \n本次激活需要直接推荐5位车主上链获得奖励激活机会1次\n欢迎您参与推广卡贝车宝，推广越多奖励越多。"
+            android:textColor="#8BA2FF"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/text_key"

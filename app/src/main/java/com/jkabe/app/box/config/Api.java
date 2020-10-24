@@ -364,5 +364,11 @@ public interface Api {
     String PAY_REMOVE_INFO = Config.getOpenNewApi() + "/member/getDefaultMemberReceiveAddressInfoById";
     int PAY_REMOVE_INFO_ID = 20022;
 
+    //查看物流
+    String PAY_REMOVE_ACTIVE = Config.getOpenNewApi() + "/box/getMemberActiveData";
+    int PAY_REMOVE_ACTIVE_ID = 20023;
+
+    String PAY_REMOVE_CHANCE = Config.getOpenNewApi() + "/box/activeMemberMiningChance";
+    int PAY_REMOVE_CHANCE_ID = 20024;
 
 }

@@ -1,7 +1,9 @@
 package com.jkabe.app.box.ui;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jkabe.app.box.base.BaseActivity;
@@ -31,8 +33,9 @@ import java.util.Map;
  */
 public class ActivationActivity extends BaseActivity implements NetWorkListener {
     private TextView title_text_tv, title_left_btn, text_key;
-    private TextView text_usd;
-    UsdtBean usdtBean;
+    private TextView text_usd, text_name, text_about, text_title, text_extension;
+    private LinearLayout ll_usdt, ll_extension;
+    private int type = 1;
 
 
     @Override
@@ -42,12 +45,22 @@ public class ActivationActivity extends BaseActivity implements NetWorkListener 
 
     @Override
     protected void initView() {
+        text_title = getView(R.id.text_title);
+        text_extension = getView(R.id.text_extension);
+        text_about = getView(R.id.text_about);
+        text_name = getView(R.id.text_name);
+        ll_usdt = getView(R.id.ll_usdt);
+        ll_extension = getView(R.id.ll_extension);
+
         text_usd = getView(R.id.text_usd);
         text_key = getView(R.id.text_key);
         title_text_tv = getView(R.id.title_text_tv);
         title_left_btn = getView(R.id.title_left_btn);
         title_left_btn.setOnClickListener(this);
         text_key.setOnClickListener(this);
+        ll_usdt.setOnClickListener(this);
+        ll_extension.setOnClickListener(this);
+
         title_text_tv.setText("激活挖矿");
         TypefaceUtil tfUtil = new TypefaceUtil(this, "OpenSans-Light.ttf");
         tfUtil.setTypeface(text_usd, false);
@@ -63,7 +76,7 @@ public class ActivationActivity extends BaseActivity implements NetWorkListener 
         params.put("memberid", SaveUtils.getSaveInfo().getId());
         params.put("partnerid", Constants.PARTNERID);
         params.put("sign", Md5Util.encode(sign));
-        okHttpModel.get(Api.MINING_BAL_BOX, params, Api.MINING_BAL_BOX_ID, this);
+        okHttpModel.get(Api.PAY_REMOVE_ACTIVE, params, Api.PAY_REMOVE_ACTIVE_ID, this);
     }
 
 
@@ -77,6 +90,19 @@ public class ActivationActivity extends BaseActivity implements NetWorkListener 
         params.put("partnerid", Constants.PARTNERID);
         params.put("sign", Md5Util.encode(sign));
         okHttpModel.get(Api.GET_ACTIVE_BOX, params, Api.GET_ACTIVE_BOX_ID, this);
+    }
+
+
+    /*****赠送激活*****/
+    public void activation1() {
+        String sign = "memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        showProgressDialog(this, false);
+        Map<String, String> params = okHttpModel.getParams();
+        params.put("apptype", Constants.TYPE);
+        params.put("memberid", SaveUtils.getSaveInfo().getId());
+        params.put("partnerid", Constants.PARTNERID);
+        params.put("sign", Md5Util.encode(sign));
+        okHttpModel.get(Api.PAY_REMOVE_CHANCE, params, Api.PAY_REMOVE_CHANCE_ID, this);
     }
 
 
@@ -100,8 +126,40 @@ public class ActivationActivity extends BaseActivity implements NetWorkListener 
             case R.id.title_left_btn:
                 finish();
                 break;
+            case R.id.ll_extension:
+                ll_usdt.setBackgroundResource(R.drawable.usdt_bg_shape);
+                ll_extension.setBackground(getResources().getDrawable(R.mipmap.icon_bg_bc));
+
+                text_name.setTextColor(Color.parseColor("#3F63F4"));
+                text_usd.setTextColor(Color.parseColor("#8BA2FF"));
+                text_about.setTextColor(Color.parseColor("#8BA2FF"));
+
+                text_title.setTextColor(Color.parseColor("#ffffff"));
+                text_extension.setTextColor(Color.parseColor("#A5B7FF"));
+                if (useableActiveNum == 0) {
+                    text_key.setVisibility(View.GONE);
+                }
+                type = 2;
+                break;
+            case R.id.ll_usdt:
+                type = 1;
+                text_key.setVisibility(View.VISIBLE);
+                text_name.setTextColor(Color.parseColor("#ffffff"));
+                text_usd.setTextColor(Color.parseColor("#A5B7FF"));
+                text_about.setTextColor(Color.parseColor("#A5B7FF"));
+
+                text_title.setTextColor(Color.parseColor("#3F63F4"));
+                text_extension.setTextColor(Color.parseColor("#8BA2FF"));
+
+                ll_usdt.setBackground(getResources().getDrawable(R.mipmap.icon_bg_bc));
+                ll_extension.setBackgroundResource(R.drawable.usdt_bg_shape);
+                break;
             case R.id.text_key:
-                activation();
+                if (type == 1) {
+                    activation();
+                } else {
+                    activation1();
+                }
                 break;
         }
     }
@@ -116,15 +174,13 @@ public class ActivationActivity extends BaseActivity implements NetWorkListener 
         if (object != null && commonality != null && !Utility.isEmpty(commonality.getStatusCode())) {
             if (Constants.SUCESSCODE.equals(commonality.getStatusCode())) {
                 switch (id) {
+                    case Api.PAY_REMOVE_CHANCE_ID:
                     case Api.GET_ACTIVE_BOX_ID:
                         ToastUtil.showToast(commonality.getErrorDesc());
                         queryUser();
                         break;
-                    case Api.MINING_BAL_BOX_ID:
-                        usdtBean = JsonParse.getJSONObjectUsdtBean(object);
-                        if (usdtBean != null) {
-                            updateView();
-                        }
+                    case Api.PAY_REMOVE_ACTIVE_ID:
+                        updateView(object);
                         break;
                     case Api.GET_MEID_USER_ID:
                         UserInfo info = JsonParse.getUserInfo(object);
@@ -141,10 +197,19 @@ public class ActivationActivity extends BaseActivity implements NetWorkListener 
         stopProgressDialog();
     }
 
-    private void updateView() {
-        if (usdtBean.getUsdt() != null) {
-            text_usd.setText("可用USDT:" + usdtBean.getUsdt().getUserable() + "");
+    double useableActiveNum, miningAmount;
+
+    private void updateView(JSONObject jsonObject) {
+        JSONObject jsonObject1 = jsonObject.optJSONObject("result");
+        String useableBalance = jsonObject1.optString("useableBalance");
+        useableActiveNum = jsonObject1.optDouble("useableActiveNum");
+        miningAmount = jsonObject1.optDouble("miningAmount");
+        text_usd.setText("可用USDT:" + useableBalance + "");
+        text_about.setText("本次激活需要消耗USDT数量："+miningAmount+" \n欢迎您激活卡贝车宝BOX盒子挖矿。");
+        if (useableActiveNum == 0 && type == 2) {
+            text_key.setVisibility(View.GONE);
         }
+
     }
 
     @Override

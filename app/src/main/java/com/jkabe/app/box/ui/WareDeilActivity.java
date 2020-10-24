@@ -1,6 +1,5 @@
 package com.jkabe.app.box.ui;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,11 +9,9 @@ import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
-
 import com.jkabe.app.box.adapter.GoodAdapter;
 import com.jkabe.app.box.banner.Banner;
 import com.jkabe.app.box.banner.BannerConfig;
@@ -37,9 +34,7 @@ import com.jkabe.app.box.util.TypefaceUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.MyLoader1;
 import com.jkabe.box.R;
-
 import org.json.JSONObject;
-
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
@@ -100,13 +95,14 @@ public class WareDeilActivity extends BaseActivity1 implements OnBannerListener,
         mWebView.getSettings().setBuiltInZoomControls(false);
         mWebView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         mWebView.getSettings().setDefaultFontSize(18);
-        mWebView.getSettings().setDomStorageEnabled(true);
-        mWebView.getSettings().setAppCacheMaxSize(1024 * 1024 * 8);//设置缓冲大小，我设的是8M
-        String appCacheDir = this.getApplicationContext().getDir("cache", Context.MODE_PRIVATE).getPath();
-        mWebView.getSettings().setAppCachePath(appCacheDir);
-        mWebView.getSettings().setAllowFileAccess(true);
-        mWebView.getSettings().setAppCacheEnabled(true);
         mWebView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        mWebView.getSettings().setDomStorageEnabled(true);
+        mWebView.getSettings().setDatabaseEnabled(true);
+        String cacheDirPath = getFilesDir().getAbsolutePath()+"cache_ware";
+        mWebView.getSettings().setDatabasePath(cacheDirPath);
+        mWebView.getSettings().setAppCachePath(cacheDirPath);
+        mWebView.getSettings().setAppCacheEnabled(true);
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         text_cart_share.setOnClickListener(this);
