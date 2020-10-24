@@ -20,6 +20,7 @@ import com.jkabe.app.box.ui.ActivationActivity;
 import com.jkabe.app.box.ui.BindActivity;
 import com.jkabe.app.box.ui.BrandCarActivity;
 import com.jkabe.app.box.ui.LoginActivity;
+import com.jkabe.app.box.ui.MainActivity;
 import com.jkabe.box.R;
 import com.jkabe.app.box.ui.LicenseActivity;
 
@@ -213,12 +214,12 @@ public class DialogUtils {
 
 
 
-    public static void showBind(int type, Context context) {
-        Dialog dialog = new Dialog(context);
-        View view = LayoutInflater.from(context).inflate(R.layout.dialog_layout_ming, null);
+    public static void showBind(int type, Activity activity) {
+        Dialog dialog = new Dialog(activity);
+        View view = LayoutInflater.from(activity).inflate(R.layout.dialog_layout_ming, null);
         TextView text_name = view.findViewById(R.id.text_name);
         if (type == 1) {
-            text_name.setText("您尚未绑定车辆，快去绑定吧~");
+            text_name.setText("您尚未购买卡贝车宝矿机，快去购买吧");
         } else {
             text_name.setText("您尚未激活box,快去激活吧~");
         }
@@ -234,9 +235,14 @@ public class DialogUtils {
             @Override
             public void onClick(View v) {
                 if (type == 1) {
-                    context.startActivity(new Intent(context, BindActivity.class));
+                     if (activity!=null){
+                         MainActivity activity1= (MainActivity) activity;
+                         if (activity1!=null){
+                             activity1.setCurrentTab(1);
+                         }
+                     }
                 } else {
-                    context.startActivity(new Intent(context, ActivationActivity.class));
+                    activity.startActivity(new Intent(activity, ActivationActivity.class));
                 }
                 dialog.dismiss();
             }

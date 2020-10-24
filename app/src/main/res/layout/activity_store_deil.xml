@@ -21,7 +21,7 @@
                 android:layout_height="284dp">
 
 
-                <com.jkabe.app.box.banner.Banner
+                <com.jkabe.app.box.banner.Banner1
                     android:id="@+id/banner"
                     android:layout_width="match_parent"
                     android:layout_height="284dp"

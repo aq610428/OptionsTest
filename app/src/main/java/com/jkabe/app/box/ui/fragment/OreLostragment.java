@@ -17,6 +17,9 @@ import com.jkabe.app.box.box.fragement.TabFragment2;
 import com.jkabe.app.box.box.fragement.TabFragment3;
 import com.jkabe.app.box.box.fragement.TabFragment4;
 import com.jkabe.app.box.box.fragement.TabFragment5;
+import com.jkabe.app.box.util.SaveUtils;
+import com.jkabe.app.box.util.Utility;
+import com.jkabe.app.box.weight.DialogUtils;
 import com.jkabe.box.R;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,9 +54,20 @@ public class OreLostragment extends BaseFragment implements  ViewPager.OnPageCha
         super.onResume();
         StatusUtil.setUseStatusBarColor(getActivity(), Color.parseColor("#FFFFFF"));
         StatusUtil.setSystemStatus(getActivity(), false, true);
+        updateView();
     }
 
 
+
+    private void updateView() {
+        if (SaveUtils.getCar() == null || Utility.isEmpty(SaveUtils.getCar().getId())) {
+            DialogUtils.showBind(1, getActivity());
+        } else {
+            if (!"2".equals(SaveUtils.getSaveInfo().getIsMining() + "")) {
+                DialogUtils.showBind(2, getActivity());
+            }
+        }
+    }
 
     private void initView() {
         mViewPager = getView(rootView,R.id.viewPager);
@@ -69,8 +83,8 @@ public class OreLostragment extends BaseFragment implements  ViewPager.OnPageCha
         text_tab5.setOnClickListener(new MyOnClickListener(4));
         mFragmentList.add(new TabFragment1());
         mFragmentList.add(new TabFragment2());
-        mFragmentList.add(new TabFragment3());
         mFragmentList.add(new TabFragment4());
+        mFragmentList.add(new TabFragment3());
         mFragmentList.add(new TabFragment5());
         mFragmentAdapter = new FragmentAdapter(getChildFragmentManager(), mFragmentList);
         mViewPager.setAdapter(mFragmentAdapter);

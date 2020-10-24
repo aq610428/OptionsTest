@@ -20,8 +20,8 @@
 
             <ImageView
                 android:id="@+id/iv_logo"
-                android:layout_width="match_parent"
-                android:layout_height="240dp"
+                android:layout_width="149dp"
+                android:layout_height="149dp"
                 android:scaleType="centerCrop" />
 
             <TextView

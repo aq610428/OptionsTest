@@ -70,7 +70,7 @@
                         android:background="@color/white"
                         android:gravity="center"
                         android:paddingLeft="5dp"
-                        android:text="热门矿机"
+                        android:text="车宝矿机"
                         android:textColor="@color/black33"
                         android:textSize="17sp"
                         android:textStyle="bold" />

@@ -108,7 +108,7 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
         recyclerView1.setLayoutManager(gridLayoutManager);
 
 
-        StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
+        StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         rv_list.setLayoutManager(manager);
 
         recyclerView1.setNestedScrollingEnabled(false);
@@ -244,6 +244,7 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
 
     private void setAdapter1(List<GoodBean> beanList) {
         wareAdapter2=new WareAdapter2(getContext(),beanList);
+        rv_list.setHasFixedSize(true);
         rv_list.setAdapter(wareAdapter2);
         wareAdapter2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -342,7 +343,6 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
         isRefresh = false;
         page = 1;
         queryGoodList();
-        goodList();
     }
 
 
