@@ -88,9 +88,6 @@ public class WareDeilActivity extends BaseActivity1 implements OnBannerListener,
         ll_redue.setOnClickListener(this);
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.getSettings().setBlockNetworkImage(false);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mWebView.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
-        }
         mWebView.getSettings().setSupportZoom(false);
         mWebView.getSettings().setBuiltInZoomControls(false);
         mWebView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);

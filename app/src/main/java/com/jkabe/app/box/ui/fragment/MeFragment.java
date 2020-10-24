@@ -15,10 +15,12 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.jkabe.app.box.adapter.MeAdapter;
 import com.jkabe.app.box.base.BaseApplication;
 import com.jkabe.app.box.base.BaseFragment;
@@ -51,10 +53,13 @@ import com.jkabe.app.box.weight.MarqueeTextView;
 import com.jkabe.app.box.weight.PreferenceUtils;
 import com.jkabe.box.R;
 import com.lihang.ShadowLayout;
+
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 import crossoverone.statuslib.StatusUtil;
 
 /**
@@ -104,7 +109,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
     }
 
     private void initView() {
-        text_key1= getView(rootView, R.id.text_key1);
+        text_key1 = getView(rootView, R.id.text_key1);
         rl_note = getView(rootView, R.id.rl_note);
         marqueeTextView = getView(rootView, R.id.mENoticeView);
         recyclerView = getView(rootView, R.id.recyclerView);
@@ -170,6 +175,12 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
                         intent1.putExtra("name", "我的团队");
                         intent1.putExtra("url", "http://kb.jkabe.com/box/myteam?friendcode=" + SaveUtils.getSaveInfo().getRmcode() + "&memberid=" + SaveUtils.getSaveInfo().getId() + "&apptype=" + Constants.TYPE);
                         startActivity(intent1);
+                        break;
+                    case "赠送挖矿":
+
+                        break;
+                    case "消费额度":
+
                         break;
                     case "激活挖矿":
                         startActivity(new Intent(getContext(), ActivationActivity.class));

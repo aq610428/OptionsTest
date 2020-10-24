@@ -34,7 +34,7 @@ public class TabFragment5 extends BaseFragment {
 
     private void initView() {
         noDataView = rootView.findViewById(R.id.noDataView);
-        noDataView.textView.setText("暂未开放");
+        noDataView.textView.setText("功能开发中,敬请期待...");
     }
 
     @Override

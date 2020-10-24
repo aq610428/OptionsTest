@@ -67,6 +67,9 @@ public class SaveUtils {
         blocks.add(new Block("邀请好友", R.mipmap.icon_tab2_me));
         blocks.add(new Block("我的团队", R.mipmap.icon_tab3_me));
         blocks.add(new Block("激活挖矿", R.mipmap.icon_tab4_me));
+        blocks.add(new Block("赠送挖矿", R.mipmap.icon_tab4_me));
+        blocks.add(new Block("消费额度", R.mipmap.icon_tab4_me));
+
         blocks.add(new Block("添加地址", R.mipmap.icon_address_me));
         blocks.add(new Block("交易密码", R.mipmap.icon_pass_usd1));
         blocks.add(new Block("联系我们", R.mipmap.icon_contoct));
