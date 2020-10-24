@@ -77,7 +77,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="可用奖励激活：1 \n本次激活需要直接推荐5位车主上链获得奖励激活机会1次\n欢迎您参与推广卡贝车宝，推广越多奖励越多。"
+            android:lineSpacingMultiplier="1.2"
+            android:text="可用奖励激活：0 "
+            android:textColor="#8BA2FF"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:lineSpacingMultiplier="1.2"
+            android:text="本次激活通过直接推荐5位车主上链获得的奖励激活机会。\n欢迎您参与推广卡贝车宝，推广越多奖励越多。"
             android:textColor="#8BA2FF"
             android:textSize="12sp" />
 
@@ -89,7 +99,7 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="3dp"
         android:layout_marginRight="15dp"
         android:background="@color/colorAccent"
         android:gravity="center"

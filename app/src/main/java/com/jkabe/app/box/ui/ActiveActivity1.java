@@ -41,7 +41,7 @@ public class ActiveActivity1 extends BaseActivity implements NetWorkListener {
     @Override
     protected void initCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_ctive);
-        BaseApplication.activityTaskManager.putActivity("AboutActivity", this);
+        BaseApplication.activityTaskManager.putActivity("ActiveActivity1", this);
     }
 
     @Override

@@ -138,12 +138,19 @@ public class ActivationActivity extends BaseActivity implements NetWorkListener 
                 text_extension.setTextColor(Color.parseColor("#A5B7FF"));
                 if (useableActiveNum == 0) {
                     text_key.setVisibility(View.GONE);
+                } else {
+                    text_key.setVisibility(View.VISIBLE);
                 }
                 type = 2;
                 break;
             case R.id.ll_usdt:
                 type = 1;
-                text_key.setVisibility(View.VISIBLE);
+                if (useableBalance == 0) {
+                    text_key.setVisibility(View.GONE);
+                } else {
+                    text_key.setVisibility(View.VISIBLE);
+                }
+
                 text_name.setTextColor(Color.parseColor("#ffffff"));
                 text_usd.setTextColor(Color.parseColor("#A5B7FF"));
                 text_about.setTextColor(Color.parseColor("#A5B7FF"));
@@ -197,16 +204,20 @@ public class ActivationActivity extends BaseActivity implements NetWorkListener 
         stopProgressDialog();
     }
 
-    double useableActiveNum, miningAmount;
+    double useableActiveNum, miningAmount, useableBalance;
 
     private void updateView(JSONObject jsonObject) {
         JSONObject jsonObject1 = jsonObject.optJSONObject("result");
-        String useableBalance = jsonObject1.optString("useableBalance");
+        useableBalance = jsonObject1.optDouble("useableBalance");
         useableActiveNum = jsonObject1.optDouble("useableActiveNum");
         miningAmount = jsonObject1.optDouble("miningAmount");
         text_usd.setText("可用USDT:" + useableBalance + "");
-        text_about.setText("本次激活需要消耗USDT数量："+miningAmount+" \n欢迎您激活卡贝车宝BOX盒子挖矿。");
+        text_about.setText("本次激活需要消耗USDT数量：" + miningAmount + " \n欢迎您激活卡贝车宝BOX盒子挖矿。");
+        text_extension.setText("可用奖励激活：" + useableActiveNum);
         if (useableActiveNum == 0 && type == 2) {
+            text_key.setVisibility(View.GONE);
+        }
+        if (useableBalance == 0) {
             text_key.setVisibility(View.GONE);
         }
 

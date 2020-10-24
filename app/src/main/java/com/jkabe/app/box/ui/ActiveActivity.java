@@ -3,10 +3,8 @@ package com.jkabe.app.box.ui;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.jkabe.app.box.adapter.ActiiveAdapter;
 import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.base.BaseApplication;
@@ -40,7 +38,7 @@ public class ActiveActivity extends BaseActivity implements NetWorkListener {
     @Override
     protected void initCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_ctive1);
-        BaseApplication.activityTaskManager.putActivity("AboutActivity", this);
+        BaseApplication.activityTaskManager.putActivity("ActiveActivity", this);
     }
 
     @Override
