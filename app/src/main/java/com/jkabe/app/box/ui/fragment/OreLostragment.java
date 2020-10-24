@@ -17,13 +17,9 @@ import com.jkabe.app.box.box.fragement.TabFragment2;
 import com.jkabe.app.box.box.fragement.TabFragment3;
 import com.jkabe.app.box.box.fragement.TabFragment4;
 import com.jkabe.app.box.box.fragement.TabFragment5;
-import com.jkabe.app.box.util.SaveUtils;
-import com.jkabe.app.box.util.Utility;
-import com.jkabe.app.box.weight.DialogUtils;
 import com.jkabe.box.R;
 import java.util.ArrayList;
 import java.util.List;
-import crossoverone.statuslib.StatusUtil;
 
 /**
  * @author: zt
@@ -49,25 +45,7 @@ public class OreLostragment extends BaseFragment implements  ViewPager.OnPageCha
         return rootView;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        StatusUtil.setUseStatusBarColor(getActivity(), Color.parseColor("#FFFFFF"));
-        StatusUtil.setSystemStatus(getActivity(), false, true);
-        updateView();
-    }
 
-
-
-    private void updateView() {
-        if (SaveUtils.getCar() == null || Utility.isEmpty(SaveUtils.getCar().getId())) {
-            DialogUtils.showBind(1, getActivity());
-        } else {
-            if (!"2".equals(SaveUtils.getSaveInfo().getIsMining() + "")) {
-                DialogUtils.showBind(2, getActivity());
-            }
-        }
-    }
 
     private void initView() {
         mViewPager = getView(rootView,R.id.viewPager);

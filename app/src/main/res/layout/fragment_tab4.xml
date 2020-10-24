@@ -85,7 +85,7 @@
                     android:layout_margin="10dp"
                     app:hl_cornerRadius="3dp"
                     app:hl_shadowBackColor="#fff"
-                    app:hl_shadowColor="#2A696969"
+                    app:hl_shadowColor="#08000000"
                     app:hl_shadowLimit="4dp">
 
 
@@ -161,8 +161,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:text="231.00"
-                                android:textColor="#7D7D7D"
-                                android:textSize="13sp" />
+                                android:textColor="@color/black01"
+                                android:textSize="14sp" />
 
                             <TextView
                                 android:id="@+id/text_congeal_usd"
@@ -171,8 +171,8 @@
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:text="103.00"
-                                android:textColor="#7D7D7D"
-                                android:textSize="13sp" />
+                                android:textColor="@color/black01"
+                                android:textSize="14sp" />
 
                             <TextView
                                 android:id="@+id/text_usd_usd"
@@ -180,8 +180,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:gravity="center|right"
-                                android:textColor="#7D7D7D"
-                                android:textSize="13sp" />
+                                android:textColor="@color/black01"
+                                android:textSize="14sp" />
                         </LinearLayout>
                     </LinearLayout>
                 </com.lihang.ShadowLayout>
@@ -195,7 +195,7 @@
                     android:layout_marginRight="11dp"
                     app:hl_cornerRadius="3dp"
                     app:hl_shadowBackColor="#fff"
-                    app:hl_shadowColor="#2A696969"
+                    app:hl_shadowColor="#08000000"
                     app:hl_shadowLimit="4dp">
 
 
@@ -271,8 +271,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:text="231.00"
-                                android:textColor="#7D7D7D"
-                                android:textSize="13sp" />
+                                android:textColor="@color/black01"
+                                android:textSize="14sp" />
 
                             <TextView
                                 android:id="@+id/text_congeal_bc"
@@ -281,8 +281,8 @@
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:text="103.00"
-                                android:textColor="#7D7D7D"
-                                android:textSize="13sp" />
+                                android:textColor="@color/black01"
+                                android:textSize="14sp" />
 
                             <TextView
                                 android:id="@+id/text_usd_bc"
@@ -290,8 +290,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:gravity="center|right"
-                                android:textColor="#7D7D7D"
-                                android:textSize="13sp" />
+                                android:textColor="@color/black01"
+                                android:textSize="14sp" />
                         </LinearLayout>
                     </LinearLayout>
 

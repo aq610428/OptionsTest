@@ -1,6 +1,7 @@
 package com.jkabe.app.box.box.fragement;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +32,8 @@ import com.jkabe.box.R;
 import org.json.JSONObject;
 
 import java.util.Map;
+
+import crossoverone.statuslib.StatusUtil;
 
 /**
  * @author: zt
@@ -72,6 +75,27 @@ public class TabFragment2 extends BaseFragment implements NetWorkListener, View.
         TypefaceUtil.setTextType(getContext(), "DINOT-Bold.ttf", text_travel);
         TypefaceUtil.setTextType(getContext(), "DINOT-Bold.ttf", text_cny);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        StatusUtil.setUseStatusBarColor(getActivity(), Color.parseColor("#FFFFFF"));
+        StatusUtil.setSystemStatus(getActivity(), false, true);
+        updateView();
+    }
+
+
+
+    private void updateView() {
+        if (SaveUtils.getCar() == null || Utility.isEmpty(SaveUtils.getCar().getId())) {
+            DialogUtils.showBind(1, getActivity());
+        } else {
+            if (!"2".equals(SaveUtils.getSaveInfo().getIsMining() + "")) {
+                DialogUtils.showBind(2, getActivity());
+            }
+        }
+    }
+
 
     @Override
     protected void lazyLoad() {
@@ -131,9 +155,6 @@ public class TabFragment2 extends BaseFragment implements NetWorkListener, View.
         }
 
     }
-
-
-
 
 
     @Override

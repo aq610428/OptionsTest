@@ -7,10 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.jkabe.app.box.adapter.DefiAdapter;
@@ -26,8 +28,11 @@ import com.jkabe.app.box.util.JsonParse;
 import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.TypefaceUtil;
 import com.jkabe.app.box.util.Utility;
+import com.jkabe.app.box.weight.NoDataView;
 import com.jkabe.box.R;
+
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -41,9 +46,10 @@ public class TabFragment3 extends BaseFragment implements OnRefreshListener, Net
     private View rootView;
     private SwipeToLoadLayout swipeToLoadLayout;
     private RecyclerView swipe_target;
-    private TextView text_tab1,text_tab2,text_tab3;
+    private TextView text_tab1, text_tab2, text_tab3;
     private DefiAdapter defiAdapter;
     private List<OreInfo> beans = new ArrayList<>();
+    private NoDataView noDataView;
 
 
     @Nullable
@@ -58,16 +64,18 @@ public class TabFragment3 extends BaseFragment implements OnRefreshListener, Net
     }
 
     private void initView() {
+        noDataView = rootView.findViewById(R.id.noDataView);
         swipe_target = rootView.findViewById(R.id.mListView);
         swipeToLoadLayout = rootView.findViewById(R.id.swipeToLoadLayout);
         swipeToLoadLayout.setOnRefreshListener(this);
         swipe_target.setNestedScrollingEnabled(true);
-        text_tab1=getView(rootView,R.id.text_tab1);
-        text_tab2=getView(rootView,R.id.text_tab2);
-        text_tab3=getView(rootView,R.id.text_tab3);
+        text_tab1 = getView(rootView, R.id.text_tab1);
+        text_tab2 = getView(rootView, R.id.text_tab2);
+        text_tab3 = getView(rootView, R.id.text_tab3);
         TypefaceUtil.setTextType(getActivity(), "DINOT-Bold.ttf", text_tab1);
         TypefaceUtil.setTextType(getActivity(), "DINOT-Bold.ttf", text_tab2);
         TypefaceUtil.setTextType(getActivity(), "DINOT-Bold.ttf", text_tab3);
+        noDataView.textView.setText("暂未开放");
     }
 
     @Override

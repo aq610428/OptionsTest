@@ -21,6 +21,7 @@ import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.JsonParse;
 import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.SaveUtils;
+import com.jkabe.app.box.util.TypefaceUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.DialogUtils;
 import com.jkabe.box.R;
@@ -67,6 +68,16 @@ public class TabFragment4 extends BaseFragment implements NetWorkListener, OnRef
         swipeToLoadLayout.setOnRefreshListener(this);
         text_num_usd.setOnClickListener(this);
         text_num_bc.setOnClickListener(this);
+
+        TypefaceUtil.setTextType(getContext(), "DINOT-Bold.ttf", text_congeal_bc);
+        TypefaceUtil.setTextType(getContext(), "DINOT-Bold.ttf", text_user_bc);
+        TypefaceUtil.setTextType(getContext(), "DINOT-Bold.ttf", text_user_usd);
+        TypefaceUtil.setTextType(getContext(), "DINOT-Bold.ttf", text_congeal_usd);
+        TypefaceUtil.setTextType(getContext(), "DINOT-Bold.ttf", text_cny);
+
+
+        TypefaceUtil.setTextType(getContext(), "DINOT-Bold.ttf", text_usd_usd);
+        TypefaceUtil.setTextType(getContext(), "DINOT-Bold.ttf", text_usd_bc);
     }
 
 
