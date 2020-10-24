@@ -7,20 +7,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.jkabe.app.box.adapter.CarLiftAdapter;
 import com.jkabe.app.box.adapter.WareAdapter;
-import com.jkabe.app.box.banner.Banner;
-import com.jkabe.app.box.banner.Banner1;
+import com.jkabe.app.box.adapter.WareAdapter2;
 import com.jkabe.app.box.banner.Banner2;
 import com.jkabe.app.box.banner.BannerConfig;
 import com.jkabe.app.box.banner.Transformer;
@@ -30,9 +27,7 @@ import com.jkabe.app.box.bean.BannerVo;
 import com.jkabe.app.box.bean.CarInfo;
 import com.jkabe.app.box.bean.CommonalityModel;
 import com.jkabe.app.box.bean.GoodBean;
-import com.jkabe.app.box.bean.ImageInfo;
 import com.jkabe.app.box.bean.LeftVo;
-import com.jkabe.app.box.bean.StoreInfo;
 import com.jkabe.app.box.config.Api;
 import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
@@ -41,7 +36,6 @@ import com.jkabe.app.box.ui.LocationActivity;
 import com.jkabe.app.box.ui.PreviewActivity;
 import com.jkabe.app.box.ui.StoreDeilActivity;
 import com.jkabe.app.box.ui.StoreListActivity;
-import com.jkabe.app.box.ui.StoreListAdapter;
 import com.jkabe.app.box.ui.WareDeilActivity;
 import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.JsonParse;
@@ -52,13 +46,10 @@ import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.DialogUtils;
 import com.jkabe.app.box.weight.MyLoader;
 import com.jkabe.box.R;
-
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import crossoverone.statuslib.StatusUtil;
 
 /**
@@ -70,12 +61,13 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
     private View rootView;
     private Banner2 banner;
     private SwipeToLoadLayout swipeToLoadLayout;
-    private RecyclerView recyclerView, recyclerView1;
+    private RecyclerView recyclerView, recyclerView1,rv_list;
     private List<BannerVo> banners = new ArrayList<>();
     private List<LeftVo> voList = new ArrayList<>();
     private List<LeftVo.ItemsBean> items = new ArrayList<>();
     private CarLiftAdapter leftAdapter;
     private WareAdapter wareAdapter;
+    private WareAdapter2 wareAdapter2;
     private List<GoodBean> list = new ArrayList<>();
     private int page = 1;
     private int limit = 10000;
@@ -102,6 +94,7 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
 
 
     private void initView() {
+        rv_list = getView(rootView, R.id.rv_list);
         recyclerView1 = getView(rootView, R.id.recyclerView1);
         swipeToLoadLayout = getView(rootView, R.id.swipeToLoadLayout);
         recyclerView = getView(rootView, R.id.recyclerView);
@@ -113,6 +106,10 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
 
         StaggeredGridLayoutManager gridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         recyclerView1.setLayoutManager(gridLayoutManager);
+
+
+        StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        rv_list.setLayoutManager(manager);
 
         recyclerView1.setNestedScrollingEnabled(false);
 
