@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/ll_extension"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@mipmap/icon_bg_bc"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|left"
+            android:text="推广奖励激活"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/text_userableNum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="可用奖励激活：0 "
+            android:textColor="#A5B7FF"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/text_usedNum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="可用奖励激活：0"
+            android:textColor="#A5B7FF"
+            android:textSize="13sp" />
+
+
+        <TextView
+            android:id="@+id/text_directCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="可用奖励激活：0"
+            android:textColor="#A5B7FF"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="您只需要有效直接推荐5位车主上链即可获得奖励激活机会1次，不限奖励激活次数。"
+            android:textColor="#A5B7FF"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

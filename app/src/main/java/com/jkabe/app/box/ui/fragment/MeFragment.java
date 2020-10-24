@@ -35,6 +35,8 @@ import com.jkabe.app.box.config.okHttpModel;
 import com.jkabe.app.box.glide.GlideUtils;
 import com.jkabe.app.box.ui.AboutActivity;
 import com.jkabe.app.box.ui.ActivationActivity;
+import com.jkabe.app.box.ui.ActiveActivity;
+import com.jkabe.app.box.ui.ActiveActivity1;
 import com.jkabe.app.box.ui.AddressActivity;
 import com.jkabe.app.box.ui.InvitationActivity;
 import com.jkabe.app.box.ui.LoginActivity;
@@ -177,10 +179,10 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
                         startActivity(intent1);
                         break;
                     case "赠送挖矿":
-
+                        startActivity(new Intent(getContext(), ActiveActivity.class));
                         break;
                     case "消费额度":
-
+                        startActivity(new Intent(getContext(), ActiveActivity1.class));
                         break;
                     case "激活挖矿":
                         startActivity(new Intent(getContext(), ActivationActivity.class));

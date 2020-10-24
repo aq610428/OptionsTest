@@ -371,4 +371,14 @@ public interface Api {
     String PAY_REMOVE_CHANCE = Config.getOpenNewApi() + "/box/activeMemberMiningChance";
     int PAY_REMOVE_CHANCE_ID = 20024;
 
+
+    String PAY_REMOVE_DATA = Config.getOpenNewApi() + "/box/getRewardsActiveListData";
+    int PAY_REMOVE_DATA_ID = 20025;
+
+
+    String PAY_REMOVE_MALL = Config.getOpenNewApi() + "/mall/getMemberConsumeData";
+    int PAY_REMOVE_MALL_ID = 20026;
+
+
+
 }

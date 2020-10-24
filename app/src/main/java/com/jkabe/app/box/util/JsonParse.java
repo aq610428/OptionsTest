@@ -1,5 +1,6 @@
 package com.jkabe.app.box.util;
 
+import com.jkabe.app.box.bean.ActiveBean;
 import com.jkabe.app.box.bean.AddressBean;
 import com.jkabe.app.box.bean.AddressInfo;
 import com.jkabe.app.box.bean.AssetsBean;
@@ -540,5 +541,15 @@ public class JsonParse {
         JSONObject jsonObject = object.optJSONObject("result");
         AddressBean info = (AddressBean) JsonUtilComm.jsonToBean(jsonObject.toString(), AddressBean.class);
         return info;
+    }
+
+    public static List<ActiveBean> getactiveBeans(JSONObject object) {
+        List<ActiveBean> infos = new ArrayList<>();
+        JSONArray jsonArray = object.optJSONArray("result");
+        for (int i = 0; i < jsonArray.length(); i++) {
+            ActiveBean info = (ActiveBean) JsonUtilComm.jsonToBean(jsonArray.optJSONObject(i).toString(), ActiveBean.class);
+            infos.add(info);
+        }
+        return infos;
     }
 }
