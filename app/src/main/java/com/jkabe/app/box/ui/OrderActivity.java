@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 import com.jkabe.box.R;
@@ -16,7 +15,6 @@ import com.jkabe.app.box.ui.fragment.CompleteFragment;
 import com.jkabe.app.box.ui.fragment.ConductFragment;
 import com.jkabe.app.box.ui.fragment.ReceivedFragment;
 import com.jkabe.app.box.ui.fragment.RemoveFragment;
-
 import java.util.ArrayList;
 import java.util.List;
 
