@@ -3,31 +3,19 @@ package com.jkabe.app.box.ui;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.jkabe.app.box.adapter.ActiiveAdapter;
-import com.jkabe.app.box.adapter.ActiiveAdapter1;
 import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.base.BaseApplication;
-import com.jkabe.app.box.bean.ActiveBean;
 import com.jkabe.app.box.bean.CommonalityModel;
 import com.jkabe.app.box.config.Api;
 import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
 import com.jkabe.app.box.util.Constants;
-import com.jkabe.app.box.util.JsonParse;
 import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.app.box.util.TypefaceUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.box.R;
-
 import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 /**

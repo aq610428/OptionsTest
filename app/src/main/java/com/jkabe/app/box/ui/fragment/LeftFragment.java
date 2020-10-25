@@ -7,11 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
@@ -40,16 +42,21 @@ import com.jkabe.app.box.ui.WareDeilActivity;
 import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.JsonParse;
 import com.jkabe.app.box.util.Md5Util;
+import com.jkabe.app.box.util.MeasureWidthUtils;
 import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.DialogUtils;
 import com.jkabe.app.box.weight.MyLoader;
+import com.jkabe.app.box.weight.SpaceItemDecoration;
 import com.jkabe.box.R;
+
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 import crossoverone.statuslib.StatusUtil;
 
 /**
@@ -61,7 +68,7 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
     private View rootView;
     private Banner2 banner;
     private SwipeToLoadLayout swipeToLoadLayout;
-    private RecyclerView recyclerView, recyclerView1,rv_list;
+    private RecyclerView recyclerView, recyclerView1, rv_list;
     private List<BannerVo> banners = new ArrayList<>();
     private List<LeftVo> voList = new ArrayList<>();
     private List<LeftVo.ItemsBean> items = new ArrayList<>();
@@ -104,11 +111,13 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 4);
         recyclerView.setLayoutManager(layoutManager);
 
-        StaggeredGridLayoutManager gridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
+        recyclerView1.addItemDecoration(new SpaceItemDecoration(35));
         recyclerView1.setLayoutManager(gridLayoutManager);
 
 
-        StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        GridLayoutManager manager = new GridLayoutManager(getContext(), 2);
+        rv_list.addItemDecoration(new SpaceItemDecoration(35));
         rv_list.setLayoutManager(manager);
 
         recyclerView1.setNestedScrollingEnabled(false);
@@ -177,18 +186,16 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
     /******商品列表*****/
     public void goodList() {
         showProgressDialog(getActivity(), false);
-        String sign ="categoryA="+Constants.CATEGORYA+ "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        String sign = "categoryA=" + Constants.CATEGORYA + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
         Map<String, String> params = okHttpModel.getParams();
         params.put("limit", limit + "");
         params.put("page", page + "");
-        params.put("categoryA",Constants.CATEGORYA);
+        params.put("categoryA", Constants.CATEGORYA);
         params.put("partnerid", Constants.PARTNERID);
         params.put("apptype", Constants.TYPE);
         params.put("sign", Md5Util.encode(sign));
         okHttpModel.get(Api.GOODDATA, params, Api.MallGood_PAY_ID, this);
     }
-
-
 
 
     @Override
@@ -210,7 +217,7 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
                         break;
                     case Api.MallGood_PAY_ID:
                         List<GoodBean> beanList = JsonParse.getGoodBeanJson(object);
-                        if (beanList!=null&&beanList.size()>0){
+                        if (beanList != null && beanList.size() > 0) {
                             setAdapter1(beanList);
                         }
 
@@ -229,12 +236,12 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
                         break;
 
                 }
-            }else{
+            } else {
                 ToastUtil.showToast(commonality.getErrorDesc());
                 stopProgressDialog();
             }
 
-        }else{
+        } else {
             stopProgressDialog();
         }
 
@@ -243,7 +250,7 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
     }
 
     private void setAdapter1(List<GoodBean> beanList) {
-        wareAdapter2=new WareAdapter2(getContext(),beanList);
+        wareAdapter2 = new WareAdapter2(getContext(), beanList);
         rv_list.setHasFixedSize(true);
         rv_list.setAdapter(wareAdapter2);
         wareAdapter2.setOnItemClickListener(new AdapterView.OnItemClickListener() {

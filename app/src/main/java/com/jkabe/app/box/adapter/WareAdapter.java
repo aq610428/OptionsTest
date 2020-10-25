@@ -34,7 +34,9 @@ public class WareAdapter extends AutoRVAdapter {
         if (bean.getGoodsImageList() != null && bean.getGoodsImageList().size() > 0) {
             GlideUtils.CreateImageRound(bean.getGoodsImageList().get(0).getGoodImg(), vh.getImageView(R.id.iv_logo), 5);
         }
-        vh.getTextView(R.id.text_name).setText(bean.getTitle());
+
+
+        vh.getTextView(R.id.text_name).setText(bean.getTitle()+"");
         vh.getTextView(R.id.text_date).setText(bean.getCategoryAname()+"、"+bean.getCategoryBname()+"、"+bean.getCategoryCname());
         vh.getTextView(R.id.text_price).setText(bean.getSellPrice()+"");
 

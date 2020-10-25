@@ -5,27 +5,28 @@ import android.view.View;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.jkabe.app.box.util.MeasureWidthUtils;
+
 /**
  * @author: zt
  * @date: 2020/5/20
  * @name:SpaceItemDecoration
  */
 public class SpaceItemDecoration  extends RecyclerView.ItemDecoration {
-
-    private final int column;
-    private final int space;
-
-    public SpaceItemDecoration(int space, int column) {
+    private int space;
+    public SpaceItemDecoration(int space) {
         this.space = space;
-        this.column = column;
     }
 
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-        // 第一列左边贴边、后边列项依次移动一个space和前一项移动的距离之和
-        int mod = parent.getChildAdapterPosition(view) % column;
-        outRect.left = space * mod;
+        //不是第一个的格子都设一个左边和底部的间距
+        outRect.left = space;
+        outRect.bottom = space;
+        //由于每行都只有3个，所以第一个都是3的倍数，把左边距设为0
+        if (parent.getChildLayoutPosition(view) %2==0) {
+            outRect.left = 0;
+        }
     }
-
 
 }
