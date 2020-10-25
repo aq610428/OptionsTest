@@ -11,23 +11,35 @@
         android:id="@+id/ll_extension"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@mipmap/icon_bg_bc"
+        android:layout_margin="13dp"
+        android:background="@mipmap/icon_bg_usdt"
         android:gravity="center"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|left"
+            android:text="可用消费额度"
+            android:textColor="#A5B7FF"
+            android:textSize="13sp" />
+
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
 
             <TextView
                 android:id="@+id/text_userableNum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="可用消费额度：0 "
-                android:textColor="#A5B7FF"
-                android:textSize="13sp" />
+                android:text="0"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
 
             <TextView
@@ -38,17 +50,23 @@
                 android:background="@drawable/usdt_bg_shape1"
                 android:gravity="center"
                 android:text="去兑换 "
-                android:textColor="@color/black99"
+                android:textColor="@color/white"
                 android:textSize="12sp" />
 
         </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="#ff607def" />
 
 
         <TextView
             android:id="@+id/text_usedNum"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:lineSpacingMultiplier="1.2"
             android:text="1. 消费额度满1680元即可兑换一次150U挖矿机会、
  \n2. 消费额度满7875元即可兑换一次750U挖矿机会
@@ -57,16 +75,16 @@
             android:textSize="13sp" />
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:lineSpacingMultiplier="1.2"
-            android:text="注：可用消费额度为您在卡贝车宝商城购买的除车宝矿机之外的所有商品的订单额度总和，从您有效的下单到商家发货开始计算10天内没有发生退款退货的订单将累计消费额度"
-            android:textColor="#A5B7FF"
-            android:textSize="13sp" />
-
     </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="13dp"
+        android:lineSpacingMultiplier="1.2"
+        android:text="注：可用消费额度为您在卡贝车宝商城购买的除车宝矿机之外的所有商品的订单额度总和，从您有效的下单到商家发货开始计算10天内没有发生退款退货的订单将累计消费额度"
+        android:textColor="@color/black99"
+        android:textSize="12sp" />
 
 
 </LinearLayout>

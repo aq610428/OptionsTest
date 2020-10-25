@@ -88,7 +88,7 @@ public class BigDecimalUtils {
             throw new IllegalArgumentException("The scale must be a positive integer or zero");
         }
         BigDecimal one = new BigDecimal("1");
-        return b.divide(one, 2, BigDecimal.ROUND_HALF_UP);
+        return b.divide(one, scale, BigDecimal.ROUND_HALF_UP);
     }
 
 

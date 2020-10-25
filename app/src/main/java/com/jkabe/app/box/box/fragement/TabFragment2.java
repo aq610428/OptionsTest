@@ -20,6 +20,7 @@ import com.jkabe.app.box.config.Api;
 import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
 import com.jkabe.app.box.ui.ActivationActivity;
+import com.jkabe.app.box.util.BigDecimalUtils;
 import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.DateUtils;
 import com.jkabe.app.box.util.Md5Util;
@@ -31,6 +32,7 @@ import com.jkabe.box.R;
 
 import org.json.JSONObject;
 
+import java.math.BigDecimal;
 import java.util.Map;
 
 import crossoverone.statuslib.StatusUtil;
@@ -85,7 +87,6 @@ public class TabFragment2 extends BaseFragment implements NetWorkListener, View.
     }
 
 
-
     private void updateView() {
         if (SaveUtils.getCar() == null || Utility.isEmpty(SaveUtils.getCar().getId())) {
             DialogUtils.showBind(1, getActivity());
@@ -136,7 +137,9 @@ public class TabFragment2 extends BaseFragment implements NetWorkListener, View.
         if (jsonObject != null) {
             text_travel.setText(jsonObject.optString("yestodayBox") + " BOX");
             text_work.setText(jsonObject.optString("activeCount") + " 个");
-            text_dig.setText(jsonObject.optString("miningBox") + " BOX");
+            double miningBox = jsonObject.optDouble("miningBox");
+
+            text_dig.setText(BigDecimalUtils.round(new BigDecimal(miningBox),4).toPlainString() + " BOX");
             text_cny.setText(jsonObject.optString("totalBox") + "");
             String stat = jsonObject.optString("state");
             String miningDate = jsonObject.optString("miningDate");
@@ -152,7 +155,13 @@ public class TabFragment2 extends BaseFragment implements NetWorkListener, View.
                     }
                 }
             }
+            if ("0".equals(stat)) {
+                text_bind.setText("去激活");
+            } else {
+                text_bind.setText("再次激活");
+            }
         }
+
 
     }
 

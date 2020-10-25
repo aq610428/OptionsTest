@@ -10,6 +10,8 @@ import com.jkabe.app.box.weight.ActivityTaskManager;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheMode;
 import com.lzy.okgo.https.HttpsUtils;
+import com.tencent.bugly.crashreport.CrashReport;
+
 import java.util.concurrent.TimeUnit;
 import cn.jpush.android.api.JPushInterface;
 import okhttp3.OkHttpClient;
@@ -36,6 +38,8 @@ public class BaseApplication extends Application {
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
         builder.detectFileUriExposure();
+
+        CrashReport.initCrashReport(getApplicationContext(), "395e58c320", false);
     }
 
 

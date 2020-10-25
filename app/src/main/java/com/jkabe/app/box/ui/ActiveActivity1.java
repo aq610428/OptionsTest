@@ -20,6 +20,7 @@ import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.JsonParse;
 import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.SaveUtils;
+import com.jkabe.app.box.util.TypefaceUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.box.R;
 
@@ -54,6 +55,7 @@ public class ActiveActivity1 extends BaseActivity implements NetWorkListener {
         title_left_btn.setOnClickListener(this);
         text_exchange.setOnClickListener(this);
         title_text_tv.setText("消费额度");
+        TypefaceUtil.setTextType(this, "DINOT-Bold.ttf", text_userableNum);
     }
 
     @Override
@@ -101,7 +103,6 @@ public class ActiveActivity1 extends BaseActivity implements NetWorkListener {
     }
 
 
-
     @Override
     public void onSucceed(JSONObject object, int id, CommonalityModel commonality) {
         if (object != null && commonality != null && !Utility.isEmpty(commonality.getStatusCode())) {
@@ -123,8 +124,8 @@ public class ActiveActivity1 extends BaseActivity implements NetWorkListener {
         consumeAmount = jsonObject1.optDouble("consumeAmount");
         oneParam = jsonObject1.optDouble("oneParam");
         twoParam = jsonObject1.optDouble("twoParam");
-        text_userableNum.setText("可用消费额度：" + consumeAmount + "元");
-        text_usedNum.setText("1. 消费额度满"+oneParam+"元即可兑换一次150U挖矿机会 \n"+"2. 消费额度满"+twoParam+"元即可兑换一次750U挖矿机会"+"\n"+"3. 挖矿机会暂时不支持转让");
+        text_userableNum.setText("￥" + consumeAmount);
+        text_usedNum.setText("1. 消费额度满" + oneParam + "元即可兑换一次150U挖矿机会 \n" + "2. 消费额度满" + twoParam + "元即可兑换一次750U挖矿机会" + "\n" + "3. 挖矿机会暂时不支持转让");
     }
 
     @Override

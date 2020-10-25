@@ -44,7 +44,7 @@ public class ActiiveAdapter extends AutoRVAdapter {
             if (addressBean.getMiningChance()!=null){
                 vh.getTextView(R.id.text_userableNum).setText("可用推荐激活挖矿数：" + addressBean.getMiningChance().getUserableNum() + "次");
                 vh.getTextView(R.id.text_usedNum).setText("已用推荐激活挖矿数：" + addressBean.getMiningChance().getUsedNum() + "次");
-                vh.getTextView(R.id.text_directCount).setText("直推激活挖矿人数：" + addressBean.getMiningChance().getDirectCoun() + "人");
+                vh.getTextView(R.id.text_directCount).setText("直推激活挖矿人数：" + addressBean.getMiningChance().getDirectCount()+ "人");
             }else{
                 vh.getTextView(R.id.text_userableNum).setText("可用推荐激活挖矿数：0次");
                 vh.getTextView(R.id.text_usedNum).setText("已用推荐激活挖矿数：0次");
