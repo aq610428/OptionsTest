@@ -53,7 +53,7 @@ public class GlideUtils {
     }
 
     /******加载圆角图片******/
-    public static void CreateImageRound(String filePath, ImageView make_photo, int radius) {
+    public static void CreateImageRound(String filePath, ImageView make_photo, float radius) {
         Glide.with(BaseApplication.getContext()).load(filePath).apply(RequestOptionUtils.getCircleTransformRound(radius)).into(make_photo);
     }
 

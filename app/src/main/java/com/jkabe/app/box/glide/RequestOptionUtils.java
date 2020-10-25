@@ -54,7 +54,7 @@ public class RequestOptionUtils {
 
 
     /*******圆角******/
-    public static RequestOptions getCircleTransformRound(int radius) {
+    public static RequestOptions getCircleTransformRound(float radius) {
         RequestOptions options = new RequestOptions()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .skipMemoryCache(false)

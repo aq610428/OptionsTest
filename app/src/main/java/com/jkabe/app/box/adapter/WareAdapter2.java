@@ -34,7 +34,7 @@ public class WareAdapter2 extends AutoRVAdapter {
     public void onBindViewHolder(ViewHolder vh, int position) {
         GoodBean bean = list.get(position);
         if (bean.getGoodsImageList() != null && bean.getGoodsImageList().size() > 0) {
-            GlideUtils.CreateImageRound(bean.getGoodsImageList().get(0).getGoodImg(), vh.getImageView(R.id.iv_logo), 5);
+            GlideUtils.CreateImageRound(bean.getGoodsImageList().get(0).getGoodImg(), vh.getImageView(R.id.iv_logo), 1);
         }
         vh.getTextView(R.id.text_name).setText(bean.getTitle());
         vh.getTextView(R.id.text_date).setText(bean.getCategoryAname()+"、"+bean.getCategoryBname()+"、"+bean.getCategoryCname());
