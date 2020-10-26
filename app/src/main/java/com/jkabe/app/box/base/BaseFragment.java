@@ -54,7 +54,10 @@ public abstract class BaseFragment extends Fragment {
     }
 
     public void showProgressDialog(Activity activity, boolean cancelable) {
-        showProgressDialog(activity, cancelable, "");
+        if (activity!=null){
+            showProgressDialog(activity, cancelable, "");
+        }
+
     }
 
     public void stopProgressDialog() {

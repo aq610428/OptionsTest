@@ -35,9 +35,7 @@ import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.box.R;
-
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
