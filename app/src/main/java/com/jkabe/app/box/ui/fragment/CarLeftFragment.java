@@ -62,7 +62,6 @@ public class CarLeftFragment extends BaseFragment implements View.OnClickListene
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_car_left, container, false);
             initView();
-            lazyLoad();
         }
         return rootView;
     }
@@ -108,10 +107,7 @@ public class CarLeftFragment extends BaseFragment implements View.OnClickListene
                 .start();
     }
 
-    @Override
-    protected void lazyLoad() {
 
-    }
 
     @Override
     public void onClick(View v) {

@@ -26,7 +26,6 @@ import java.util.List;
  */
 
 public abstract class BaseFragment extends Fragment {
-    protected boolean isVisible;
     private BaseProgressDialog mProgressDialog = null;
     public static final int REQUEST_CODE_SCAN = 0x0000;
     public static final String DECODED_CONTENT_KEY = "codedContent";
@@ -37,35 +36,6 @@ public abstract class BaseFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-
-
-    /**
-     * 在这里实现Fragment数据的缓加载.
-     *
-     * @param isVisibleToUser
-     */
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (getUserVisibleHint()) {
-            isVisible = true;
-            onVisible();
-        } else {
-            isVisible = false;
-            onInvisible();
-        }
-    }
-
-
-
-    protected void onVisible() {
-        lazyLoad();
-    }
-
-    protected abstract void lazyLoad();
-
-    protected void onInvisible() {
-    }
 
     public void showProgressDialog(Activity activity, BaseProgressDialog.OnCancelListener cancelListener, boolean cancelable, String msg) {
         if (mProgressDialog != null && mProgressDialog.isShowing()) {

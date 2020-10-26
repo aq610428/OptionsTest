@@ -54,7 +54,6 @@ public class OreFragment extends BaseFragment implements NetWorkListener, OnRefr
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_ore, container, false);
             initView();
-            lazyLoad();
             query();
         }
         return rootView;
@@ -111,10 +110,7 @@ public class OreFragment extends BaseFragment implements NetWorkListener, OnRefr
         }
     }
 
-    @Override
-    protected void lazyLoad() {
 
-    }
 
     @Override
     public void onSucceed(JSONObject object, int id, CommonalityModel commonality) {

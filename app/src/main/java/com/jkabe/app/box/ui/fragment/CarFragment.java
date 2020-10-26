@@ -113,7 +113,6 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
             mMapView = getView(rootView, R.id.map);
             mMapView.onCreate(savedInstanceState);
             initView();
-            lazyLoad();
             request();
         }
         return rootView;
@@ -181,10 +180,7 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
         aMap.setOnMarkerClickListener(this);
     }
 
-    @Override
-    protected void lazyLoad() {
 
-    }
 
     @Override
     public void onClick(View v) {

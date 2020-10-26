@@ -285,8 +285,4 @@ public class PayFragment extends BaseFragment implements OnLoadMoreListener, OnR
     }
 
 
-    @Override
-    protected void lazyLoad() {
-
-    }
 }

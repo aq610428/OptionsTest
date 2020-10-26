@@ -52,7 +52,6 @@ public class ConductFragment extends BaseFragment implements OnRefreshListener, 
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_received, container, false);
             initView();
-            lazyLoad();
         }
         return rootView;
     }
@@ -68,10 +67,6 @@ public class ConductFragment extends BaseFragment implements OnRefreshListener, 
         qury();
     }
 
-    @Override
-    protected void lazyLoad() {
-
-    }
 
     @Override
     public void onLoadMore() {

@@ -168,8 +168,5 @@ public class CompletedFragment1 extends BaseFragment implements OnLoadMoreListen
         swipeToLoadLayout.setLoadingMore(false);
     }
 
-    @Override
-    protected void lazyLoad() {
 
-    }
 }

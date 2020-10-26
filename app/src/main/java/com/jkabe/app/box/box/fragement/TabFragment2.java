@@ -104,7 +104,7 @@ public class TabFragment2 extends BaseFragment implements NetWorkListener, OnRef
     }
 
 
-    @Override
+
     protected void lazyLoad() {
         query();
         queryData();

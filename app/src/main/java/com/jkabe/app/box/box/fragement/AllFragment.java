@@ -310,9 +310,4 @@ public class AllFragment extends BaseFragment implements OnLoadMoreListener, OnR
     }
 
 
-    @Override
-    protected void lazyLoad() {
-
-    }
-
 }

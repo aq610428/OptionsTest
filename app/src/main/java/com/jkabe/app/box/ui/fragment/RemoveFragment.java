@@ -54,7 +54,6 @@ public class RemoveFragment extends BaseFragment implements OnRefreshListener, O
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_received, container, false);
             initView();
-            lazyLoad();
         }
         return rootView;
     }
@@ -70,10 +69,7 @@ public class RemoveFragment extends BaseFragment implements OnRefreshListener, O
         qury();
     }
 
-    @Override
-    protected void lazyLoad() {
 
-    }
 
     @Override
     public void onLoadMore() {

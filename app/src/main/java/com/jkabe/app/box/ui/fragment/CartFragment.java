@@ -74,7 +74,6 @@ public class CartFragment extends BaseFragment implements NetWorkListener, View.
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_cart, container, false);
             initView();
-            lazyLoad();
         }
         return rootView;
     }
@@ -114,10 +113,6 @@ public class CartFragment extends BaseFragment implements NetWorkListener, View.
     }
 
 
-    @Override
-    protected void lazyLoad() {
-
-    }
 
 
     /******商品列表*****/

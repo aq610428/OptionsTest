@@ -192,8 +192,4 @@ public class TakeFragment extends BaseFragment implements OnLoadMoreListener, On
         swipeToLoadLayout.setLoadingMore(false);
     }
 
-    @Override
-    protected void lazyLoad() {
-
-    }
 }

@@ -75,10 +75,10 @@ public class TabFragment3 extends BaseFragment implements OnRefreshListener, Net
         TypefaceUtil.setTextType(getActivity(), "DINOT-Bold.ttf", text_tab1);
         TypefaceUtil.setTextType(getActivity(), "DINOT-Bold.ttf", text_tab2);
         TypefaceUtil.setTextType(getActivity(), "DINOT-Bold.ttf", text_tab3);
-        noDataView.textView.setText("功能开发中,敬请期待...");
+        noDataView.textView.setText("暂未开放");
     }
 
-    @Override
+
     protected void lazyLoad() {
         query();
     }

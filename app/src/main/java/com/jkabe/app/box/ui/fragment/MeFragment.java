@@ -88,7 +88,6 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_me, container, false);
             initView();
-            lazyLoad();
         }
         return rootView;
     }
@@ -195,10 +194,6 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, Ne
     }
 
 
-    @Override
-    protected void lazyLoad() {
-
-    }
 
     @Override
     public void onClick(View v) {

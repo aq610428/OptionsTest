@@ -45,7 +45,6 @@ public class TabFragment1 extends BaseFragment implements NetWorkListener, OnRef
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_tab1, container, false);
             initView();
-            lazyLoad();
         }
         return rootView;
     }
@@ -70,10 +69,7 @@ public class TabFragment1 extends BaseFragment implements NetWorkListener, OnRef
         okHttpModel.get(Api.GET_COINS_LIST, params, Api.GET_COINS_LIST_ID, this);
     }
 
-    @Override
-    protected void lazyLoad() {
 
-    }
 
     @Override
     public void onSucceed(JSONObject object, int id, CommonalityModel commonality) {

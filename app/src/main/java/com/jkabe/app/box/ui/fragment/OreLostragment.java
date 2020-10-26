@@ -44,7 +44,6 @@ public class OreLostragment extends BaseFragment implements ViewPager.OnPageChan
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_orelost, container, false);
             initView();
-            lazyLoad();
         }
         return rootView;
     }
@@ -126,11 +125,6 @@ public class OreLostragment extends BaseFragment implements ViewPager.OnPageChan
     public void onResume() {
         super.onResume();
         StatusBarUtil.setTranslucentStatus(getActivity());
-    }
-
-    @Override
-    protected void lazyLoad() {
-
     }
 
 

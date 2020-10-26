@@ -79,7 +79,6 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_left, container, false);
             initView();
-            lazyLoad();
         }
         return rootView;
     }
@@ -119,12 +118,6 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
         queryList();
         queryGoodList();
         goodList();
-    }
-
-    @Override
-    protected void lazyLoad() {
-
-
     }
 
 

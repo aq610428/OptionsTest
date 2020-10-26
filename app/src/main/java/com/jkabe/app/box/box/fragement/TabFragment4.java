@@ -96,7 +96,7 @@ public class TabFragment4 extends BaseFragment implements NetWorkListener, OnRef
     }
 
 
-    @Override
+
     protected void lazyLoad() {
         load();
         query();
@@ -225,7 +225,7 @@ public class TabFragment4 extends BaseFragment implements NetWorkListener, OnRef
                 if (usdtBean != null && usdtBean.getUsdt() != null) {
                     intent = new Intent(getContext(), DrawActivity.class);
                     intent.putExtra("usdtBean", usdtBean);
-                    intent.putExtra("coinTypeId", usdtBean.getBox().getCoinTypeId());
+                    intent.putExtra("coinTypeId", usdtBean.getUsdt().getCoinTypeId());
                     startActivity(intent);
                 }
                 break;
@@ -270,6 +270,7 @@ public class TabFragment4 extends BaseFragment implements NetWorkListener, OnRef
             public void onClick(View v) {
                 if (usdtBean != null && usdtBean.getUsdt() != null) {
                     coinTypeId = usdtBean.getUsdt().getCoinTypeId();
+                    text_usd.setText("USDT");
                     onRefresh();
                 }
                 dialog.dismiss();
@@ -280,6 +281,7 @@ public class TabFragment4 extends BaseFragment implements NetWorkListener, OnRef
             public void onClick(View v) {
                 if (usdtBean != null && usdtBean.getBox() != null) {
                     coinTypeId = usdtBean.getBox().getCoinTypeId();
+                    text_usd.setText("BOX");
                     onRefresh();
                 }
                 dialog.dismiss();
