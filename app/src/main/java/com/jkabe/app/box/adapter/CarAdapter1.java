@@ -1,6 +1,7 @@
 package com.jkabe.app.box.adapter;
 
 import android.content.Context;
+import android.view.View;
 
 import com.jkabe.app.box.bean.OreInfo;
 import com.jkabe.app.box.util.BigDecimalUtils;
@@ -41,7 +42,12 @@ public class CarAdapter1 extends AutoRVAdapter {
     @Override
     public void onBindViewHolder(ViewHolder vh, int position) {
         OreInfo inventory = inventories.get(position);
-        vh.getTextView(R.id.text_name).setText(inventory.getName() + "");
+        vh.getTextView(R.id.text_name).setText(inventory.getFromcname() + "");
+        if (position==0){
+            vh.getTextView(R.id.text_box).setVisibility(View.VISIBLE);
+        }else{
+            vh.getTextView(R.id.text_box).setVisibility(View.GONE);
+        }
 
         if (!Utility.isEmpty(inventory.getQuotation().getOpen())) {
             BigDecimal price = BigDecimalUtils.subLastBit(Double.parseDouble(inventory.getQuotation().getClose()), 4);

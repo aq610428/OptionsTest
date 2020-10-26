@@ -6,10 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
+
 import com.jkabe.app.box.adapter.FragmentAdapter;
 import com.jkabe.app.box.base.BaseFragment;
 import com.jkabe.app.box.box.fragement.TabFragment1;
@@ -17,7 +19,9 @@ import com.jkabe.app.box.box.fragement.TabFragment2;
 import com.jkabe.app.box.box.fragement.TabFragment3;
 import com.jkabe.app.box.box.fragement.TabFragment4;
 import com.jkabe.app.box.box.fragement.TabFragment5;
+import com.jkabe.app.box.util.StatusBarUtil;
 import com.jkabe.box.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,9 +30,9 @@ import java.util.List;
  * @date: 2020/10/20
  * @name:OreLostragment
  */
-public class OreLostragment extends BaseFragment implements  ViewPager.OnPageChangeListener {
+public class OreLostragment extends BaseFragment implements ViewPager.OnPageChangeListener {
     private View rootView;
-    private TextView text_tab1,text_tab2,text_tab3,text_tab4,text_tab5;
+    private TextView text_tab1, text_tab2, text_tab3, text_tab4, text_tab5,text_name;
     private List<Fragment> mFragmentList = new ArrayList<>();
     private FragmentAdapter mFragmentAdapter;
     private ViewPager mViewPager;
@@ -46,14 +50,14 @@ public class OreLostragment extends BaseFragment implements  ViewPager.OnPageCha
     }
 
 
-
     private void initView() {
-        mViewPager = getView(rootView,R.id.viewPager);
-        text_tab1=getView(rootView,R.id.text_tab1);
-        text_tab2=getView(rootView,R.id.text_tab2);
-        text_tab3=getView(rootView,R.id.text_tab3);
-        text_tab4=getView(rootView,R.id.text_tab4);
-        text_tab5=getView(rootView,R.id.text_tab5);
+        text_name= getView(rootView, R.id.text_name);
+        mViewPager = getView(rootView, R.id.viewPager);
+        text_tab1 = getView(rootView, R.id.text_tab1);
+        text_tab2 = getView(rootView, R.id.text_tab2);
+        text_tab3 = getView(rootView, R.id.text_tab3);
+        text_tab4 = getView(rootView, R.id.text_tab4);
+        text_tab5 = getView(rootView, R.id.text_tab5);
         text_tab1.setOnClickListener(new MyOnClickListener(0));
         text_tab2.setOnClickListener(new MyOnClickListener(1));
         text_tab3.setOnClickListener(new MyOnClickListener(2));
@@ -88,41 +92,41 @@ public class OreLostragment extends BaseFragment implements  ViewPager.OnPageCha
         clealView();
         switch (index) {
             case 0:
-                text_tab1.setTextColor(Color.parseColor("#FFFFFF"));
-                text_tab1.setBackgroundColor(Color.parseColor("#3F63F4"));
+                text_tab1.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                text_name.setText("行情");
                 break;
             case 1:
-                text_tab2.setTextColor(Color.parseColor("#FFFFFF"));
-                text_tab2.setBackgroundColor(Color.parseColor("#3F63F4"));
+                text_name.setText("挖矿");
+                text_tab2.setBackgroundColor(Color.parseColor("#FFFFFF"));
                 break;
             case 2:
-                text_tab3.setTextColor(Color.parseColor("#FFFFFF"));
-                text_tab3.setBackgroundColor(Color.parseColor("#3F63F4"));
+                text_name.setText("资产");
+                text_tab3.setBackgroundColor(Color.parseColor("#FFFFFF"));
                 break;
             case 3:
-                text_tab4.setTextColor(Color.parseColor("#FFFFFF"));
-                text_tab4.setBackgroundColor(Color.parseColor("#3F63F4"));
+                text_name.setText("理财");
+                text_tab4.setBackgroundColor(Color.parseColor("#FFFFFF"));
                 break;
             case 4:
-                text_tab5.setTextColor(Color.parseColor("#FFFFFF"));
-                text_tab5.setBackgroundColor(Color.parseColor("#3F63F4"));
+                text_name.setText("社区");
+                text_tab5.setBackgroundColor(Color.parseColor("#FFFFFF"));
                 break;
         }
     }
 
     public void clealView() {
-        text_tab1.setTextColor(Color.parseColor("#828282"));
-        text_tab2.setTextColor(Color.parseColor("#828282"));
-        text_tab3.setTextColor(Color.parseColor("#828282"));
-        text_tab4.setTextColor(Color.parseColor("#828282"));
-        text_tab5.setTextColor(Color.parseColor("#828282"));
-        text_tab1.setBackgroundColor(Color.parseColor("#FFFFFF"));
-        text_tab2.setBackgroundColor(Color.parseColor("#FFFFFF"));
-        text_tab3.setBackgroundColor(Color.parseColor("#FFFFFF"));
-        text_tab4.setBackgroundColor(Color.parseColor("#FFFFFF"));
-        text_tab5.setBackgroundColor(Color.parseColor("#FFFFFF"));
+        text_tab1.setBackgroundColor(Color.parseColor("#BDCAFB"));
+        text_tab2.setBackgroundColor(Color.parseColor("#BDCAFB"));
+        text_tab3.setBackgroundColor(Color.parseColor("#BDCAFB"));
+        text_tab4.setBackgroundColor(Color.parseColor("#BDCAFB"));
+        text_tab5.setBackgroundColor(Color.parseColor("#BDCAFB"));
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        StatusBarUtil.setTranslucentStatus(getActivity());
+    }
 
     @Override
     protected void lazyLoad() {

@@ -28,6 +28,7 @@ import com.jkabe.app.box.util.DateUtils;
 import com.jkabe.app.box.util.JsonParse;
 import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.SaveUtils;
+import com.jkabe.app.box.util.StatusBarUtil;
 import com.jkabe.app.box.util.TypefaceUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.DialogUtils;
@@ -90,7 +91,7 @@ public class TabFragment2 extends BaseFragment implements NetWorkListener, OnRef
     public void onResume() {
         super.onResume();
         StatusUtil.setUseStatusBarColor(getActivity(), Color.parseColor("#FFFFFF"));
-        StatusUtil.setSystemStatus(getActivity(), false, true);
+        StatusBarUtil.setTranslucentStatus(getActivity());
         updateView();
     }
 
