@@ -16,6 +16,7 @@
             android:layout_height="160dp"
             android:scaleType="centerCrop" />
 
+
         <TextView
             android:id="@+id/text_name"
             android:layout_width="match_parent"

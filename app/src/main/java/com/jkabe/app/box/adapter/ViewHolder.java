@@ -15,7 +15,6 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-
 /**
  * 作者：zt on 2017/2/17.
  */

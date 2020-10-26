@@ -54,7 +54,21 @@ public class RequestOptionUtils {
 
 
     /*******圆角******/
-    public static RequestOptions getCircleTransformRound(float radius) {
+    public static RequestOptions getCircleTransformRound(int radius) {
+        RequestOptions options = new RequestOptions()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .skipMemoryCache(false)
+                .fitCenter()
+                .placeholder(R.mipmap.mp_chat_goods_card_default_img)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .dontAnimate()
+                .transform(new GlideRoundTransform(BaseApplication.getContext(), radius));
+        return options;
+    }
+
+
+    /*******圆角******/
+    public static RequestOptions getCircleTransformRound1(int radius) {
         RequestOptions options = new RequestOptions()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .skipMemoryCache(false)

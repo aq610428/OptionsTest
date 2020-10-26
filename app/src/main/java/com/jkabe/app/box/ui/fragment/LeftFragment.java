@@ -7,13 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
@@ -42,7 +39,6 @@ import com.jkabe.app.box.ui.WareDeilActivity;
 import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.JsonParse;
 import com.jkabe.app.box.util.Md5Util;
-import com.jkabe.app.box.util.MeasureWidthUtils;
 import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.Utility;
@@ -50,13 +46,10 @@ import com.jkabe.app.box.weight.DialogUtils;
 import com.jkabe.app.box.weight.MyLoader;
 import com.jkabe.app.box.weight.SpaceItemDecoration;
 import com.jkabe.box.R;
-
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import crossoverone.statuslib.StatusUtil;
 
 /**
@@ -112,12 +105,12 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
         recyclerView.setLayoutManager(layoutManager);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
-        recyclerView1.addItemDecoration(new SpaceItemDecoration(35));
+        recyclerView1.addItemDecoration(new SpaceItemDecoration(30));
         recyclerView1.setLayoutManager(gridLayoutManager);
 
 
         GridLayoutManager manager = new GridLayoutManager(getContext(), 2);
-        rv_list.addItemDecoration(new SpaceItemDecoration(35));
+        rv_list.addItemDecoration(new SpaceItemDecoration(30));
         rv_list.setLayoutManager(manager);
 
         recyclerView1.setNestedScrollingEnabled(false);

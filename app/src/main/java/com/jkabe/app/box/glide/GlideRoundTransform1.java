@@ -20,6 +20,7 @@ import java.security.MessageDigest;
 
 public class GlideRoundTransform1 extends BitmapTransformation {
 
+
     public static float radius = 0f;
 
     public GlideRoundTransform1(Context context, int dp) {

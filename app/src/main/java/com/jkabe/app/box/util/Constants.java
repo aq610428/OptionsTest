@@ -24,7 +24,7 @@ public class Constants {
     public static final String MOBILE = "mobile";//车油惠\
     public static final String PASSWORD = "password";//车油惠
     public static final String CATEGORYA = "3736cc5daf354098ab3ef3e33e581376";//车油惠
-
+    public  static float scale = 2 / 3;
 
 
     public static List<ImageInfo> getDate() {

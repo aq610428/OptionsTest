@@ -1,13 +1,22 @@
 package com.jkabe.app.box.adapter;
 
 import android.content.Context;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.jkabe.app.box.bean.GoodBean;
+import com.jkabe.app.box.glide.GlideRoundTransform;
 import com.jkabe.app.box.glide.GlideUtils;
+import com.jkabe.app.box.util.MeasureWidthUtils;
 import com.jkabe.app.box.util.TypefaceUtil;
 import com.jkabe.box.R;
 
 import java.util.List;
+
+import static com.jkabe.app.box.util.Constants.scale;
 
 
 /**
@@ -33,8 +42,10 @@ public class WareAdapter2 extends AutoRVAdapter {
     @Override
     public void onBindViewHolder(ViewHolder vh, int position) {
         GoodBean bean = list.get(position);
+        ImageView iv_logo = vh.getImageView(R.id.iv_logo);
         if (bean.getGoodsImageList() != null && bean.getGoodsImageList().size() > 0) {
-            GlideUtils.CreateImageRound(bean.getGoodsImageList().get(0).getGoodImg(), vh.getImageView(R.id.iv_logo), 1);
+            String imgurl = bean.getGoodsImageList().get(0).getGoodImg();
+            GlideUtils.CreateImageRound(imgurl, iv_logo, 5);
         }
         vh.getTextView(R.id.text_name).setText(bean.getTitle());
         vh.getTextView(R.id.text_date).setText(bean.getCategoryAname()+"、"+bean.getCategoryBname()+"、"+bean.getCategoryCname());
