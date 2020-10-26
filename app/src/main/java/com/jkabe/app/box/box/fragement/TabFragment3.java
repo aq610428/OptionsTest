@@ -68,7 +68,7 @@ public class TabFragment3 extends BaseFragment implements OnRefreshListener, Net
         swipe_target = rootView.findViewById(R.id.mListView);
         swipeToLoadLayout = rootView.findViewById(R.id.swipeToLoadLayout);
         swipeToLoadLayout.setOnRefreshListener(this);
-        swipe_target.setNestedScrollingEnabled(true);
+        swipe_target.setNestedScrollingEnabled(false);
         text_tab1 = getView(rootView, R.id.text_tab1);
         text_tab2 = getView(rootView, R.id.text_tab2);
         text_tab3 = getView(rootView, R.id.text_tab3);

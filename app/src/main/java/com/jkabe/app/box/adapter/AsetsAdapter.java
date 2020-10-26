@@ -1,9 +1,11 @@
 package com.jkabe.app.box.adapter;
 
 import android.content.Context;
+
 import com.jkabe.app.box.bean.AssetsBean;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.box.R;
+
 import java.util.List;
 
 /**
@@ -41,7 +43,7 @@ public class AsetsAdapter extends AutoRVAdapter {
             case 4:
                 if ("1".equals(assetsBean.getCoinTypeId())) {
                     vh.getTextView(R.id.text_num).setText("充值USDT");
-                }else{
+                } else {
                     vh.getTextView(R.id.text_num).setText("充值BOX");
                 }
 
@@ -49,19 +51,24 @@ public class AsetsAdapter extends AutoRVAdapter {
             case 5:
                 if ("1".equals(assetsBean.getCoinTypeId())) {
                     vh.getTextView(R.id.text_num).setText("提现USDT");
-                }else{
+                } else {
                     vh.getTextView(R.id.text_num).setText("提现BOX");
                 }
                 break;
             case 6:
                 vh.getTextView(R.id.text_num).setText("提激活挖矿扣除");
                 break;
+            case 7:
+                vh.getTextView(R.id.text_num).setText("商城消费分润");
+                break;
+            case 8:
+                vh.getTextView(R.id.text_num).setText("持币收益");
+                break;
         }
-
-        vh.getTextView(R.id.text_user).setText(assetsBean.getBalance() + "");
+        vh.getTextView(R.id.text_user).setText("数量："+assetsBean.getBalance() + "");
         String time = assetsBean.getStringCreateTime();
         if (!Utility.isEmpty(time)) {
-            vh.getTextView(R.id.text_usd).setText(time.substring(0, 10) + "");
+            vh.getTextView(R.id.text_usd).setText("时间："+time.substring(0, 10) + "");
         }
         switch (assetsBean.getStatus()) {
             case 1:

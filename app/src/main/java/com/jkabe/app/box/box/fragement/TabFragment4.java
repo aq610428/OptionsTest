@@ -1,19 +1,31 @@
 package com.jkabe.app.box.box.fragement;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
+import com.jkabe.app.box.adapter.AsetsAdapter;
 import com.jkabe.app.box.base.BaseFragment;
+import com.jkabe.app.box.bean.AssetsBean;
 import com.jkabe.app.box.bean.CommonalityModel;
 import com.jkabe.app.box.bean.UsdtBean;
-import com.jkabe.app.box.box.AssetsActivity;
+import com.jkabe.app.box.box.DrawActivity;
+import com.jkabe.app.box.box.RechargeActivity;
 import com.jkabe.app.box.config.Api;
 import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
@@ -21,11 +33,13 @@ import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.JsonParse;
 import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.SaveUtils;
-import com.jkabe.app.box.util.TypefaceUtil;
 import com.jkabe.app.box.util.Utility;
-import com.jkabe.app.box.weight.DialogUtils;
 import com.jkabe.box.R;
+
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -33,14 +47,19 @@ import java.util.Map;
  * @date: 2020/10/20
  * @name:TabFragment1
  */
-public class TabFragment4 extends BaseFragment implements NetWorkListener, OnRefreshListener, View.OnClickListener {
+public class TabFragment4 extends BaseFragment implements NetWorkListener, OnRefreshListener, View.OnClickListener, OnLoadMoreListener {
     private View rootView;
-    private TextView text_cny, text_num_usd, text_user_usd, text_congeal_usd, text_usd_usd;
-    private SwipeToLoadLayout swipeToLoadLayout;
     private int limit = 10;
     private int page = 1;
-    private TextView text_num_bc, text_user_bc, text_congeal_bc, text_usd_bc;
+    private boolean isRefresh;
     private UsdtBean usdtBean;
+    private TextView text_usd, text_usdt_charge, text_usdt_carry, text_box_charge, text_box_carry;
+    private TextView text_usdt, text_box;
+    private String coinTypeId = "1";
+    private List<AssetsBean> data = new ArrayList<>();
+    private AsetsAdapter asetsAdapter;
+    private RecyclerView recyclerView;
+    private SwipeToLoadLayout swipeToLoadLayout;
 
 
     @Nullable
@@ -55,39 +74,35 @@ public class TabFragment4 extends BaseFragment implements NetWorkListener, OnRef
     }
 
     private void initView() {
-        text_num_bc = getView(rootView, R.id.text_num_bc);
-        text_user_bc = getView(rootView, R.id.text_user_bc);
-        text_congeal_bc = getView(rootView, R.id.text_congeal_bc);
-        text_usd_bc = getView(rootView, R.id.text_usd_bc);
-        text_num_usd = getView(rootView, R.id.text_num_usd);
-        text_user_usd = getView(rootView, R.id.text_user_usd);
-        text_congeal_usd = getView(rootView, R.id.text_congeal_usd);
-        text_usd_usd = getView(rootView, R.id.text_usd_usd);
         swipeToLoadLayout = getView(rootView, R.id.swipeToLoadLayout);
-        text_cny = getView(rootView, R.id.text_cny);
+        recyclerView = getView(rootView, R.id.recyclerView);
+        text_box = getView(rootView, R.id.text_box);
+        text_usdt = getView(rootView, R.id.text_usdt);
+        text_usdt_charge = getView(rootView, R.id.text_usdt_charge);
+        text_usdt_carry = getView(rootView, R.id.text_usdt_carry);
+        text_box_charge = getView(rootView, R.id.text_box_charge);
+        text_box_carry = getView(rootView, R.id.text_box_carry);
+        text_usd = getView(rootView, R.id.text_usd);
+        text_usd.setOnClickListener(this);
+        text_usdt_charge.setOnClickListener(this);
+        text_usdt_carry.setOnClickListener(this);
+        text_box_charge.setOnClickListener(this);
+        text_box_carry.setOnClickListener(this);
         swipeToLoadLayout.setOnRefreshListener(this);
-        text_num_usd.setOnClickListener(this);
-        text_num_bc.setOnClickListener(this);
-
-        TypefaceUtil.setTextType(getContext(), "DINOT-Bold.ttf", text_congeal_bc);
-        TypefaceUtil.setTextType(getContext(), "DINOT-Bold.ttf", text_user_bc);
-        TypefaceUtil.setTextType(getContext(), "DINOT-Bold.ttf", text_user_usd);
-        TypefaceUtil.setTextType(getContext(), "DINOT-Bold.ttf", text_congeal_usd);
-        TypefaceUtil.setTextType(getContext(), "DINOT-Bold.ttf", text_cny);
-
-
-        TypefaceUtil.setTextType(getContext(), "DINOT-Bold.ttf", text_usd_usd);
-        TypefaceUtil.setTextType(getContext(), "DINOT-Bold.ttf", text_usd_bc);
+        swipeToLoadLayout.setOnLoadMoreListener(this);
+        LinearLayoutManager manager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(manager);
+        recyclerView.setNestedScrollingEnabled(false);
     }
-
 
 
     @Override
     protected void lazyLoad() {
+        load();
         query();
     }
 
-    public void query() {
+    public void load() {
         String sign = "memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
         showProgressDialog(getActivity(), false);
         Map<String, String> params = okHttpModel.getParams();
@@ -101,6 +116,21 @@ public class TabFragment4 extends BaseFragment implements NetWorkListener, OnRef
     }
 
 
+    public void query() {
+        String sign = "coinTypeId=" + coinTypeId + "&memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        showProgressDialog(getActivity(), false);
+        Map<String, String> params = okHttpModel.getParams();
+        params.put("apptype", Constants.TYPE);
+        params.put("coinTypeId", coinTypeId + "");
+        params.put("memberid", SaveUtils.getSaveInfo().getId());
+        params.put("partnerid", Constants.PARTNERID);
+        params.put("limit", limit + "");
+        params.put("page", page + "");
+        params.put("sign", Md5Util.encode(sign));
+        okHttpModel.get(Api.GETRECORD_BOX, params, Api.MINING_BOX_ID, this);
+    }
+
+
     @Override
     public void onSucceed(JSONObject object, int id, CommonalityModel commonality) {
         if (object != null && commonality != null && !Utility.isEmpty(commonality.getStatusCode())) {
@@ -109,11 +139,16 @@ public class TabFragment4 extends BaseFragment implements NetWorkListener, OnRef
                     case Api.GETRECORD_BOX_ID:
                         usdtBean = JsonParse.getJSONObjectUsdtBean(object);
                         if (usdtBean != null) {
-                            setAdapter(usdtBean);
-                        } else {
-                            swipeToLoadLayout.setVisibility(View.GONE);
+                            updateView(usdtBean);
                         }
                         break;
+                    case Api.MINING_BOX_ID:
+                        List<AssetsBean> assetsBeans = JsonParse.getJSONObjectAssetsBean(object);
+                        if (assetsBeans != null && assetsBeans.size() > 0) {
+                            setAdapter(assetsBeans);
+                        }
+                        break;
+
                 }
             }
         }
@@ -122,29 +157,25 @@ public class TabFragment4 extends BaseFragment implements NetWorkListener, OnRef
         swipeToLoadLayout.setLoadingMore(false);
     }
 
-    private void setAdapter(UsdtBean usdtBean) {
-        swipeToLoadLayout.setVisibility(View.VISIBLE);
-        if (usdtBean.getUsdt() != null) {
-            text_num_usd.setText(usdtBean.getUsdt().getCoinTypeName());
-            text_user_usd.setText(usdtBean.getUsdt().getUserable() + "");
-            text_congeal_usd.setText(usdtBean.getUsdt().getFreeze() + "");
-            text_cny.setText(usdtBean.getUsdt().getUserable() + "");
-            if (!Utility.isEmpty(usdtBean.getUsdt().getStringCreateTime())) {
-                String time = usdtBean.getUsdt().getStringCreateTime();
-                text_usd_usd.setText(time.substring(0, 10));
-            }
 
+    private void setAdapter(List<AssetsBean> assetsBeans) {
+        if (!isRefresh) {
+            data.clear();
+            data.addAll(assetsBeans);
+            asetsAdapter = new AsetsAdapter(getContext(), data);
+            recyclerView.setAdapter(asetsAdapter);
+        } else {
+            data.addAll(assetsBeans);
+            asetsAdapter.setData(data);
         }
+    }
 
-
+    private void updateView(UsdtBean usdtBean) {
+        if (usdtBean.getUsdt() != null) {
+            text_usdt.setText(usdtBean.getUsdt().getUserable() + "");
+        }
         if (usdtBean.getBox() != null) {
-            text_num_bc.setText(usdtBean.getBox().getCoinTypeName());
-            text_user_bc.setText(usdtBean.getBox().getUserable() + "");
-            text_congeal_bc.setText(usdtBean.getBox().getFreeze() + "");
-            if (!Utility.isEmpty(usdtBean.getBox().getStringCreateTime())) {
-                String time = usdtBean.getBox().getStringCreateTime();
-                text_usd_bc.setText(time.substring(0, 10));
-            }
+            text_box.setText(usdtBean.getBox().getUserable() + "");
         }
 
     }
@@ -159,13 +190,21 @@ public class TabFragment4 extends BaseFragment implements NetWorkListener, OnRef
     @Override
     public void onError(Exception e) {
         stopProgressDialog();
-        swipeToLoadLayout.setLoadingMore(false);
         swipeToLoadLayout.setRefreshing(false);
+        swipeToLoadLayout.setLoadingMore(false);
     }
 
     @Override
     public void onRefresh() {
+        isRefresh = false;
         page = 1;
+        query();
+    }
+
+    @Override
+    public void onLoadMore() {
+        isRefresh = true;
+        page++;
         query();
     }
 
@@ -174,26 +213,85 @@ public class TabFragment4 extends BaseFragment implements NetWorkListener, OnRef
     public void onClick(View v) {
         Intent intent = null;
         switch (v.getId()) {
-            case R.id.text_num_usd:
+            case R.id.text_usdt_charge:
                 if (usdtBean != null && usdtBean.getUsdt() != null) {
-                    intent = new Intent(getContext(), AssetsActivity.class);
+                    intent = new Intent(getContext(), RechargeActivity.class);
                     intent.putExtra("usdtBean", usdtBean);
-                    intent.putExtra("coinTypeId", usdtBean.getUsdt().getCoinTypeId() + "");
+                    intent.putExtra("coinTypeId", usdtBean.getUsdt().getCoinTypeId());
                     startActivity(intent);
                 }
                 break;
-            case R.id.text_num_bc:
+            case R.id.text_usdt_carry:
+                if (usdtBean != null && usdtBean.getUsdt() != null) {
+                    intent = new Intent(getContext(), DrawActivity.class);
+                    intent.putExtra("usdtBean", usdtBean);
+                    intent.putExtra("coinTypeId", usdtBean.getBox().getCoinTypeId());
+                    startActivity(intent);
+                }
+                break;
+            case R.id.text_box_charge:
                 if (usdtBean != null && usdtBean.getBox() != null) {
-                    intent = new Intent(getContext(), AssetsActivity.class);
+                    intent = new Intent(getContext(), RechargeActivity.class);
                     intent.putExtra("usdtBean", usdtBean);
-                    intent.putExtra("coinTypeId", usdtBean.getBox().getCoinTypeId() + "");
+                    intent.putExtra("coinTypeId", usdtBean.getBox().getCoinTypeId());
                     startActivity(intent);
                 }
                 break;
-
+            case R.id.text_box_carry:
+                if (usdtBean != null && usdtBean.getBox() != null) {
+                    intent = new Intent(getContext(), DrawActivity.class);
+                    intent.putExtra("usdtBean", usdtBean);
+                    intent.putExtra("coinTypeId", usdtBean.getBox().getCoinTypeId());
+                    startActivity(intent);
+                }
+                break;
+            case R.id.text_usd:
+                showUsdt();
+                break;
 
         }
+    }
 
+
+    public void showUsdt() {
+        Dialog dialog = new Dialog(getContext(), R.style.dialog_bottom_full);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_map, null);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        Window window = dialog.getWindow();
+        window.setGravity(Gravity.BOTTOM);
+        window.setWindowAnimations(R.style.share_animation);
+        window.getDecorView().setPadding(0, 0, 0, 0);
+        WindowManager.LayoutParams layoutParams = window.getAttributes();
+        layoutParams.width = WindowManager.LayoutParams.MATCH_PARENT;
+        window.setAttributes(layoutParams);
+        dialog.setContentView(view);
+        view.findViewById(R.id.text_usd).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (usdtBean != null && usdtBean.getUsdt() != null) {
+                    coinTypeId = usdtBean.getUsdt().getCoinTypeId();
+                    onRefresh();
+                }
+                dialog.dismiss();
+            }
+        });
+        view.findViewById(R.id.text_bc).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (usdtBean != null && usdtBean.getBox() != null) {
+                    coinTypeId = usdtBean.getBox().getCoinTypeId();
+                    onRefresh();
+                }
+                dialog.dismiss();
+            }
+        });
+        view.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 
 
