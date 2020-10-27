@@ -34,9 +34,9 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="19dp"
+                    android:layout_marginLeft="18dp"
                     android:layout_marginTop="11dp"
-                    android:layout_marginRight="19dp"
+                    android:layout_marginRight="18dp"
                     android:background="@drawable/tab_aha"
                     android:padding="14dp">
 
@@ -99,9 +99,9 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="19dp"
+                    android:layout_marginLeft="18dp"
                     android:layout_marginTop="7.5dp"
-                    android:layout_marginRight="19dp"
+                    android:layout_marginRight="18dp"
                     android:background="@drawable/tab_aha"
                     android:padding="14dp">
 
