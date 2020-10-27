@@ -5,17 +5,13 @@
     android:layout_height="match_parent">
 
 
-    <com.jkabe.app.box.weight.NoDataView
-        android:id="@+id/noDataView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
 
     <com.aspsine.swipetoloadlayout.SwipeToLoadLayout
         android:id="@+id/swipeToLoadLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:visibility="gone"
+        android:visibility="visible"
         app:swipe_style="classic">
 
         <include
@@ -196,4 +192,11 @@
             </RelativeLayout>
         </androidx.core.widget.NestedScrollView>
     </com.aspsine.swipetoloadlayout.SwipeToLoadLayout>
+
+
+    <com.jkabe.app.box.weight.NoDataView
+        android:id="@+id/noDataView"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="match_parent"/>
 </RelativeLayout>

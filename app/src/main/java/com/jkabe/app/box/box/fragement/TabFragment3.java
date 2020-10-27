@@ -79,6 +79,7 @@ public class TabFragment3 extends BaseFragment implements OnRefreshListener, Net
     }
 
 
+
     protected void lazyLoad() {
         query();
     }
