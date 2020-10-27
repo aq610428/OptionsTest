@@ -34,9 +34,9 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="18dp"
+                    android:layout_marginLeft="14dp"
                     android:layout_marginTop="11dp"
-                    android:layout_marginRight="18dp"
+                    android:layout_marginRight="14dp"
                     android:background="@drawable/tab_aha"
                     android:padding="14dp">
 
@@ -69,6 +69,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
                         android:orientation="horizontal">
 
                         <TextView
@@ -99,9 +100,9 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="18dp"
+                    android:layout_marginLeft="14dp"
                     android:layout_marginTop="7.5dp"
-                    android:layout_marginRight="18dp"
+                    android:layout_marginRight="14dp"
                     android:background="@drawable/tab_aha"
                     android:padding="14dp">
 
