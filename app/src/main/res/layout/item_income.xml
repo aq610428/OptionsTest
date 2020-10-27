@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="￥100.00"
-                android:textColor="#F05330"
+                android:textColor="@color/black"
                 android:textSize="13sp"
                 android:textStyle="bold" />
 

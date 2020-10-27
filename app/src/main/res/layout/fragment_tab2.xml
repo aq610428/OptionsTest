@@ -31,132 +31,202 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:layout_marginRight="7dp"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:background="@drawable/tab_aha"
+                        android:gravity="top"
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/text_tab1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="17dp"
+                            android:layout_marginTop="15dp"
                             android:gravity="center"
                             android:text="累计收益"
-                            android:textColor="@color/black33"
-                            android:textSize="@dimen/ctv_sizen_13"
-                            android:textStyle="bold" />
+                            android:textColor="#97B2FF"
+                            android:textSize="@dimen/ctv_sizen_12" />
 
                         <TextView
                             android:id="@+id/text_total"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_below="@+id/text_tab1"
+                            android:layout_marginLeft="17dp"
                             android:layout_marginTop="3dp"
                             android:gravity="center"
                             android:text="0"
-                            android:textColor="#F05330"
-                            android:textSize="@dimen/ctv_sizen_14" />
+                            android:textColor="#FFFFFF"
+                            android:textSize="@dimen/ctv_sizen_15"
+                            android:textStyle="bold" />
 
-                    </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.8"
-                        android:gravity="center"
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginRight="25dp"
+                            android:src="@mipmap/ic_tab3_new" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/tab_aha"
+                        android:gravity="top"
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/text_tab2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="17dp"
+                            android:layout_marginTop="15dp"
                             android:gravity="center"
                             android:text="昨日收益"
-                            android:textColor="@color/black33"
-                            android:textSize="@dimen/ctv_sizen_13"
-                            android:textStyle="bold" />
+                            android:textColor="#97B2FF"
+                            android:textSize="@dimen/ctv_sizen_12" />
 
                         <TextView
                             android:id="@+id/text_day"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_below="@+id/text_tab2"
+                            android:layout_marginLeft="17dp"
                             android:layout_marginTop="3dp"
                             android:gravity="center"
                             android:text="0"
-                            android:textColor="#F05330"
-                            android:textSize="@dimen/ctv_sizen_14" />
+                            android:textColor="#FFFFFF"
+                            android:textSize="@dimen/ctv_sizen_15"
+                            android:textStyle="bold" />
 
-                    </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1.4"
-                        android:gravity="center"
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginRight="25dp"
+                            android:src="@mipmap/ic_tab2_new" />
+
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:layout_marginRight="7dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/tab_aha"
+                        android:gravity="top"
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/text_tab3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="17dp"
+                            android:layout_marginTop="15dp"
                             android:gravity="center"
                             android:text="累计挖出"
-                            android:textColor="@color/black33"
-                            android:textSize="@dimen/ctv_sizen_13"
-                            android:textStyle="bold" />
+                            android:textColor="#97B2FF"
+                            android:textSize="@dimen/ctv_sizen_12" />
 
                         <TextView
                             android:id="@+id/text_mining"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_below="@+id/text_tab3"
+                            android:layout_marginLeft="17dp"
                             android:layout_marginTop="3dp"
                             android:gravity="center"
                             android:text="0"
-                            android:textColor="#F05330"
-                            android:textSize="@dimen/ctv_sizen_14" />
+                            android:textColor="#FFFFFF"
+                            android:textSize="@dimen/ctv_sizen_15"
+                            android:textStyle="bold" />
 
-                    </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.8"
-                        android:gravity="center"
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginRight="25dp"
+                            android:src="@mipmap/ic_tab6_new" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="70dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/tab_aha"
+                        android:gravity="top"
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/text_tab4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
+                            android:layout_marginLeft="17dp"
+                            android:layout_marginTop="15dp"
                             android:text="激活矿机"
-                            android:textColor="@color/black33"
-                            android:textSize="@dimen/ctv_sizen_13"
-                            android:textStyle="bold" />
+                            android:textColor="#97B2FF"
+                            android:textSize="@dimen/ctv_sizen_12" />
 
                         <TextView
                             android:id="@+id/text_machinery"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="3dp"
+                            android:layout_below="@+id/text_tab4"
+                            android:layout_marginLeft="17dp"
                             android:gravity="center"
                             android:text="0"
-                            android:textColor="#F05330"
-                            android:textSize="@dimen/ctv_sizen_14" />
+                            android:textColor="#FFFFFF"
+                            android:textSize="@dimen/ctv_sizen_15"
+                            android:textStyle="bold" />
 
-                    </LinearLayout>
 
-
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerInParent="true"
+                            android:layout_marginRight="25dp"
+                            android:src="@mipmap/ic_tab4_new" />
+                    </RelativeLayout>
                 </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="6dp"
-                    android:background="@color/dive_line" />
 
 
                 <androidx.recyclerview.widget.RecyclerView
