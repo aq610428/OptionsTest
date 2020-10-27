@@ -59,7 +59,6 @@
             android:id="@+id/text_about"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
             android:text="本次激活需要消耗USDT数量：150.00 \n欢迎您激活卡贝车宝BOX盒子挖矿。"
             android:textColor="#A5B7FF"
             android:textSize="12sp" />

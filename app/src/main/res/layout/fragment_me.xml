@@ -98,7 +98,7 @@
                             android:gravity="center"
                             android:text="全部"
                             android:textColor="@color/black33"
-                            android:textSize="14sp" />
+                            android:textSize="13sp" />
 
                         <TextView
                             android:id="@+id/text_invitation"
@@ -110,7 +110,7 @@
                             android:gravity="center"
                             android:text="待付款"
                             android:textColor="@color/black33"
-                            android:textSize="14sp" />
+                            android:textSize="13sp" />
 
                         <TextView
                             android:id="@+id/text_team"
@@ -122,7 +122,7 @@
                             android:gravity="center"
                             android:text="待发货"
                             android:textColor="@color/black33"
-                            android:textSize="14sp" />
+                            android:textSize="13sp" />
 
                         <TextView
                             android:id="@+id/text_key"
@@ -134,7 +134,7 @@
                             android:gravity="center"
                             android:text="待收货"
                             android:textColor="@color/black33"
-                            android:textSize="14sp" />
+                            android:textSize="13sp" />
 
 
                         <TextView
@@ -147,7 +147,7 @@
                             android:gravity="center"
                             android:text="已完成"
                             android:textColor="@color/black33"
-                            android:textSize="14sp" />
+                            android:textSize="13sp" />
                     </LinearLayout>
                 </com.lihang.ShadowLayout>
 
