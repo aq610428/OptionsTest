@@ -35,6 +35,17 @@
 
 
             <TextView
+                android:id="@+id/text_box_cny"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="￥100.00"
+                android:textColor="#F05330"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+
+            <TextView
                 android:id="@+id/text_usd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -59,6 +70,16 @@
                 android:text="20201026"
                 android:textColor="@color/black99"
                 android:textSize="12sp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="box价格"
+                android:textColor="@color/black99"
+                android:textSize="12sp" />
+
 
             <TextView
                 android:layout_width="wrap_content"

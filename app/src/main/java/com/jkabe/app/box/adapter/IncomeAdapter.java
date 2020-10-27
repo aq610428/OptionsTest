@@ -35,6 +35,7 @@ public class IncomeAdapter extends AutoRVAdapter {
     public void onBindViewHolder(ViewHolder vh, int position) {
         BoxInfo boxInfo = list.get(position);
         vh.getTextView(R.id.text_date).setText(boxInfo.getSumdate());
+        vh.getTextView(R.id.text_box_cny).setText("￥"+boxInfo.getBoxPrice());
         vh.getTextView(R.id.text_price).setText(boxInfo.getBox() + "");
         if (boxInfo.getBoxPrice() == 0.0) {
             vh.getTextView(R.id.text_usd).setText("￥--");
@@ -43,6 +44,7 @@ public class IncomeAdapter extends AutoRVAdapter {
         }
         TypefaceUtil.setTextType(context, "DINOT-Bold.ttf", vh.getTextView(R.id.text_price));
         TypefaceUtil.setTextType(context, "DINOT-Bold.ttf", vh.getTextView(R.id.text_usd));
+        TypefaceUtil.setTextType(context, "DINOT-Bold.ttf", vh.getTextView(R.id.text_box_cny));
     }
 
     public void setData(List<BoxInfo> data) {
