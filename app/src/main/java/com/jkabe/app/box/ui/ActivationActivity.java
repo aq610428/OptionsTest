@@ -1,13 +1,17 @@
 package com.jkabe.app.box.ui;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.bean.CommonalityModel;
+import com.jkabe.app.box.bean.UsdtBean;
 import com.jkabe.app.box.bean.UserInfo;
+import com.jkabe.app.box.box.RechargeActivity;
 import com.jkabe.app.box.config.Api;
 import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
@@ -19,7 +23,9 @@ import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.TypefaceUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.box.R;
+
 import org.json.JSONObject;
+
 import java.util.Map;
 
 /**
@@ -28,10 +34,13 @@ import java.util.Map;
  * @name:ActivationActivity
  */
 public class ActivationActivity extends BaseActivity implements NetWorkListener {
-    private TextView title_text_tv, title_left_btn, text_key;
+    private TextView title_text_tv, title_left_btn, text_key, text_usdt_charge;
     private TextView text_usd, text_name, text_about, text_title, text_extension;
     private LinearLayout ll_usdt, ll_extension;
     private int type = 1;
+    private UsdtBean usdtBean;
+    private int limit = 10;
+    private int page = 1;
 
 
     @Override
@@ -41,6 +50,7 @@ public class ActivationActivity extends BaseActivity implements NetWorkListener 
 
     @Override
     protected void initView() {
+        text_usdt_charge = getView(R.id.text_usdt_charge);
         text_title = getView(R.id.text_title);
         text_extension = getView(R.id.text_extension);
         text_about = getView(R.id.text_about);
@@ -56,11 +66,13 @@ public class ActivationActivity extends BaseActivity implements NetWorkListener 
         text_key.setOnClickListener(this);
         ll_usdt.setOnClickListener(this);
         ll_extension.setOnClickListener(this);
+        text_usdt_charge.setOnClickListener(this);
 
         title_text_tv.setText("激活挖矿");
         TypefaceUtil tfUtil = new TypefaceUtil(this, "OpenSans-Light.ttf");
         tfUtil.setTypeface(text_usd, false);
         query();
+        load();
     }
 
 
@@ -115,6 +127,20 @@ public class ActivationActivity extends BaseActivity implements NetWorkListener 
     }
 
 
+    public void load() {
+        String sign = "memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        showProgressDialog(this, false);
+        Map<String, String> params = okHttpModel.getParams();
+        params.put("apptype", Constants.TYPE);
+        params.put("memberid", SaveUtils.getSaveInfo().getId());
+        params.put("partnerid", Constants.PARTNERID);
+        params.put("limit", limit + "");
+        params.put("page", page + "");
+        params.put("sign", Md5Util.encode(sign));
+        okHttpModel.get(Api.MINING_BAL_BOX, params, Api.GETRECORD_BOX_ID, this);
+    }
+
+
     @Override
     public void onClick(View v) {
         super.onClick(v);
@@ -122,6 +148,15 @@ public class ActivationActivity extends BaseActivity implements NetWorkListener 
             case R.id.title_left_btn:
                 finish();
                 break;
+            case R.id.text_usdt_charge:
+                if (usdtBean != null && usdtBean.getUsdt() != null) {
+                    Intent intent = new Intent(this, RechargeActivity.class);
+                    intent.putExtra("usdtBean", usdtBean);
+                    intent.putExtra("coinTypeId", usdtBean.getUsdt().getCoinTypeId());
+                    startActivity(intent);
+                }
+                break;
+
             case R.id.ll_extension:
                 ll_usdt.setBackgroundResource(R.drawable.usdt_bg_shape);
                 ll_extension.setBackground(getResources().getDrawable(R.mipmap.icon_bg_bc));
@@ -132,21 +167,10 @@ public class ActivationActivity extends BaseActivity implements NetWorkListener 
 
                 text_title.setTextColor(Color.parseColor("#ffffff"));
                 text_extension.setTextColor(Color.parseColor("#A5B7FF"));
-                if (useableActiveNum == 0) {
-                    text_key.setVisibility(View.GONE);
-                } else {
-                    text_key.setVisibility(View.VISIBLE);
-                }
                 type = 2;
                 break;
             case R.id.ll_usdt:
                 type = 1;
-                if (useableBalance == 0) {
-                    text_key.setVisibility(View.GONE);
-                } else {
-                    text_key.setVisibility(View.VISIBLE);
-                }
-
                 text_name.setTextColor(Color.parseColor("#ffffff"));
                 text_usd.setTextColor(Color.parseColor("#A5B7FF"));
                 text_about.setTextColor(Color.parseColor("#A5B7FF"));
@@ -192,6 +216,10 @@ public class ActivationActivity extends BaseActivity implements NetWorkListener 
                         }
                         finish();
                         break;
+                    case Api.GETRECORD_BOX_ID:
+                        usdtBean = JsonParse.getJSONObjectUsdtBean(object);
+                        break;
+
                 }
             } else {
                 ToastUtil.showToast(commonality.getErrorDesc());
@@ -210,13 +238,6 @@ public class ActivationActivity extends BaseActivity implements NetWorkListener 
         text_usd.setText("可用USDT:" + useableBalance + "");
         text_about.setText("本次激活需要消耗USDT数量：" + miningAmount + " \n欢迎您激活卡贝车宝BOX盒子挖矿。");
         text_extension.setText("可用奖励激活：" + useableActiveNum);
-        if (useableActiveNum == 0 && type == 2) {
-            text_key.setVisibility(View.GONE);
-        }
-        if (useableBalance == 0) {
-            text_key.setVisibility(View.GONE);
-        }
-
     }
 
     @Override
