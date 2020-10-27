@@ -6,10 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
@@ -26,14 +28,18 @@ import com.jkabe.app.box.util.JsonParse;
 import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.app.box.util.StatusBarUtil;
+import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.TypefaceUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.DialogUtils;
 import com.jkabe.box.R;
+
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 import crossoverone.statuslib.StatusUtil;
 
 /**
@@ -73,6 +79,7 @@ public class TabFragment2 extends BaseFragment implements NetWorkListener, OnRef
         swipeToLoadLayout = getView(rootView, R.id.swipeToLoadLayout);
         recyclerView.setNestedScrollingEnabled(true);
         swipeToLoadLayout.setOnRefreshListener(this);
+        swipeToLoadLayout.setOnLoadMoreListener(this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
         TypefaceUtil.setTextType(getContext(), "DINOT-Bold.ttf", text_day);
@@ -99,7 +106,6 @@ public class TabFragment2 extends BaseFragment implements NetWorkListener, OnRef
             }
         }
     }
-
 
 
     protected void lazyLoad() {
@@ -145,6 +151,10 @@ public class TabFragment2 extends BaseFragment implements NetWorkListener, OnRef
                         List<BoxInfo> boxInfos = JsonParse.getBoxJson(object);
                         if (boxInfos != null && boxInfos.size() > 0) {
                             setAdapter(boxInfos);
+                        } else {
+                            if (isRefresh && page > 0) {
+                                ToastUtil.showToast("无更多数据");
+                            }
                         }
                         break;
 
@@ -225,6 +235,5 @@ public class TabFragment2 extends BaseFragment implements NetWorkListener, OnRef
         isRefresh = true;
         page++;
         query();
-
     }
 }
