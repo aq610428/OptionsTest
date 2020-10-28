@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.base.BaseApplication;
 import com.jkabe.app.box.bean.CommonalityModel;
+import com.jkabe.app.box.box.OrderDetileActivity;
 import com.jkabe.app.box.config.Api;
 import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
@@ -83,15 +84,15 @@ public class ActiveActivity1 extends BaseActivity implements NetWorkListener {
 
     private void checkData() {
         if (consumeAmount < oneParam) {
-            ToastUtil.showToast("消费额度不足，无法激活");
+            ToastUtil.showToast("消费额度不足，无法兑换");
             return;
         }
         if (consumeAmount >= oneParam && consumeAmount < twoParam) {
             miningtype = 1;
-            query1();
+            showDelete();
         } else if (consumeAmount == twoParam) {
             miningtype = 2;
-            query1();
+            showDelete();
         } else if (consumeAmount > oneParam && consumeAmount > twoParam) {
             showDialog();
         }
@@ -113,7 +114,7 @@ public class ActiveActivity1 extends BaseActivity implements NetWorkListener {
 
     /*****去兑换*****/
     public void query1() {
-        String sign =  "memberid=" + SaveUtils.getSaveInfo().getId() +"&miningtype=" + miningtype + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        String sign = "memberid=" + SaveUtils.getSaveInfo().getId() + "&miningtype=" + miningtype + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
         showProgressDialog(this, false);
         Map<String, String> params = okHttpModel.getParams();
         params.put("apptype", Constants.TYPE);
@@ -134,10 +135,11 @@ public class ActiveActivity1 extends BaseActivity implements NetWorkListener {
                         updateView(object);
                         break;
                     case Api.PAY_CHANCE_MALL_ID:
-                       ToastUtil.showToast(commonality.getErrorDesc());
+                        ToastUtil.showToast(commonality.getErrorDesc());
+                        query();
                         break;
                 }
-            }else{
+            } else {
                 ToastUtil.showToast(commonality.getErrorDesc());
             }
         }
@@ -166,8 +168,32 @@ public class ActiveActivity1 extends BaseActivity implements NetWorkListener {
     }
 
 
+    public void showDelete() {
+        Dialog dialog = new Dialog(this);
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_layout_ming, null);
+        TextView text_name = view.findViewById(R.id.text_name);
+        text_name.setText("消费额度是否兑换？");
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(view);
+        view.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        view.findViewById(R.id.confirm).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                query1();
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
+
     public void showDialog() {
-        Dialog dialog = new Dialog(this,R.style.dialog_bottom_full);
+        Dialog dialog = new Dialog(this, R.style.dialog_bottom_full);
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_layout_pay1, null);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         Window window = dialog.getWindow();
@@ -182,16 +208,16 @@ public class ActiveActivity1 extends BaseActivity implements NetWorkListener {
             @Override
             public void onClick(View v) {
                 miningtype = 1;
-                query1();
                 dialog.dismiss();
+                showDelete();
             }
         });
         view.findViewById(R.id.confirm).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 miningtype = 2;
-                query1();
                 dialog.dismiss();
+                showDelete();
             }
         });
         dialog.show();

@@ -30,6 +30,8 @@ import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.TypefaceUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.DialogUtils;
+import com.jkabe.app.box.weight.NoDataView;
+import com.jkabe.app.box.weight.NoView;
 import com.jkabe.box.R;
 import org.json.JSONObject;
 import java.util.ArrayList;

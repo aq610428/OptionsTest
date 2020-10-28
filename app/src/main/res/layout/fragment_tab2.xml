@@ -197,9 +197,9 @@
                             android:id="@+id/text_tab4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="center"
                             android:layout_marginLeft="17dp"
                             android:layout_marginTop="15dp"
+                            android:gravity="center"
                             android:text="激活矿机(个)"
                             android:textColor="#97B2FF"
                             android:textSize="@dimen/ctv_sizen_12" />
@@ -208,9 +208,9 @@
                             android:id="@+id/text_machinery"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
                             android:layout_below="@+id/text_tab4"
                             android:layout_marginLeft="17dp"
+                            android:layout_marginTop="3dp"
                             android:gravity="center"
                             android:text="0"
                             android:textColor="#FFFFFF"
@@ -235,6 +235,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="14dp"
                     android:layout_marginRight="14dp" />
+
+
+
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

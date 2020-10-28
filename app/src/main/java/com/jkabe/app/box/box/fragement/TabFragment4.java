@@ -34,8 +34,11 @@ import com.jkabe.app.box.util.JsonParse;
 import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.app.box.util.Utility;
+import com.jkabe.app.box.weight.NoDataView;
 import com.jkabe.box.R;
+
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -92,7 +95,6 @@ public class TabFragment4 extends BaseFragment implements NetWorkListener, OnRef
         recyclerView.setLayoutManager(manager);
         recyclerView.setNestedScrollingEnabled(false);
     }
-
 
 
     protected void lazyLoad() {
