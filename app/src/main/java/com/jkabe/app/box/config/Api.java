@@ -379,6 +379,9 @@ public interface Api {
     String PAY_REMOVE_MALL = Config.getOpenNewApi() + "/mall/getMemberConsumeData";
     int PAY_REMOVE_MALL_ID = 20026;
 
+    String PAY_CHANCE_MALL = Config.getOpenNewApi() + "/mall/toConvertMiningChance";
+    int PAY_CHANCE_MALL_ID = 20027;
+
 
 
 }

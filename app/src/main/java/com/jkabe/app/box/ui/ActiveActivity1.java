@@ -1,8 +1,17 @@
 package com.jkabe.app.box.ui;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
+
 import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.base.BaseApplication;
 import com.jkabe.app.box.bean.CommonalityModel;
@@ -12,10 +21,14 @@ import com.jkabe.app.box.config.okHttpModel;
 import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.SaveUtils;
+import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.TypefaceUtil;
 import com.jkabe.app.box.util.Utility;
+import com.jkabe.app.box.weight.PreferenceUtils;
 import com.jkabe.box.R;
+
 import org.json.JSONObject;
+
 import java.util.Map;
 
 /**
@@ -54,16 +67,36 @@ public class ActiveActivity1 extends BaseActivity implements NetWorkListener {
                 finish();
                 break;
             case R.id.text_exchange:
-
+                checkData();
                 break;
 
         }
     }
 
-
     @Override
     protected void initData() {
         query();
+    }
+
+
+    private int miningtype;
+
+    private void checkData() {
+        if (consumeAmount < oneParam) {
+            ToastUtil.showToast("消费额度不足，无法激活");
+            return;
+        }
+        if (consumeAmount >= oneParam && consumeAmount < twoParam) {
+            miningtype = 1;
+            query1();
+        } else if (consumeAmount == twoParam) {
+            miningtype = 2;
+            query1();
+        } else if (consumeAmount > oneParam && consumeAmount > twoParam) {
+            showDialog();
+        }
+
+
     }
 
 
@@ -80,14 +113,15 @@ public class ActiveActivity1 extends BaseActivity implements NetWorkListener {
 
     /*****去兑换*****/
     public void query1() {
-        String sign = "memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        String sign =  "memberid=" + SaveUtils.getSaveInfo().getId() +"&miningtype=" + miningtype + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
         showProgressDialog(this, false);
         Map<String, String> params = okHttpModel.getParams();
         params.put("apptype", Constants.TYPE);
+        params.put("miningtype", miningtype + "");
         params.put("memberid", SaveUtils.getSaveInfo().getId());
         params.put("partnerid", Constants.PARTNERID);
         params.put("sign", Md5Util.encode(sign));
-        okHttpModel.get(Api.PAY_REMOVE_MALL, params, Api.PAY_REMOVE_MALL_ID, this);
+        okHttpModel.get(Api.PAY_CHANCE_MALL, params, Api.PAY_CHANCE_MALL_ID, this);
     }
 
 
@@ -99,7 +133,12 @@ public class ActiveActivity1 extends BaseActivity implements NetWorkListener {
                     case Api.PAY_REMOVE_MALL_ID:
                         updateView(object);
                         break;
+                    case Api.PAY_CHANCE_MALL_ID:
+                       ToastUtil.showToast(commonality.getErrorDesc());
+                        break;
                 }
+            }else{
+                ToastUtil.showToast(commonality.getErrorDesc());
             }
         }
         stopProgressDialog();
@@ -125,4 +164,37 @@ public class ActiveActivity1 extends BaseActivity implements NetWorkListener {
     public void onError(Exception e) {
         stopProgressDialog();
     }
+
+
+    public void showDialog() {
+        Dialog dialog = new Dialog(this,R.style.dialog_bottom_full);
+        View view = LayoutInflater.from(this).inflate(R.layout.dialog_layout_pay1, null);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        Window window = dialog.getWindow();
+        window.setGravity(Gravity.BOTTOM);
+        window.setWindowAnimations(R.style.share_animation);
+        window.getDecorView().setPadding(0, 0, 0, 0);
+        WindowManager.LayoutParams layoutParams = window.getAttributes();
+        layoutParams.width = WindowManager.LayoutParams.MATCH_PARENT;
+        window.setAttributes(layoutParams);
+        dialog.setContentView(view);
+        view.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                miningtype = 1;
+                query1();
+                dialog.dismiss();
+            }
+        });
+        view.findViewById(R.id.confirm).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                miningtype = 2;
+                query1();
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
 }

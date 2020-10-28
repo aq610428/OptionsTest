@@ -9,12 +9,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
@@ -38,15 +36,12 @@ import com.jkabe.app.box.util.TypefaceUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.NoDataView1;
 import com.jkabe.box.R;
-
 import org.json.JSONObject;
-
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import crossoverone.statuslib.StatusUtil;
 
 /**
@@ -111,8 +106,6 @@ public class CartFragment extends BaseFragment implements NetWorkListener, View.
         swipeToLoadLayout.setOnLoadMoreListener(this);
         swipeToLoadLayout.setOnRefreshListener(this);
     }
-
-
 
 
     /******商品列表*****/
@@ -242,7 +235,7 @@ public class CartFragment extends BaseFragment implements NetWorkListener, View.
         MainActivity mainActivity = (MainActivity) getActivity();
         if (mainActivity != null) {
             TextView text_num = mainActivity.mTabHost.getTabWidget().getChildAt(3).findViewById(R.id.text_num);
-            if (beanList!=null&&beanList.size() > 0) {
+            if (beanList != null && beanList.size() > 0) {
                 text_num.setVisibility(View.VISIBLE);
                 text_num.setText(beanList.size() + "");
             } else {
@@ -287,11 +280,18 @@ public class CartFragment extends BaseFragment implements NetWorkListener, View.
                 if (adapter != null && adapter.map.size() > 0) {
                     List<CartBean> beans = new ArrayList<>();
                     for (Map.Entry<Integer, CartBean> entry : adapter.map.entrySet()) {
-                        beans.add(entry.getValue());
+                        if (0 == entry.getValue().getState()) {
+                            beans.add(entry.getValue());
+                        }
                     }
-                    Intent intent = new Intent(getContext(), ConfirmActivity.class);
-                    intent.putExtra("beanList", (Serializable) beans);
-                    startActivity(intent);
+                    if (beans != null && beans.size() > 0) {
+                        Intent intent = new Intent(getContext(), ConfirmActivity.class);
+                        intent.putExtra("beanList", (Serializable) beans);
+                        startActivity(intent);
+                    } else {
+                        ToastUtil.showToast("商品已下架");
+                    }
+
                 } else {
                     ToastUtil.showToast("请选择商品");
                 }
@@ -337,7 +337,9 @@ public class CartFragment extends BaseFragment implements NetWorkListener, View.
         if (adapter != null) {
             for (int i = 0; i < beanList.size(); i++) {
                 adapter.map.put(i, beanList.get(i));
-                total = BigDecimalUtils.add(total, BigDecimalUtils.mul(new BigDecimal(beanList.get(i).getSellPrice()), new BigDecimal(beanList.get(i).getGoodNumber())));
+                if (0==beanList.get(i).getState()){
+                    total = BigDecimalUtils.add(total, BigDecimalUtils.mul(new BigDecimal(beanList.get(i).getSellPrice()), new BigDecimal(beanList.get(i).getGoodNumber())));
+                }
             }
             adapter.notifyItemRangeChanged(0, beanList.size());
             text_total.setText("￥" + BigDecimalUtils.round(total, 2).toPlainString());
@@ -362,7 +364,9 @@ public class CartFragment extends BaseFragment implements NetWorkListener, View.
         BigDecimal total = BigDecimal.ZERO;
         if (adapter != null && adapter.map != null) {
             for (Map.Entry<Integer, CartBean> entry : adapter.map.entrySet()) {
-                total = BigDecimalUtils.add(total, BigDecimalUtils.mul(new BigDecimal(entry.getValue().getSellPrice()), new BigDecimal(entry.getValue().getGoodNumber())));
+                if (entry.getValue().getState()==0){
+                    total = BigDecimalUtils.add(total, BigDecimalUtils.mul(new BigDecimal(entry.getValue().getSellPrice()), new BigDecimal(entry.getValue().getGoodNumber())));
+                }
             }
             text_total.setText("￥" + BigDecimalUtils.round(total, 2).toPlainString());
         }

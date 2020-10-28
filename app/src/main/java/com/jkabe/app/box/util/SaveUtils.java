@@ -63,7 +63,7 @@ public class SaveUtils {
 
     public static List<Block> getArray() {
         List<Block> blocks = new ArrayList<>();
-        blocks.add(new Block("我的资产", R.mipmap.icon_tab1_me));
+//        blocks.add(new Block("我的资产", R.mipmap.icon_tab1_me));
         blocks.add(new Block("邀请好友", R.mipmap.icon_tab2_me));
         blocks.add(new Block("我的团队", R.mipmap.icon_tab3_me));
         blocks.add(new Block("激活挖矿", R.mipmap.icon_tab4_me));

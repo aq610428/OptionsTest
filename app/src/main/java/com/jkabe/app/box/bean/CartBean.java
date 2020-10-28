@@ -18,7 +18,7 @@ public class CartBean implements Serializable {
      * sellPrice : 1.0
      * memberid : c773bf27d09d49999ac0dee5fc1b28b6
      * createTime : 2020-10-10T03:37:39.000Z
-     * state : 0
+     * state : 0 //1已失效，0正常
      * stringCreateTime : 2020-10-10 11:37:39
      * descriptionToString : {"smallImg":"商品图片","createTime":"创建时间","sellPrice":"售卖价格","updateTime":"更新时间","id":"foreignKey","goodid":"商品id","state":"商品状态 0=正常,1=失效","title":"商品标题","goodNumber":"商品件数","memberid":"会员"}
      */

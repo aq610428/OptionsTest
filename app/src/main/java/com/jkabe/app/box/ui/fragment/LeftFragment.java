@@ -336,6 +336,7 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
         isRefresh = false;
         page = 1;
         queryGoodList();
+
     }
 
 
