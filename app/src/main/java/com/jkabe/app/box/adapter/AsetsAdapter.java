@@ -64,6 +64,12 @@ public class AsetsAdapter extends AutoRVAdapter {
             case 8:
                 vh.getTextView(R.id.text_num).setText("持币收益");
                 break;
+            case 9:
+                vh.getTextView(R.id.text_num).setText("省代挖矿分润 ");
+                break;
+            case 10:
+                vh.getTextView(R.id.text_num).setText("市代挖矿分润");
+                break;
         }
         vh.getTextView(R.id.text_user).setText("数量："+assetsBean.getBalance() + "");
         String time = assetsBean.getStringCreateTime();

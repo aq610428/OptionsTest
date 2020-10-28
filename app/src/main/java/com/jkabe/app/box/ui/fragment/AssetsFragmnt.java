@@ -146,7 +146,6 @@ public class AssetsFragmnt extends BaseActivity implements NetWorkListener, OnRe
 
         }
 
-
         if (usdtBean.getBox() != null) {
             text_num_bc.setText(usdtBean.getBox().getCoinTypeName());
             text_user_bc.setText(usdtBean.getBox().getUserable() + "");

@@ -190,7 +190,7 @@ public class TabFragment2 extends BaseFragment implements NetWorkListener, OnRef
             text_day.setText(yestodayBox + "");
             text_total.setText(totalBox + "");
             text_mining.setText(miningBox + "");
-            text_machinery.setText(activeCount + "个");
+            text_machinery.setText(activeCount + "");
 
             String stat = jsonObject.optString("state");
             String miningDate = jsonObject.optString("miningDate");

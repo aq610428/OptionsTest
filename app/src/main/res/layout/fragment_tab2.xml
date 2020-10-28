@@ -57,7 +57,7 @@
                             android:layout_marginLeft="17dp"
                             android:layout_marginTop="15dp"
                             android:gravity="center"
-                            android:text="累计收益"
+                            android:text="累计收益(BOX)"
                             android:textColor="#97B2FF"
                             android:textSize="@dimen/ctv_sizen_12" />
 
@@ -100,7 +100,7 @@
                             android:layout_marginLeft="17dp"
                             android:layout_marginTop="15dp"
                             android:gravity="center"
-                            android:text="昨日收益"
+                            android:text="昨日收益(BOX)"
                             android:textColor="#97B2FF"
                             android:textSize="@dimen/ctv_sizen_12" />
 
@@ -157,7 +157,7 @@
                             android:layout_marginLeft="17dp"
                             android:layout_marginTop="15dp"
                             android:gravity="center"
-                            android:text="累计挖出"
+                            android:text="累计挖出(BOX)"
                             android:textColor="#97B2FF"
                             android:textSize="@dimen/ctv_sizen_12" />
 
@@ -200,7 +200,7 @@
                             android:gravity="center"
                             android:layout_marginLeft="17dp"
                             android:layout_marginTop="15dp"
-                            android:text="激活矿机"
+                            android:text="激活矿机(个)"
                             android:textColor="#97B2FF"
                             android:textSize="@dimen/ctv_sizen_12" />
 
