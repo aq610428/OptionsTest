@@ -54,6 +54,8 @@ public class TabFragment1 extends BaseFragment implements NetWorkListener, OnRef
         swipeToLoadLayout = rootView.findViewById(R.id.swipeToLoadLayout);
         swipeToLoadLayout.setOnRefreshListener(this);
         swipe_target.setNestedScrollingEnabled(true);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        swipe_target.setLayoutManager(layoutManager);
         query();
     }
 
@@ -91,8 +93,6 @@ public class TabFragment1 extends BaseFragment implements NetWorkListener, OnRef
 
 
     private void setAdapter() {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        swipe_target.setLayoutManager(layoutManager);
         carAdapter = new CarAdapter1(getContext(), oreInfos);
         swipe_target.setAdapter(carAdapter);
     }

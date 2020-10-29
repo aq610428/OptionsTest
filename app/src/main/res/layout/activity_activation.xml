@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:gravity="center|left"
-                android:text="可用USDT：249.1983"
+                android:text="可用USDT：0"
                 android:textColor="#A5B7FF"
                 android:textSize="12sp" />
 

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import com.jkabe.box.R;
 import com.jkabe.app.box.bean.Verison;
 import com.jkabe.app.box.util.BigDecimalUtils;
@@ -50,7 +51,7 @@ public class UpdateManager {
         TextView dialog_content = view.findViewById(R.id.dialog_content);
         text_version.setText("最新版本：v" + verison.getVersionNo());
         dialog_content.setText(verison.getVersionContent());
-        if ("1".equals(verison.getIsForceUpdate()+"")) {
+        if ("1".equals(verison.getIsForceUpdate() + "")) {
             text_cancel.setVisibility(View.VISIBLE);
         } else {
             text_cancel.setVisibility(View.GONE);
@@ -76,6 +77,7 @@ public class UpdateManager {
 
     ProgressBar mProgressBar;
     private Dialog mDialog;
+    private TextView text_num;
 
     public void showDialog() {
         mDialog = new Dialog(activity);
@@ -87,6 +89,7 @@ public class UpdateManager {
         mDialog.show();
         mDialog.getWindow().setContentView(view);
         mProgressBar = view.findViewById(R.id.mProgressBar);
+        text_num = view.findViewById(R.id.text_num);
         mProgressBar.setMax(100);
     }
 
@@ -121,6 +124,7 @@ public class UpdateManager {
                 if (progress != null) {
                     BigDecimal current = BigDecimalUtils.mul(BigDecimalUtils.div(new BigDecimal(progress.currentSize), new BigDecimal(progress.totalSize), 2), new BigDecimal(100));
                     mProgressBar.setProgress(current.intValue());
+                    text_num.setText("当前下载进度" + current.intValue() + "%");
                 }
             }
         });
