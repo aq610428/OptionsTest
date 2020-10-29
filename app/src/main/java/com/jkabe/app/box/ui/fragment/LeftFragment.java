@@ -104,12 +104,12 @@ public class LeftFragment extends BaseFragment implements OnBannerListener, NetW
         recyclerView.setLayoutManager(layoutManager);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
-        recyclerView1.addItemDecoration(new SpaceItemDecoration(30));
+        recyclerView1.addItemDecoration(new SpaceItemDecoration(35));
         recyclerView1.setLayoutManager(gridLayoutManager);
 
 
         GridLayoutManager manager = new GridLayoutManager(getContext(), 2);
-        rv_list.addItemDecoration(new SpaceItemDecoration(30));
+        rv_list.addItemDecoration(new SpaceItemDecoration(35));
         rv_list.setLayoutManager(manager);
 
         recyclerView1.setNestedScrollingEnabled(false);
