@@ -16,8 +16,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
@@ -69,7 +71,9 @@ import com.jkabe.box.R;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.runtime.Permission;
+
 import org.json.JSONObject;
+
 import java.util.List;
 import java.util.Map;
 
@@ -181,7 +185,6 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
     }
 
 
-
     @Override
     public void onClick(View v) {
         if (carInfo != null && !Utility.isEmpty(carInfo.getImeicode())) {
@@ -249,7 +252,7 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
             if (!mFirstFix) {
                 mFirstFix = true;
                 PreferenceUtils.setPrefString(getContext(), Constants.CITY, amapLocation.getCity());
-                LatLng latLng = new LatLng(amapLocation.getLatitude(),amapLocation.getLongitude());
+                LatLng latLng = new LatLng(amapLocation.getLatitude(), amapLocation.getLongitude());
                 PreferenceUtils.setPrefString(getContext(), Constants.LAT, BigDecimalUtils.subLastBit(latLng.latitude, 6).doubleValue() + "");
                 PreferenceUtils.setPrefString(getContext(), Constants.LON, BigDecimalUtils.subLastBit(latLng.longitude, 6).doubleValue() + "");
                 aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
@@ -332,8 +335,8 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
                         break;
                 }
             } else {
-                if (id==Api.GET_DECICE_VERSION_ID){
-                    carInfo=null;
+                if (id == Api.GET_DECICE_VERSION_ID) {
+                    carInfo = null;
                     SaveUtils.saveCar(null);
                     updateView();
                 }
@@ -374,9 +377,14 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
 
 
     private void updateView() {
-        if (carInfo != null && !Utility.isEmpty(carInfo.getCarcard())) {
+        if (carInfo != null && !Utility.isEmpty(carInfo.getImeicode())) {
             SaveUtils.saveCar(carInfo);
-            text_num.setText(carInfo.getCarcard());
+            if (Utility.isEmpty(carInfo.getCarcard())) {
+                text_num.setText("");
+            } else {
+                text_num.setText(carInfo.getCarcard() + "");
+            }
+
             mHandler.removeCallbacks(runnable);
             mHandler.postDelayed(runnable, 100);
         } else {

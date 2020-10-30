@@ -244,7 +244,7 @@ public class BindActivity extends BaseActivity implements NetWorkListener {
             return;
         }
 
-        String sign = "activecode=" + activecode + "&engineno=" + imeicode
+        String sign = "activecode=" + activecode + "&imeicode=" + imeicode
                 + "&memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
         showProgressDialog(this, false);
         Map<String, String> params = okHttpModel.getParams();
