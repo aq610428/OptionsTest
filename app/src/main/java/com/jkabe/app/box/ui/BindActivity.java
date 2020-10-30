@@ -5,8 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import androidx.annotation.Nullable;
+
 import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.bean.CommonalityModel;
 import com.jkabe.app.box.config.Api;
@@ -25,7 +28,9 @@ import com.jkabe.app.box.zxing.android.CaptureActivity;
 import com.jkabe.box.R;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.runtime.Permission;
+
 import org.json.JSONObject;
+
 import java.util.Map;
 
 /**
@@ -35,9 +40,10 @@ import java.util.Map;
  */
 public class BindActivity extends BaseActivity implements NetWorkListener {
     private TextView title_text_tv, title_left_btn, text_bind;
-    private TextView text_brand;
+    private TextView text_brand, text_cheack;
     private ImageView iv_code;
     private EditText cardName, cardNum, et_code, et_course, et_discern, et_engine;
+    private LinearLayout ll_open;
 
 
     @Override
@@ -47,6 +53,8 @@ public class BindActivity extends BaseActivity implements NetWorkListener {
 
     @Override
     protected void initView() {
+        ll_open = getView(R.id.ll_open);
+        text_cheack = getView(R.id.text_cheack);
         et_engine = getView(R.id.et_engine);
         et_discern = getView(R.id.et_discern);
         et_course = getView(R.id.et_course);
@@ -62,6 +70,7 @@ public class BindActivity extends BaseActivity implements NetWorkListener {
         text_brand.setOnClickListener(this);
         iv_code.setOnClickListener(this);
         text_bind.setOnClickListener(this);
+        text_cheack.setOnClickListener(this);
         title_text_tv.setText("绑定车辆");
         VehicleKeyboardHelper.bind(cardNum, this);
     }
@@ -70,6 +79,8 @@ public class BindActivity extends BaseActivity implements NetWorkListener {
     protected void initData() {
 
     }
+
+    boolean isChoose = false;
 
     @Override
     public void onClick(View v) {
@@ -87,7 +98,23 @@ public class BindActivity extends BaseActivity implements NetWorkListener {
                 checkPermission();
                 break;
             case R.id.text_bind:
-                checkData();
+                if (isChoose){
+                    query1();
+                }else{
+                    checkData();
+                }
+
+                break;
+            case R.id.text_cheack:
+                if (!isChoose) {
+                    isChoose = true;
+                    ll_open.setVisibility(View.GONE);
+                    text_cheack.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.ic_togglebutton_toggle_close, 0);
+                } else {
+                    isChoose = false;
+                    ll_open.setVisibility(View.VISIBLE);
+                    text_cheack.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.ic_togglebutton_toggle_open, 0);
+                }
                 break;
         }
     }
@@ -115,9 +142,9 @@ public class BindActivity extends BaseActivity implements NetWorkListener {
                     if (str[0].length() <= 12) {
                         cardName.setText(str[0]);
                         et_code.setText("1234");
-                    } else if (str[0].length()>12){
-                        cardName.setText(str[0].substring(0,12));
-                        et_code.setText(str[0].substring(12,str[0].length()));
+                    } else if (str[0].length() > 12) {
+                        cardName.setText(str[0].substring(0, 12));
+                        et_code.setText(str[0].substring(12, str[0].length()));
                     }
                 }
             }
@@ -205,15 +232,43 @@ public class BindActivity extends BaseActivity implements NetWorkListener {
     }
 
 
+    private void query1() {
+        String imeicode = cardName.getText().toString().trim();//设备号
+        String activecode = et_code.getText().toString().trim();//激活码
+        if (Utility.isEmpty(imeicode)) {
+            ToastUtil.showToast("设备编号不能为空");
+            return;
+        }
+        if (Utility.isEmpty(activecode)) {
+            ToastUtil.showToast("设备激活码不能为空");
+            return;
+        }
+
+        String sign = "activecode=" + activecode + "&engineno=" + imeicode
+                + "&memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        showProgressDialog(this, false);
+        Map<String, String> params = okHttpModel.getParams();
+        params.put("activecode", activecode + "");
+        params.put("imeicode", imeicode + "");
+        params.put("memberid", SaveUtils.getSaveInfo().getId() + "");
+        params.put("partnerid", Constants.PARTNERID);
+        params.put("apptype", Constants.TYPE);
+        params.put("sign", Md5Util.encode(sign));
+        okHttpModel.get(Api.PAY_CHANCE_CARF, params, Api.PAY_CHANCE_CARF_ID, this);
+    }
+
+
     @Override
     public void onSucceed(JSONObject object, int id, CommonalityModel commonality) {
         if (object != null && commonality != null && !Utility.isEmpty(commonality.getStatusCode())) {
             if (Constants.SUCESSCODE.equals(commonality.getStatusCode())) {
                 switch (id) {
+                    case Api.PAY_CHANCE_CARF_ID:
                     case Api.GET_MODEL_BIND_ID:
                         ToastUtil.showToast(commonality.getErrorDesc());
                         finish();
                         break;
+
                 }
             } else {
                 ToastUtil.showToast(commonality.getErrorDesc());

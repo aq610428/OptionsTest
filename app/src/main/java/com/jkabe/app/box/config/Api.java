@@ -383,5 +383,9 @@ public interface Api {
     int PAY_CHANCE_MALL_ID = 20027;
 
 
+    String PAY_CHANCE_CARF = Config.getOpenNewApi() + "/device/nocarbindingdeviceinfo";
+    int PAY_CHANCE_CARF_ID = 20028;
+
+
 
 }

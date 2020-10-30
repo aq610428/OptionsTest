@@ -332,6 +332,11 @@ public class CarFragment extends BaseFragment implements View.OnClickListener, L
                         break;
                 }
             } else {
+                if (id==Api.GET_DECICE_VERSION_ID){
+                    carInfo=null;
+                    SaveUtils.saveCar(null);
+                    updateView();
+                }
                 ToastUtil.showToast(commonality.getErrorDesc());
             }
         }
