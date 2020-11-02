@@ -57,6 +57,9 @@ public final class SystemTools {
     }
 
 
+
+
+
     public static String getNewDataView(String data, Activity activity) {
         Document document = Jsoup.parse(data);
         Elements pElements = document.select("p:has(img)");

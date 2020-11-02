@@ -14,6 +14,7 @@ import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.jkabe.app.box.adapter.AdvertAdapter;
+import com.jkabe.app.box.adapter.AdvertAdapter1;
 import com.jkabe.app.box.base.BaseFragment;
 import com.jkabe.app.box.bean.CommonalityModel;
 import com.jkabe.app.box.bean.Massage;
@@ -48,7 +49,7 @@ public class SystemFragment1 extends BaseFragment implements OnRefreshListener, 
     private boolean isRefresh;
     private NoDataView mNoDataView;
     private List<Massage> list = new ArrayList<>();
-    private AdvertAdapter adapter;
+    private AdvertAdapter1 adapter;
 
 
     @Nullable
@@ -118,7 +119,7 @@ public class SystemFragment1 extends BaseFragment implements OnRefreshListener, 
         if (!isRefresh) {
             list.clear();
             list.addAll(voList);
-            adapter = new AdvertAdapter(getContext(), list);
+            adapter = new AdvertAdapter1(getContext(), list);
             swipe_target.setAdapter(adapter);
         } else {
             list.addAll(voList);

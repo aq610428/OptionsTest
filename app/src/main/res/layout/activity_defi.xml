@@ -59,7 +59,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="3dp"
                             android:gravity="center"
-                            android:text="11369"
+                            android:text="0"
                             android:textColor="#F05330"
                             android:textSize="@dimen/ctv_sizen_15"
                             android:textStyle="bold" />
@@ -97,7 +97,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="3dp"
                             android:gravity="center"
-                            android:text="3740"
+                            android:text="0"
                             android:textColor="#F05330"
                             android:textSize="@dimen/ctv_sizen_15"
                             android:textStyle="bold" />
@@ -135,7 +135,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="3dp"
                             android:gravity="center"
-                            android:text="43596"
+                            android:text="0"
                             android:textColor="#F05330"
                             android:textSize="@dimen/ctv_sizen_15"
                             android:textStyle="bold" />
