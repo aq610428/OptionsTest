@@ -11,8 +11,9 @@
         android:layout_height="35dp"
         android:gravity="center"
         android:text="解除绑定"
-        android:textColor="@color/colorAccent"
-        android:textSize="@dimen/ctv_sizen_15" />
+        android:textColor="@color/black01"
+        android:textSize="@dimen/ctv_sizen_15"
+        android:textStyle="bold" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -27,6 +28,7 @@
             android:layout_marginRight="10dp"
             android:layout_toStartOf="@+id/btn_code"
             android:layout_toLeftOf="@+id/btn_code"
+            android:background="@color/colorWhite"
             android:cursorVisible="true"
             android:gravity="center|left"
             android:hint="@string/prompt_password"
@@ -47,6 +49,14 @@
             android:textSize="@dimen/ctv_sizen_14" />
 
     </RelativeLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.7dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="80dp"
+        android:background="@color/colorAccent" />
 
 
     <View
