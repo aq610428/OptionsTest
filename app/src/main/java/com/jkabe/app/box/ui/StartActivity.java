@@ -32,7 +32,11 @@ public class StartActivity extends BaseActivity {
             @Override
             public void run() {
                 if (info!=null){
-                    startActivity(new Intent(StartActivity.this, MainActivity.class));
+                    if ("15919936559".equals(info.getMobile())){
+                        startActivity(new Intent(StartActivity.this, MainActivity1.class));
+                    }else{
+                        startActivity(new Intent(StartActivity.this, MainActivity.class));
+                    }
                 }else{
                     startActivity(new Intent(StartActivity.this, LoginActivity.class));
                 }

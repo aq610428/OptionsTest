@@ -75,6 +75,10 @@
         <activity
             android:name="com.jkabe.app.box.ui.MainActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.jkabe.app.box.ui.MainActivity1"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.jkabe.app.box.ui.LoginActivity"
             android:screenOrientation="portrait" />

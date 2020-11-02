@@ -185,6 +185,7 @@
                             android:gravity="center|left"
                             android:marqueeRepeatLimit="marquee_forever"
                             android:paddingRight="10dp"
+                            android:textSize="@dimen/ctv_sizen_13"
                             android:singleLine="true"
                             android:textColor="#131313" />
                     </LinearLayout>

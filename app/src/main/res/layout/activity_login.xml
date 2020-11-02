@@ -138,7 +138,7 @@
             android:id="@+id/text_check"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableLeft="@mipmap/ic_check_op"
+            android:drawableLeft="@mipmap/ic_check_un"
             android:drawablePadding="6dp"
             android:gravity="center"
             android:text="同意"

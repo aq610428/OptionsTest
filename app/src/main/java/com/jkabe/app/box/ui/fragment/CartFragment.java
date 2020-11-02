@@ -25,6 +25,7 @@ import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
 import com.jkabe.app.box.ui.ConfirmActivity;
 import com.jkabe.app.box.ui.MainActivity;
+import com.jkabe.app.box.ui.MainActivity1;
 import com.jkabe.app.box.ui.WareDeilActivity;
 import com.jkabe.app.box.util.BigDecimalUtils;
 import com.jkabe.app.box.util.Constants;
@@ -110,7 +111,6 @@ public class CartFragment extends BaseFragment implements NetWorkListener, View.
 
     /******商品列表*****/
     public void query() {
-        showProgressDialog(getActivity(), false);
         String sign = "memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
         Map<String, String> params = okHttpModel.getParams();
         params.put("limit", limit + "");
@@ -125,7 +125,6 @@ public class CartFragment extends BaseFragment implements NetWorkListener, View.
 
     /******商品列表*****/
     public void queryNum(String goodNumber, String goodid) {
-        showProgressDialog(getActivity(), false);
         String sign = "goodid=" + goodid + "&goodNumber=" + goodNumber + "&memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
         Map<String, String> params = okHttpModel.getParams();
         params.put("goodid", goodid + "");
@@ -191,9 +190,6 @@ public class CartFragment extends BaseFragment implements NetWorkListener, View.
                         cancelAll();
                         query();
                         break;
-                    case Api.PAY_ORDER_NUW_ID:
-                        ToastUtil.showToast(commonality.getErrorDesc());
-                        break;
                 }
             } else {
                 ToastUtil.showToast(commonality.getErrorDesc());
@@ -212,6 +208,7 @@ public class CartFragment extends BaseFragment implements NetWorkListener, View.
             beanList.clear();
             beanList.addAll(beans);
             adapter = new CartAdapter(this, beanList);
+            swipe_target.setHasFixedSize(true);
             swipe_target.setAdapter(adapter);
         } else {
             beanList.addAll(beans);
@@ -232,16 +229,25 @@ public class CartFragment extends BaseFragment implements NetWorkListener, View.
 
 
     public void update() {
-        MainActivity mainActivity = (MainActivity) getActivity();
-        if (mainActivity != null) {
-            TextView text_num = mainActivity.mTabHost.getTabWidget().getChildAt(3).findViewById(R.id.text_num);
-            if (beanList != null && beanList.size() > 0) {
-                text_num.setVisibility(View.VISIBLE);
-                text_num.setText(beanList.size() + "");
-            } else {
-                text_num.setVisibility(View.GONE);
-                text_num.setText("0");
+        TextView text_num=null;
+        if ("15919936559".equals(SaveUtils.getSaveInfo().getMobile())){
+            MainActivity1 mainActivity = (MainActivity1) getActivity();
+            if (mainActivity != null) {
+                 text_num = mainActivity.mTabHost.getTabWidget().getChildAt(2).findViewById(R.id.text_num);
             }
+        }else{
+            MainActivity mainActivity = (MainActivity) getActivity();
+            if (mainActivity != null) {
+               text_num = mainActivity.mTabHost.getTabWidget().getChildAt(3).findViewById(R.id.text_num);
+            }
+        }
+
+        if (text_num!=null&&beanList != null && beanList.size() > 0) {
+            text_num.setVisibility(View.VISIBLE);
+            text_num.setText(beanList.size() + "");
+        } else {
+            text_num.setVisibility(View.GONE);
+            text_num.setText("0");
         }
     }
 

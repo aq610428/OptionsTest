@@ -43,7 +43,7 @@ public class LoginActivity extends BaseActivity implements NetWorkListener {
     private TextView text_register, btn_forget, text_check;
     private LinearLayout ll_agreement;
     private View et_line_1, et_line_2;
-    private boolean isChoose=true;
+    private boolean isChoose;
 
 
     @Override
@@ -138,12 +138,12 @@ public class LoginActivity extends BaseActivity implements NetWorkListener {
                 startActivity(intent);
                 break;
             case R.id.text_check:
-                if (isChoose) {
-                    isChoose = false;
-                    text_check.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.ic_check_un, 0, 0, 0);
-                } else {
+                if (!isChoose) {
                     isChoose = true;
                     text_check.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.ic_check_op, 0, 0, 0);
+                } else {
+                    isChoose = false;
+                    text_check.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.ic_check_un, 0, 0, 0);
                 }
                 break;
         }
@@ -207,7 +207,11 @@ public class LoginActivity extends BaseActivity implements NetWorkListener {
                             PreferenceUtils.setPrefString(LoginActivity.this, Constants.TOKEN, info.getToken());
                             PreferenceUtils.setPrefString(LoginActivity.this, Constants.MOBILE, et_username.getText().toString());
                             PreferenceUtils.setPrefString(LoginActivity.this, Constants.PASSWORD, et_password.getText().toString());
-                            startActivity(new Intent(this, MainActivity.class));
+                            if ("15919936559".equals(info.getMobile())){
+                                startActivity(new Intent(LoginActivity.this, MainActivity1.class));
+                            }else{
+                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            }
                             finish();
                         }
                         break;
