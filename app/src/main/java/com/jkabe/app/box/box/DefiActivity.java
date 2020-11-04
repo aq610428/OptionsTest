@@ -18,6 +18,7 @@ import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.ClearEditText;
 import com.jkabe.box.R;
 import org.json.JSONObject;
+
 import java.math.BigDecimal;
 import java.util.Map;
 
@@ -91,8 +92,9 @@ public class DefiActivity extends BaseActivity implements NetWorkListener {
             ToastUtil.showToast("理财金额不能为空");
             return;
         }
-        if (new BigDecimal(amount).doubleValue() < 100) {
-            ToastUtil.showToast("理财金额不能小于100BOX");
+
+        if (new BigDecimal(amount).doubleValue()<500) {
+            ToastUtil.showToast("理财金额不能小于500");
             return;
         }
 

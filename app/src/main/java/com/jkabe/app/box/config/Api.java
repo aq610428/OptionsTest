@@ -403,5 +403,8 @@ public interface Api {
     String FITL_MEMBER_BOX = Config.getOpenNewApi() + "/box/getMemberManageProfitListData";
     int FITL_MEMBER_BOX_ID = 20032;
 
+    //理财赎回
+    String REDE_MEMBER_BOX = Config.getOpenNewApi() + "/box/redeemMemberMamageData";
+    int REDE_MEMBER_BOX_ID = 20033;
 
 }

@@ -13,7 +13,6 @@
     <include layout="@layout/activity_title" />
 
 
-
     <TextView
         android:id="@+id/text_mileage"
         android:layout_width="match_parent"
@@ -28,11 +27,6 @@
         android:textColor="@color/colorWhite"
         android:textSize="14sp"
         android:visibility="gone" />
-
-
-
-
-
 
 
 </RelativeLayout>

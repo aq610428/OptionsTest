@@ -42,8 +42,6 @@
         </LinearLayout>
 
 
-
-
         <LinearLayout
             android:id="@+id/rl_tab2"
             android:layout_width="0dp"
@@ -68,7 +66,6 @@
                 android:visibility="invisible" />
 
         </LinearLayout>
-
 
 
         <LinearLayout

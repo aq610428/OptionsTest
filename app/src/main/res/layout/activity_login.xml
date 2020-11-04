@@ -79,7 +79,6 @@
             android:background="@color/dive_line" />
 
 
-
         <Button
             android:id="@+id/btn_next"
             android:layout_width="match_parent"

@@ -1,5 +1,4 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/ll_title_background"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -22,7 +21,7 @@
             android:gravity="center_vertical"
             android:text="确定"
             android:textColor="@color/colorPrimary"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tv_title"
@@ -32,7 +31,7 @@
             android:gravity="center_vertical"
             android:text="选择地区"
             android:textColor="#000000"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tv_cancel"
@@ -43,7 +42,7 @@
             android:gravity="center_vertical"
             android:text="取消"
             android:textColor="@color/colorPrimary"
-            android:textSize="16sp"/>
+            android:textSize="16sp" />
 
     </RelativeLayout>
 
@@ -58,22 +57,21 @@
             android:id="@+id/id_province"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
 
 
         <com.jkabe.app.box.lljjcoder.style.citypickerview.widget.wheel.WheelView
             android:id="@+id/id_city"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-
+            android:layout_weight="1" />
 
 
         <com.jkabe.app.box.lljjcoder.style.citypickerview.widget.wheel.WheelView
             android:id="@+id/id_district"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
 
     </LinearLayout>
 </LinearLayout>

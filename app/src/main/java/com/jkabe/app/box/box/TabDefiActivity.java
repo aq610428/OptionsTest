@@ -8,12 +8,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
+import com.jkabe.app.box.adapter.TabAdapter;
+import com.jkabe.app.box.adapter.TabAdapter1;
 import com.jkabe.app.box.base.BaseActivity;
+import com.jkabe.app.box.bean.BoxVo;
 import com.jkabe.app.box.bean.CommonalityModel;
 import com.jkabe.app.box.config.Api;
 import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
 import com.jkabe.app.box.util.Constants;
+import com.jkabe.app.box.util.JsonParse;
 import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.app.box.util.ToastUtil;
@@ -21,6 +25,9 @@ import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.NoDataView;
 import com.jkabe.box.R;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -36,6 +43,8 @@ public class TabDefiActivity extends BaseActivity implements OnLoadMoreListener,
     private NoDataView noDataView;
     private RecyclerView swipe_target;
     private SwipeToLoadLayout swipeToLoadLayout;
+    private List<BoxVo> beans = new ArrayList<>();
+    private TabAdapter1 adapter1;
 
     @Override
     protected void initCreate(Bundle savedInstanceState) {
@@ -101,7 +110,16 @@ public class TabDefiActivity extends BaseActivity implements OnLoadMoreListener,
             if (Constants.SUCESSCODE.equals(commonality.getStatusCode())) {
                 switch (id) {
                     case Api.FITL_MEMBER_BOX_ID:
+                        List<BoxVo> list = JsonParse.getBoxVoJSON(object);
+                        if (list != null && list.size() > 0) {
+                            setAdapter(list);
+                        } else {
+                            if (!isRefresh && page == 1) {
+                                swipeToLoadLayout.setVisibility(View.GONE);
+                                noDataView.setVisibility(View.VISIBLE);
+                            }
 
+                        }
                         break;
 
                 }
@@ -113,6 +131,23 @@ public class TabDefiActivity extends BaseActivity implements OnLoadMoreListener,
         swipeToLoadLayout.setRefreshing(false);
         stopProgressDialog();
     }
+
+
+    private void setAdapter(List<BoxVo> boxVoList) {
+        noDataView.setVisibility(View.GONE);
+        swipeToLoadLayout.setVisibility(View.VISIBLE);
+        if (!isRefresh) {
+            beans.clear();
+            beans.addAll(boxVoList);
+            adapter1 = new TabAdapter1(this, beans);
+            swipe_target.setAdapter(adapter1);
+        } else {
+            beans.addAll(boxVoList);
+            adapter1.setData(beans);
+        }
+    }
+
+
 
 
     @Override

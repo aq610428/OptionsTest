@@ -9,7 +9,6 @@
     <include layout="@layout/activity_title" />
 
 
-
     <com.aspsine.swipetoloadlayout.SwipeToLoadLayout
         android:id="@+id/swipeToLoadLayout"
         android:layout_width="match_parent"

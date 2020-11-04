@@ -7,6 +7,7 @@ import com.jkabe.app.box.bean.AssetsBean;
 import com.jkabe.app.box.bean.BannerVo;
 import com.jkabe.app.box.bean.Battery;
 import com.jkabe.app.box.bean.BoxInfo;
+import com.jkabe.app.box.bean.BoxVo;
 import com.jkabe.app.box.bean.Brand;
 import com.jkabe.app.box.bean.BrandVo;
 import com.jkabe.app.box.bean.CarInfo;
@@ -558,5 +559,16 @@ public class JsonParse {
         JSONObject jsonObject = object.optJSONObject("result");
         TabBean info = (TabBean) JsonUtilComm.jsonToBean(jsonObject.toString(), TabBean.class);
         return info;
+    }
+
+    public static List<BoxVo> getBoxVoJSON(JSONObject object) {
+        List<BoxVo> infos = new ArrayList<>();
+        JSONObject jsonObject = object.optJSONObject("result");
+        JSONArray jsonArray = jsonObject.optJSONArray("items");
+        for (int i = 0; i < jsonArray.length(); i++) {
+            BoxVo info = (BoxVo) JsonUtilComm.jsonToBean(jsonArray.optJSONObject(i).toString(), BoxVo.class);
+            infos.add(info);
+        }
+        return infos;
     }
 }
