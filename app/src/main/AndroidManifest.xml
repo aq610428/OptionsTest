@@ -33,7 +33,8 @@
     <!-- Required -->
     <uses-permission android:name="com.car.notver.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
         tools:ignore="ProtectedPermissions" />
     <!-- Optional. Required for location feature -->
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
@@ -47,8 +48,10 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="com.car.notver.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
-    <uses-permission android:name="android.permission.READ_LOGS"
+    <uses-permission
+        android:name="android.permission.READ_LOGS"
         tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
 
     <application
@@ -56,11 +59,11 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
-        android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme"
-        android:networkSecurityConfig="@xml/network_security_config">
+        android:usesCleartextTraffic="true">
 
         <activity
             android:name="com.jkabe.app.box.ui.StartActivity"
@@ -192,8 +195,8 @@
             android:name="com.jkabe.app.box.box.MaintenanceActivity"
             android:screenOrientation="portrait" />
         <activity
-        android:name="com.jkabe.app.box.box.MainDeilActivity"
-        android:screenOrientation="portrait" />
+            android:name="com.jkabe.app.box.box.MainDeilActivity"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name="com.jkabe.app.box.box.InsuranceActivity"
@@ -247,6 +250,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="com.jkabe.app.box.ui.PreviewActivity"
+
             android:screenOrientation="portrait" />
         <activity
             android:name="com.jkabe.app.box.ui.OilActivity"
@@ -327,6 +331,7 @@
         <activity
             android:name="com.jkabe.app.box.box.OrderPayActivity"
             android:screenOrientation="portrait" />
+
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="0fc2ec2f7f7658f6e1a3b2e4b08b298a" />
@@ -441,7 +446,7 @@
         <activity
             android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
-            android:launchMode="singleTop"/>
+            android:launchMode="singleTop" />
 
     </application>
 

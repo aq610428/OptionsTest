@@ -37,6 +37,7 @@ import com.jkabe.app.box.bean.OreInfo;
 import com.jkabe.app.box.bean.PackageBean;
 import com.jkabe.app.box.bean.PayBean;
 import com.jkabe.app.box.bean.StoreInfo;
+import com.jkabe.app.box.bean.TabBean;
 import com.jkabe.app.box.bean.Travrt;
 import com.jkabe.app.box.bean.TripVo;
 import com.jkabe.app.box.bean.Typeitems;
@@ -551,5 +552,11 @@ public class JsonParse {
             infos.add(info);
         }
         return infos;
+    }
+
+    public static TabBean getTabBeanJSON(JSONObject object) {
+        JSONObject jsonObject = object.optJSONObject("result");
+        TabBean info = (TabBean) JsonUtilComm.jsonToBean(jsonObject.toString(), TabBean.class);
+        return info;
     }
 }

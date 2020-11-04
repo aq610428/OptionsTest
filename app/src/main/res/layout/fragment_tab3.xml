@@ -47,7 +47,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:text="全网DeFi锁仓"
+                            android:text="全网DeFi锁仓(BOX)"
                             android:textColor="#97B2FF"
                             android:textSize="@dimen/ctv_sizen_12" />
 
@@ -64,20 +64,11 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="3dp"
                                 android:gravity="center"
-                                android:text="11369.07"
+                                android:text="0.00"
                                 android:textColor="#FFFFFF"
                                 android:textSize="@dimen/ctv_sizen_15"
                                 android:textStyle="bold" />
 
-                            <TextView
-                                android:id="@+id/text_tab_cny"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="3dp"
-                                android:gravity="center"
-                                android:text="≈￥4296.39"
-                                android:textColor="#FBFBFB"
-                                android:textSize="@dimen/ctv_sizen_12" />
 
                         </LinearLayout>
 
@@ -117,7 +108,7 @@
                                 android:layout_marginLeft="20dp"
                                 android:layout_marginTop="17dp"
                                 android:gravity="center"
-                                android:text="DeFi参与用户"
+                                android:text="DeFi参与用户(人)"
                                 android:textColor="#97B2FF"
                                 android:textSize="@dimen/ctv_sizen_12" />
 
@@ -129,7 +120,7 @@
                                 android:layout_marginLeft="20dp"
                                 android:layout_marginTop="3dp"
                                 android:gravity="center"
-                                android:text="374.80"
+                                android:text="0"
                                 android:textColor="#FFFFFF"
                                 android:textSize="@dimen/ctv_sizen_15"
                                 android:textStyle="bold" />
@@ -161,7 +152,7 @@
                                 android:layout_marginLeft="20dp"
                                 android:layout_marginTop="17dp"
                                 android:gravity="center"
-                                android:text="DeFi累计挖出"
+                                android:text="DeFi累计挖出(BOX)"
                                 android:textColor="#97B2FF"
                                 android:textSize="@dimen/ctv_sizen_12" />
 
@@ -173,7 +164,7 @@
                                 android:layout_marginLeft="20dp"
                                 android:layout_marginTop="3dp"
                                 android:gravity="center"
-                                android:text="4.3596"
+                                android:text="0"
                                 android:textColor="#FFFFFF"
                                 android:textSize="@dimen/ctv_sizen_15"
                                 android:textStyle="bold" />
@@ -209,10 +200,4 @@
         </androidx.core.widget.NestedScrollView>
     </com.aspsine.swipetoloadlayout.SwipeToLoadLayout>
 
-
-    <com.jkabe.app.box.weight.NoDataView
-        android:id="@+id/noDataView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone" />
 </RelativeLayout>

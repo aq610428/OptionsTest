@@ -386,6 +386,15 @@ public interface Api {
     String PAY_CHANCE_CARF = Config.getOpenNewApi() + "/device/nocarbindingdeviceinfo";
     int PAY_CHANCE_CARF_ID = 20028;
 
+    String PAY_CHANCE_BOX = Config.getOpenNewApi() + "/box/getBoxManageData";
+    int PAY_CHANCE_BOX_ID = 20029;
 
+    //理财列表
+    String LIST_CHANCE_BOX = Config.getOpenNewApi() + "/box/getMemberManageListData";
+    int LIST_CHANCE_BOX_ID = 20030;
+
+    //理财下单
+    String LIST_MEMBER_BOX = Config.getOpenNewApi() + "/box/saveMemberMamageData";
+    int LIST_MEMBER_BOX_ID = 20031;
 
 }

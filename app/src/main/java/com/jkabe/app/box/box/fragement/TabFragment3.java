@@ -7,16 +7,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.jkabe.app.box.adapter.DefiAdapter;
 import com.jkabe.app.box.base.BaseFragment;
 import com.jkabe.app.box.bean.CommonalityModel;
 import com.jkabe.app.box.bean.OreInfo;
+import com.jkabe.app.box.bean.TabBean;
 import com.jkabe.app.box.box.DefiActivity;
 import com.jkabe.app.box.config.Api;
 import com.jkabe.app.box.config.NetWorkListener;
@@ -24,9 +27,9 @@ import com.jkabe.app.box.config.okHttpModel;
 import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.JsonParse;
 import com.jkabe.app.box.util.Md5Util;
+import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.app.box.util.TypefaceUtil;
 import com.jkabe.app.box.util.Utility;
-import com.jkabe.app.box.weight.NoDataView;
 import com.jkabe.box.R;
 import org.json.JSONObject;
 import java.util.ArrayList;
@@ -44,8 +47,8 @@ public class TabFragment3 extends BaseFragment implements OnRefreshListener, Net
     private RecyclerView swipe_target;
     private TextView text_tab1, text_tab2, text_tab3;
     private DefiAdapter defiAdapter;
-    private List<OreInfo> beans = new ArrayList<>();
-    private NoDataView noDataView;
+    private List<TabBean.ItemsBean> beans = new ArrayList<>();
+    private TabBean tabBean;
 
 
     @Nullable
@@ -60,7 +63,6 @@ public class TabFragment3 extends BaseFragment implements OnRefreshListener, Net
     }
 
     private void initView() {
-        noDataView = rootView.findViewById(R.id.noDataView);
         swipe_target = rootView.findViewById(R.id.mListView);
         swipeToLoadLayout = rootView.findViewById(R.id.swipeToLoadLayout);
         swipeToLoadLayout.setOnRefreshListener(this);
@@ -71,7 +73,8 @@ public class TabFragment3 extends BaseFragment implements OnRefreshListener, Net
         TypefaceUtil.setTextType(getActivity(), "DINOT-Bold.ttf", text_tab1);
         TypefaceUtil.setTextType(getActivity(), "DINOT-Bold.ttf", text_tab2);
         TypefaceUtil.setTextType(getActivity(), "DINOT-Bold.ttf", text_tab3);
-        noDataView.textView.setText("暂未开放");
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        swipe_target.setLayoutManager(layoutManager);
     }
 
 
@@ -86,12 +89,13 @@ public class TabFragment3 extends BaseFragment implements OnRefreshListener, Net
 
 
     public void query() {
-        String sign = "partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        String sign = "memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
         Map<String, String> params = okHttpModel.getParams();
         params.put("apptype", Constants.TYPE);
+        params.put("memberid", SaveUtils.getSaveInfo().getId());
         params.put("partnerid", Constants.PARTNERID);
         params.put("sign", Md5Util.encode(sign));
-        okHttpModel.get(Api.GET_COINS_LIST, params, Api.GET_COINS_LIST_ID, this);
+        okHttpModel.get(Api.PAY_CHANCE_BOX, params, Api.PAY_CHANCE_BOX_ID, this);
     }
 
 
@@ -100,9 +104,9 @@ public class TabFragment3 extends BaseFragment implements OnRefreshListener, Net
         if (object != null && commonality != null && !Utility.isEmpty(commonality.getStatusCode())) {
             if (Constants.SUCESSCODE.equals(commonality.getStatusCode())) {
                 switch (id) {
-                    case Api.GET_COINS_LIST_ID:
-                        beans = JsonParse.getBespokemoniesJson1(object);
-                        if (beans != null && beans.size() > 0) {
+                    case Api.PAY_CHANCE_BOX_ID:
+                        tabBean = JsonParse.getTabBeanJSON(object);
+                        if (tabBean != null) {
                             setAdapter();
                         }
                         break;
@@ -115,17 +119,25 @@ public class TabFragment3 extends BaseFragment implements OnRefreshListener, Net
 
 
     private void setAdapter() {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        swipe_target.setLayoutManager(layoutManager);
-        defiAdapter = new DefiAdapter(getContext(), beans);
-        swipe_target.setAdapter(defiAdapter);
+        text_tab1.setText(tabBean.getManage_amount() + "");
+        text_tab2.setText(tabBean.getManage_num() + "");
+        text_tab3.setText(tabBean.getProfit_amount() + "");
+        beans = tabBean.getItems();
+        if (beans != null && beans.size() > 0) {
+            defiAdapter = new DefiAdapter(getContext(), beans);
+            swipe_target.setAdapter(defiAdapter);
+            defiAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent intent = new Intent(getContext(), DefiActivity.class);
+                    intent.putExtra("tabBean", tabBean);
+                    intent.putExtra("type", beans.get(position).getType()+"");
+                    startActivity(intent);
+                }
+            });
+        }
 
-        defiAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(getContext(), DefiActivity.class));
-            }
-        });
+
     }
 
 

@@ -4,8 +4,11 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Build;
 import android.os.StrictMode;
+import android.webkit.WebView;
+
 import androidx.annotation.RequiresApi;
 import androidx.multidex.MultiDex;
+
 import com.jkabe.app.box.weight.ActivityTaskManager;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheMode;
@@ -13,6 +16,7 @@ import com.lzy.okgo.https.HttpsUtils;
 import com.tencent.bugly.crashreport.CrashReport;
 
 import java.util.concurrent.TimeUnit;
+
 import cn.jpush.android.api.JPushInterface;
 import okhttp3.OkHttpClient;
 
@@ -23,6 +27,7 @@ public class BaseApplication extends Application {
     public static Context myContext;
     public static BaseApplication baseApplicition;
     public static ActivityTaskManager activityTaskManager;
+    private static final String PROCESSNAME = "com.jkabe.box";
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
 
@@ -40,6 +45,17 @@ public class BaseApplication extends Application {
         builder.detectFileUriExposure();
 
         CrashReport.initCrashReport(getApplicationContext(), "395e58c320", false);
+        initWebView();
+    }
+
+
+    private void initWebView() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            String processName = getProcessName();
+            if (!PROCESSNAME.equals(processName)) {
+                WebView.setDataDirectorySuffix(getString(Integer.parseInt(processName), "zyb"));
+            }
+        }
     }
 
 

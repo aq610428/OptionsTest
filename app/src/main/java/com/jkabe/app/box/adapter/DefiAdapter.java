@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.jkabe.app.box.bean.AddressBean;
 import com.jkabe.app.box.bean.OreInfo;
+import com.jkabe.app.box.bean.TabBean;
 import com.jkabe.app.box.ui.AddressActivity;
 import com.jkabe.box.R;
 
@@ -17,10 +18,10 @@ import java.util.List;
  * @name:AddressAdapter
  */
 public class DefiAdapter extends AutoRVAdapter {
-    List<OreInfo> list;
+    List<TabBean.ItemsBean> list;
     Context context;
 
-    public DefiAdapter(Context context, List<OreInfo> list) {
+    public DefiAdapter(Context context, List<TabBean.ItemsBean> list) {
         super(context, list);
         this.list = list;
         this.context = context;
@@ -33,12 +34,13 @@ public class DefiAdapter extends AutoRVAdapter {
 
     @Override
     public void onBindViewHolder(ViewHolder vh, int position) {
-        OreInfo beans = list.get(position);
-
-
+        TabBean.ItemsBean beans = list.get(position);
+        vh.getTextView(R.id.text_mouth).setText(beans.getZq());
+        vh.getTextView(R.id.text_profit).setText(beans.getLv());
+        vh.getTextView(R.id.text_title).setText(beans.getMax()+"-"+beans.getMin()+" BOX 100的整数倍递增");
     }
 
-    public void setData(List<OreInfo> beanList) {
+    public void setData(List<TabBean.ItemsBean> beanList) {
         this.list = beanList;
     }
 }

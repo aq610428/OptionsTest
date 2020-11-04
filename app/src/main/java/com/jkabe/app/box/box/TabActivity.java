@@ -23,7 +23,9 @@ import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.NoDataView;
 import com.jkabe.box.R;
+
 import org.json.JSONObject;
+
 import java.util.Map;
 
 /**
@@ -62,7 +64,7 @@ public class TabActivity extends BaseActivity implements OnLoadMoreListener, OnR
 
     @Override
     protected void initData() {
-
+        query();
     }
 
 
@@ -92,7 +94,7 @@ public class TabActivity extends BaseActivity implements OnLoadMoreListener, OnR
         params.put("partnerid", Constants.PARTNERID);
         params.put("apptype", Constants.TYPE);
         params.put("sign", Md5Util.encode(sign));
-        okHttpModel.get(Api.MallGood_ADDRESS_LIST, params, Api.MallGood_ADDRESS_LIST_ID, this);
+        okHttpModel.get(Api.LIST_CHANCE_BOX, params, Api.LIST_CHANCE_BOX_ID, this);
     }
 
 
@@ -101,7 +103,7 @@ public class TabActivity extends BaseActivity implements OnLoadMoreListener, OnR
         if (object != null && commonality != null && !Utility.isEmpty(commonality.getStatusCode())) {
             if (Constants.SUCESSCODE.equals(commonality.getStatusCode())) {
                 switch (id) {
-                    case Api.MallGood_ADDRESS_LIST_ID:
+                    case Api.LIST_CHANCE_BOX_ID:
 
                         break;
 

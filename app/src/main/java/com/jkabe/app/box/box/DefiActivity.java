@@ -6,11 +6,14 @@ import android.view.View;
 import android.widget.TextView;
 import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.bean.CommonalityModel;
+import com.jkabe.app.box.bean.TabBean;
 import com.jkabe.app.box.config.Api;
 import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
 import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.Md5Util;
+import com.jkabe.app.box.util.SaveUtils;
+import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.ClearEditText;
 import com.jkabe.box.R;
@@ -23,8 +26,11 @@ import java.util.Map;
  * @name:DefiActivity
  */
 public class DefiActivity extends BaseActivity implements NetWorkListener {
-    private TextView title_text_tv, title_left_btn,text_ensure,title_right_btn;
+    private TextView title_text_tv, title_left_btn, text_ensure, title_right_btn;
     private ClearEditText et_num;
+    private TabBean tabBean;
+    private TextView text_user, text_deif, text_pay;
+    private String type;
 
 
     @Override
@@ -34,8 +40,11 @@ public class DefiActivity extends BaseActivity implements NetWorkListener {
 
     @Override
     protected void initView() {
-        title_right_btn= getView(R.id.title_right_btn);
-        et_num= getView(R.id.et_num);
+        text_pay = getView(R.id.text_pay);
+        text_deif = getView(R.id.text_deif);
+        text_user = getView(R.id.text_user);
+        title_right_btn = getView(R.id.title_right_btn);
+        et_num = getView(R.id.et_num);
         title_text_tv = getView(R.id.title_text_tv);
         title_left_btn = getView(R.id.title_left_btn);
         text_ensure = getView(R.id.text_ensure);
@@ -58,25 +67,38 @@ public class DefiActivity extends BaseActivity implements NetWorkListener {
                 startActivity(new Intent(this, TabDefiActivity.class));
                 break;
             case R.id.text_ensure:
-
+                query();
                 break;
         }
     }
 
     @Override
     protected void initData() {
-
+        type = getIntent().getStringExtra("type");
+        tabBean = (TabBean) getIntent().getSerializableExtra("tabBean");
+        if (tabBean != null) {
+            text_user.setText(tabBean.getManage_amount() + "");
+            text_deif.setText(tabBean.getProfit_amount() + "");
+            text_pay.setText(tabBean.getManage_num() + "");
+        }
     }
 
 
-
     public void query() {
-        String sign = "partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        String amount = et_num.getText().toString();
+        if (Utility.isEmpty(amount)) {
+            ToastUtil.showToast("理财金额不能为空");
+            return;
+        }
+        String sign = "amount=" + amount + "&memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + "&type=" + type + Constants.SECREKEY;
         Map<String, String> params = okHttpModel.getParams();
         params.put("apptype", Constants.TYPE);
+        params.put("amount", amount + "");
+        params.put("memberid", SaveUtils.getSaveInfo().getId());
         params.put("partnerid", Constants.PARTNERID);
+        params.put("type", type + "");
         params.put("sign", Md5Util.encode(sign));
-        okHttpModel.get(Api.GET_COINS_LIST, params, Api.GET_COINS_LIST_ID, this);
+        okHttpModel.post(Api.LIST_MEMBER_BOX, params, Api.LIST_MEMBER_BOX_ID, this);
     }
 
     @Override
@@ -84,8 +106,8 @@ public class DefiActivity extends BaseActivity implements NetWorkListener {
         if (object != null && commonality != null && !Utility.isEmpty(commonality.getStatusCode())) {
             if (Constants.SUCESSCODE.equals(commonality.getStatusCode())) {
                 switch (id) {
-                    case Api.GET_COINS_LIST_ID:
-
+                    case Api.LIST_MEMBER_BOX_ID:
+                        ToastUtil.showToast(commonality.getErrorDesc());
                         break;
                 }
             }

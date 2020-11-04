@@ -25,6 +25,7 @@
 
 
                 <TextView
+                    android:id="@+id/text_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="7dp"
@@ -34,6 +35,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/text_mouth"
                     android:layout_width="40dp"
                     android:layout_height="18dp"
                     android:layout_marginRight="7dp"
@@ -44,6 +46,7 @@
                     android:textSize="@dimen/ctv_sizen_11" />
 
                 <TextView
+                    android:id="@+id/text_profit"
                     android:layout_width="60dp"
                     android:layout_height="22dp"
                     android:background="@drawable/shape_bg_vx1"
@@ -57,6 +60,7 @@
 
 
             <TextView
+                android:id="@+id/text_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
