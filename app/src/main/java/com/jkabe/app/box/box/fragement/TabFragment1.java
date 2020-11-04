@@ -13,6 +13,7 @@ import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
 import com.jkabe.app.box.adapter.CarAdapter1;
 import com.jkabe.app.box.base.BaseFragment;
 import com.jkabe.app.box.bean.CommonalityModel;
+import com.jkabe.app.box.bean.Money;
 import com.jkabe.app.box.bean.OreInfo;
 import com.jkabe.app.box.config.Api;
 import com.jkabe.app.box.config.NetWorkListener;
@@ -34,7 +35,7 @@ import java.util.Map;
  */
 public class TabFragment1 extends BaseFragment implements NetWorkListener, OnRefreshListener {
     private View rootView;
-    private List<OreInfo> oreInfos = new ArrayList<>();
+    private List<Money> oreInfos = new ArrayList<>();
     private SwipeToLoadLayout swipeToLoadLayout;
     private RecyclerView swipe_target;
     private CarAdapter1 carAdapter;
@@ -65,7 +66,7 @@ public class TabFragment1 extends BaseFragment implements NetWorkListener, OnRef
     public void query() {
         String sign = "partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
         Map<String, String> params = okHttpModel.getParams();
-        params.put("apptype", Constants.TYPE);
+        params.put("apptype", "1");
         params.put("partnerid", Constants.PARTNERID);
         params.put("sign", Md5Util.encode(sign));
         okHttpModel.get(Api.GET_COINS_LIST, params, Api.GET_COINS_LIST_ID, this);
@@ -79,7 +80,7 @@ public class TabFragment1 extends BaseFragment implements NetWorkListener, OnRef
             if (Constants.SUCESSCODE.equals(commonality.getStatusCode())) {
                 switch (id) {
                     case Api.GET_COINS_LIST_ID:
-                        oreInfos = JsonParse.getBespokemoniesJson1(object);
+                        oreInfos = JsonParse.getBespokemoniesJson(object);
                         if (oreInfos != null && oreInfos.size() > 0) {
                             setAdapter();
                         }
