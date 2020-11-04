@@ -3,6 +3,7 @@ package com.jkabe.app.box.box;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
@@ -19,9 +20,7 @@ import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.NoDataView;
 import com.jkabe.box.R;
-
 import org.json.JSONObject;
-
 import java.util.Map;
 
 /**
@@ -60,7 +59,9 @@ public class TabDefiActivity extends BaseActivity implements OnLoadMoreListener,
 
     @Override
     protected void initData() {
-
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        swipe_target.setLayoutManager(layoutManager);
+        query();
     }
 
 
@@ -90,7 +91,7 @@ public class TabDefiActivity extends BaseActivity implements OnLoadMoreListener,
         params.put("partnerid", Constants.PARTNERID);
         params.put("apptype", Constants.TYPE);
         params.put("sign", Md5Util.encode(sign));
-        okHttpModel.get(Api.MallGood_ADDRESS_LIST, params, Api.MallGood_ADDRESS_LIST_ID, this);
+        okHttpModel.get(Api.FITL_MEMBER_BOX, params, Api.FITL_MEMBER_BOX_ID, this);
     }
 
 
@@ -99,7 +100,7 @@ public class TabDefiActivity extends BaseActivity implements OnLoadMoreListener,
         if (object != null && commonality != null && !Utility.isEmpty(commonality.getStatusCode())) {
             if (Constants.SUCESSCODE.equals(commonality.getStatusCode())) {
                 switch (id) {
-                    case Api.MallGood_ADDRESS_LIST_ID:
+                    case Api.FITL_MEMBER_BOX_ID:
 
                         break;
 

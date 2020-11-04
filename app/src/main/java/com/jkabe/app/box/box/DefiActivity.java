@@ -18,6 +18,7 @@ import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.ClearEditText;
 import com.jkabe.box.R;
 import org.json.JSONObject;
+import java.math.BigDecimal;
 import java.util.Map;
 
 /**
@@ -90,6 +91,11 @@ public class DefiActivity extends BaseActivity implements NetWorkListener {
             ToastUtil.showToast("理财金额不能为空");
             return;
         }
+        if (new BigDecimal(amount).doubleValue() < 100) {
+            ToastUtil.showToast("理财金额不能小于100BOX");
+            return;
+        }
+
         String sign = "amount=" + amount + "&memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + "&type=" + type + Constants.SECREKEY;
         Map<String, String> params = okHttpModel.getParams();
         params.put("apptype", Constants.TYPE);
@@ -110,6 +116,8 @@ public class DefiActivity extends BaseActivity implements NetWorkListener {
                         ToastUtil.showToast(commonality.getErrorDesc());
                         break;
                 }
+            } else {
+                ToastUtil.showToast(commonality.getErrorDesc());
             }
         }
         stopProgressDialog();

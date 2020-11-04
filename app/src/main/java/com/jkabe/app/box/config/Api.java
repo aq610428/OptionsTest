@@ -397,4 +397,10 @@ public interface Api {
     String LIST_MEMBER_BOX = Config.getOpenNewApi() + "/box/saveMemberMamageData";
     int LIST_MEMBER_BOX_ID = 20031;
 
+
+    //理财收益明细
+    String FITL_MEMBER_BOX = Config.getOpenNewApi() + "/box/getMemberManageProfitListData";
+    int FITL_MEMBER_BOX_ID = 20032;
+
+
 }
