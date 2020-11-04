@@ -20,6 +20,7 @@ import com.jkabe.app.box.bean.CommonalityModel;
 import com.jkabe.app.box.config.Api;
 import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
+import com.jkabe.app.box.util.BigDecimalUtils;
 import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.DateUtils;
 import com.jkabe.app.box.util.JsonParse;
@@ -34,6 +35,8 @@ import com.jkabe.app.box.weight.NoDataView;
 import com.jkabe.app.box.weight.NoView;
 import com.jkabe.box.R;
 import org.json.JSONObject;
+
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -186,7 +189,7 @@ public class TabFragment2 extends BaseFragment implements NetWorkListener, OnRef
             String activeCount = jsonObject.optString("activeCount");
             text_day.setText(yestodayBox + "");
             text_total.setText(totalBox + "");
-            text_mining.setText(miningBox + "");
+            text_mining.setText(BigDecimalUtils.round(new BigDecimal(miningBox),4) + "");
             text_machinery.setText(activeCount + "");
 
             String stat = jsonObject.optString("state");

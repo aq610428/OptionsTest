@@ -6,12 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
-
 import com.jkabe.app.box.adapter.FragmentAdapter;
 import com.jkabe.app.box.base.BaseFragment;
 import com.jkabe.app.box.box.fragement.TabFragment1;
@@ -21,7 +19,6 @@ import com.jkabe.app.box.box.fragement.TabFragment4;
 import com.jkabe.app.box.box.fragement.TabFragment5;
 import com.jkabe.app.box.util.StatusBarUtil;
 import com.jkabe.box.R;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,9 +27,9 @@ import java.util.List;
  * @date: 2020/10/20
  * @name:OreLostragment
  */
-public class OreLostragment extends BaseFragment implements ViewPager.OnPageChangeListener {
+public class OreLostragment extends BaseFragment implements ViewPager.OnPageChangeListener, View.OnClickListener {
     private View rootView;
-    private TextView text_tab1, text_tab2, text_tab3, text_tab4, text_tab5,text_name;
+    public TextView text_tab1, text_tab2, text_tab3, text_tab4, text_tab5, text_name, text_history;
     private List<Fragment> mFragmentList = new ArrayList<>();
     private FragmentAdapter mFragmentAdapter;
     private ViewPager mViewPager;
@@ -50,7 +47,8 @@ public class OreLostragment extends BaseFragment implements ViewPager.OnPageChan
 
 
     private void initView() {
-        text_name= getView(rootView, R.id.text_name);
+        text_history = getView(rootView, R.id.text_history);
+        text_name = getView(rootView, R.id.text_name);
         mViewPager = getView(rootView, R.id.viewPager);
         text_tab1 = getView(rootView, R.id.text_tab1);
         text_tab2 = getView(rootView, R.id.text_tab2);
@@ -70,6 +68,16 @@ public class OreLostragment extends BaseFragment implements ViewPager.OnPageChan
         mFragmentAdapter = new FragmentAdapter(getChildFragmentManager(), mFragmentList);
         mViewPager.setAdapter(mFragmentAdapter);
         mViewPager.setOnPageChangeListener(this);
+        text_history.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.text_history:
+
+                break;
+        }
     }
 
 
@@ -103,6 +111,7 @@ public class OreLostragment extends BaseFragment implements ViewPager.OnPageChan
                 text_tab3.setBackgroundColor(Color.parseColor("#FFFFFF"));
                 break;
             case 3:
+                text_history.setVisibility(View.VISIBLE);
                 text_name.setText("理财");
                 text_tab4.setBackgroundColor(Color.parseColor("#FFFFFF"));
                 break;
@@ -114,12 +123,14 @@ public class OreLostragment extends BaseFragment implements ViewPager.OnPageChan
     }
 
     public void clealView() {
+        text_history.setVisibility(View.GONE);
         text_tab1.setBackgroundColor(Color.parseColor("#BDCAFB"));
         text_tab2.setBackgroundColor(Color.parseColor("#BDCAFB"));
         text_tab3.setBackgroundColor(Color.parseColor("#BDCAFB"));
         text_tab4.setBackgroundColor(Color.parseColor("#BDCAFB"));
         text_tab5.setBackgroundColor(Color.parseColor("#BDCAFB"));
     }
+
 
     @Override
     public void onResume() {

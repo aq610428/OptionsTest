@@ -10,17 +10,38 @@
         android:background="@mipmap/ic_tab6_usd">
 
 
-        <TextView
-            android:id="@+id/text_name"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="14dp"
             android:layout_marginTop="43.5dp"
-            android:gravity="center"
-            android:text="行情"
-            android:textColor="#FFFFFF"
-            android:textSize="25sp"
-            android:textStyle="bold" />
+            android:layout_marginRight="14dp">
+
+            <TextView
+                android:id="@+id/text_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="行情"
+                android:textColor="#FFFFFF"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/text_history"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:drawableRight="@mipmap/ic_history_tab"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+
+        </RelativeLayout>
 
 
         <LinearLayout

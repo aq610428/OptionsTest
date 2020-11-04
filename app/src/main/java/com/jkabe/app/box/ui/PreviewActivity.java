@@ -29,6 +29,7 @@ public class PreviewActivity extends BaseActivity {
     private TextView title_text_tv, title_left_btn;
     private WebView webView;
     private RelativeLayout mRelativeLayout;
+    private String url;
 
 
     @Override
@@ -46,8 +47,11 @@ public class PreviewActivity extends BaseActivity {
         title_left_btn.setOnClickListener(this);
         String name = getIntent().getStringExtra("name");
         title_text_tv.setText(name);
+         url = getIntent().getStringExtra("url");
         if ("惠购车".equals(name + "")) {
             mRelativeLayout.setVisibility(View.GONE);
+        }else if ("用户协议".equals(name)){
+            url="file:///android_asset/index.html";
         }
     }
 
@@ -131,7 +135,7 @@ public class PreviewActivity extends BaseActivity {
                 }
             }
         });
-        String url = getIntent().getStringExtra("url");
+
         webView.loadUrl(url);
     }
 
