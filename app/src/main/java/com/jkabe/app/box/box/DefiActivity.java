@@ -1,5 +1,6 @@
 package com.jkabe.app.box.box;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -22,7 +23,7 @@ import java.util.Map;
  * @name:DefiActivity
  */
 public class DefiActivity extends BaseActivity implements NetWorkListener {
-    private TextView title_text_tv, title_left_btn,text_ensure;
+    private TextView title_text_tv, title_left_btn,text_ensure,title_right_btn;
     private ClearEditText et_num;
 
 
@@ -33,6 +34,7 @@ public class DefiActivity extends BaseActivity implements NetWorkListener {
 
     @Override
     protected void initView() {
+        title_right_btn= getView(R.id.title_right_btn);
         et_num= getView(R.id.et_num);
         title_text_tv = getView(R.id.title_text_tv);
         title_left_btn = getView(R.id.title_left_btn);
@@ -40,6 +42,8 @@ public class DefiActivity extends BaseActivity implements NetWorkListener {
         title_left_btn.setOnClickListener(this);
         text_ensure.setOnClickListener(this);
         title_text_tv.setText("投保");
+        title_right_btn.setText("收益记录");
+        title_right_btn.setOnClickListener(this);
     }
 
 
@@ -49,6 +53,9 @@ public class DefiActivity extends BaseActivity implements NetWorkListener {
         switch (v.getId()) {
             case R.id.title_left_btn:
                 finish();
+                break;
+            case R.id.title_right_btn:
+                startActivity(new Intent(this, TabDefiActivity.class));
                 break;
             case R.id.text_ensure:
 

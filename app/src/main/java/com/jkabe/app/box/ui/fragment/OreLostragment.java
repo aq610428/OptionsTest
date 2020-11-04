@@ -1,5 +1,6 @@
 package com.jkabe.app.box.ui.fragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 import com.jkabe.app.box.adapter.FragmentAdapter;
 import com.jkabe.app.box.base.BaseFragment;
+import com.jkabe.app.box.box.TabActivity;
 import com.jkabe.app.box.box.fragement.TabFragment1;
 import com.jkabe.app.box.box.fragement.TabFragment2;
 import com.jkabe.app.box.box.fragement.TabFragment3;
@@ -75,7 +77,7 @@ public class OreLostragment extends BaseFragment implements ViewPager.OnPageChan
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.text_history:
-
+                 startActivity(new Intent(getContext(), TabActivity.class));
                 break;
         }
     }

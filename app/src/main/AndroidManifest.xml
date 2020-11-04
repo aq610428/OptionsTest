@@ -122,6 +122,15 @@
             android:name="com.jkabe.app.box.box.LogisticsActivity"
             android:screenOrientation="portrait" />
 
+
+        <activity
+            android:name="com.jkabe.app.box.box.TabActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.jkabe.app.box.box.TabDefiActivity"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name="com.jkabe.app.box.ui.ConfirmActivity"
             android:screenOrientation="portrait" />
