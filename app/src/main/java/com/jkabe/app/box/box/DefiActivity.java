@@ -18,7 +18,6 @@ import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.ClearEditText;
 import com.jkabe.box.R;
 import org.json.JSONObject;
-
 import java.math.BigDecimal;
 import java.util.Map;
 

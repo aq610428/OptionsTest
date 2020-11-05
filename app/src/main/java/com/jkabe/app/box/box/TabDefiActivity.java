@@ -64,6 +64,7 @@ public class TabDefiActivity extends BaseActivity implements OnLoadMoreListener,
         title_left_btn = getView(R.id.title_left_btn);
         title_left_btn.setOnClickListener(this);
         title_text_tv.setText("收益明细");
+        noDataView.textView.setText("暂无收益明细");
     }
 
     @Override

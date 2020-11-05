@@ -70,11 +70,14 @@ public class AsetsAdapter extends AutoRVAdapter {
             case 10:
                 vh.getTextView(R.id.text_num).setText("市代挖矿分润");
                 break;
+            case 11:
+                vh.getTextView(R.id.text_num).setText("理财收益");
+                break;
         }
-        vh.getTextView(R.id.text_user).setText("数量："+assetsBean.getBalance() + "");
+        vh.getTextView(R.id.text_user).setText("数量：" + assetsBean.getBalance() + "");
         String time = assetsBean.getStringCreateTime();
         if (!Utility.isEmpty(time)) {
-            vh.getTextView(R.id.text_usd).setText("时间："+time.substring(0, 10) + "");
+            vh.getTextView(R.id.text_usd).setText("时间：" + time.substring(0, 10) + "");
         }
         switch (assetsBean.getStatus()) {
             case 1:

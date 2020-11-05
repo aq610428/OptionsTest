@@ -33,6 +33,7 @@ import com.jkabe.box.R;
 
 import org.json.JSONObject;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -188,7 +189,11 @@ public class TabActivity extends BaseActivity implements OnLoadMoreListener, OnR
         Dialog dialog = new Dialog(this);
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_layout_ming, null);
         TextView text_name = view.findViewById(R.id.text_name);
-        text_name.setText("如果赎回当前理财，您将违约" + "违约金" + money + "BOX将从本金中扣除,是否赎回？");
+        if (new BigDecimal(money).doubleValue()==0) {
+            text_name.setText("24小时内可免费赎回当前理财,是否赎回？");
+        } else {
+            text_name.setText("您当前理财已超过24小时，如果赎回您将违约，违约金为" + money + "BOX,是否赎回当前理财？");
+        }
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(view);
         view.findViewById(R.id.cancel).setOnClickListener(new View.OnClickListener() {

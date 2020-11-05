@@ -17,7 +17,7 @@
             android:layout_marginTop="10dp"
             android:background="@color/colorWhite"
             android:cursorVisible="true"
-            android:gravity="center"
+            android:gravity="center|left"
             android:padding="10dp"
             android:text="您尚未激活box,快去激活吧~您尚未激活box,快去激活吧~您尚未激活box,快去激活吧~您尚未激活box,快去激活吧~您尚未激活box,快去激活吧~您尚未激活box,快去激活吧~您尚未激活box,快去激活吧~"
             android:textColor="@color/black33"
