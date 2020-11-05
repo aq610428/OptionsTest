@@ -48,6 +48,7 @@
 
 
                     <TextView
+                        android:id="@+id/text_tab1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -80,6 +81,7 @@
 
 
                     <TextView
+                        android:id="@+id/text_tab2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -111,6 +113,7 @@
 
 
                     <TextView
+                        android:id="@+id/text_tab3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -153,6 +156,7 @@
 
 
                     <TextView
+                        android:id="@+id/text_tab4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -185,6 +189,7 @@
 
 
                     <TextView
+                        android:id="@+id/text_tab5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -215,6 +220,7 @@
 
 
                     <TextView
+                        android:id="@+id/text_tab6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -295,6 +301,7 @@
 
 
                         <TextView
+                            android:id="@+id/text_tab_direct"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
@@ -321,6 +328,7 @@
 
 
                         <TextView
+                            android:id="@+id/text_tab1_direct"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
@@ -347,6 +355,7 @@
 
 
                         <TextView
+                            android:id="@+id/text_tab2_direct"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
@@ -437,6 +446,7 @@
 
 
                             <TextView
+                                android:id="@+id/text_tab_usdt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
@@ -472,6 +482,7 @@
 
 
                             <TextView
+                                android:id="@+id/text_tab1_usdt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
@@ -516,6 +527,7 @@
 
 
                             <TextView
+                                android:id="@+id/text_tab1_box"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
@@ -559,6 +571,7 @@
 
 
                             <TextView
+                                android:id="@+id/text_tab2_box"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
