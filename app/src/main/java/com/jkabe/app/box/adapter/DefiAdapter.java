@@ -8,8 +8,10 @@ import com.jkabe.app.box.bean.AddressBean;
 import com.jkabe.app.box.bean.OreInfo;
 import com.jkabe.app.box.bean.TabBean;
 import com.jkabe.app.box.ui.AddressActivity;
+import com.jkabe.app.box.util.BigDecimalUtils;
 import com.jkabe.box.R;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -37,7 +39,8 @@ public class DefiAdapter extends AutoRVAdapter {
         TabBean.ItemsBean beans = list.get(position);
         vh.getTextView(R.id.text_mouth).setText(beans.getZq());
         vh.getTextView(R.id.text_profit).setText(beans.getLv());
-        vh.getTextView(R.id.text_title).setText(beans.getMax()+"-"+beans.getMin()+" BOX 100的整数倍递增");
+        BigDecimal decimal = BigDecimalUtils.div(new BigDecimal(beans.getMax()), new BigDecimal(10000));
+        vh.getTextView(R.id.text_title).setText(beans.getMin() + "-" + decimal.intValue() + "万 100BOX的整数倍递增");
     }
 
     public void setData(List<TabBean.ItemsBean> beanList) {
