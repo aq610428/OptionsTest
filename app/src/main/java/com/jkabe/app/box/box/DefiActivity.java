@@ -116,6 +116,8 @@ public class DefiActivity extends BaseActivity implements NetWorkListener {
                 switch (id) {
                     case Api.LIST_MEMBER_BOX_ID:
                         ToastUtil.showToast(commonality.getErrorDesc());
+                        startActivity(new Intent(this, TabActivity.class));
+                        finish();
                         break;
                 }
             } else {

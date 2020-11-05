@@ -30,7 +30,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="订单号"
+                    android:text="订单编号"
                     android:textColor="@color/black01"
                     android:textSize="@dimen/ctv_sizen_14" />
 
@@ -45,11 +45,6 @@
                     android:textSize="@dimen/ctv_sizen_13" />
 
             </RelativeLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="@color/dive_line" />
 
 
             <RelativeLayout

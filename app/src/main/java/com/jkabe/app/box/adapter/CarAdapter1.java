@@ -51,15 +51,13 @@ public class CarAdapter1 extends AutoRVAdapter {
         }
         BigDecimal price = BigDecimalUtils.subLastBit(inventory.getPrice_cny(), 4);
         vh.getTextView(R.id.text_price_cny).setText("≈￥:" + BigDecimalUtils.round(price, 4));
-        BigDecimal vol = BigDecimalUtils.div(new BigDecimal(inventory.getVolume_24h_usd()), new BigDecimal(1000), 4);
-        vh.getTextView(R.id.text_traveled).setText("24H 量 " + vol.toPlainString() + "K");
+        vh.getTextView(R.id.text_traveled).setText("24H 量 " + BigDecimalUtils.round(new BigDecimal(inventory.getVolume_24h_usd() ),2).toPlainString()+ "K");
 
 
         TypefaceUtil.setTextType(mContext, "DINOT-Bold.ttf", vh.getTextView(R.id.text_price));
         TypefaceUtil.setTextType(mContext, "DINOT-Bold.ttf", vh.getTextView(R.id.text_name));
         TypefaceUtil.setTextType(mContext, "DINOT-Bold.ttf", vh.getTextView(R.id.text_Increase));
-        BigDecimal decimal = BigDecimalUtils.mul(new BigDecimal(inventory.getPercent_change_24h()), new BigDecimal(100));
-        BigDecimal str = BigDecimalUtils.round(decimal, 0);
+        BigDecimal str = BigDecimalUtils.round(new BigDecimal(inventory.getPercent_change_24h()), 2);
         if (inventory.getPercent_change_24h() < 0) {
             vh.getTextView(R.id.text_Increase).setBackgroundResource(R.drawable.shape_login_red);
             vh.getTextView(R.id.text_Increase).setText(str+"%");
