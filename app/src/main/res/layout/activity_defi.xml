@@ -196,7 +196,7 @@
                 android:gravity="center|left"
                 android:lineSpacingMultiplier="1.3"
                 android:text="本方案是Box Defi定投3个月的理财方案，所投资Box锁 仓3个月，到期后一次性释放理财收益。\n本方案收益率为21% \n本方案Box Defi定投500Box起，100Box的整数倍递增，最高 接受10万Box定投。\n本方案可在投资期内赎回，T+3解锁；提前赎回不计投资收益。"
-                android:textColor="@color/black99"
+                android:textColor="@color/black7e"
                 android:textSize="@dimen/ctv_sizen_12" />
 
         </LinearLayout>

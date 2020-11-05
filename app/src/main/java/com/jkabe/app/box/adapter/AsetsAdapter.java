@@ -73,6 +73,12 @@ public class AsetsAdapter extends AutoRVAdapter {
             case 11:
                 vh.getTextView(R.id.text_num).setText("理财收益");
                 break;
+            case 12:
+                vh.getTextView(R.id.text_num).setText("理财购买");
+                break;
+            case 13:
+                vh.getTextView(R.id.text_num).setText("理财本金赎回");
+                break;
         }
         vh.getTextView(R.id.text_user).setText("数量：" + assetsBean.getBalance() + "");
         String time = assetsBean.getStringCreateTime();

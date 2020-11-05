@@ -69,20 +69,10 @@ public class TabAdapter extends AutoRVAdapter {
                 break;
         }
         vh.getTextView(R.id.text_box).setText(boxVo.getAmount() + "BOX");
+        vh.getTextView(R.id.text_orderId).setText(boxVo.getOrderid()+"");
 
-        if (!Utility.isEmpty(boxVo.getOrdertime())) {
-            String[] str = boxVo.getOrdertime().split("T");
-            if (str != null && str.length > 1) {
-                vh.getTextView(R.id.text_start).setText(str[0] + " " + str[1].substring(0, 8));
-            }
-        }
-
-        if (!Utility.isEmpty(boxVo.getEndtime())) {
-            String[] str = boxVo.getEndtime().split("T");
-            if (str != null && str.length > 1) {
-                vh.getTextView(R.id.text_end).setText(str[0] + " " + str[1].substring(0, 8));
-            }
-        }
+        vh.getTextView(R.id.text_start).setText(boxVo.getStringOrdertime());
+        vh.getTextView(R.id.text_end).setText(boxVo.getStringEndtime());
         BigDecimal decimal = BigDecimalUtils.mul(new BigDecimal(boxVo.getLv()), new BigDecimal(100));
         vh.getTextView(R.id.text_interest).setText(BigDecimalUtils.round(decimal, 2).toPlainString() + "%");
         vh.getTextView(R.id.text_monty).setText(boxVo.getProfitAmount() + "BOX");

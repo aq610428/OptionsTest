@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.aspsine.swipetoloadlayout.OnLoadMoreListener;
 import com.aspsine.swipetoloadlayout.OnRefreshListener;
 import com.aspsine.swipetoloadlayout.SwipeToLoadLayout;
-import com.jkabe.app.box.adapter.TabAdapter;
 import com.jkabe.app.box.adapter.TabAdapter1;
 import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.bean.BoxVo;
@@ -25,7 +24,6 @@ import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.NoDataView;
 import com.jkabe.box.R;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -63,7 +61,7 @@ public class TabDefiActivity extends BaseActivity implements OnLoadMoreListener,
         title_text_tv = getView(R.id.title_text_tv);
         title_left_btn = getView(R.id.title_left_btn);
         title_left_btn.setOnClickListener(this);
-        title_text_tv.setText("收益明细");
+        title_text_tv.setText("收益记录");
         noDataView.textView.setText("暂无收益明细");
     }
 
@@ -119,7 +117,6 @@ public class TabDefiActivity extends BaseActivity implements OnLoadMoreListener,
                                 swipeToLoadLayout.setVisibility(View.GONE);
                                 noDataView.setVisibility(View.VISIBLE);
                             }
-
                         }
                         break;
 
