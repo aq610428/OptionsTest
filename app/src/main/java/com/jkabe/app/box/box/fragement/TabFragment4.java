@@ -199,6 +199,7 @@ public class TabFragment4 extends BaseFragment implements NetWorkListener, OnRef
         isRefresh = false;
         page = 1;
         query();
+        load();
     }
 
     @Override

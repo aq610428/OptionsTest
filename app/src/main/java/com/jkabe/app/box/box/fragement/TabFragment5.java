@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.jkabe.app.box.base.BaseFragment;
-import com.jkabe.app.box.weight.NoDataView;
 import com.jkabe.box.R;
 
 /**
@@ -17,7 +16,7 @@ import com.jkabe.box.R;
  */
 public class TabFragment5 extends BaseFragment {
     private View rootView;
-    private NoDataView noDataView;
+
 
     @Nullable
     @Override
@@ -31,8 +30,7 @@ public class TabFragment5 extends BaseFragment {
     }
 
     private void initView() {
-        noDataView = rootView.findViewById(R.id.noDataView);
-        noDataView.textView.setText("暂未开放");
+
     }
 
 
