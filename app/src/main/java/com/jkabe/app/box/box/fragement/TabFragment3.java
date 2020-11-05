@@ -129,6 +129,8 @@ public class TabFragment3 extends BaseFragment implements OnRefreshListener, Net
                     Intent intent = new Intent(getContext(), DefiActivity.class);
                     intent.putExtra("tabBean", tabBean);
                     intent.putExtra("type", beans.get(position).getType()+"");
+                    intent.putExtra("mouth", beans.get(position).getZq()+"");
+                    intent.putExtra("lv", beans.get(position).getLv()+"");
                     startActivity(intent);
                 }
             });

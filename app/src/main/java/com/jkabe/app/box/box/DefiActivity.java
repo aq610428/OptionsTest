@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
 import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.bean.CommonalityModel;
 import com.jkabe.app.box.bean.TabBean;
 import com.jkabe.app.box.config.Api;
 import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
+import com.jkabe.app.box.util.BigDecimalUtils;
 import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.SaveUtils;
@@ -17,7 +19,9 @@ import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.ClearEditText;
 import com.jkabe.box.R;
+
 import org.json.JSONObject;
+
 import java.math.BigDecimal;
 import java.util.Map;
 
@@ -27,7 +31,7 @@ import java.util.Map;
  * @name:DefiActivity
  */
 public class DefiActivity extends BaseActivity implements NetWorkListener {
-    private TextView title_text_tv, title_left_btn, text_ensure, title_right_btn;
+    private TextView title_text_tv, title_left_btn, text_ensure, title_right_btn, text_name;
     private ClearEditText et_num;
     private TabBean tabBean;
     private TextView text_user, text_deif, text_pay;
@@ -41,6 +45,7 @@ public class DefiActivity extends BaseActivity implements NetWorkListener {
 
     @Override
     protected void initView() {
+        text_name = getView(R.id.text_name);
         text_pay = getView(R.id.text_pay);
         text_deif = getView(R.id.text_deif);
         text_user = getView(R.id.text_user);
@@ -75,12 +80,17 @@ public class DefiActivity extends BaseActivity implements NetWorkListener {
 
     @Override
     protected void initData() {
+        String mouth = getIntent().getStringExtra("mouth");
+        String lv = getIntent().getStringExtra("lv");
         type = getIntent().getStringExtra("type");
         tabBean = (TabBean) getIntent().getSerializableExtra("tabBean");
         if (tabBean != null) {
             text_user.setText(tabBean.getManage_amount() + "");
             text_deif.setText(tabBean.getProfit_amount() + "");
             text_pay.setText(tabBean.getManage_num() + "");
+            String str = "本方案是BOX Defi定投" + mouth + "的理财方案，所投资BOX锁 仓" + mouth +
+                    "，到期后一次性释放理财收益。\n本方案收益率为" + lv + "\n本方案Box Defi定投500BOX起，100BOX的整数倍递增，最高 接受10万BOX定投。\n本方案可在投资期内赎回，收益超过本金不予提前赎回；超过24小时赎回将产生违约金;提前赎回不计投资收益。";
+            text_name.setText(str);
         }
     }
 
@@ -92,7 +102,7 @@ public class DefiActivity extends BaseActivity implements NetWorkListener {
             return;
         }
 
-        if (new BigDecimal(amount).doubleValue()<500) {
+        if (new BigDecimal(amount).doubleValue() < 500) {
             ToastUtil.showToast("理财金额不能小于500");
             return;
         }
