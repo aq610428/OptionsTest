@@ -5,8 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import com.jkabe.app.box.base.BaseFragment;
 import com.jkabe.app.box.bean.CommonalityModel;
 import com.jkabe.app.box.config.Api;
@@ -16,8 +18,11 @@ import com.jkabe.app.box.util.Constants;
 import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.app.box.util.Utility;
+import com.jkabe.app.box.weight.NoDataView;
 import com.jkabe.box.R;
+
 import org.json.JSONObject;
+
 import java.util.Map;
 
 /**
@@ -30,6 +35,7 @@ public class TabFragment5 extends BaseFragment implements NetWorkListener {
     private TextView text_tab1, text_tab2, text_tab3, text_tab4, text_tab5, text_tab6;
     private TextView text_tab_direct, text_tab1_direct, text_tab2_direct;
     private TextView text_tab_usdt, text_tab1_usdt, text_tab1_box, text_tab2_box;
+    private NoDataView noDataView;
 
     @Nullable
     @Override
@@ -42,6 +48,7 @@ public class TabFragment5 extends BaseFragment implements NetWorkListener {
     }
 
     private void initView() {
+        noDataView = getView(rootView, R.id.noDataView);
         text_tab1 = getView(rootView, R.id.text_tab1);
         text_tab2 = getView(rootView, R.id.text_tab2);
         text_tab3 = getView(rootView, R.id.text_tab3);
@@ -57,6 +64,7 @@ public class TabFragment5 extends BaseFragment implements NetWorkListener {
         text_tab1_usdt = getView(rootView, R.id.text_tab1_usdt);
         text_tab1_box = getView(rootView, R.id.text_tab1_box);
         text_tab2_box = getView(rootView, R.id.text_tab2_box);
+        noDataView.textView.setText("暂未开放");
     }
 
 
