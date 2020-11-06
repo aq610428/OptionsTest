@@ -20,9 +20,7 @@ import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.ClearEditText;
 import com.jkabe.box.R;
-
 import org.json.JSONObject;
-
 import java.math.BigDecimal;
 import java.util.Map;
 
@@ -96,7 +94,6 @@ public class DefiActivity extends BaseActivity implements NetWorkListener {
                     "\n本方案可在投资期内赎回，收益超过本金不予提前赎回；超过24小时赎回将产生违约金;提前赎回不计投资收益。\n按月发送一期收益，到期后一次释放理财本金";
             text_name.setText(str);
         }
-
         load();
     }
 
