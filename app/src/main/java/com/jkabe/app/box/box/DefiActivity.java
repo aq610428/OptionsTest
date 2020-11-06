@@ -89,9 +89,9 @@ public class DefiActivity extends BaseActivity implements NetWorkListener {
             text_user.setText(tabBean.getManage_amount() + "");
             text_deif.setText(tabBean.getManage_num() + "");
             text_pay.setText(tabBean.getProfit_amount() + "");
-            String str = "本方案是BOX Defi定投" + mouth + "的理财方案，所投资BOX锁 仓" + mouth +
-                    "，到期后一次性释放理财收益。\n本方案收益率为" + lv + "\n本方案Box Defi定投500BOX起，100BOX的整数倍递增，最高 接受10万BOX定投。" +
-                    "\n本方案可在投资期内赎回，收益超过本金不予提前赎回；超过24小时赎回将产生违约金;提前赎回不计投资收益。\n按月发送一期收益，到期后一次释放理财本金";
+            String str = "本方案是BOXDefi项目定投" + mouth + "的理财方案，所有理财资产锁仓" + mouth +
+                    "，到期后一次性释放理财收益。\n本方案收益率为" + lv + "\nBOX DeFi项目定投500BOX起，按100BOX的整数倍递增，最高接受10万BOX定投。" +
+                    "\n本方案可在投资期内赎回，收益超过本金不予提前赎回。\n不满一个月内赎回将产生违约金 \n提前赎回不计投资收益；超过一个月赎回计算当月投资收益+零存日收益\n理财收益按月、对应存入日期发送；到期后一次性释放理财本金。";
             text_name.setText(str);
         }
         load();
