@@ -187,6 +187,18 @@
 
 
             <TextView
+                android:id="@+id/text_box"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="6dp"
+                android:gravity="center|left"
+                android:text="0"
+                android:textColor="@color/black99"
+                android:textSize="@dimen/ctv_sizen_13" />
+
+
+            <TextView
                 android:id="@+id/text_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

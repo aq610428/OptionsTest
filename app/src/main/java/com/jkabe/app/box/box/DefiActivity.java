@@ -4,20 +4,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
 import com.jkabe.app.box.base.BaseActivity;
 import com.jkabe.app.box.bean.CommonalityModel;
 import com.jkabe.app.box.bean.TabBean;
+import com.jkabe.app.box.bean.UsdtBean;
 import com.jkabe.app.box.config.Api;
 import com.jkabe.app.box.config.NetWorkListener;
 import com.jkabe.app.box.config.okHttpModel;
 import com.jkabe.app.box.util.Constants;
+import com.jkabe.app.box.util.JsonParse;
 import com.jkabe.app.box.util.Md5Util;
 import com.jkabe.app.box.util.SaveUtils;
 import com.jkabe.app.box.util.ToastUtil;
 import com.jkabe.app.box.util.Utility;
 import com.jkabe.app.box.weight.ClearEditText;
 import com.jkabe.box.R;
+
 import org.json.JSONObject;
+
 import java.math.BigDecimal;
 import java.util.Map;
 
@@ -27,11 +32,12 @@ import java.util.Map;
  * @name:DefiActivity
  */
 public class DefiActivity extends BaseActivity implements NetWorkListener {
-    private TextView title_text_tv, title_left_btn, text_ensure, title_right_btn, text_name;
+    private TextView title_text_tv, title_left_btn, text_ensure, title_right_btn, text_name, text_box;
     private ClearEditText et_num;
     private TabBean tabBean;
     private TextView text_user, text_deif, text_pay;
     private String type;
+    private UsdtBean usdtBean;
 
 
     @Override
@@ -41,6 +47,7 @@ public class DefiActivity extends BaseActivity implements NetWorkListener {
 
     @Override
     protected void initView() {
+        text_box = getView(R.id.text_box);
         text_name = getView(R.id.text_name);
         text_pay = getView(R.id.text_pay);
         text_deif = getView(R.id.text_deif);
@@ -52,7 +59,7 @@ public class DefiActivity extends BaseActivity implements NetWorkListener {
         text_ensure = getView(R.id.text_ensure);
         title_left_btn.setOnClickListener(this);
         text_ensure.setOnClickListener(this);
-        title_text_tv.setText("投保");
+        title_text_tv.setText("理财");
         title_right_btn.setText("收益记录");
         title_right_btn.setOnClickListener(this);
     }
@@ -86,9 +93,11 @@ public class DefiActivity extends BaseActivity implements NetWorkListener {
             text_pay.setText(tabBean.getProfit_amount() + "");
             String str = "本方案是BOX Defi定投" + mouth + "的理财方案，所投资BOX锁 仓" + mouth +
                     "，到期后一次性释放理财收益。\n本方案收益率为" + lv + "\n本方案Box Defi定投500BOX起，100BOX的整数倍递增，最高 接受10万BOX定投。" +
-                            "\n本方案可在投资期内赎回，收益超过本金不予提前赎回；超过24小时赎回将产生违约金;提前赎回不计投资收益。\n按月发送一期收益，到期后一次释放理财本金";
+                    "\n本方案可在投资期内赎回，收益超过本金不予提前赎回；超过24小时赎回将产生违约金;提前赎回不计投资收益。\n按月发送一期收益，到期后一次释放理财本金";
             text_name.setText(str);
         }
+
+        load();
     }
 
 
@@ -115,6 +124,21 @@ public class DefiActivity extends BaseActivity implements NetWorkListener {
         okHttpModel.post(Api.LIST_MEMBER_BOX, params, Api.LIST_MEMBER_BOX_ID, this);
     }
 
+
+    public void load() {
+        String sign = "memberid=" + SaveUtils.getSaveInfo().getId() + "&partnerid=" + Constants.PARTNERID + Constants.SECREKEY;
+        showProgressDialog(this, false);
+        Map<String, String> params = okHttpModel.getParams();
+        params.put("apptype", Constants.TYPE);
+        params.put("memberid", SaveUtils.getSaveInfo().getId());
+        params.put("partnerid", Constants.PARTNERID);
+        params.put("limit", "10");
+        params.put("page", "1");
+        params.put("sign", Md5Util.encode(sign));
+        okHttpModel.get(Api.MINING_BAL_BOX, params, Api.GETRECORD_BOX_ID, this);
+    }
+
+
     @Override
     public void onSucceed(JSONObject object, int id, CommonalityModel commonality) {
         if (object != null && commonality != null && !Utility.isEmpty(commonality.getStatusCode())) {
@@ -125,12 +149,22 @@ public class DefiActivity extends BaseActivity implements NetWorkListener {
                         startActivity(new Intent(this, TabActivity.class));
                         finish();
                         break;
+                    case Api.GETRECORD_BOX_ID:
+                        usdtBean = JsonParse.getJSONObjectUsdtBean(object);
+                        if (usdtBean != null) {
+                            updateView(usdtBean);
+                        }
+                        break;
                 }
             } else {
                 ToastUtil.showToast(commonality.getErrorDesc());
             }
         }
         stopProgressDialog();
+    }
+
+    private void updateView(UsdtBean usdtBean) {
+        text_box.setText("可投资余额" + usdtBean.getBox().getUserable() + "BOX");
     }
 
     @Override
